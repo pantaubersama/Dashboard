@@ -1,0 +1,9 @@
+<% content_for :head do -%>
+  <%= javascript_pack_tag 'pages/home' %>
+<% end -%>
+<div id="home" class="container">
+  <h1>Pages#home</h1>
+  <p>{{message}}</p>
+  <%= render "pages/room" %>
+</div>
+

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WhaleHunter</title>
+  <%= Gon::Base.render_data %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_pack_tag 'assets/javascripts/application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'assets/javascripts/application', 'data-turbolinks-track': 'reload' %>
+  <% if content_for? :head %>
+    <%= yield :head %>
+  <% end %>
+</head>
+
+<body>
+<%= yield %>
+</body>
+</html>
