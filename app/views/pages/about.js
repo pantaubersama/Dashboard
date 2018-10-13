@@ -1,10 +1,10 @@
 import Vue from 'vue/dist/vue.esm'
 document.addEventListener('DOMContentLoaded', () => {
     const app = new Vue({
-        el  : '#home',
+        el  : '#about',
         data: {
-            message:  gon.page,
-            page   : "home?",
+            message: gon.page,
+            page   : "about?",
         }
     })
 })

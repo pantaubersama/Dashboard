@@ -1,5 +1,9 @@
 class PagesController < ApplicationController
   def home
-    gon.push({ home: "Go Home" })
+    gon.push({ page: "Go Home" })
+  end
+
+  def about
+    gon.push({ page: "Go About" })
   end
 end
