@@ -2,13 +2,15 @@
 <html>
 <head>
   <title>WhaleHunter</title>
-  <%= Gon::Base.render_data %>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
   <%= stylesheet_pack_tag 'assets/javascripts/application', media: 'all' %>
   <%= javascript_pack_tag 'assets/javascripts/application' %>
   <% if content_for? :head %>
+    <script>
+        var pages = <%= raw @pages.to_json %>;
+    </script>
     <%= yield :head %>
   <% end %>
 </head>
