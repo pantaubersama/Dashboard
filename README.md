@@ -1,24 +1,47 @@
 # README
+####sorry no doc, need help call me at `namakukingkong@gmail.com`
+#####Setup
+- git clone git@github.com:namakukingkong/whale_hunter.git
+- cd whale_hunter
+- rails g rename:into <new_name>
+- cd ../<new_name>
+- setup ur database (postgresql)
+- create env variable files (.env.development , .env.test)
+    - .env.development 
+```
+    BASE_URL="http://0.0.0.0:3000"
+    
+    # database master
+    DATABASE_NAME=whale_hunter_development
+    DATABASE_USERNAME=postgres
+    DATABASE_PASSWORD=namakualam
+    DATABASE_HOSTNAME= localhost
+    DATABASE_PORT="5433"
+    RAILS_MAX_THREADS="5"
+```
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ - .env.test 
+```
+    BASE_URL="http://0.0.0.0:3000"
+    
+    # database master
+    DATABASE_NAME=whale_hunter_development
+    DATABASE_USERNAME=postgres
+    DATABASE_PASSWORD=namakualam
+    DATABASE_HOSTNAME= localhost
+    DATABASE_PORT="5433"
+    RAILS_MAX_THREADS="5"
+```
+   
+- $ bundle install
+- $ rails db:create db:migrate
+- $ rails s
+- new console tab $ bundle exec guard
+- go to `http://localhost:3000`
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#####What do you get
+- npm
+- vuejs
+- postgres using uuid
+- respec (factory_bot, shulda_matcher,faker)
+- etc
