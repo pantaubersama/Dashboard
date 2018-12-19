@@ -45,6 +45,12 @@ group :development do
 
   gem 'guard-rspec', require: false
   # then run $ bundle exec guard init rspec
+
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano3-unicorn'
+  gem 'capistrano-rvm'
+  gem 'capistrano-yarn'
 end
 
 group :test do
@@ -78,3 +84,7 @@ group :test do
   ###doc [5] set up database_cleaner
   gem 'database_cleaner'
 end
+
+gem 'seed_migration'
+
+gem 'unicorn', group: [:staging, :production]
