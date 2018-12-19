@@ -1,4 +1,4 @@
-append :linked_files, ".ruby-version", ".env.staging"
+append :linked_files, ".ruby-version", ".env.staging", "config/master.key"
 
 set :rvm_type, :auto
 set :rvm_ruby_version, 'ruby-2.5.3'
