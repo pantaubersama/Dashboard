@@ -50,7 +50,6 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
   gem 'capistrano-rvm'
-  gem 'capistrano-yarn'
 end
 
 group :test do
