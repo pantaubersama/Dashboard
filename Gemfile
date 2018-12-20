@@ -45,6 +45,10 @@ group :development do
 
   gem 'guard-rspec', require: false
   # then run $ bundle exec guard init rspec
+
+  ###doc [2] set up factory_girl
+  # DEPRECATION gem 'factory_girl_rails'
+  gem 'factory_bot_rails', '~> 4.0'
 end
 
 group :test do
@@ -65,10 +69,6 @@ gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'rename'
 
 group :test do
-  ###doc [2] set up factory_girl
-  # DEPRECATION gem 'factory_girl_rails'
-  gem 'factory_bot_rails', '~> 4.0'
-
   ###doc [3] set up shoulda_matchers
   gem 'shoulda-matchers', '~> 3.1'
 
