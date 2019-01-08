@@ -1,0 +1,44 @@
+<div class="col-md-2 sidebar">
+  <aside class="sidebar" role="complementary">
+    <div class="logo">
+      <a href="/">
+        <img src="<%= asset_pack_path("views/assets/images/logo.svg") %>" alt="Logo">
+      </a>
+    </div>
+    <nav class="nav" role="navigation">
+      <ul>
+        <li class="nav-item"><a href="#"><img src="<%= asset_pack_path("views/assets/images/ic_home.svg") %>"> Home</a>
+        </li>
+        <li class="nav-item" data-toggle="collapse" href="#collapseUser" role="button"
+            aria-expanded="false"
+            aria-controls="collapseUser">
+          <a href="#"><img src="<%= asset_pack_path("views/assets/images/ic_user-black.svg") %>"> User</a>
+          <div class="collapse sub-nav" id="collapseUser">
+            <a class="sub-nav-item" href="#">List Admin</a>
+            <a class="sub-nav-item active" href="#">List User</a>
+            <a class="sub-nav-item" href="#">List User Cluster</a>
+            <a class="sub-nav-item" href="#">List Cluster</a>
+            <a class="sub-nav-item" href="#">Promotor</a>
+          </div>
+        </li>
+        <li class="nav-item" data-toggle="collapse" href="#collapseTimeline" role="button"
+            aria-expanded="false"
+            aria-controls="collapseTimeline">
+          <a href="#"><img src="<%= asset_pack_path("views/assets/images/ic_timeline-black.svg") %>"> Timeline</a>
+          <div class="collapse sub-nav" id="collapseTimeline">
+            <a class="sub-nav-item active" href="#">Linimasa</a>
+            <a class="sub-nav-item" href="#">Janji Politik</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="#"><img src="<%= asset_pack_path("views/assets/images/ic_book-black.svg") %>"> Pendidikan</a></li>
+        <li class="nav-item">
+          <a href="#"><img src="<%= asset_pack_path("views/assets/images/ic_ws-black.svg") %>"> Wordstadium</a></li>
+        <li class="nav-item">
+          <a href="#"><img src="<%= asset_pack_path("views/assets/images/ic_report-black.svg") %>"> Lapor</a></li>
+        <li class="nav-item">
+          <a href="#"><img src="<%= asset_pack_path("views/assets/images/ic_calc-black.svg") %>"> Perhitungan</a></li>
+      </ul>
+    </nav>
+  </aside>
+</div>
