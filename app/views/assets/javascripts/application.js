@@ -7,11 +7,13 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-console.log('Hello World from Webpacker')
+console.log('Hello Dashboard');
 import '../stylesheets/application.scss'
 import 'jquery'
 import 'bootstrap'
+import './modernizr'
+import '@fortawesome/fontawesome-free/js/all.js'
 
 import Rails from 'rails-ujs'
 
-Rails.start()
+Rails.start();

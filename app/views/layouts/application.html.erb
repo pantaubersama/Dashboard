@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js">
 <head>
-  <title>WhaleHunter</title>
+  <meta charset="utf-8">
+  <title>Pantau Bersama</title>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+
   <%= Gon::Base.render_data %>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
+
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  <link href="//ajax.googleapis.com" rel="dns-prefetch">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
   <%= stylesheet_pack_tag 'assets/javascripts/application', media: 'all' %>
   <%= javascript_pack_tag 'assets/javascripts/application' %>
@@ -18,5 +28,17 @@
 
 <body>
 <%= yield %>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+    (function (b, o, i, l, e, r) {
+        b.GoogleAnalyticsObject = l; b[l] || (b[l] =
+            function () { (b[l].q = b[l].q || []).push(arguments) }); b[l].l = +new Date;
+        e = o.createElement(i); r = o.getElementsByTagName(i)[0];
+        e.src = '//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e, r)
+    }(window, document, 'script', 'ga'));
+    ga('create', 'UA-XXXXX-X'); ga('send', 'pageview');
+</script>
 </body>
 </html>
