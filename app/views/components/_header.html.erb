@@ -1,0 +1,31 @@
+<header class="header" role="banner">
+  <div class="tabs">
+    <ul class="nav nav-pills">
+      <li class="active"><a href="#all" data-toggle="tab">All</a>
+      </li>
+      <li><a href="#trash" data-toggle="tab">Trash</a>
+      </li>
+      <li><a href="#3a" data-toggle="tab">Daftar Username</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="dropdown profile">
+    <button class="dropdown-toggle" type="button" id="profile" data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false">
+      <img src="<%= asset_pack_path("views/assets/images/profile.jpg") %>">
+      <div class="desc">
+        <h5>Lilian Chu</h5>
+        <p>Admin</p>
+      </div>
+      <span class="icon">
+                                      <img src="<%= asset_pack_path("views/assets/images/ic_expand.svg") %>">
+                                  </span>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="profile">
+      <a class="dropdown-item" href="#">Profile</a>
+      <a class="dropdown-item" href="#">Setting</a>
+    </div>
+  </div>
+</header>
