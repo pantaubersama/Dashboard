@@ -88,3 +88,9 @@ end
 gem 'seed_migration'
 
 gem 'unicorn', group: [:staging, :production]
+
+#auth
+gem 'devise'
+gem 'omniauth-identitas'
+
+gem 'httparty'

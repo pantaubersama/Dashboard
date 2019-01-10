@@ -31,5 +31,6 @@ module Dashboard
       g.orm :active_record, primary_key_type: :uuid
     end
     config.generators.assets = false
+    config.autoload_paths += Dir["#{config.root}/services/**/"]
   end
 end
