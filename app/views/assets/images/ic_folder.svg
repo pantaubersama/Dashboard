@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24.439" height="22.969" viewBox="0 0 24.439 22.969">
+    <defs>
+        <style>
+            .cls-1,.cls-3{fill:none;stroke-linejoin:round}.cls-1,.cls-2,.cls-3{stroke:#989898;stroke-width:2px}.cls-1,.cls-2{stroke-linecap:round}.cls-2{fill:#fff}.cls-3{stroke-linecap:square;fill-rule:evenodd}
+        </style>
+    </defs>
+    <g id="Folder" transform="translate(-331.112 -255.938)">
+        <g id="Group" transform="translate(332.112 256.938)">
+            <path id="Rectangle-32" d="M0 0h18.792v20.969H0z" class="cls-1"/>
+            <path id="Rectangle-33" d="M0 0h5.836v20.969H0z" class="cls-1"/>
+            <path id="Rectangle-34" d="M0 0h5.107v5.836H0z" class="cls-2" transform="translate(17.333 2.959)"/>
+            <path id="Line" d="M23 2v3.648" class="cls-3" transform="translate(-8.664 -.541)"/>
+        </g>
+    </g>
+</svg>

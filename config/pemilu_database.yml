@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("PEMILU_RAILS_MAX_THREADS") { 5 } %>
+  database: <%= ENV["PEMILU_DATABASE_NAME"] %>
+  username: <%= ENV["PEMILU_DATABASE_USERNAME"] %>
+  password: <%= ENV["PEMILU_DATABASE_PASSWORD"] %>
+  host: <%= ENV['PEMILU_DATABASE_HOSTNAME'] %>
+  port: <%= ENV['PEMILU_DATABASE_PORT'].to_i %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+staging:
+  <<: *default
+
+production:
+  <<: *default
