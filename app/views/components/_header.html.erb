@@ -26,6 +26,9 @@
     <div class="dropdown-menu" aria-labelledby="profile">
       <a class="dropdown-item" href="#">Profile</a>
       <a class="dropdown-item" href="#">Setting</a>
+      <% if user_signed_in? %>
+       <%= link_to 'Logout', destroy_user_session_path, {class: 'dropdown-item'} %>
+      <% end %>
     </div>
   </div>
 </header>
