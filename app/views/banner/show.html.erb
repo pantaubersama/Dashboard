@@ -1,0 +1,96 @@
+<div class="d-flex main-wrapper">
+  <%= render("components/sidebar") %>
+  <div class="main-wrapper">
+    <main class="main col-md-10 offset-md-2" role="main">
+      <%= render("components/header") %>
+      <div class="main-content">
+        <div class="top">
+          <div class="pagination-wrap">
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><img
+                  src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" alt="Previous"></a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item active" aria-current="page">
+                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#"><img src="<%= asset_pack_path("views/assets/images/ic_arrow_right.svg") %>" alt="Next"></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="content">
+                        <span class="display-desc">
+                          <p>
+                              Displaying Content 1 - 30 of 500 in total
+                          </p>
+                        </span>
+
+          <%= @banner.title %>
+          <%= @banner.body %>
+          <%= image_tag ENV['PEMILU_BASE_URL']+"/uploads/banner_info/header_image/"+@banner.id+"/"+@banner.header_image, style: "width:100px" if @banner.header_image? %><br>
+          <%= image_tag ENV['PEMILU_BASE_URL']+"/uploads/banner_info/image/"+@banner.id+"/"+@banner.image, style: "width:100px" if @banner.image? %><br>
+          <%= @banner.page_name %><br>
+
+          <%= button_to 'Edit', edit_banner_path(@banner), method: :get %>
+
+
+
+          <div class="filter">
+            <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
+               aria-controls="collapseExample">
+              <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
+              <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
+            </a>
+            <div class="collapse filter-form">
+              <div class="card card-body">
+                <h4>Filter</h4>
+                <div class="form-wrap">
+                  <label>Status</label>
+                  <div class="form-group">
+                    <select class="form-control">
+                      <option>Terverifikasi</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-wrap">
+                  <label>User</label>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <input type="nama" class="form-control" placeholder="Nama">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-wrap">
+                <label>Email</label>
+                <div class="form-group">
+                  <div class="form-group">
+                    <input type="email" class="form-control" placeholder="luna@gmail.com">
+                  </div>
+                </div>
+              </div>
+              <div class="form-wrap">
+                <label>Cluster</label>
+                <div class="form-group">
+                  <div class="form-group">
+                    <input type="cluster" class="form-control" placeholder="Nama Cluster">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<%= render("components/footer") %>
+

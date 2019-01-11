@@ -22,4 +22,6 @@ Rails.application.routes.draw do
     get 'list_pertanyaan', to: 'pendidikan_politik#list_pertanyaan', as: 'pendidikan_politik_list_pertanyaan'
     get 'list_quiz', to: 'pendidikan_politik#list_quiz', as: 'pendidikan_politik_list_quiz'
   end
+
+  resources :banner, only: [:edit, :update, :show, :index]
 end
