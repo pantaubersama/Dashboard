@@ -78,12 +78,16 @@
               </tr>
               </thead>
               <tbody>
+
+              <% @admins.each_with_index do |admin, index| %>
               <tr>
-                <td class="number bold">1</td>
-                <td class="name bold"><img src="<%= asset_pack_path("views/assets/images/profile.jpg") %>">Lilian Chu
+                <td class="number bold"><%= index + 1 %></td>
+                <td class="name bold">
+                <%= image_tag admin.image_thumbnail_square_url %>
+                <%= admin.full_name %>
                 </td>
-                <td>chu@pantaubersama.co.id</td>
-                <td>21/10/23</td>
+                <td><%= admin.email %></td>
+                <td><%= admin.created_at %></td>
                 <td>
                   <button class="dropdown-toggle" type="button" data-toggle="dropdown"
                           aria-haspopup="true" aria-expanded="false">
@@ -94,54 +98,8 @@
                   </div>
                 </td>
               </tr>
-              <tr>
-                <td class="number bold">1</td>
-                <td class="name bold"><img src="<%= asset_pack_path("views/assets/images/profile.jpg") %>">Lilian Chu
-                </td>
-                <td>chu@pantaubersama.co.id</td>
-                <td>21/10/23</td>
-                <td>
-                  <button class="dropdown-toggle" type="button" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false">
-                    <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="action">
-                    <a class="dropdown-item" href="#">Delete</a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="number bold">1</td>
-                <td class="name bold"><img src="<%= asset_pack_path("views/assets/images/profile.jpg") %>">Lilian Chu
-                </td>
-                <td>chu@pantaubersama.co.id</td>
-                <td>21/10/23</td>
-                <td>
-                  <button class="dropdown-toggle" type="button" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false">
-                    <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="action">
-                    <a class="dropdown-item" href="#">Delete</a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="number bold">1</td>
-                <td class="name bold"><img src="<%= asset_pack_path("views/assets/images/profile.jpg") %>">Lilian Chu
-                </td>
-                <td>chu@pantaubersama.co.id</td>
-                <td>21/10/23</td>
-                <td>
-                  <button class="dropdown-toggle" type="button" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false">
-                    <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="action">
-                    <a class="dropdown-item" href="#">Delete</a>
-                  </div>
-                </td>
-              </tr>
+              <% end %>
+
 
               </tbody>
             </table>
