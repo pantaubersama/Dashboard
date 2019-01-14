@@ -87,7 +87,7 @@
                     <div class="content">
                         <span class="display-desc">
                           <p>
-                              Displaying Content 1 - 30 of <%= @total_records %> in total
+                              Displaying Content 1 - 30 of <%= @total_linimasa %> in total
                           </p>
                         </span>
                         <div class="table">
@@ -114,7 +114,7 @@
                                                 <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="action">
-                                                <a class="dropdown-item" href="#">Lihat</a>
+                                                <a class="dropdown-item" href="<%= timeline_show_inimasa_path(item["id"]) %>">Lihat</a>
                                                 <a class="dropdown-item" href="#">Delete</a>
                                             </div>
                                         </td>
@@ -234,7 +234,7 @@
                     <div class="content">
                                 <span class="display-desc">
                                   <p>
-                                      Displaying Content 1 - 30 of 500 in total
+                                      Displaying Content 1 - 30 of <%= @total_trash %> in total
                                   </p>
                                 </span>
                         <div class="table">
@@ -380,7 +380,7 @@
                     <div class="content">
                                 <span class="display-desc">
                                   <p>
-                                      Displaying Content 1 - 30 of 500 in total
+                                      Displaying Content 1 - 30 of <%= @total_trash %> in total
                                   </p>
                                 </span>
                         <div class="table">

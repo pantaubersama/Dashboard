@@ -6,6 +6,11 @@ class Api::Pemilu::Linimasa < InitApiPemilu
     self.class.get("/linimasa/v1/feeds/pilpres", @options)
   end
 
+  def show_tweet(id)
+    @options = { headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
+    self.class.get("/linimasa/v1/feeds/pilpres/#{id}", @options)
+  end
+
   def post_user(keywords, team)
     self.class.post("/dashboard/v1/linimasa/crowling/username",
       { 
