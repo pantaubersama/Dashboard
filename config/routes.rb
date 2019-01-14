@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get '/list_janji_politik', to: 'timeline#list_janji_politik', as: 'timeline_list_janji_politik'
     get '/edit_inimasa', to: 'timeline#edit_inimasa', as: 'timeline_edit_inimasa'
     get '/list_username', to: 'timeline#list_username', as: 'timeline_list_username'
+    post '/new_username', to: 'timeline#new_username', as: 'timeline_new_username'
   end
 
   scope '/pendidikan_politik' do
