@@ -27,7 +27,7 @@
           <div class="content">
                         <span class="display-desc">
                           <p>
-                              Displaying Content 1 - 30 of 500 in total
+                              Displaying Content 1 - 30 of <%= @total_records %> in total
                           </p>
                         </span>
             <div class="table">
@@ -43,15 +43,15 @@
                 </tr>
                 </thead>
                 <tbody>
+                <% @janji_politiks.each_with_index do |item, index| %>
                 <tr>
-                  <td class="number bold">1</td>
+                  <td class="number bold"><%= index += 1 %></td>
                   <td class="name bold"><a href="detail-janji-politik.html"> <img
-                    src="<%= asset_pack_path("views/assets/images/profile.jpg") %>">Lilian
-                    Chu</a>
+                    src="<%= item["creator"]["avatar"]["thumbnail"]["url"] %>"><%= item["creator"]["username"] %></a>
                   </td>
-                  <td>Prabowo Menjanjikan Dana 1T Untuk Setiap Desa yang memiliki UMKM</td>
-                  <td>PPP</td>
-                  <td>21/10/2023</td>
+                  <td><%= item["title"].truncate(60) %></td>
+                  <td><%= item["cluster"] %></td>
+                  <td><%= item["created_at_in_word"]["id"] %></td>
                   <td>
                     <button class="dropdown-toggle" type="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
@@ -105,7 +105,7 @@
                       <a class="dropdown-item" href="#">Delete</a>
                     </div>
                   </td>
-
+                  <% end %>
                 </tbody>
               </table>
             </div>

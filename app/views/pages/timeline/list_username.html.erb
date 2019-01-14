@@ -12,7 +12,7 @@
                                     <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><img
                                             src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" alt="Previous"></a>
                                 </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li id="testtest" class="page-item"><a class="page-link" href="#">1</a></li>
                                 <li class="page-item active" aria-current="page">
                                     <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
                                 </li>
@@ -27,7 +27,6 @@
                             <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
                                 Tambah Username <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
                             </button>
-
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -38,43 +37,48 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <div class="modal-body">
+
+                                        <form id="new_user" accept-charset="UTF-8" action="<%= timeline_new_username_path %>" method="post">
+                                            <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+                                            <div class="modal-body">
                                             <h3>Tambah Username</h3>
-                                            <div class="form-wrap">
-                                                <label>Username Twitter</label>
-                                                <div class="form-group">
+                                                <div class="form-wrap">
+                                                    <label>Username Twitter</label>
                                                     <div class="form-group">
-                                                        <input type="Email" class="form-control"
-                                                               placeholder="adellapratitas7@gmail.com"></textarea>
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="keywords" value="<%= params[:keywords] %>"
+                                                                   placeholder="adellapratitas7@gmail.com"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="checklist">
+                                                    <label>Kubu Tim Sukses</label>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="team"
+                                                               id="exampleRadios1"
+                                                               value="1" checked>
+                                                        <label class="form-check-label" for="exampleRadios1">
+                                                            Jokowi - Ma'ruf
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="team"
+                                                               id="exampleRadios2"
+                                                               value="2">
+                                                        <label class="form-check-label" for="exampleRadios2">
+                                                            Prabowo - Sandi
+                                                        </label>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="checklist">
-                                                <label>Kubu Tim Sukses</label>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="exampleRadios"
-                                                           id="exampleRadios1"
-                                                           value="option1" checked>
-                                                    <label class="form-check-label" for="exampleRadios1">
-                                                        Jokowi - Ma'ruf
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="exampleRadios"
-                                                           id="exampleRadios2"
-                                                           value="option2">
-                                                    <label class="form-check-label" for="exampleRadios2">
-                                                        Prabowo - Sandi
-                                                    </label>
-                                                </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-solid-green" onclick="document.getElementById('new_user').submit()" data-dismiss="modal">
+                                                    Tambah
+                                                </button>
+                                                <button type="button" class="btn btn-transparent" data-dismiss="modal">Cancel</button>
                                             </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-solid-green" data-dismiss="modal">
-                                                Tambah
-                                            </button>
-                                            <button type="button" class="btn btn-transparent">Cancel</button>
-                                        </div>
+                                        </form>
+
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +87,7 @@
                     <div class="content">
                         <span class="display-desc">
                           <p>
-                              Displaying Content 1 - 30 of 500 in total
+                              Displaying Content 1 - 30 of <%= @total_linimasa %> in total
                           </p>
                         </span>
                         <div class="table">
@@ -98,22 +102,24 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td class="number bold">1</td>
-                                    <td class="name bold"><a href="detail-user.html">Jokowi - Makruf</a></td>
-                                    <td>@jokowi2019</td>
-                                    <td>Anak-anak muda dari dunia industri kreatif di Banda Aceh.</td>
-                                    <td>
-                                        <button class="dropdown-toggle" type="button" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false">
-                                            <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="action">
-                                            <a class="dropdown-item" href="#">Lihat</a>
-                                            <a class="dropdown-item" href="#">Delete</a>
-                                        </div>
-                                    </td>
-
+                                <% @tweets.each_with_index do |item, index| %>
+                                    <tr>
+                                        <td class="number bold"><%= index += 1 %></td>
+                                        <td class="name bold"><a href="detail-user.html"><%= item["team"]["title"] %></a></td>
+                                        <td><%= item["account"]["username"] %></td>
+                                        <td><%= item["source"]["text"].truncate(60) %></td>
+                                        <td>
+                                            <button class="dropdown-toggle" type="button" data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false">
+                                                <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="action">
+                                                <a class="dropdown-item" href="<%= timeline_show_inimasa_path(item["id"]) %>">Lihat</a>
+                                                <a class="dropdown-item" href="#">Delete</a>
+                                            </div>
+                                        </td>
+                                    <tr>
+                                <% end %>
                                 </tbody>
                             </table>
                         </div>
@@ -228,7 +234,7 @@
                     <div class="content">
                                 <span class="display-desc">
                                   <p>
-                                      Displaying Content 1 - 30 of 500 in total
+                                      Displaying Content 1 - 30 of <%= @total_trash %> in total
                                   </p>
                                 </span>
                         <div class="table">
@@ -243,10 +249,11 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <% @trash.each_with_index do |item, index| %>
                                 <tr>
-                                    <td class="number bold">1</td>
-                                    <td class="name bold"><a href="detail-user.html">Jokowi - Makruf</a></td>
-                                    <td>@jokowi2019</td>
+                                    <td class="number bold"><%= index += 1 %></td>
+                                    <td class="name bold"><a href="detail-user.html"><%= item["team"]["title"] %></a></td>
+                                    <td>@a</td>
                                     <td>Anak-anak muda dari dunia industri kreatif di Banda Aceh.</td>
                                     <td>
                                         <button class="dropdown-toggle" type="button" data-toggle="dropdown"
@@ -258,7 +265,7 @@
                                             <a class="dropdown-item" href="#">Terima</a>
                                         </div>
                                     </td>
-
+                                <% end %>
                                 </tbody>
                             </table>
                         </div>
@@ -312,6 +319,155 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="main-content tab-pane" id="3a">
+                    <div class="top ">
+                        <div class="pagination-wrap">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><img
+                                            src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" alt="Previous"></a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item active" aria-current="page">
+                                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#"><img src="<%= asset_pack_path("views/assets/images/ic_arrow_right.svg") %>"
+                                                                       alt="Next"></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="modal-wrap">
+                            <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
+                                Create Username <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
+                            </button>
+
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <!-- <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5> -->
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h3>Tambah Admin</h3>
+                                            <div class="form-wrap">
+                                                <label>User</label>
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <input type="Email" class="form-control"
+                                                               placeholder="adellapratitas7@gmail.com">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-solid-green" data-dismiss="modal">
+                                                Tambah
+                                            </button>
+                                            <button type="button" class="btn btn-transparent">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content">
+                                <span class="display-desc">
+                                  <p>
+                                      Displaying Content 1 - 30 of <%= @total_trash %> in total
+                                  </p>
+                                </span>
+                        <div class="table">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Team</th>
+                                    <th>Username Twitter</th>
+                                    <th>Jumlah Tweet</th>
+                                    <th>Created at</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <% @users.each_with_index do |item, index| %>
+                                <tr>
+                                    <td class="number bold"><%= index += 1 %></td>
+                                    <td class="name bold"><a href="detail-user.html"><%= item["team"]["title"] %></a></td>
+                                    <td>@a</td>
+                                    <td>100</td>
+                                    <td><%= item["created_at_in_word"]["id"] %></td>
+                                    <td>
+                                        <button class="dropdown-toggle" type="button" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                            <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="action">
+                                            <a class="dropdown-item" href="#">Lihat</a>
+                                            <a class="dropdown-item" href="#">Terima</a>
+                                        </div>
+                                    </td>
+                                <% end %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="filter">
+                            <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
+                               aria-controls="collapseExample">
+                                <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
+                                <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
+                            </a>
+                            <div class="collapse filter-form">
+                                <div class="card card-body">
+                                    <h4>Filter</h4>
+                                    <div class="form-wrap">
+                                        <label>Status</label>
+                                        <div class="form-group">
+                                            <select class="form-control">
+                                                <option>Terverifikasi</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-wrap">
+                                        <label>User</label>
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <input type="name" class="form-control" placeholder="Nama">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-wrap">
+                                    <label>Email</label>
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" placeholder="luna@gmail.com">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-wrap">
+                                    <label>Cluster</label>
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <input type="cluster" class="form-control" placeholder="Nama Cluster">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </main>
     </div>
