@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get '/edit_user', to: 'users#edit_user', as: 'users_edit_user'
     get '/list_admin', to: 'users#list_admin', as: 'users_list_admin'
     get '/list_user', to: 'users#list_user', as: 'users_list_user'
+    get '/user/:id', to: 'users#show', as: 'user_show'
   end
 
   scope '/timeline' do

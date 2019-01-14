@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
   include Pagy::Backend
-  include Pagy::Frontend
-
 
   def edit_user
     @pages = { page: "edit_user" }
@@ -28,4 +26,11 @@ class UsersController < ApplicationController
 
     render "pages/users/list_user"
   end
+
+  def show
+    request = Api::Auth::User.new
+    @user = request.find_simple(params[:id])['data']['user']
+    render "pages/users/detail_user"
+  end
+
 end
