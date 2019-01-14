@@ -95,3 +95,5 @@ gem 'devise'
 gem 'omniauth-identitas'
 
 gem 'httparty'
+
+gem 'pagy'

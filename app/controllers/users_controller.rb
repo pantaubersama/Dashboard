@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  include Pagy::Backend
+  include Pagy::Frontend
+
+
   def edit_user
     @pages = { page: "edit_user" }
     render "pages/users/edit_user"
@@ -13,6 +17,15 @@ class UsersController < ApplicationController
 
   def list_user
     @pages = { page: "list_user" }
+    @pagy, @users = pagy(UserPantauAuth.joins('JOIN "verifications" ON "verifications"."user_id" = "users"."id"').select('
+      users.id as id,
+      users.avatar as avatar,
+      users.full_name as fullname,
+      users.email as email,
+      users.created_at as created_at,
+      verifications.status as status
+    ').where('users.deleted_at IS NULL'))
+
     render "pages/users/list_user"
   end
 end
