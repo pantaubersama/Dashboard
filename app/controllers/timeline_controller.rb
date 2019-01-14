@@ -25,8 +25,14 @@ class TimelineController < ApplicationController
     page = params[:page]
 
     @linimasa = Api::Pemilu::Linimasa.new
-    @usernames = @linimasa.get_user_lists(page, 30)["data"]["feeds"]
-    @total_records = @linimasa.get_user_lists(page, nil)["data"]["feeds"].count
+    @tweets = @linimasa.list_tweet(page, 30)["data"]["feeds"]
+    @total_linimasa = @linimasa.list_tweet(page, nil)["data"]["feeds"].count
+
+    @trash = @linimasa.get_trash(page, 30)["data"]["crowlings"]
+    @total_trash = @linimasa.get_trash(page, nil)["data"]["crowlings"].count
+
+    @users = @linimasa.get_user_list(page, 30)["data"]["crowlings"]
+    @total_user = @linimasa.get_user_list(page, nil)["data"]["crowlings"].count    
 
     @pages = { page: "list_username" }
     render "pages/timeline/list_username"
@@ -35,7 +41,6 @@ class TimelineController < ApplicationController
   def new_username
     @username = Api::Pemilu::Linimasa.new
     @username.post_user(params[:keywords], params[:team])
-    # byebug
   end
 
 end
