@@ -96,4 +96,4 @@ gem 'omniauth-identitas'
 
 gem 'simple_form'
 gem 'httparty'
-gem 'her'
+gem 'pagy'

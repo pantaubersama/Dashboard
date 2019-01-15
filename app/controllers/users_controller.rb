@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < ApplicationController  
   def edit_user
     @pages = { page: "edit_user" }
     render "pages/users/edit_user"

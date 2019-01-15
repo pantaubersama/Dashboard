@@ -45,7 +45,7 @@ class TimelineController < ApplicationController
   end
 
   def new_username
-    @linimasa.post_user(params[:keywords], params[:team])
+    @linimasa.add_user(params[:keywords], params[:team])
   end
 
   private
