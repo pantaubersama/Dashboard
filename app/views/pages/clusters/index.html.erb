@@ -6,6 +6,7 @@
       <th>Admin</th>
       <th>Katergori</th>
       <th>Created at</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -16,7 +17,12 @@
       <td>Admin</td>
       <td><%= item["category"]["name"] %></td>
       <td>Created at</td>
+      <td><%= link_to "Show", cluster_path(item["id"]) %></td>
+      <td><%= link_to "Delete", cluster_path(item["id"]), method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= link_to "New Cluster", new_cluster_path %>
