@@ -40,8 +40,6 @@ class ClustersController < ApplicationController
     par = ([params[:name], params[:category_id], params[:description], params[:requester_id], params[:image], params[:status]]).to_json
     if @cluster.update_cluster(params[:id], par)
       redirect_to clusters_path, notice: "Success"
-      # byebug
-      # raise par
     end
   end
 

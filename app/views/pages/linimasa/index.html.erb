@@ -7,47 +7,20 @@
                 <div class="main-content tab-pane active" id="all">
                     
                     <div class="top ">
-                        <% link = pagy_link_proc(@pagy, 'class="page-link"') -%>
-                        
-<!--                             <nav aria-label="pager"  class="pagination-wrap">
-                                <ul class="pagination">
-                                <% if @pagy.prev %>
-                                    <li class="page-item prev"><%== link.call(@pagy.prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"') %></li>
-                                <% else -%>
-                                    <li class="page-item prev disabled"><a href="#" class="page-link"><%== pagy_t('pagy.nav.prev') %></a></li>
-                                <% end -%>
-
-                                <% @pagy.series.each do |item| -%>
-                                    <% if item.is_a?(Integer) -%> 
-                                        <li class="page-item"><%== link.call(item) %></li>
-                                    <% elsif item.is_a?(String) -%>    
-                                        <li class="page-item active"><%== link.call(item) %></li>
-                                    <% elsif item == :gap -%>
-                                        <li class="page-item disabled gap"><a href="#" class="page-link"><%== pagy_t('pagy.nav.gap') %></a></li>
-                                    <% end -%>
-                                <% end -%>
-                                <% if @pagy.next -%>
-                                    <li class="page-item next"><%== link.call(@pagy.next, pagy_t('pagy.nav.next'), 'aria-label="next"') %></li>
-                                <% else -%>
-                                    <li class="page-item next disabled"><a href="#" class="page-link"><%== pagy_t('pagy.nav.next') %></a></li>
-                                <% end -%>
-                                </ul>
-                        </nav> -->
-
-                        <!-- Pagination -->
+                        <% link = pagy_link_proc(@pagy_tweets) %>
                         <div class="pagination-wrap">
                             <ul class="pagination">
-                                <% if @pagy.prev %>
+                                <% if @pagy_tweets.prev %>
                                     <li class="page-item">
-                                        <%== link.call(@pagy.prev, pagy_t('pagy.nav.prev')) %>
+                                        <%== link.call(@pagy_tweets.prev, pagy_t('pagy.nav.prev')) %>
                                     </li>
                                 <% else  %>
                                     <li class="page-item disabled">
-                                        <%== link.call(@pagy.prev, pagy_t('pagy.nav.prev')) %>
+                                        <%== link.call(@pagy_tweets.prev, pagy_t('pagy.nav.prev')) %>
                                     </li>
                                 <% end %>
 
-                                <% @pagy.series.each do |item| %>
+                                <% @pagy_tweets.series.each do |item| %>
                                     <% if item.is_a?(Integer) %>
                                         <li id="testtest" class="page-item"><%== link.call(item) %></li>
                                     <% elsif item.is_a?(String) %>
@@ -57,10 +30,10 @@
                                     <% end %>
                                 <% end %>
 
-                                <% if @pagy.next %>
-                                    <li class="page-item"><%== link.call(@pagy.next, pagy_t('pagy.nav.next')) %></li>
+                                <% if @pagy_tweets.next %>
+                                    <li class="page-item"><%== link.call(@pagy_tweets.next, pagy_t('pagy.nav.next')) %></li>
                                 <% else %>
-                                    <li class="page-item disabled"><%== link.call(@pagy.next, pagy_t('pagy.nav.next')) %></li>
+                                    <li class="page-item disabled"><%== link.call(@pagy_tweets.next, pagy_t('pagy.nav.next')) %></li>
                                 <% end %>
                             </ul>
                         </div>
@@ -145,7 +118,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <% @items.each_with_index do |item, index| %>
+                                <% @item_tweets.each_with_index do |item, index| %>
                                     <tr>
                                         <td class="number bold"><%= index += 1 %></td>
                                         <td class="name bold"><a href="detail-user.html"><%= item["team"]["title"] %></a></td>
@@ -219,23 +192,37 @@
 
                 <div class="main-content tab-pane" id="trash">
                     <div class="top ">
+                        <% link = pagy_link_proc(@pagy_trash) %>
                         <div class="pagination-wrap">
                             <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><img
-                                            src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" alt="Previous"></a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item active" aria-current="page">
-                                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#"><img src="<%= asset_pack_path("views/assets/images/ic_arrow_right.svg") %>"
-                                                                       alt="Next"></a>
-                                </li>
+                                <% if @pagy_trash.prev %>
+                                    <li class="page-item">
+                                        <%== link.call(@pagy_trash.prev, pagy_t('pagy.nav.prev')) %>
+                                    </li>
+                                <% else  %>
+                                    <li class="page-item disabled">
+                                        <%== link.call(@pagy_trash.prev, pagy_t('pagy.nav.prev')) %>
+                                    </li>
+                                <% end %>
+
+                                <% @pagy_trash.series.each do |item| %>
+                                    <% if item.is_a?(Integer) %>
+                                        <li id="testtest" class="page-item"><%== link.call(item) %></li>
+                                    <% elsif item.is_a?(String) %>
+                                        <li class="page-item active" aria-current="page"><%== link.call(item) %></li>
+                                    <% elsif item == :gap %>
+                                        <li class="page-item disabled gap"><a href="#" class="page-link"><%== pagy_t('pagy.nav.gap') %></a></li>
+                                    <% end %>
+                                <% end %>
+
+                                <% if @pagy_trash.next %>
+                                    <li class="page-item"><%== link.call(@pagy_trash.next, pagy_t('pagy.nav.next')) %></li>
+                                <% else %>
+                                    <li class="page-item disabled"><%== link.call(@pagy_trash.next, pagy_t('pagy.nav.next')) %></li>
+                                <% end %>
                             </ul>
                         </div>
+
                         <div class="modal-wrap">
                             <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
                                 Create Username <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
@@ -292,7 +279,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <% @trash.each_with_index do |item, index| %>
+                                <% @item_trash.each_with_index do |item, index| %>
                                 <tr>
                                     <td class="number bold"><%= index += 1 %></td>
                                     <td class="name bold"><a href="detail-user.html"><%= item["team"]["title"] %></a></td>
@@ -365,21 +352,34 @@
 
                 <div class="main-content tab-pane" id="3a">
                     <div class="top ">
+                        <% link = pagy_link_proc(@pagy_users) %>
                         <div class="pagination-wrap">
                             <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><img
-                                            src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" alt="Previous"></a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item active" aria-current="page">
-                                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#"><img src="<%= asset_pack_path("views/assets/images/ic_arrow_right.svg") %>"
-                                                                       alt="Next"></a>
-                                </li>
+                                <% if @pagy_users.prev %>
+                                    <li class="page-item">
+                                        <%== link.call(@pagy_users.prev, pagy_t('pagy.nav.prev')) %>
+                                    </li>
+                                <% else  %>
+                                    <li class="page-item disabled">
+                                        <%== link.call(@pagy_users.prev, pagy_t('pagy.nav.prev')) %>
+                                    </li>
+                                <% end %>
+
+                                <% @pagy_users.series.each do |item| %>
+                                    <% if item.is_a?(Integer) %>
+                                        <li id="testtest" class="page-item"><%== link.call(item) %></li>
+                                    <% elsif item.is_a?(String) %>
+                                        <li class="page-item active" aria-current="page"><%== link.call(item) %></li>
+                                    <% elsif item == :gap %>
+                                        <li class="page-item disabled gap"><a href="#" class="page-link"><%== pagy_t('pagy.nav.gap') %></a></li>
+                                    <% end %>
+                                <% end %>
+
+                                <% if @pagy_users.next %>
+                                    <li class="page-item"><%== link.call(@pagy_users.next, pagy_t('pagy.nav.next')) %></li>
+                                <% else %>
+                                    <li class="page-item disabled"><%== link.call(@pagy_users.next, pagy_t('pagy.nav.next')) %></li>
+                                <% end %>
                             </ul>
                         </div>
                         <div class="modal-wrap">
@@ -439,7 +439,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <% @users.each_with_index do |item, index| %>
+                                <% @item_users.each_with_index do |item, index| %>
                                 <tr>
                                     <td class="number bold"><%= index += 1 %></td>
                                     <td class="name bold"><a href="detail-user.html"><%= item["team"]["title"] %></a></td>
@@ -452,7 +452,7 @@
                                             <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="action">
-                                            <a class="dropdown-item" href="#">Lihat</a>
+                                            <a class="dropdown-item" href="<%= detail_user_path(item["id"]) %>">Lihat</a>
                                             <a class="dropdown-item" href="#">Terima</a>
                                         </div>
                                     </td>

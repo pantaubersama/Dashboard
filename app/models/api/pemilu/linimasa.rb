@@ -1,5 +1,5 @@
 class Api::Pemilu::Linimasa < InitApiPemilu
-  attr_accessor :keywords, :team
+  attr_accessor :keywords, :team, :id
 
   # def list_tweet(page, per_page)
   #   @options = { query: {page: page, per_page: per_page}, headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
@@ -24,13 +24,23 @@ class Api::Pemilu::Linimasa < InitApiPemilu
       })
   end
 
-  def get_user_list(page, per_page)
-    @options = { query: {page: page, per_page: per_page}, headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
+  def get_user_list
+    @options = { headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
     self.class.get("/dashboard/v1/linimasa/crowling", @options)
   end
 
-  def get_trash(page, per_page)
-    @options = { query: {page: page, per_page: per_page}, headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
+  def get_user_detail(id)
+    @options = { headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
+    self.class.get("/dashboard/v1/linimasa/crowling/#{id}", @options)
+  end
+
+  def delete_username(id)
+    @options = { query: {id: id}, headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
+    self.class.delete("/dashboard/v1/linimasa/crowling", @options)
+  end
+
+  def get_trash
+    @options = { headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
     self.class.get("/dashboard/v1/linimasa/crowling/trashes", @options)
   end
   

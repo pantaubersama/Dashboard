@@ -29,7 +29,7 @@
 
               </div> -->
               <div class="right-desc">
-                <button class="btn btn-solid-green">HAPUS</button>
+               <%= button_to "delete", delete_user_path(@detail_user["data"]["crowling"]["id"]), method: :delete %>
               </div>
             </div>
 
@@ -40,7 +40,7 @@
                     <label>Username</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input type="text" class="form-control" hresize placeholder="@Yudho" value="<%= @detail_tweet["data"]["feed"]["account"]["username"] %>">
+                        <input type="text" class="form-control" hresize placeholder="@Yudho" value="<%= @detail_user["data"]["crowling"]["team"]["title"] %>">
                       </div>
                     </div>
                   </div>
@@ -51,23 +51,24 @@
                     <div class="form-group">
                       <div class="form-group">
                         <input type="text" class="form-control" hresize
-                               placeholder="Jokowi Prabowo" value="<%= @detail_tweet["data"]["feed"]["team"]["title"] %>">
+                               placeholder="Jokowi Prabowo" value="<%= @detail_user["data"]["crowling"]["keywords"] %>">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Jumlah Tweet</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="text" class="form-control" hresize
+                               placeholder="Jokowi Prabowo" value="100">
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div class="form-wrap">
-                <label>Tweet</label>
-                <div class="form-group">
-                  <div class="form-group">
-                                            <textarea type="text" class="form-control" hresize placeholder="Tweet">
-                                              <%= @detail_tweet["data"]["feed"]["source"]["text"] %>
-                                            </textarea>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

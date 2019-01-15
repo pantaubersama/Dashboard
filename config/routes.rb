@@ -4,9 +4,12 @@ Rails.application.routes.draw do
   root 'users#edit_user'
 
   scope '/users' do
+    # User
     get '/edit_user', to: 'users#edit_user', as: 'users_edit_user'
     get '/list_admin', to: 'users#list_admin', as: 'users_list_admin'
     get '/list_user', to: 'users#list_user', as: 'users_list_user'
+    
+    # Cluster
     resources :clusters
   end
 
@@ -17,6 +20,8 @@ Rails.application.routes.draw do
     
     # Linimasa
     resources :linimasa
+    get '/show_user/:id', to: 'linimasa#show_user', as: 'detail_user'
+    delete '/delete_user/:id', to:'linimasa#delete_user', as: 'delete_user'
   end
 
   scope '/pendidikan_politik' do
