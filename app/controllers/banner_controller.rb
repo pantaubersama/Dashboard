@@ -12,7 +12,8 @@ class BannerController < ApplicationController
   end
 
   def update
-    if @banner.update(update_params)
+    update = @banner_api.update(update_params)
+    if update.code == 200
       redirect_to banner_path, notice: "Banner was sucessfuly updated"
     else
       render :edit
@@ -25,7 +26,12 @@ class BannerController < ApplicationController
     end
 
     def update_params
-      params.require(:banner_info).permit(:body)
+      params.require(:banner_info).permit(:title, :body, :page_name, :header_image, :image)
     end
+
+    def set_api_banner
+      @banner_api = Api::Pemilu::BannerInfo.new
+    end
+
 
 end
