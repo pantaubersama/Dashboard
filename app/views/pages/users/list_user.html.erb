@@ -5,22 +5,7 @@
       <%= render("components/header") %>
       <div class="main-content">
         <div class="top">
-          <div class="pagination-wrap">
-            <ul class="pagination">
-              <li class="page-item">
-                <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><img
-                  src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" alt="Previous"></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item active" aria-current="page">
-                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#"><img src="<%= asset_pack_path("views/assets/images/ic_arrow_right.svg") %>" alt="Next"></a>
-              </li>
-            </ul>
-          </div>
+          <%= pagy_nav(@pagy).html_safe  %>
           <!-- <div class="modal-wrap">
                       <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
                           Create Admin <img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>" alt="add">
@@ -50,7 +35,7 @@
         <div class="content">
                         <span class="display-desc">
                           <p>
-                              Displaying Content 1 - 30 of 500 in total
+                              <%# Displaying Content 1 - 30 of 500 in total %>
                           </p>
                         </span>
           <div class="table">
@@ -59,7 +44,7 @@
               <tr>
                 <th>No</th>
                 <th>Nama</th>
-                <th>Cluster</th>
+                <%# <th>Cluster</th> %>
                 <th>Email</th>
                 <th>Status</th>
                 <th>Create At</th>
@@ -67,80 +52,42 @@
               </tr>
               </thead>
               <tbody>
+
+
+              <% @users.each_with_index do |user, index| %>
               <tr>
-                <td class="number bold">1</td>
+                <td class="number bold"><%= index+1 %></td>
                 <td class="name bold">
-                  <a href="detail-user.html"> <img src="<%= asset_pack_path("views/assets/images/profile.jpg") %>">Lilian
-                    Chu</a>
+                  <a href="detail-user.html">
+                  <%= image_tag ENV['AUTH_PANTAU_BASE_URL']+"/uploads/user/avatar/"+user.id+"/thumbnail_square_"+user.avatar %>
+                  <%= user.fullname %></a>
                 </td>
-                <td>PPP</td>
-                <td>chu@pantaubersama.co.id</td>
-                <td class="image"><img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>"></td>
-                <td>21/10/23</td>
+                <%# <td>PPP</td> %>
+                <td><%= user.email %></td>
+                <td class="image">
+
+                  <% if user.status == 1 %>
+                    <img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>">
+                  <% elsif user.status == 0 %>
+                    Requested
+                  <% elsif user.status == 2 %>
+                    Rejected
+                  <% end %>
+
+                </td>
+                <td><%= user.created_at %></td>
                 <td>
                   <button class="dropdown-toggle" type="button" data-toggle="dropdown"
                           aria-haspopup="true" aria-expanded="false">
                     <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
                   </button>
                   <div class="dropdown-menu" aria-labelledby="action">
-                    <a class="dropdown-item" href="#">Lihat</a>
+                    <%= link_to 'Lihat', user_show_path(user), class: 'dropdown-item' %>
                   </div>
                 </td>
               </tr>
-              <tr>
-                <td class="number bold">1</td>
-                <td class="name bold"><img src="<%= asset_pack_path("views/assets/images/profile.jpg") %>">Lilian Chu
-                </td>
-                <td>PPP</td>
-                <td>chu@pantaubersama.co.id</td>
-                <td class="image"><img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>"></td>
-                <td>21/10/23</td>
-                <td>
-                  <button class="dropdown-toggle" type="button" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false">
-                    <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="action">
-                    <a class="dropdown-item" href="#">Lihat</a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="number bold">1</td>
-                <td class="name bold"><img src="<%= asset_pack_path("views/assets/images/profile.jpg") %>">Lilian Chu
-                </td>
-                <td>PPP</td>
-                <td>chu@pantaubersama.co.id</td>
-                <td class="image"><img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>"></td>
-                <td>21/10/23</td>
-                <td>
-                  <button class="dropdown-toggle" type="button" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false">
-                    <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="action">
-                    <a class="dropdown-item" href="#">Lihat</a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="number bold">1</td>
-                <td class="name bold"><img src="<%= asset_pack_path("views/assets/images/profile.jpg") %>">Lilian Chu
-                </td>
-                <td>PPP</td>
-                <td>chu@pantaubersama.co.id</td>
-                <td class="image"><img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>"></td>
-                <td>21/10/23</td>
-                <td>
-                  <button class="dropdown-toggle" type="button" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false">
-                    <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="action">
-                    <a class="dropdown-item" href="#">Lihat</a>
-                  </div>
-                </td>
-              </tr>
+              <% end %>
+
 
               </tbody>
             </table>

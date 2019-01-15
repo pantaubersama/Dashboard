@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get '/edit_user', to: 'users#edit_user', as: 'users_edit_user'
     get '/list_admin', to: 'users#list_admin', as: 'users_list_admin'
     get '/list_user', to: 'users#list_user', as: 'users_list_user'
+    get '/user/:id', to: 'users#show', as: 'user_show'
     
     # Cluster
     resources :clusters
@@ -30,4 +31,6 @@ Rails.application.routes.draw do
     get 'list_pertanyaan', to: 'pendidikan_politik#list_pertanyaan', as: 'pendidikan_politik_list_pertanyaan'
     get 'list_quiz', to: 'pendidikan_politik#list_quiz', as: 'pendidikan_politik_list_quiz'
   end
+
+  resources :banner, only: [:edit, :update, :show, :index]
 end

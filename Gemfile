@@ -94,6 +94,8 @@ gem 'unicorn', group: [:staging, :production]
 gem 'devise'
 gem 'omniauth-identitas'
 
+
+gem 'pagy'
 gem 'simple_form'
 gem 'httparty'
 gem 'pagy'

@@ -21,44 +21,6 @@
               </li>
             </ul>
           </div>
-          <div class="modal-wrap">
-            <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
-              Create Admin <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                 aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <!-- <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5> -->
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <h3>Tambah Admin</h3>
-                    <div class="form-wrap">
-                      <label>User</label>
-                      <div class="form-group">
-                        <div class="form-group">
-                          <input type="Email" class="form-control"
-                                 placeholder="adellapratitas7@gmail.com">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-solid-green" data-dismiss="modal">Tambah
-                    </button>
-                    <button type="button" class="btn btn-transparent">Cancel</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="content">
                         <span class="display-desc">
@@ -66,44 +28,17 @@
                               Displaying Content 1 - 30 of 500 in total
                           </p>
                         </span>
-          <div class="table">
-            <table>
-              <thead>
-              <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>Email</th>
-                <th>Create At</th>
-                <th></th>
-              </tr>
-              </thead>
-              <tbody>
 
-              <% @admins.each_with_index do |admin, index| %>
-              <tr>
-                <td class="number bold"><%= index + 1 %></td>
-                <td class="name bold">
-                <%= image_tag admin.image_thumbnail_square_url %>
-                <%= admin.full_name %>
-                </td>
-                <td><%= admin.email %></td>
-                <td><%= admin.created_at %></td>
-                <td>
-                  <button class="dropdown-toggle" type="button" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false">
-                    <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="action">
-                    <a class="dropdown-item" href="#">Delete</a>
-                  </div>
-                </td>
-              </tr>
-              <% end %>
+          <%= @banner.title %>
+          <%= @banner.body %>
+          <%= image_tag ENV['PEMILU_BASE_URL']+"/uploads/banner_info/header_image/"+@banner.id+"/"+@banner.header_image, style: "width:100px" if @banner.header_image? %><br>
+          <%= image_tag ENV['PEMILU_BASE_URL']+"/uploads/banner_info/image/"+@banner.id+"/"+@banner.image, style: "width:100px" if @banner.image? %><br>
+          <%= @banner.page_name %><br>
+
+          <%= button_to 'Edit', edit_banner_path(@banner), method: :get %>
 
 
-              </tbody>
-            </table>
-          </div>
+
           <div class="filter">
             <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
                aria-controls="collapseExample">
