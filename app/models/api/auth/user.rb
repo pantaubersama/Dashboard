@@ -15,4 +15,15 @@ class Api::Auth::User < InitApiAuth
   def find_simple id
     self.class.get("/v1/users/#{id}/simple")
   end
+
+  def make_admin id
+      option ={
+        headers: {"Authorization" => "d98234593d0d417bbafd3cce86cd6355b1f69d316dc00e37e591c023228613f7" },
+        body: {
+          id: id
+        }
+      }
+      self.class.post("/dashboard/v1/users/admin", option)
+  end
+
 end

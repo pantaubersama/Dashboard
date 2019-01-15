@@ -29,4 +29,5 @@ Rails.application.routes.draw do
   end
 
   resources :banner, only: [:edit, :update, :show, :index]
+  post 'admin/make_admin',to: 'admins#make_admin', as: 'make_admin'
 end
