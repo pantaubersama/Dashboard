@@ -30,4 +30,5 @@ Rails.application.routes.draw do
 
   resources :banner, only: [:edit, :update, :show, :index]
   post 'admin/make_admin',to: 'admins#make_admin', as: 'make_admin'
+  get 'admin/delete_admin/:id',to: 'admins#delete_admin', as: 'delete_admin'
 end

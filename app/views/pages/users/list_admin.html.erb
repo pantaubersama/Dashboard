@@ -96,7 +96,7 @@
                     <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
                   </button>
                   <div class="dropdown-menu" aria-labelledby="action">
-                    <a class="dropdown-item" href="#">Delete</a>
+                    <%= link_to 'Delete', delete_admin_path(admin), class: 'dropdown-item' %>
                   </div>
                 </td>
               </tr>
