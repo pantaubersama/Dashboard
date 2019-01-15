@@ -7,7 +7,7 @@ class Api::Pemilu::BannerInfo < InitApiPemilu
 
   def update(title, body, page_name, header_image, image)
     options = {
-      headers: {"Authorization" => "03aadb388756150c22e6446b3a128e136316fd3f1eb86a5c114021fcc876eb52" },
+      headers: {"Authorization" => "Bearer #{RequestStore.store[:my_api_token]}" },
       body: {
         title: title,
         body: body,
