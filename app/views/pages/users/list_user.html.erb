@@ -5,7 +5,6 @@
       <%= render("components/header") %>
       <div class="main-content">
         <div class="top">
-          <%= pagy_nav(@pagy).html_safe  %>
           <!-- <div class="modal-wrap">
                       <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
                           Create Admin <img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>" alt="add">
@@ -35,7 +34,6 @@
         <div class="content">
                         <span class="display-desc">
                           <p>
-                              <%# Displaying Content 1 - 30 of 500 in total %>
                           </p>
                         </span>
           <div class="table">
@@ -44,10 +42,9 @@
               <tr>
                 <th>No</th>
                 <th>Nama</th>
-                <%# <th>Cluster</th> %>
+                <th>Cluster</th>
                 <th>Email</th>
                 <th>Status</th>
-                <th>Create At</th>
                 <th></th>
               </tr>
               </thead>
@@ -59,30 +56,24 @@
                 <td class="number bold"><%= index+1 %></td>
                 <td class="name bold">
                   <a href="detail-user.html">
-                  <%= image_tag ENV['AUTH_PANTAU_BASE_URL']+"/uploads/user/avatar/"+user.id+"/thumbnail_square_"+user.avatar %>
-                  <%= user.fullname %></a>
+                  <%# <%= image_tag ENV['AUTH_PANTAU_BASE_URL']+"/uploads/user/avatar/"+user['id']+"/thumbnail_square_"+user['avatar'] %>
+                  <%= image_tag ENV['AUTH_PANTAU_BASE_URL']+user['avatar']['medium_square']['url'] %>
+                  <%= user['full_name'] %></a>
                 </td>
-                <%# <td>PPP</td> %>
-                <td><%= user.email %></td>
+                <td><%= user['cluster']['name'] %></td>
+                <td><%= user['email'] %></td>
                 <td class="image">
-
-                  <% if user.status == 1 %>
-                    <img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>">
-                  <% elsif user.status == 0 %>
-                    Requested
-                  <% elsif user.status == 2 %>
-                    Rejected
-                  <% end %>
-
+                    <% if user['verified'] %>
+                      <img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>"/>
+                    <% end %>
                 </td>
-                <td><%= user.created_at %></td>
                 <td>
                   <button class="dropdown-toggle" type="button" data-toggle="dropdown"
                           aria-haspopup="true" aria-expanded="false">
                     <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
                   </button>
                   <div class="dropdown-menu" aria-labelledby="action">
-                    <%= link_to 'Lihat', user_show_path(user), class: 'dropdown-item' %>
+                    <%= link_to 'Lihat', user_show_path(user['id']), class: 'dropdown-item' %>
                   </div>
                 </td>
               </tr>
