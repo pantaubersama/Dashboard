@@ -12,14 +12,16 @@
   <tbody>
     <% @list_cluster.each_with_index do |item, index| %>
     <tr>
+      <% if !item["category"].nil? %>
       <td><%= index += 1 %></td>
       <td><%= item["name"] %></td>
       <td>Admin</td>
-      <td><%= item["category"]["name"] %></td>
+        <td><%= item["category"]["name"] %></td>
       <td>Created at</td>
       <td><%= link_to "Show", cluster_path(item["id"]) %></td>
       <td><%= link_to "Delete", cluster_path(item["id"]), method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
     </tr>
     <% end %>
   </tbody>

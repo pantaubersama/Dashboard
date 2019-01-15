@@ -4,22 +4,15 @@ Rails.application.routes.draw do
   root 'users#edit_user'
 
   scope '/users' do
-    # User
     get '/edit_user', to: 'users#edit_user', as: 'users_edit_user'
     get '/list_admin', to: 'users#list_admin', as: 'users_list_admin'
     get '/list_user', to: 'users#list_user', as: 'users_list_user'
-    get '/user/:id', to: 'users#show', as: 'user_show'
-    
-    # Cluster
+    get '/user/:id', to: 'users#show', as: 'user_show'    
     resources :clusters
   end
 
-  scope '/timeline' do
-    # Janji Politik
-    get '/edit_janji_politik', to: 'timeline#edit_janji_politik', as: 'timeline_edit_janji_politik'
-    get '/list_janji_politik', to: 'timeline#list_janji_politik', as: 'timeline_list_janji_politik'
-    
-    # Linimasa
+  scope '/timeline', module: 'timeline' do
+    resources :politics    
     resources :linimasa
     get '/show_user/:id', to: 'linimasa#show_user', as: 'detail_user'
     delete '/delete_user/:id', to:'linimasa#delete_user', as: 'delete_user'
