@@ -1,5 +1,6 @@
 class BannerController < ApplicationController
   before_action :set_banner, only: [:show, :edit, :update]
+  before_action :set_api_banner, only: [:update]
 
   def index
     @banners = BannerInfo.order(created_at: :desc)
@@ -12,7 +13,14 @@ class BannerController < ApplicationController
   end
 
   def update
-    if @banner.update(update_params)
+    response = @banner_api.update(
+      params[:banner_info][:title],
+      params[:banner_info][:body],
+      params[:page_name],
+      params[:banner_info][:header_image].tempfile,
+      params[:banner_info][:image].tempfile
+    )
+    if response.code == 200
       redirect_to banner_path, notice: "Banner was sucessfuly updated"
     else
       render :edit
@@ -24,8 +32,9 @@ class BannerController < ApplicationController
       @banner = BannerInfo.find(params[:id])
     end
 
-    def update_params
-      params.require(:banner_info).permit(:body)
+    def set_api_banner
+      @banner_api = Api::Pemilu::BannerInfo.new
     end
+
 
 end

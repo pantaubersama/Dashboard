@@ -29,13 +29,32 @@
                           </p>
                         </span>
 
-          <% @banners.each do |banner| %>
-            <%= link_to banner.title, banner_path(banner) %> <br>
-            <%= banner.body %><br>
-            <%= image_tag ENV['PEMILU_BASE_URL']+"/uploads/banner_info/header_image/"+banner.id+"/"+banner.header_image, style: "width:100px" if banner.header_image? %><br>
-            <%= image_tag ENV['PEMILU_BASE_URL']+"/uploads/banner_info/image/"+banner.id+"/"+banner.image, style: "width:100px" if banner.image? %><br>
-            <%= banner.page_name %><br>
-          <% end %>
+
+          <table style="width:100%" border="2">
+          <thead>
+            <tr>
+              <td>Title</td>
+              <td>Body</td>
+              <td>Header</td>
+              <td>Image</td>
+              <td>Page Name</td>
+            </tr>
+          </thead>
+            <tbody>
+              <% @banners.each do |banner| %>
+              <tr>
+                <td><%= link_to banner.title, banner_path(banner) %></td>
+                <td><%= banner.body %></td>
+                <td><%= image_tag ENV['PEMILU_BASE_URL']+"/uploads/banner_info/header_image/"+banner.id+"/"+banner.header_image, style: "width:100px" if banner.header_image? %></td>
+                <td><%= image_tag ENV['PEMILU_BASE_URL']+"/uploads/banner_info/image/"+banner.id+"/"+banner.image, style: "width:100px" if banner.image? %></td>
+                <td><%= banner.page_name %></td>
+              </tr>
+              <% end %>
+
+            </tbody>
+          </table>
+
+
 
 
 

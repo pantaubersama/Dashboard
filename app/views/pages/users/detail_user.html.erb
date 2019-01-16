@@ -1,3 +1,36 @@
-<%= @user['email'] %>
-<%= @user['full_name'] %>
-<%= @user['username'] %>
+<div class="d-flex main-wrapper">
+  <%= render("components/sidebar") %>
+  <div class="main-wrapper">
+    <main class="main col-md-10 offset-md-2" role="main">
+      <%= render("components/header") %>
+      <div class="main-content">
+        <div class="top">
+        </div>
+        <div class="content">
+          <span class="display-desc">
+            <p>
+            </p>
+          </span>
+          <div class="col-md-6">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <%= image_tag ENV['API_AUTH_URL']+@user['avatar']['thumbnail']['url'] %><br>
+                <%= @user['email'] %> <br>
+                <%= @user['full_name'] %> <br>
+                <%= @user['username'] %> <br>
+                Verified :
+                <%= @user['verified'] %> <br>
+                Twitter :
+                <%= @user['twitter'] %> <br>
+                Facebook :
+                <%= @user['facebook'] %> <br>
+              </div>
+            </div>
+          </div>
+
+      </div>
+  </div>
+  </main>
+</div>
+</div>
+<%= render("components/footer") %>

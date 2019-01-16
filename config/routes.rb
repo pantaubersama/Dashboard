@@ -7,13 +7,15 @@ Rails.application.routes.draw do
     get '/edit_user', to: 'users#edit_user', as: 'users_edit_user'
     get '/list_admin', to: 'users#list_admin', as: 'users_list_admin'
     get '/list_user', to: 'users#list_user', as: 'users_list_user'
-    get '/user/:id', to: 'users#show', as: 'user_show'    
+    get '/list_user_verification', to: 'users#verification_list', as: 'users_list_verification'
+    get '/user/:id', to: 'users#show', as: 'user_show'
+    post '/approve_verification', to: 'users#approve_verification', as: 'approve_verification'
+    get '/reject_verification/:id', to: 'users#reject_verification', as: 'reject_verification'
     resources :clusters
   end
 
   scope '/timeline', module: 'timeline' do
     resources :politics
-
     resources :linimasa
     get '/show_user/:id', to: 'linimasa#show_user', as: 'detail_user'
     delete '/delete_user/:id', to:'linimasa#delete_user', as: 'delete_user'
@@ -27,4 +29,6 @@ Rails.application.routes.draw do
   end
 
   resources :banner, only: [:edit, :update, :show, :index]
+  post 'admin/make_admin',to: 'admins#make_admin', as: 'make_admin'
+  get 'admin/delete_admin/:id',to: 'admins#delete_admin', as: 'delete_admin'
 end
