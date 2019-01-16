@@ -28,9 +28,6 @@
                   </span>
 
               </div> -->
-              <div class="right-desc">
-                <%= button_to "HAPUS", linimasa_path(@detail_tweet["data"]["feed"]["id"]), method: :delete, class: "btn btn-solid-green" %>
-              </div>
             </div>
 
             <div class="card-form">
@@ -40,7 +37,7 @@
                     <label>Username</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input type="text" class="form-control" hresize placeholder="@Yudho" value="<%= @detail_tweet["data"]["feed"]["account"]["username"] %>">
+                        <input type="text" class="form-control" hresize placeholder="@Yudho" value="<%= @detail_trash["data"]["feed"]["account"]["username"] %>">
                       </div>
                     </div>
                   </div>
@@ -51,23 +48,26 @@
                     <div class="form-group">
                       <div class="form-group">
                         <input type="text" class="form-control" hresize
-                               placeholder="Jokowi Prabowo" value="<%= @detail_tweet["data"]["feed"]["team"]["title"] %>">
+                               placeholder="Jokowi Prabowo" value="<%= @detail_trash["data"]["feed"]["team"]["title"] %>">
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <div class="form-wrap">
-                <label>Tweet</label>
-                <div class="form-group">
-                  <div class="form-group">
-                      <textarea type="text" class="form-control" hresize placeholder="Tweet">
-                        <%= @detail_tweet["data"]["feed"]["source"]["text"] %>
-                      </textarea>
+                <div class="col-md-12">
+                  <div class="form-wrap">
+                    <label>Tweet</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <textarea type="text" class="form-control" hresize placeholder="Tweet">
+                          <%= @detail_trash["data"]["feed"]["source"]["text"] %>
+                        </textarea>
+                      </div>
+                    </div>
                   </div>
                 </div>
+
               </div>
+
             </div>
           </div>
         </div>

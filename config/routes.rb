@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   scope '/timeline', module: 'timeline' do
     resources :politics
     resources :linimasa
+    get '/show_trash/:id', to: 'linimasa#detail_trash', as: 'detail_trash'
     get '/show_user/:id', to: 'linimasa#show_user', as: 'detail_user'
     delete '/delete_user/:id', to:'linimasa#delete_user', as: 'delete_user'
   end

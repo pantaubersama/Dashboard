@@ -283,16 +283,15 @@
                                 <tr>
                                     <td class="number bold"><%= (@number2.to_i - 1) * 30 + index+1 %></td>
                                     <td class="name bold"><a href="detail-user.html"><%= item["team"]["title"] %></a></td>
-                                    <td><%= item["keywords"] %></td>
-                                    <td>Anak-anak muda dari dunia industri kreatif di Banda Aceh.</td>
+                                    <td><%= item["account"]["username"] %></td>
+                                    <td><%= item["source"]["text"] %></td>
                                     <td>
                                         <button class="dropdown-toggle" type="button" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false">
                                             <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="action">
-                                            <a class="dropdown-item" href="#">Lihat</a>
-                                            <a class="dropdown-item" href="#">Terima</a>
+                                            <a class="dropdown-item" href="<%= detail_trash_path(item["id"]) %>">Lihat</a>
                                         </div>
                                     </td>
                                 <% end %>
@@ -453,7 +452,6 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="action">
                                             <a class="dropdown-item" href="<%= detail_user_path(item["id"]) %>">Lihat</a>
-                                            <a class="dropdown-item" href="#">Terima</a>
                                         </div>
                                     </td>
                                 <% end %>
