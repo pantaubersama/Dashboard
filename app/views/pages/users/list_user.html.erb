@@ -31,61 +31,69 @@
                         </div>
                     </div> -->
         </div>
-        <div class="col-md-12">
-          <% flash.each do |key, value| %>
-            <div class="alert alert-<%= key %>"><%= value %></div>
-          <% end %>
-        </div>
+
         <div class="content">
-                        <span class="display-desc">
-                          <p>
-                          </p>
-                        </span>
+          <div class="col-md-12">
+            <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>">
+              <%= value %>
+            </div>
+            <% end %>
+          </div>
+          <span class="display-desc">
+            <p>
+            </p>
+          </span>
 
           <div class="table">
             <table>
               <thead>
-              <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>Cluster</th>
-                <th>Email</th>
-                <th>Status</th>
-                <th></th>
-              </tr>
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Cluster</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
               </thead>
               <tbody>
 
 
-              <% @users.each_with_index do |user, index| %>
-              <tr>
-                <td class="number bold"><%= index+1 %></td>
-                <td class="name bold">
-                  <a href="detail-user.html">
-                  <%# <%= image_tag ENV['AUTH_PANTAU_BASE_URL']+"/uploads/user/avatar/"+user['id']+"/thumbnail_square_"+user['avatar'] %>
-                  <%= image_tag ENV['AUTH_PANTAU_BASE_URL']+user['avatar']['medium_square']['url'] %>
-                  <%= user['full_name'] %></a>
-                </td>
-                <td><%= user['cluster']['name'] %></td>
-                <td><%= user['email'] %></td>
-                <td class="image">
+                <% @users.each_with_index do |user, index| %>
+                <tr>
+                  <td class="number bold">
+                    <%= index+1 %>
+                  </td>
+                  <td class="name bold">
+                    <a href="detail-user.html">
+                      <%= image_tag user['avatar']['medium_square']['url'] unless user['avatar']['medium_square']['url'].nil? %>
+                      <%= user['full_name'] %></a>
+                  </td>
+                  <td>
+                    <%= user['cluster']['name'] %>
+                  </td>
+                  <td>
+                    <%= user['email'] %>
+                  </td>
+                  <td class="image">
                     <% if user['verified'] %>
-                      <img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>"/>
+                    <img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>"/>
                     <% end %>
                     <%= user['verified'] %>
-                </td>
-                <td>
-                  <button class="dropdown-toggle" type="button" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false">
-                    <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="action">
-                    <%= link_to 'Lihat', user_show_path(user['id']), class: 'dropdown-item' %>
-                    <%= link_to 'Reject', reject_verification_path(user['id']), class: 'dropdown-item' %>
-                  </div>
-                </td>
-              </tr>
-              <% end %>
+                  </td>
+                  <td>
+                    <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                      aria-expanded="false">
+                      <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="action">
+                      <%= link_to 'Lihat', user_show_path(user['id']), class: 'dropdown-item' %>
+                      <%= link_to 'Reject', reject_verification_path(user['id']), class: 'dropdown-item' %>
+                    </div>
+                  </td>
+                </tr>
+                <% end %>
 
 
               </tbody>
@@ -97,21 +105,19 @@
           <div class="row">
             <div class="col-md-6">
               <label for="">Verifikasi</label>
-            <%= form_tag(approve_verification_path, method: "post") do %>
+              <%= form_tag(approve_verification_path, method: "post") do %>
               <div class="form-group">
                 <div class="form-group">
-                  <input type="email" class="form-control"
-                         placeholder="adellapratitas7@gmail.com" name="email">
+                  <input type="email" class="form-control" placeholder="adellapratitas7@gmail.com" name="email">
                 </div>
               </div>
-            <button type="submit" class="btn btn-solid-green" >Approve
-            </button>
-            <% end %>
+              <button type="submit" class="btn btn-solid-green">Approve
+              </button>
+              <% end %>
             </div>
           </div>
           <div class="filter">
-            <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
-               aria-controls="collapseExample">
+            <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample">
               <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
               <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
             </a>
@@ -163,4 +169,3 @@
   </div>
 </div>
 <%= render("components/footer") %>
-
