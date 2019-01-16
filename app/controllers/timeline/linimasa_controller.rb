@@ -3,9 +3,15 @@ class Timeline::LinimasaController < ApplicationController
   before_action :set_api
 
   def index
-    @tweets = @linimasa.list_tweet["data"]["feeds"]
-    @pagy_tweets, @item_tweets = pagy_array(@tweets, items: 30, page_param: :page_tweet)
-    @total_linimasa = @linimasa.list_tweet["data"]["feeds"].count
+    if params[:filter].present? || params[:q].present?
+      @tweets = @linimasa.filter_tweet(params[:filter], params[:q])["data"]["feeds"]
+      @pagy_tweets, @item_tweets = pagy_array(@tweets, items: 30, page_param: :page_tweet)
+      @total_linimasa = @linimasa.filter_tweet(params[:filter], params[:q])["data"]["feeds"].count
+    else
+      @tweets = @linimasa.list_tweet["data"]["feeds"]
+      @pagy_tweets, @item_tweets = pagy_array(@tweets, items: 30, page_param: :page_tweet)
+      @total_linimasa = @linimasa.list_tweet["data"]["feeds"].count
+    end
 
     @trash = @linimasa.get_trash["data"]["crowlings"]
     @pagy_trash, @item_trash = pagy_array(@trash, items: 30, page_param: :page_trash)
