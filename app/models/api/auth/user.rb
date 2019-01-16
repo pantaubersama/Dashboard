@@ -18,7 +18,7 @@ class Api::Auth::User < InitApiAuth
 
   def make_admin id
     option ={
-      headers: {Authorization: "d98234593d0d417bbafd3cce86cd6355b1f69d316dc00e37e591c023228613f7"},
+      headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
       body: {
         id: id
       }
@@ -28,7 +28,7 @@ class Api::Auth::User < InitApiAuth
 
   def delete_admin id
     option ={
-      headers: {Authorization: "d98234593d0d417bbafd3cce86cd6355b1f69d316dc00e37e591c023228613f7"},
+      headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
       query: {
         id: id
       }
@@ -38,7 +38,7 @@ class Api::Auth::User < InitApiAuth
 
   def approve_verification id
     option ={
-      headers: {Authorization: "d98234593d0d417bbafd3cce86cd6355b1f69d316dc00e37e591c023228613f7"},
+      headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
       body: {
         id: id
       }
@@ -48,7 +48,7 @@ class Api::Auth::User < InitApiAuth
 
   def reject_verification id
     option ={
-      headers: {Authorization: "d98234593d0d417bbafd3cce86cd6355b1f69d316dc00e37e591c023228613f7"},
+      headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
       query: {
         id: id
       }
