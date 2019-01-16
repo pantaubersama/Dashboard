@@ -3,9 +3,15 @@ class Timeline::LinimasaController < ApplicationController
   before_action :set_api
 
   def index
-    @tweets = @linimasa.list_tweet["data"]["feeds"]
-    @pagy_tweets, @item_tweets = pagy_array(@tweets, items: 30, page_param: :page_tweet)
-    @total_linimasa = @linimasa.list_tweet["data"]["feeds"].count
+    if params[:filter].present? || params[:q].present?
+      @tweets = @linimasa.filter_tweet(params[:filter], params[:q])["data"]["feeds"]
+      @pagy_tweets, @item_tweets = pagy_array(@tweets, items: 30, page_param: :page_tweet)
+      @total_linimasa = @linimasa.filter_tweet(params[:filter], params[:q])["data"]["feeds"].count
+    else
+      @tweets = @linimasa.list_tweet["data"]["feeds"]
+      @pagy_tweets, @item_tweets = pagy_array(@tweets, items: 30, page_param: :page_tweet)
+      @total_linimasa = @linimasa.list_tweet["data"]["feeds"].count
+    end
 
     @trash = @linimasa.get_trash["data"]["crowlings"]
     @pagy_trash, @item_trash = pagy_array(@trash, items: 30, page_param: :page_trash)
@@ -14,6 +20,10 @@ class Timeline::LinimasaController < ApplicationController
     @users = @linimasa.get_user_list["data"]["crowlings"]
     @pagy_users, @item_users = pagy_array(@users, items: 30, page_param: :page_user)
     @total_user = @linimasa.get_user_list["data"]["crowlings"].count
+
+    @number1 = params[:page_tweet] || 1
+    @number2 = params[:page_trash] || 1
+    @number3 = params[:page_user] || 1
 
     @pages = { page: "index" }
     render "pages/timeline/linimasa/index"
