@@ -18,7 +18,7 @@ class Api::Auth::User < InitApiAuth
 
   def make_admin id
     option ={
-      headers: {Authorization: "497bd97392be8f9f661f3d36c2396b8bf5d12c9b628be4c57764ef04df1b3d49"},
+      headers: {Authorization: "d98234593d0d417bbafd3cce86cd6355b1f69d316dc00e37e591c023228613f7"},
       body: {
         id: id
       }
@@ -28,13 +28,35 @@ class Api::Auth::User < InitApiAuth
 
   def delete_admin id
     option ={
-      headers: {Authorization: "497bd97392be8f9f661f3d36c2396b8bf5d12c9b628be4c57764ef04df1b3d49"},
+      headers: {Authorization: "d98234593d0d417bbafd3cce86cd6355b1f69d316dc00e37e591c023228613f7"},
       query: {
         id: id
       }
     }
     self.class.delete("/dashboard/v1/users/admin", option)
   end
+
+  def approve_verification id
+    option ={
+      headers: {Authorization: "d98234593d0d417bbafd3cce86cd6355b1f69d316dc00e37e591c023228613f7"},
+      body: {
+        id: id
+      }
+    }
+    self.class.post("/dashboard/v1/users/approve", option)
+  end
+
+  def reject_verification id
+    option ={
+      headers: {Authorization: "d98234593d0d417bbafd3cce86cd6355b1f69d316dc00e37e591c023228613f7"},
+      query: {
+        id: id
+      }
+    }
+    self.class.delete("/dashboard/v1/users/reject", option)
+  end
+
+
 
 
 end

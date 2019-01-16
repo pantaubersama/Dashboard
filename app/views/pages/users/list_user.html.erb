@@ -31,11 +31,17 @@
                         </div>
                     </div> -->
         </div>
+        <div class="col-md-12">
+          <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><%= value %></div>
+          <% end %>
+        </div>
         <div class="content">
                         <span class="display-desc">
                           <p>
                           </p>
                         </span>
+
           <div class="table">
             <table>
               <thead>
@@ -66,6 +72,7 @@
                     <% if user['verified'] %>
                       <img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>"/>
                     <% end %>
+                    <%= user['verified'] %>
                 </td>
                 <td>
                   <button class="dropdown-toggle" type="button" data-toggle="dropdown"
@@ -74,6 +81,7 @@
                   </button>
                   <div class="dropdown-menu" aria-labelledby="action">
                     <%= link_to 'Lihat', user_show_path(user['id']), class: 'dropdown-item' %>
+                    <%= link_to 'Reject', reject_verification_path(user['id']), class: 'dropdown-item' %>
                   </div>
                 </td>
               </tr>
@@ -82,6 +90,24 @@
 
               </tbody>
             </table>
+
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <label for="">Verifikasi</label>
+            <%= form_tag(approve_verification_path, method: "post") do %>
+              <div class="form-group">
+                <div class="form-group">
+                  <input type="email" class="form-control"
+                         placeholder="adellapratitas7@gmail.com" name="email">
+                </div>
+              </div>
+            <button type="submit" class="btn btn-solid-green" >Approve
+            </button>
+            <% end %>
+            </div>
           </div>
           <div class="filter">
             <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
