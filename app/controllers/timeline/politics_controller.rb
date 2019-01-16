@@ -1,14 +1,19 @@
 class Timeline::PoliticsController < ApplicationController
+  include Pagy::Backend
   before_action :set_api
 
   def index
     if params[:filter].present? || params[:q].present? || params[:cluster_id].present?
       @janji_politiks = @janji.filter_politics(params[:filter], params[:q], params[:cluster_id])["data"]["janji_politiks"]
+      @pagy_politics, @item_politics = pagy_array(@janji_politiks, items: 30, page_param: :page_politics)
       @total_records = @janji.filter_politics(params[:filter], params[:q], params[:cluster_id])["data"]["janji_politiks"].count
     else
       @janji_politiks = @janji.get_politics["data"]["janji_politiks"]
+      @pagy_politics, @item_politics = pagy_array(@janji_politiks, items: 30, page_param: :page_politics)
       @total_records = @janji.get_politics["data"]["janji_politiks"].count
     end
+    
+    @number = params[:page_politics] || 1
 
     @pages = { page: "index" }
     render "pages/timeline/politics/index"

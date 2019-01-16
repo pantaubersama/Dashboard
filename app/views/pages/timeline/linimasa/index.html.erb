@@ -120,7 +120,7 @@
                                 <tbody>
                                 <% @item_tweets.each_with_index do |item, index| %>
                                     <tr>
-                                        <td class="number bold"><%= index += 1 %></td>
+                                        <td class="number bold"><%= (@number1.to_i - 1) * 30 + index+1 %></td>
                                         <td class="name bold"><a href="detail-user.html"><%= item["team"]["title"] %></a></td>
                                         <td><%= item["account"]["username"] %></td>
                                         <td><%= item["source"]["text"].truncate(60) %></td>
@@ -281,7 +281,7 @@
                                 <tbody>
                                 <% @item_trash.each_with_index do |item, index| %>
                                 <tr>
-                                    <td class="number bold"><%= index += 1 %></td>
+                                    <td class="number bold"><%= (@number2.to_i - 1) * 30 + index+1 %></td>
                                     <td class="name bold"><a href="detail-user.html"><%= item["team"]["title"] %></a></td>
                                     <td><%= item["keywords"] %></td>
                                     <td>Anak-anak muda dari dunia industri kreatif di Banda Aceh.</td>
@@ -441,7 +441,7 @@
                                 <tbody>
                                 <% @item_users.each_with_index do |item, index| %>
                                 <tr>
-                                    <td class="number bold"><%= index += 1 %></td>
+                                    <td class="number bold"><%= (@number3.to_i - 1) * 30 + index+1 %></td>
                                     <td class="name bold"><a href="detail-user.html"><%= item["team"]["title"] %></a></td>
                                     <td><%= item["keywords"] %></td>
                                     <td>100</td>

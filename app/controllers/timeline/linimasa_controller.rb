@@ -21,6 +21,10 @@ class Timeline::LinimasaController < ApplicationController
     @pagy_users, @item_users = pagy_array(@users, items: 30, page_param: :page_user)
     @total_user = @linimasa.get_user_list["data"]["crowlings"].count
 
+    @number1 = params[:page_tweet] || 1
+    @number2 = params[:page_trash] || 1
+    @number3 = params[:page_user] || 1
+
     @pages = { page: "index" }
     render "pages/timeline/linimasa/index"
   end

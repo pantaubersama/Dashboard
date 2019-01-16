@@ -6,28 +6,43 @@
       <div class="tab-content clearfix">
         <div class="main-content tab-pane active" id="all">
           <div class="top ">
-            <div class="pagination-wrap">
-              <ul class="pagination">
-                <li class="page-item">
-                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><img
-                    src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" alt="Previous"></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active" aria-current="page">
-                  <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#"><img src="<%= asset_pack_path("views/assets/images/ic_arrow_right.svg") %>"
-                                                     alt="Next"></a>
-                </li>
-              </ul>
-            </div>
+            
+            <% link = pagy_link_proc(@pagy_politics) %>
+              <div class="pagination-wrap">
+                  <ul class="pagination">
+                      <% if @pagy_politics.prev %>
+                          <li class="page-item">
+                              <%== link.call(@pagy_politics.prev, pagy_t('pagy.nav.prev')) %>
+                          </li>
+                      <% else  %>
+                          <li class="page-item disabled">
+                              <%== link.call(@pagy_politics.prev, pagy_t('pagy.nav.prev')) %>
+                          </li>
+                      <% end %>
+
+                      <% @pagy_politics.series.each do |item| %>
+                          <% if item.is_a?(Integer) %>
+                              <li id="testtest" class="page-item"><%== link.call(item) %></li>
+                          <% elsif item.is_a?(String) %>
+                              <li class="page-item active" aria-current="page"><%== link.call(item) %></li>
+                          <% elsif item == :gap %>
+                              <li class="page-item disabled gap"><a href="#" class="page-link"><%== pagy_t('pagy.nav.gap') %></a></li>
+                          <% end %>
+                      <% end %>
+
+                      <% if @pagy_politics.next %>
+                          <li class="page-item"><%== link.call(@pagy_politics.next, pagy_t('pagy.nav.next')) %></li>
+                      <% else %>
+                          <li class="page-item disabled"><%== link.call(@pagy_politics.next, pagy_t('pagy.nav.next')) %></li>
+                      <% end %>
+                  </ul>
+              </div>
+
           </div>
           <div class="content">
                         <span class="display-desc">
                           <p>
-                              Displaying Content 1 - 30 of <%= @total_records %> in total
+                              Displaying Content 1 - <%= @item_politics.count %> of <%= @total_records %> in total
                           </p>
                         </span>
             <div class="table">
@@ -43,9 +58,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <% @janji_politiks.each_with_index do |item, index| %>
+                <% @item_politics.each_with_index do |item, index| %>
                 <tr>
-                  <td class="number bold"><%= index += 1 %></td>
+                  <td class="number bold"><%= (@number.to_i - 1) * 30 + index+1 %></td>
                   <td class="name bold"><a href="detail-janji-politik.html"> <img src="<%= item["creator"]["avatar"]["thumbnail"]["url"] %>"><%= item["creator"]["full_name"] %></a>
                   </td>
                   <td><%= item["title"].truncate(30) %></td>
