@@ -1,0 +1,26 @@
+<table>
+  <thead>
+    <tr>
+      <th>Gambar</th>
+      <th>Nama</th>
+      <th>Kategory</th>
+      <th>Deskripsi</th>
+      <th>Admin</th>
+      <th>Created at</th>
+      <th>Akses</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @cluster_detail.try(:image) %></td>
+      <td><%= @cluster_detail.try(:name) %></td>
+      <td><%= @cluster_detail.try(:category) %></td>
+      <td><%= @cluster_detail.try(:description) %></td>
+      <td>Admin</td>
+      <td><%= @cluster_detail.try(:created_at) %></td>
+      <td>Akses</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1><%= link_to "Edit", edit_cluster_path(@cluster_detail) %></h1>

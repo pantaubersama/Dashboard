@@ -46,11 +46,10 @@
                 <% @janji_politiks.each_with_index do |item, index| %>
                 <tr>
                   <td class="number bold"><%= index += 1 %></td>
-                  <td class="name bold"><a href="detail-janji-politik.html"> <img
-                    src="<%= item["creator"]["avatar"]["thumbnail"]["url"] %>"><%= item["creator"]["username"] %></a>
+                  <td class="name bold"><a href="detail-janji-politik.html"> <img src="<%= item["creator"]["avatar"]["thumbnail"]["url"] %>"><%= item["creator"]["full_name"] %></a>
                   </td>
-                  <td><%= item["title"].truncate(60) %></td>
-                  <td><%= item["cluster"] %></td>
+                  <td><%= item["title"].truncate(30) %></td>
+                  <td><%= item["creator"]["cluster"]["name"] %></td>
                   <td><%= item["created_at_in_word"]["id"] %></td>
                   <td>
                     <button class="dropdown-toggle" type="button" data-toggle="dropdown"
