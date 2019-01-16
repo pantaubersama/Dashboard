@@ -26,6 +26,12 @@ class Timeline::PoliticsController < ApplicationController
     render "pages/timeline/politics/edit"
   end
 
+  def destroy
+    if @janji.delete_politic(params[:id])
+      redirect_to root_path
+    end
+  end
+
   private
     def set_api
       @janji = Api::Pemilu::JanjiPolitik.new

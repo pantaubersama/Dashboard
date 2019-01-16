@@ -21,4 +21,9 @@ class Api::Pemilu::JanjiPolitik < InitApiPemilu
     @options = { headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
     self.class.put("/linimasa/v1/janji_politiks/#{id}", @options)
   end
+
+  def delete_politic(id)
+    @options = { query: {id: id}, headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
+    self.class.delete("/linimasa/v1/janji_politiks", @options)
+  end
 end

@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   end
 
   scope '/timeline', module: 'timeline' do
-    resources :politics    
+    resources :politics
+
     resources :linimasa
     get '/show_user/:id', to: 'linimasa#show_user', as: 'detail_user'
     delete '/delete_user/:id', to:'linimasa#delete_user', as: 'delete_user'
