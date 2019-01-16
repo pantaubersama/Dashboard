@@ -49,9 +49,16 @@ class UsersController < ApplicationController
 
   def reject_verification
     response = @user_api.reject_verification(params[:id])
-    if response.code == 200
-      flash[:success] = "Reject Sucessful"
-      redirect_to users_list_user_path
+    case response.code
+      when 200
+        flash[:success] = "Reject Sucessful"
+        redirect_to users_list_user_path
+      when 404
+        flash[:warning] = "Not found!"
+        redirect_to users_list_user_path
+      when 500...600
+        flash[:error] = "ERROR #{response.code}"
+        redirect_to users_list_user_path
     end
   end
 
