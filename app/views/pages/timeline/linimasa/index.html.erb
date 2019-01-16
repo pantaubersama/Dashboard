@@ -103,7 +103,7 @@
                     <div class="content">
                         <span class="display-desc">
                           <p>
-                              Displaying Content 1 - 30 of <%= @total_linimasa %> in total
+                              Displaying Content 1 - <%= @item_tweets.count %> of <%= @total_linimasa %> in total
                           </p>
                         </span>
                         <div class="table">
@@ -120,7 +120,7 @@
                                 <tbody>
                                 <% @item_tweets.each_with_index do |item, index| %>
                                     <tr>
-                                        <td class="number bold"><%= index += 1 %></td>
+                                        <td class="number bold"><%= (@number1.to_i - 1) * 30 + index+1 %></td>
                                         <td class="name bold"><a href="detail-user.html"><%= item["team"]["title"] %></a></td>
                                         <td><%= item["account"]["username"] %></td>
                                         <td><%= item["source"]["text"].truncate(60) %></td>
@@ -264,7 +264,7 @@
                     <div class="content">
                                 <span class="display-desc">
                                   <p>
-                                      Displaying Content 1 - 30 of <%= @total_trash %> in total
+                                      Displaying Content 1 - <%= @item_trash.count %> of <%= @total_trash %> in total
                                   </p>
                                 </span>
                         <div class="table">
@@ -281,7 +281,7 @@
                                 <tbody>
                                 <% @item_trash.each_with_index do |item, index| %>
                                 <tr>
-                                    <td class="number bold"><%= index += 1 %></td>
+                                    <td class="number bold"><%= (@number2.to_i - 1) * 30 + index+1 %></td>
                                     <td class="name bold"><a href="detail-user.html"><%= item["team"]["title"] %></a></td>
                                     <td><%= item["keywords"] %></td>
                                     <td>Anak-anak muda dari dunia industri kreatif di Banda Aceh.</td>
@@ -423,7 +423,7 @@
                     <div class="content">
                                 <span class="display-desc">
                                   <p>
-                                      Displaying Content 1 - 30 of <%= @total_user %> in total
+                                      Displaying Content 1 - <%= @item_users.count %> of <%= @total_user %> in total
                                   </p>
                                 </span>
                         <div class="table">
@@ -441,7 +441,7 @@
                                 <tbody>
                                 <% @item_users.each_with_index do |item, index| %>
                                 <tr>
-                                    <td class="number bold"><%= index += 1 %></td>
+                                    <td class="number bold"><%= (@number3.to_i - 1) * 30 + index+1 %></td>
                                     <td class="name bold"><a href="detail-user.html"><%= item["team"]["title"] %></a></td>
                                     <td><%= item["keywords"] %></td>
                                     <td>100</td>
