@@ -14,7 +14,7 @@
           <div class="col-md-6">
             <div class="panel panel-default">
               <div class="panel-body">
-                <%= image_tag @user['avatar']['thumbnail']['url'] %><br>
+                <%= image_tag @user['avatar']['thumbnail']['url'] unless @user['avatar']['thumbnail']['url'].nil?  %><br>
                 <%= @user['email'] %> <br>
                 <%= @user['full_name'] %> <br>
                 <%= @user['username'] %> <br>

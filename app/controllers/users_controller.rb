@@ -40,9 +40,14 @@ class UsersController < ApplicationController
   end
 
   def approve_verification
-    user = UserPantauAuth.where(email: params[:email]).first
-    response = @user_api.approve_verification(user.id)
-    if response.code == 201
+    if user = UserPantauAuth.where(email: params[:email]).first.present?
+      response = @user_api.approve_verification(user.id)
+      if response.code == 201
+        flash[:success] = "Approve Sucessful"
+        redirect_to users_list_user_path
+      end
+    else
+      flash[:warning] = "Not found!"
       redirect_to users_list_user_path
     end
   end
