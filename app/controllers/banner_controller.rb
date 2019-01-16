@@ -1,5 +1,5 @@
 class BannerController < ApplicationController
-  before_action :set_banner, only: [:show, :edit]
+  before_action :set_banner, only: [:show, :edit, :update]
   before_action :set_api_banner, only: [:update]
 
   def index
@@ -13,14 +13,14 @@ class BannerController < ApplicationController
   end
 
   def update
-    update = @banner_api.update(
-      params[:title],
-      params[:body],
+    response = @banner_api.update(
+      params[:banner_info][:title],
+      params[:banner_info][:body],
       params[:page_name],
-      params[:header_image],
-      params[:image]
+      params[:banner_info][:header_image].tempfile,
+      params[:banner_info][:image].tempfile
     )
-    if update.code == 200
+    if response.code == 200
       redirect_to banner_path, notice: "Banner was sucessfuly updated"
     else
       render :edit

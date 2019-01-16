@@ -9,8 +9,15 @@
         <div class="content">
 
           <%= form_with(model: @banner, local: true, url: banner_path(@banner), :id => "custom_id", :class => "custom_class")  do |form| %>
+            <%= form.label :title, :class => "form-control-label" %>
+            <%= form.text_area :title, :class => "form-control", :placeholder => "Title" %>
             <%= form.label :body, :class => "form-control-label" %>
             <%= form.text_area :body, :class => "form-control", :placeholder => "Body" %>
+            <%= select_tag(:page_name, options_for_select([['Pilpres', 'pilpres'], ['Janji Politik', 'janji politik'],['Tanya', 'tanya'], ['Kuis', 'kuis']])) %><br>
+            <%= form.label :image, :class => "form-control-label" %>
+            <%= form.file_field :image %>
+            <%= form.label :header_image, :class => "form-control-label" %>
+            <%= form.file_field :header_image %>
 
             <div class="actions">
               <%= form.submit 'Save', :class => "btn btn-primary" %>
