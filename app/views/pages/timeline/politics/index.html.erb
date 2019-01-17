@@ -73,49 +73,6 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="action">
                       <a id="testing2" class="dropdown-item" href="<%= politic_path(item["id"]) %>">Lihat</a>
-                      <!-- <a class="dropdown-item" href="#">Edit</a> -->
-                      <div class="modal-wrap">
-                        <a class="edit dropdown-item" data-toggle="modal"
-                           data-target="#editModal">
-                          Edit
-                        </a>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
-                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <!-- <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5> -->
-                                <button type="button" class="close" data-dismiss="modal"
-                                        aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                <h3>Tambah Admin</h3>
-                                <div class="form-wrap">
-                                  <label>User</label>
-                                  <div class="form-group">
-                                    <div class="form-group">
-                                      <input type="Email" class="form-control"
-                                             placeholder="adellapratitas7@gmail.com">
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-solid-green"
-                                        data-dismiss="modal">Tambah
-                                </button>
-                                <button type="button" class="btn btn-transparent">
-                                  Cancel
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                       <%= link_to "Delete", politic_path(item["id"]), method: :delete, class: "dropdown-item" %>
                     </div>
                   </td>
@@ -176,95 +133,75 @@
 
         <div class="main-content tab-pane" id="trash">
           <div class="top ">
+              
+          <% link = pagy_link_proc(@pagy_trash) %>
             <div class="pagination-wrap">
-              <ul class="pagination">
-                <li class="page-item">
-                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><img
-                    src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" alt="Previous"></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active" aria-current="page">
-                  <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#"><img src="<%= asset_pack_path("views/assets/images/ic_arrow_right.svg") %>"
-                                                     alt="Next"></a>
-                </li>
-              </ul>
-            </div>
-            <div class="modal-wrap">
-              <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
-                Create Username <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
-              </button>
+                <ul class="pagination">
+                    <% if @pagy_trash.prev %>
+                        <li class="page-item">
+                            <%== link.call(@pagy_trash.prev, pagy_t('pagy.nav.prev')) %>
+                        </li>
+                    <% else  %>
+                        <li class="page-item disabled">
+                            <%== link.call(@pagy_trash.prev, pagy_t('pagy.nav.prev')) %>
+                        </li>
+                    <% end %>
 
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                   aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <!-- <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5> -->
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <h3>Tambah Admin</h3>
-                      <div class="form-wrap">
-                        <label>User</label>
-                        <div class="form-group">
-                          <div class="form-group">
-                            <input type="Email" class="form-control"
-                                   placeholder="adellapratitas7@gmail.com">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-solid-green" data-dismiss="modal">
-                        Tambah
-                      </button>
-                      <button type="button" class="btn btn-transparent">Cancel</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                    <% @pagy_trash.series.each do |item| %>
+                        <% if item.is_a?(Integer) %>
+                            <li id="testtest" class="page-item"><%== link.call(item) %></li>
+                        <% elsif item.is_a?(String) %>
+                            <li class="page-item active" aria-current="page"><%== link.call(item) %></li>
+                        <% elsif item == :gap %>
+                            <li class="page-item disabled gap"><a href="#" class="page-link"><%== pagy_t('pagy.nav.gap') %></a></li>
+                        <% end %>
+                    <% end %>
+
+                    <% if @pagy_trash.next %>
+                        <li class="page-item"><%== link.call(@pagy_trash.next, pagy_t('pagy.nav.next')) %></li>
+                    <% else %>
+                        <li class="page-item disabled"><%== link.call(@pagy_trash.next, pagy_t('pagy.nav.next')) %></li>
+                    <% end %>
+                </ul>
             </div>
           </div>
           <div class="content">
-                                <span class="display-desc">
-                                  <p>
-                                      Displaying Content 1 - 30 of 500 in total
-                                  </p>
-                                </span>
+            <span class="display-desc">
+              <p>
+                  Displaying Content 1 - <%= @item_trash.count %> of <%= @total_trash %> in total
+              </p>
+            </span>
             <div class="table">
               <table>
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Team</th>
-                  <th>Username Twitter</th>
-                  <th>Isi</th>
+                  <th>Nama</th>
+                  <th>Judul</th>
+                  <th>Cluster</th>
+                  <th>Create At</th>
                   <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td class="number bold">1</td>
-                  <td class="name bold"><a href="detail-user.html">Jokowi - Makruf</a></td>
-                  <td>@jokowi20190000</td>
-                  <td>Anak-anak muda dari dunia industri kreatif di Banda Aceh.</td>
-                  <td>
-                    <button class="dropdown-toggle" type="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                      <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="action">
-                      <a class="dropdown-item" href="#">Lihat</a>
-                      <a class="dropdown-item" href="#">Terima</a>
-                    </div>
-                  </td>
-
+                <% @item_trash.each_with_index do |item, index| %>
+                  <tr>
+                    <td class="number bold"><%= (@number_trash.to_i - 1) * 30 + index+1 %></td>
+                    <td class="name bold"><a href="detail-janji-politik.html"> <img src="<%= item["creator"]["avatar"]["thumbnail"]["url"] %>"><%= item["creator"]["full_name"] %></a>
+                    </td>
+                    <td><%= item["title"].truncate(30) %></td>
+                    <td><%= item["creator"]["cluster"]["name"] %></td>
+                    <td><%= item["created_at_in_word"]["id"] %></td>
+                    <td>
+                      <button class="dropdown-toggle" type="button" data-toggle="dropdown"
+                              aria-haspopup="true" aria-expanded="false">
+                        <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="action">
+                        <a class="dropdown-item" href="<%= detail_politic_trash_path(item["id"]) %>">Lihat</a>
+                      </div>
+                    </td>
+                  <% end %>
                 </tbody>
               </table>
             </div>
