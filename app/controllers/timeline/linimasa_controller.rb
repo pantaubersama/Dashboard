@@ -13,9 +13,9 @@ class Timeline::LinimasaController < ApplicationController
       @total_linimasa = @linimasa.list_tweet["data"]["feeds"].count
     end
 
-    @trash = @linimasa.get_trash["data"]["crowlings"]
+    @trash = @linimasa.get_trash["data"]["feeds"]
     @pagy_trash, @item_trash = pagy_array(@trash, items: 30, page_param: :page_trash)
-    @total_trash = @linimasa.get_trash["data"]["crowlings"].count
+    @total_trash = @linimasa.get_trash["data"]["feeds"].count
 
     @users = @linimasa.get_user_list["data"]["crowlings"]
     @pagy_users, @item_users = pagy_array(@users, items: 30, page_param: :page_user)
@@ -43,8 +43,21 @@ class Timeline::LinimasaController < ApplicationController
     render "pages/timeline/linimasa/show_user"
   end
 
+  def detail_trash
+    @detail_trash = @linimasa.get_detail_trash(params[:id])
+
+    @pages = { page: "show_trash" }
+    render "pages/timeline/linimasa/show_trash"
+  end
+
   def create
     @linimasa.add_user(params[:keywords], params[:team])
+  end
+
+  def destroy
+    if @linimasa.delete_tweet(params[:id])
+      redirect_to linimasa_index_path
+    end
   end
 
   def delete_user

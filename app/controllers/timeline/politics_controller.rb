@@ -12,11 +12,22 @@ class Timeline::PoliticsController < ApplicationController
       @pagy_politics, @item_politics = pagy_array(@janji_politiks, items: 30, page_param: :page_politics)
       @total_records = @janji.get_politics["data"]["janji_politiks"].count
     end
+
+    @trash_politics = @janji.get_trashes["data"]["politiks"]
+    @pagy_trash, @item_trash = pagy_array(@trash_politics, items: 30, page_param: :page_trash)
+    @total_trash = @janji.get_trashes["data"]["politiks"].count
     
     @number = params[:page_politics] || 1
+    @number_trash = params[:page_trashes] || 1
 
     @pages = { page: "index" }
     render "pages/timeline/politics/index"
+  end
+
+  def detail_trash
+    @detail_politic_trash = @janji.get_detail_trash(params[:id])["data"]["politiks"]
+    @pages = { page: "show_trash_politic" }
+    render "pages/timeline/politics/show_trash_politic"
   end
 
   def show

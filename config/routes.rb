@@ -15,10 +15,13 @@ Rails.application.routes.draw do
   end
 
   scope '/timeline', module: 'timeline' do
-    resources :politics
     resources :linimasa
+    get '/show_trash_linimasa/:id', to: 'linimasa#detail_trash', as: 'detail_linimasa_trash'
     get '/show_user/:id', to: 'linimasa#show_user', as: 'detail_user'
     delete '/delete_user/:id', to:'linimasa#delete_user', as: 'delete_user'
+
+    resources :politics
+    get '/show_trash_politic/:id', to: 'politics#detail_trash', as: 'detail_politic_trash'
   end
 
   scope '/pendidikan_politik' do
