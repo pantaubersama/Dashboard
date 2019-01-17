@@ -1,11 +1,10 @@
-class AvatarUploader < CarrierWave::Uploader::Base
+class BannerInfoUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  include CarrierWave::MiniMagick
+  # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file if Rails.env.development? || Rails.env.test?
-  storage :fog if !Rails.env.development? && !Rails.env.test?
+  # storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -27,24 +26,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
-
-  version :thumbnail do
-    process resize_to_fit: [200, 200]
+  version :large do
+    process :resize_to_fit => [480, nil]
   end
-
-  version :thumbnail_square do
-    process resize_to_fill: [200, 200]
-  end
-
-  version :medium do
-    process resize_to_fit: [400, 400]
-  end
-
-  version :medium_square do
-    process resize_to_fill: [400, 400]
-  end
-
-
   # Create different versions of your uploaded files:
   # version :thumb do
   #   process resize_to_fit: [50, 50]
@@ -52,13 +36,20 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  def extension_whitelist
-    %w(jpg jpeg gif png)
-  end
+  # def extension_whitelist
+  #   %w(jpg jpeg gif png)
+  # end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename
   #   "something.jpg" if original_filename
   # end
+  def extension_whitelist
+    %w(jpg jpeg png gif)
+  end
+
+  def content_type_whitelist
+    /image\//
+  end
 end

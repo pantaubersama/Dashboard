@@ -6,9 +6,9 @@
       <div class="main-content">
         <div class="top">
           <div class="btn-back">
-            <a href="#">
+            <%= link_to request.referer do %>
               <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
-            </a>
+            <% end %>
           </div>
         </div>
         <div class="content">
@@ -19,7 +19,6 @@
           <div class="bg-white detail-profile">
             <div class="card">
               <span class="profile-image">
-                <img src="assets/img/profile.jpg">
                 <%= image_tag @user['avatar']['medium_square']['url'] unless  @user['avatar']['medium_square']['url'].nil? %>
               </span>
               <div class="right-desc">

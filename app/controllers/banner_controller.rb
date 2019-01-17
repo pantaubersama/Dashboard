@@ -1,9 +1,11 @@
 class BannerController < ApplicationController
   before_action :set_banner, only: [:show, :edit, :update]
   before_action :set_api_banner, only: [:update]
+  include Pagy::Backend
 
   def index
     @banners = BannerInfo.order(created_at: :desc)
+    @pagy_banners, @item_banners = pagy_array(@banners, items: 30, page_param: :page_user)
   end
 
   def show

@@ -5,27 +5,41 @@
       <%= render("components/header") %>
       <div class="main-content">
         <div class="top">
+          <% link = pagy_link_proc(@pagy_banners) %>
           <div class="pagination-wrap">
-            <ul class="pagination">
-              <li class="page-item">
-                <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><img
-                  src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" alt="Previous"></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item active" aria-current="page">
-                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#"><img src="<%= asset_pack_path("views/assets/images/ic_arrow_right.svg") %>" alt="Next"></a>
-              </li>
-            </ul>
+              <ul class="pagination">
+                  <% if @pagy_banners.prev %>
+                      <li class="page-item">
+                          <%== link.call(@pagy_banners.prev, pagy_t('pagy.nav.prev')) %>
+                      </li>
+                  <% else  %>
+                      <li class="page-item disabled">
+                          <%== link.call(@pagy_banners.prev, pagy_t('pagy.nav.prev')) %>
+                      </li>
+                  <% end %>
+
+                  <% @pagy_banners.series.each do |item| %>
+                      <% if item.is_a?(Integer) %>
+                          <li id="testtest" class="page-item"><%== link.call(item) %></li>
+                      <% elsif item.is_a?(String) %>
+                          <li class="page-item active" aria-current="page"><%== link.call(item) %></li>
+                      <% elsif item == :gap %>
+                          <li class="page-item disabled gap"><a href="#" class="page-link"><%== pagy_t('pagy.nav.gap') %></a></li>
+                      <% end %>
+                  <% end %>
+
+                  <% if @pagy_banners.next %>
+                      <li class="page-item"><%== link.call(@pagy_banners.next, pagy_t('pagy.nav.next')) %></li>
+                  <% else %>
+                      <li class="page-item disabled"><%== link.call(@pagy_banners.next, pagy_t('pagy.nav.next')) %></li>
+                  <% end %>
+              </ul>
           </div>
         </div>
         <div class="content">
                         <span class="display-desc">
                           <p>
-                              Displaying Content 1 - 30 of 500 in total
+                              Displaying Content 1 - <%= @item_banners.count %> of <%= @banners.count %> in total
                           </p>
                         </span>
 
@@ -45,8 +59,8 @@
               <tr>
                 <td><%= link_to banner.title, banner_path(banner) %></td>
                 <td><%= banner.body %></td>
-                <td><%= image_tag ENV['PEMILU_BASE_URL']+"/uploads/banner_info/header_image/"+banner.id+"/"+banner.header_image, style: "width:100px" if banner.header_image? %></td>
-                <td><%= image_tag ENV['PEMILU_BASE_URL']+"/uploads/banner_info/image/"+banner.id+"/"+banner.image, style: "width:100px" if banner.image? %></td>
+                <td><%= image_tag banner.header_image_url unless banner.header_image_url.nil? %></td>
+                <td><%= image_tag banner.image_url unless banner.image_url.nil? %></td>
                 <td><%= banner.page_name %></td>
               </tr>
               <% end %>
