@@ -25,7 +25,7 @@ class Timeline::PoliticsController < ApplicationController
   end
 
   def detail_trash
-    @detail_politic_trash = @janji.get_detail_trash(params[:id])
+    @detail_politic_trash = @janji.get_detail_trash(params[:id])["data"]["politiks"]
     @pages = { page: "show_trash_politic" }
     render "pages/timeline/politics/show_trash_politic"
   end
