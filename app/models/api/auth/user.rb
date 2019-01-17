@@ -16,6 +16,14 @@ class Api::Auth::User < InitApiAuth
     self.class.get("/v1/users/#{id}/simple")
   end
 
+  def find_full id
+    option = {
+      headers: {PantauAuthKey: "#{ENV['PANTAU_AUTH_KEY']}"}
+    }
+    self.class.get("/v1/users/#{id}/full", option)
+  end
+
+
   def make_admin id
     option ={
       headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},

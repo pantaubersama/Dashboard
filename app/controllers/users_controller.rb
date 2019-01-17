@@ -10,6 +10,8 @@ class UsersController < ApplicationController
   def list_admin
     @admins = UserPantauAuth.joins('INNER JOIN "users_roles" ON "users_roles"."user_id" = "users"."id" INNER JOIN "roles" ON "roles"."id" = "users_roles"."role_id"').where("roles.name = 'admin'").where('users.deleted_at IS NULL')
 
+    @pagy_admins, @item_admins = pagy_array(@admins, items: 30, page_param: :page_user)
+
     @pages = { page: "list_admin" }
     render "pages/users/list_admin"
   end
@@ -25,12 +27,16 @@ class UsersController < ApplicationController
     #   verifications.status as status
     # ').where('users.deleted_at IS NULL'))
 
+
+
     @users = @user_api.all["data"]["users"]
+    @pagy_users, @item_users = pagy_array(@users, items: 30, page_param: :page_user)
+
     render "pages/users/list_user"
   end
 
   def show
-    @user = @user_api.find_simple(params[:id])['data']['user']
+    @user = @user_api.find_full(params[:id])['data']['user']
     render "pages/users/detail_user"
   end
 

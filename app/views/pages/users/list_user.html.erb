@@ -5,6 +5,36 @@
       <%= render("components/header") %>
       <div class="main-content">
         <div class="top">
+        <% link = pagy_link_proc(@pagy_users) %>
+        <div class="pagination-wrap">
+            <ul class="pagination">
+                <% if @pagy_users.prev %>
+                    <li class="page-item">
+                        <%== link.call(@pagy_users.prev, pagy_t('pagy.nav.prev')) %>
+                    </li>
+                <% else  %>
+                    <li class="page-item disabled">
+                        <%== link.call(@pagy_users.prev, pagy_t('pagy.nav.prev')) %>
+                    </li>
+                <% end %>
+
+                <% @pagy_users.series.each do |item| %>
+                    <% if item.is_a?(Integer) %>
+                        <li id="testtest" class="page-item"><%== link.call(item) %></li>
+                    <% elsif item.is_a?(String) %>
+                        <li class="page-item active" aria-current="page"><%== link.call(item) %></li>
+                    <% elsif item == :gap %>
+                        <li class="page-item disabled gap"><a href="#" class="page-link"><%== pagy_t('pagy.nav.gap') %></a></li>
+                    <% end %>
+                <% end %>
+
+                <% if @pagy_users.next %>
+                    <li class="page-item"><%== link.call(@pagy_users.next, pagy_t('pagy.nav.next')) %></li>
+                <% else %>
+                    <li class="page-item disabled"><%== link.call(@pagy_users.next, pagy_t('pagy.nav.next')) %></li>
+                <% end %>
+            </ul>
+        </div>
           <!-- <div class="modal-wrap">
                       <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
                           Create Admin <img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>" alt="add">
@@ -33,6 +63,11 @@
         </div>
 
         <div class="content">
+        <span class="display-desc">
+          <p>
+              Displaying Content 1 - <%= @item_users.count %> of <%= @users.count %> in total
+          </p>
+        </span>
           <div class="col-md-12">
             <% flash.each do |key, value| %>
             <div class="alert alert-<%= key %>">

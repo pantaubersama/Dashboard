@@ -5,21 +5,35 @@
       <%= render("components/header") %>
       <div class="main-content">
         <div class="top">
+          <% link = pagy_link_proc(@pagy_admins) %>
           <div class="pagination-wrap">
-            <ul class="pagination">
-              <li class="page-item">
-                <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><img
-                  src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" alt="Previous"></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item active" aria-current="page">
-                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#"><img src="<%= asset_pack_path("views/assets/images/ic_arrow_right.svg") %>" alt="Next"></a>
-              </li>
-            </ul>
+              <ul class="pagination">
+                  <% if @pagy_admins.prev %>
+                      <li class="page-item">
+                          <%== link.call(@pagy_admins.prev, pagy_t('pagy.nav.prev')) %>
+                      </li>
+                  <% else  %>
+                      <li class="page-item disabled">
+                          <%== link.call(@pagy_admins.prev, pagy_t('pagy.nav.prev')) %>
+                      </li>
+                  <% end %>
+
+                  <% @pagy_admins.series.each do |item| %>
+                      <% if item.is_a?(Integer) %>
+                          <li id="testtest" class="page-item"><%== link.call(item) %></li>
+                      <% elsif item.is_a?(String) %>
+                          <li class="page-item active" aria-current="page"><%== link.call(item) %></li>
+                      <% elsif item == :gap %>
+                          <li class="page-item disabled gap"><a href="#" class="page-link"><%== pagy_t('pagy.nav.gap') %></a></li>
+                      <% end %>
+                  <% end %>
+
+                  <% if @pagy_admins.next %>
+                      <li class="page-item"><%== link.call(@pagy_admins.next, pagy_t('pagy.nav.next')) %></li>
+                  <% else %>
+                      <li class="page-item disabled"><%== link.call(@pagy_admins.next, pagy_t('pagy.nav.next')) %></li>
+                  <% end %>
+              </ul>
           </div>
           <div class="modal-wrap">
             <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
@@ -65,7 +79,7 @@
         <div class="content">
                         <span class="display-desc">
                           <p>
-                              Displaying Content 1 - 30 of 500 in total
+                              Displaying Content 1 - <%= @item_admins.count %> of <%= @admins.count %> in total
                           </p>
                         </span>
           <div class="table">
@@ -85,7 +99,7 @@
               <tr>
                 <td class="number bold"><%= index + 1 %></td>
                 <td class="name bold">
-                <%= image_tag admin.image_thumbnail_square_url %>
+                <%= image_tag admin.avatar_url %>
                 <%= admin.full_name %>
                 </td>
                 <td><%= admin.email %></td>
