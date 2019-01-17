@@ -46,7 +46,8 @@ class UsersController < ApplicationController
   end
 
   def approve_verification
-    if user = UserPantauAuth.where(email: params[:email]).first.present?
+    user = UserPantauAuth.where(email: params[:email]).first
+    if user.present?
       response = @user_api.approve_verification(user.id)
       if response.code == 201
         flash[:success] = "Approve Sucessful"
