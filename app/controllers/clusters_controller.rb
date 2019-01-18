@@ -37,7 +37,8 @@ class ClustersController < ApplicationController
   end
 
   def update
-    par = ([params[:name], params[:category_id], params[:description], params[:requester_id], params[:image], params[:status]]).to_json
+    par = ([params[:name], params[:category_id], params[:description], 
+            params[:requester_id], params[:image], params[:status]]).to_json
     if @cluster.update_cluster(params[:id], par)
       redirect_to clusters_path, notice: "Success"
     end
@@ -54,5 +55,3 @@ class ClustersController < ApplicationController
       @user = User.all
     end
 end
-
-# @cluster.update_cluster(params[:id], params[:name], params[:category_id], params[:description], params[:requester_id], params[:image], params[:status])

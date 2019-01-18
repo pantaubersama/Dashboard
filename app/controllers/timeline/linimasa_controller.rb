@@ -31,7 +31,6 @@ class Timeline::LinimasaController < ApplicationController
 
   def show
     @detail_tweet = @linimasa.show_tweet(params[:id])
-
     @pages = { page: "show" }
     render "pages/timeline/linimasa/show"
   end

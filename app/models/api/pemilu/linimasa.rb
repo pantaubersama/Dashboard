@@ -19,7 +19,7 @@ class Api::Pemilu::Linimasa < InitApiPemilu
   def add_user(keywords, team)
     self.class.post("/dashboard/v1/linimasa/crowling/username",
       { 
-        query: {keywords: keywords, team: team},
+        query: { keywords: keywords, team: team},
         headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}
       })
   end
