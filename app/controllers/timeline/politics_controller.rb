@@ -1,6 +1,7 @@
 class Timeline::PoliticsController < ApplicationController
   include Pagy::Backend
   before_action :set_api
+  before_action :get_janji, only: [:show, :edit, :update]
 
   def index
     if params[:filter].present? || params[:q].present? || params[:cluster_id].present?
@@ -31,8 +32,6 @@ class Timeline::PoliticsController < ApplicationController
   end
 
   def show
-    @politic = @janji.get_politic(params[:id])["data"]["janji_politik"]
-
     @pages = { page: "show" }
     render "pages/timeline/politics/show"
   end
@@ -40,6 +39,10 @@ class Timeline::PoliticsController < ApplicationController
   def edit
     @pages = { page: "edit" }
     render "pages/timeline/politics/edit"
+  end
+
+  def update
+    @janji.update_politic(params[:id], params[:title], params[:body], params[:image].tempfile)
   end
 
   def destroy
@@ -53,4 +56,7 @@ class Timeline::PoliticsController < ApplicationController
       @janji = Api::Pemilu::JanjiPolitik.new
     end
 
+    def get_janji
+      @politic = @janji.get_politic(params[:id])["data"]["janji_politik"]
+    end
 end
