@@ -1,0 +1,113 @@
+<div class="d-flex main-wrapper">
+  <%= render("components/sidebar") %>
+  <div class="main-wrapper">
+    <main class="main col-md-10 offset-md-2" role="main">
+      <%= render("components/header") %>
+      <div class="main-content">
+        <div class="top">
+          <!-- <div class="modal-wrap">
+                      <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
+                          Create Admin <img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>" alt="add">
+                        </button>
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                ...
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div> -->
+        </div>
+
+        <div class="content">
+          <div class="col-md-12">
+            <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>">
+              <%= value %>
+            </div>
+            <% end %>
+          </div>
+          <span class="display-desc">
+            <p>
+            </p>
+          </span>
+          <div class="row">
+            <div class="col-md-6">
+              <label for="">Verifikasi</label>
+              <%= form_tag(approve_verification_path, method: "post") do %>
+              <div class="form-group">
+                <div class="form-group">
+                  <input type="email" class="form-control" placeholder="adellapratitas7@gmail.com" name="email">
+                </div>
+              </div>
+              <button type="submit" class="btn btn-solid-green">Approve
+              </button>
+              <% end %>
+            </div>
+          </div>
+          <div class="filter">
+            <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample">
+              <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
+              <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
+            </a>
+            <div class="collapse filter-form">
+              <div class="card card-body">
+                <h4>Filter</h4>
+                <div class="form-wrap">
+                  <label>Status</label>
+                  <div class="form-group">
+                    <select class="form-control">
+                      <option>Terverifikasi</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-wrap">
+                  <label>User</label>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <input type="nama" class="form-control" placeholder="Nama">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-wrap">
+                <label>Email</label>
+                <div class="form-group">
+                  <div class="form-group">
+                    <input type="email" class="form-control" placeholder="luna@gmail.com">
+                  </div>
+                </div>
+              </div>
+              <div class="form-wrap">
+                <label>Cluster</label>
+                <div class="form-group">
+                  <div class="form-group">
+                    <input type="cluster" class="form-control" placeholder="Nama Cluster">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<%= render("components/footer") %>

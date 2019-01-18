@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get '/list_user', to: 'users#list_user', as: 'users_list_user'
     get '/list_user_verification', to: 'users#verification_list', as: 'users_list_verification'
     get '/user/:id', to: 'users#show', as: 'user_show'
+    get '/approve_verification', to: 'users#approve', as: 'users_approve_verification'
     post '/approve_verification', to: 'users#approve_verification', as: 'approve_verification'
     get '/reject_verification/:id', to: 'users#reject_verification', as: 'reject_verification'
     resources :clusters
