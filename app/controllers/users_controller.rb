@@ -28,9 +28,12 @@ class UsersController < ApplicationController
     # ').where('users.deleted_at IS NULL'))
 
 
-
-    @users = @user_api.all["data"]["users"]
-    @pagy_users, @item_users = pagy_array(@users, items: 30, page_param: :page_user)
+    if params[:page_user].present?
+      @users = @user_api.all(params[:page_user], 25)["data"]["users"]
+    else
+      @users = @user_api.all(1, 25)["data"]["users"]
+    end
+    @pagy_users, @item_users = pagy_array(@users, page_param: :page_user)
 
     render "pages/users/list_user"
   end
@@ -45,17 +48,26 @@ class UsersController < ApplicationController
     render "pages/users/list_user_verification"
   end
 
+  def approve
+    render "pages/users/approve_verification"
+  end
+
+
   def approve_verification
+
     user = UserPantauAuth.where(email: params[:email]).first
     if user.present?
       response = @user_api.approve_verification(user.id)
       if response.code == 201
         flash[:success] = "Approve Sucessful"
-        redirect_to users_list_user_path
+        redirect_to users_approve_verification_path
+      else
+        flash[:warning] = "Approve Failed"
+        redirect_to users_approve_verification_path
       end
     else
       flash[:warning] = "Not found!"
-      redirect_to users_list_user_path
+      redirect_to users_approve_verification_path
     end
   end
 

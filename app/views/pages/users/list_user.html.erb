@@ -2,7 +2,9 @@
   <%= render("components/sidebar") %>
   <div class="main-wrapper">
     <main class="main col-md-10 offset-md-2" role="main">
-      <%= render("components/header") %>
+      <header class="header" role="banner">
+        <%= render("components/dropdown_profile") %>
+      </header>
       <div class="main-content">
         <div class="top">
         <% link = pagy_link_proc(@pagy_users) %>
@@ -35,31 +37,6 @@
                 <% end %>
             </ul>
         </div>
-          <!-- <div class="modal-wrap">
-                      <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
-                          Create Admin <img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>" alt="add">
-                        </button>
-
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                ...
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                    </div> -->
         </div>
 
         <div class="content">
@@ -101,9 +78,10 @@
                     <%= index+1 %>
                   </td>
                   <td class="name bold">
-                    <a href="detail-user.html">
+                    <%= link_to  user_show_path(user['id']) do %>
                       <%= image_tag user['avatar']['medium_square']['url'] unless user['avatar']['medium_square']['url'].nil? %>
-                      <%= user['full_name'] %></a>
+                      <%= user['full_name'] %>
+                    <% end %>
                   </td>
                   <td>
                     <%= user['cluster']['name'] %>
@@ -134,21 +112,6 @@
             </table>
 
 
-          </div>
-
-          <div class="row">
-            <div class="col-md-6">
-              <label for="">Verifikasi</label>
-              <%= form_tag(approve_verification_path, method: "post") do %>
-              <div class="form-group">
-                <div class="form-group">
-                  <input type="email" class="form-control" placeholder="adellapratitas7@gmail.com" name="email">
-                </div>
-              </div>
-              <button type="submit" class="btn btn-solid-green">Approve
-              </button>
-              <% end %>
-            </div>
           </div>
           <div class="filter">
             <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample">
