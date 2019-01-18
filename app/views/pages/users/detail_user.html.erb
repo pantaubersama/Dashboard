@@ -22,7 +22,7 @@
                 <%= image_tag @user['avatar']['medium_square']['url'] unless  @user['avatar']['medium_square']['url'].nil? %>
               </span>
               <div class="right-desc">
-                <p>Created at : 21/10/2023</p>
+                <!--<p>Created at : 21/10/2023</p> -->
                 <button class="btn btn-solid-green">EDIT</button>
               </div>
             </div>
@@ -31,10 +31,10 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-wrap">
-                    <label>Nama Depan</label>
+                    <label>Nama</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input type="Email" class="form-control" placeholder="Andry Sulaksono">
+                        <input type="Email" class="form-control" placeholder="<%= @user['full_name']%>">
                       </div>
                     </div>
                   </div>
@@ -46,6 +46,7 @@
                       </div>
                     </div>
                   </div>
+                  <!--
                   <div class="form-wrap">
                     <label>Status User</label>
                     <div class="form-group">
@@ -53,17 +54,9 @@
                         <input type="Email" class="form-control" placeholder="Yudhoyono">
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="col-md-6">
-                  <div class="form-wrap">
-                    <label>Nama Belakang</label>
-                    <div class="form-group">
-                      <div class="form-group">
-                        <input type="Email" class="form-control" placeholder="Andry Sulaksono">
-                      </div>
-                    </div>
-                  </div>
                   <div class="form-wrap">
                     <label>Username</label>
                     <div class="form-group">
@@ -83,7 +76,7 @@
                     <label>Alamat</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input type="Email" class="form-control" placeholder="<%= @user['address']%>">
+                        <input type="Email" class="form-control" placeholder="<%= @user['location']%>">
                       </div>
                     </div>
                   </div>
@@ -91,15 +84,15 @@
                     <label>Pendidikan</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input type="Email" class="form-control" placeholder="UNY">
+                        <input type="Email" class="form-control" placeholder="<%= @user['education']%>">
                       </div>
                     </div>
                   </div>
                   <div class="form-wrap">
-                    <label>Status User</label>
+                    <label>Tentang User</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <textarea type="Email" class="form-control" placeholder="Kapan Kemana Indonesia ?"></textarea>
+                        <textarea type="Email" class="form-control" placeholder="<%= @user['about'] %>"></textarea>
                       </div>
                     </div>
                   </div>
@@ -109,7 +102,7 @@
                     <label>Pekerjaan</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input type="Email" class="form-control" placeholder="Petani">
+                        <input type="Email" class="form-control" placeholder="<%= @user['occupation']%>">
                       </div>
                     </div>
                   </div>
@@ -132,7 +125,7 @@
                     <label>Tempat Lahir</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input type="Email" class="form-control" placeholder="Yogyakarta">
+                        <input type="Email" class="form-control" placeholder="<%= @user['informant']['pob'] %>">
                       </div>
                     </div>
                   </div>
@@ -140,7 +133,7 @@
                     <label>Jenis Kelamin</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input type="Email" class="form-control" placeholder="Laki - Laki">
+                        <input type="Email" class="form-control" placeholder="<%= @user['informant']['gender_str']%>">
                       </div>
                     </div>
                   </div>
@@ -148,7 +141,7 @@
                     <label>Kewarganegaraan</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input type="Email" class="form-control" placeholder="Indonesia">
+                        <input type="Email" class="form-control" placeholder="<%= @user['informant']['nationality']%>">
                       </div>
                     </div>
                   </div>
@@ -156,7 +149,7 @@
                     <label>No KTP</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input type="Email" class="form-control" placeholder="1265 0259 266654">
+                        <input type="Email" class="form-control" placeholder="<%= @user['informant']['identity_number'] %>">
                       </div>
                     </div>
                   </div>
@@ -166,7 +159,7 @@
                     <label>Tanggal Lahir</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input type="Tanggal Lahir" class="form-control" placeholder="27 Februari 1991">
+                        <input type="Tanggal Lahir" class="form-control" placeholder="<%= @user['informant']['dob'] %>">
                       </div>
                     </div>
                   </div>
@@ -174,7 +167,7 @@
                     <label>Pekerjaan Pelapor</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input type="Email" class="form-control" placeholder="Swasta">
+                        <input type="Email" class="form-control" placeholder="<%= @user['informant']['occupation']%>">
                       </div>
                     </div>
                   </div>
@@ -182,7 +175,7 @@
                     <label>No Telepon</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input type="Email" class="form-control" placeholder="085842366889">
+                        <input type="Email" class="form-control" placeholder="<%= @user['informant']['phone_number'] %>">
                       </div>
                     </div>
                   </div>
@@ -190,7 +183,7 @@
                     <label>Alamat Lengkap</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <textarea type="Email" class="form-control" placeholder="Jalan muja muju"></textarea>
+                        <textarea type="Email" class="form-control" placeholder="<%= @user['informant']['address']%>"></textarea>
                       </div>
                     </div>
                   </div>
