@@ -48,6 +48,9 @@ class ClustersController < ApplicationController
     
   end
 
+  def category
+    render "pages/clusters/category"
+  end
   private
     def set_from_api
       @cluster = Api::Auth::Cluster.new
