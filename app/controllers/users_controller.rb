@@ -86,6 +86,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def detail_user_verification
+    render "pages/users/detail_user_verification"
+  end
+
+
+  def list_user_cluster
+    render "pages/users/list_user_cluster"
+  end
+
 
   private
     def set_api_user
