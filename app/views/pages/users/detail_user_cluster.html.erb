@@ -1,0 +1,62 @@
+<div class="d-flex main-wrapper">
+  <%= render("components/sidebar") %>
+  <div class="main-wrapper">
+    <main class="main col-md-10 offset-md-2" role="main">
+      <header class="header" role="banner">
+        <%= render("components/dropdown_profile") %>
+      </header>
+      <div class="main-content janji-politik">
+                    <div class="top">
+                        <div class="btn-back">
+                            <a href="list-kategori-cluster.html">
+                              <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+                            </a>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <span class="display-desc">
+                          <p>
+                              <!-- Displaying Content 1 - 30 of 500 in total -->
+                          </p>
+                        </span>
+                      <div class="bg-white detail-profile">
+
+                        <div class="card-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-wrap">
+                                        <label>Nama Cluster</label>
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <input type="Email" class="form-control" hresize placeholder="UGM">
+                                              </div>
+                                          </div>
+                                    </div>
+                                    <div class="form-wrap">
+                                        <label>Deskripsi</label>
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <textarea type="Email" class="form-control" hresize placeholder="Anak-anak muda dari dunia industri kreatif di Banda Aceh.">
+                                                </textarea>
+                                              </div>
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="right-desc">
+                                            <p>Created at : 21/10/2023</p>
+                                            <button class="btn btn-solid-green">EDIT</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+    </div>
+  </main>
+  </div>
+</div>
+<%= render("components/footer") %>

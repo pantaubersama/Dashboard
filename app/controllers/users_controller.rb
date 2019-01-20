@@ -96,6 +96,11 @@ class UsersController < ApplicationController
   end
 
 
+  def detail_user_cluster
+    render "pages/users/detail_user_cluster"
+  end
+
+
   private
     def set_api_user
       @user_api = Api::Auth::User.new
