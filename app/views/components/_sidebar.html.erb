@@ -7,7 +7,10 @@
     </div>
     <nav class="nav" role="navigation">
       <ul>
-        <li class="nav-item"><a href="#"><img src="<%= asset_pack_path("views/assets/images/ic_home.svg") %>"> Home</a>
+        <li class="nav-item">
+          <%= link_to dashboards_path, class: 'sub-nav-item' do %>
+            <img src="<%= asset_pack_path("views/assets/images/ic_home.svg") %>"> Home
+          <% end %>
         </li>
         <li class="nav-item" data-toggle="collapse" href="#collapseUser" role="button"
             aria-expanded="false"
