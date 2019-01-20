@@ -48,8 +48,8 @@ class ClustersController < ApplicationController
     
   end
 
-  def category
-    render "pages/clusters/category"
+  def detail_category
+    render "pages/clusters/detail_category"
   end
 
   private
