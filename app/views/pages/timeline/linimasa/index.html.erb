@@ -121,7 +121,7 @@
                                 <% @item_tweets.each_with_index do |item, index| %>
                                     <tr>
                                         <td class="number bold"><%= (@number1.to_i - 1) * 30 + index+1 %></td>
-                                        <td class="name bold"><a href="detail-user.html"><%= item["team"]["title"] %></a></td>
+                                        <td class="name bold"><a href="<%= linimasa_path(item["id"]) %>"><%= item["team"]["title"] %></a></td>
                                         <td><%= item["account"]["username"] %></td>
                                         <td><%= item["source"]["text"].truncate(60) %></td>
                                         <td>
