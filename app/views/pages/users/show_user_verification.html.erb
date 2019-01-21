@@ -23,7 +23,7 @@
                 <span class="profile-image">
                 </span>
                 <div class="right-desc">
-                    <p>Created at : 21/10/2023</p>
+                    <%# <p>Created at : 21/10/2023</p> %>
                     <button class="btn btn-green">DITOLAK</button>
                     <button class="btn btn-solid-green">DITERIMA</button>
                 </div>
@@ -36,7 +36,7 @@
                             <label>Email</label>
                             <div class="form-group">
                                 <div class="form-group">
-                                    <input type="Email" class="form-control" placeholder="Email" value="">
+                                    <input type="Email" class="form-control" placeholder="Email" value="<%= @verification['user']['email']%>">
                                   </div>
                               </div>
                         </div>
@@ -44,7 +44,7 @@
                         <div class="form-wrap">
                             <label>Foto Wajah Beserta KTP</label>
                             <div class="form-group">
-                                <img src="assets/img/profile.jpg">
+                                <%= image_tag @verification['ktp_selfie']['thumbnail']['url'] %>
                             </div>
                         </div>
 
@@ -54,7 +54,7 @@
                                     <label>KTP</label>
                                     <div class="modal-wrap">
                                       <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
-                                        <img src="assets/img/profile.jpg">
+                                        <%= image_tag @verification['ktp_photo']['thumbnail']['url'] %>
                                         </button>
 
                                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -67,7 +67,7 @@
                                                 </button>
                                               </div>
                                               <div class="modal-body">
-                                                    <img src="assets/img/profile.jpg">
+                                                    <%= image_tag @verification['ktp_photo']['thumbnail']['url'] %>
                                               </div>
                                             </div>
                                           </div>
@@ -81,7 +81,7 @@
                                     <div class="form-wrap">
                                         <label>Tanda Tangan</label>
                                         <div class="form-group">
-                                            <img src="assets/img/profile.jpg">
+                                            <%= image_tag @verification['signature']['thumbnail']['url'] %>
                                         </div>
                                     </div>
                             </div>
@@ -93,7 +93,7 @@
                             <label>No KTP</label>
                             <div class="form-group">
                                 <div class="form-group">
-                                    <input type="Kategori" class="form-control" placeholder="Pendidikan">
+                                    <input type="Kategori" class="form-control" placeholder="Pendidikan" value="<%= @verification['user']['informant']['identity_number']%>">
                                   </div>
                               </div>
                         </div>
