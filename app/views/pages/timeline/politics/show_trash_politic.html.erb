@@ -1,0 +1,66 @@
+<div class="d-flex main-wrapper">
+  <%= render("components/sidebar") %>
+  <div class="main-wrapper">
+    <main class="main col-md-10 offset-md-2" role="main">
+      <%= render("components/header") %>
+      <div class="main-content janji-politik">
+        <div class="top">
+          <div class="btn-back">
+            <a href="<%= politics_path %>">
+              <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+            </a>
+          </div>
+        </div>
+        <div class="content">
+                        <span class="display-desc">
+                          <p>
+                              <!-- Displaying Content 1 - 30 of 500 in total -->
+                          </p>
+                        </span>
+          <div class="bg-white detail-profile">
+            <div class="card">
+              <div class="sub-profile">
+                <span class="profile-image"><img src="<%= @detail_politic_trash["image"]["url"] %>"></span>
+                <span class="name">
+                                    <h5>Nama   :  <%= @detail_politic_trash["creator"]["full_name"] %></h5>
+                                    <p>Cluster :  <%= @detail_politic_trash["creator"]["cluster"]["name"] %></p>
+
+                                </span>
+
+              </div>
+              <div class="right-desc">
+                <p>Created at : <%= @detail_politic_trash["created_at_in_word"]["id"] %></p>
+              </div>
+            </div>
+
+            <div class="card-form">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Judul</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <textarea type="Email" class="form-control" hresize placeholder="@Yudho"><%= @detail_politic_trash["title"] %></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Deskripsi</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                          <textarea type="Email" class="form-control" hresize placeholder="Yogyakarta"><%= @detail_politic_trash["body"] %></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<%= render("components/footer") %>

@@ -1,0 +1,130 @@
+<div class="d-flex main-wrapper">
+  <%= render("components/sidebar") %>
+  <div class="main-wrapper">
+    <main class="main col-md-10 offset-md-2" role="main">
+      <header class="header" role="banner">
+        <%= render("components/dropdown_profile") %>
+      </header>
+      <div class="main-content">
+        <div class="top">
+          <% link = pagy_link_proc(@pagy_banners) %>
+          <div class="pagination-wrap">
+            <ul class="pagination">
+              <% if @pagy_banners.prev %>
+              <li class="page-item">
+                <%== link.call(@pagy_banners.prev, pagy_t('pagy.nav.prev')) %>
+              </li>
+              <% else  %>
+              <li class="page-item disabled">
+                <%== link.call(@pagy_banners.prev, pagy_t('pagy.nav.prev')) %>
+              </li>
+              <% end %>
+
+              <% @pagy_banners.series.each do |item| %>
+              <% if item.is_a?(Integer) %>
+              <li id="testtest" class="page-item">
+                <%== link.call(item) %>
+              </li>
+              <% elsif item.is_a?(String) %>
+              <li class="page-item active" aria-current="page">
+                <%== link.call(item) %>
+              </li>
+              <% elsif item == :gap %>
+              <li class="page-item disabled gap"><a href="#" class="page-link">
+                  <%== pagy_t('pagy.nav.gap') %></a></li>
+              <% end %>
+              <% end %>
+
+              <% if @pagy_banners.next %>
+              <li class="page-item">
+                <%== link.call(@pagy_banners.next, pagy_t('pagy.nav.next')) %>
+              </li>
+              <% else %>
+              <li class="page-item disabled">
+                <%== link.call(@pagy_banners.next, pagy_t('pagy.nav.next')) %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+        <div class="content">
+          <span class="display-desc">
+            <p>
+              Displaying Content 1 - <%= @item_banners.count %> of <%= @banners.count %> in total
+            </p>
+          </span>
+
+          <div class="card-wrap">
+            <div class="container">
+              <div class="row">
+                <% @banners.each do |banner| %>
+                  <%= link_to banner_path(banner)  do %>
+                  <div class="col-sm-4">
+                    <div class="card">
+                      <span class="image">
+                        <%= image_tag banner.header_image_url unless banner.header_image_url.nil? %>
+                      </span>
+                      <h4>
+                        <%= banner.title %>
+                      </h4>
+                    </div>
+                  </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter">
+            <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample">
+              <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
+              <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
+            </a>
+            <div class="collapse filter-form">
+              <div class="card card-body">
+                <h4>Filter</h4>
+                <div class="form-wrap">
+                  <label>Status</label>
+                  <div class="form-group">
+                    <select class="form-control">
+                      <option>Terverifikasi</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-wrap">
+                  <label>User</label>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <input type="nama" class="form-control" placeholder="Nama">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-wrap">
+                <label>Email</label>
+                <div class="form-group">
+                  <div class="form-group">
+                    <input type="email" class="form-control" placeholder="luna@gmail.com">
+                  </div>
+                </div>
+              </div>
+              <div class="form-wrap">
+                <label>Cluster</label>
+                <div class="form-group">
+                  <div class="form-group">
+                    <input type="cluster" class="form-control" placeholder="Nama Cluster">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<%= render("components/footer") %>

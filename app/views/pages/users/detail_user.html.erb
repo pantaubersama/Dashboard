@@ -1,0 +1,201 @@
+<div class="d-flex main-wrapper">
+  <%= render("components/sidebar") %>
+  <div class="main-wrapper">
+    <main class="main col-md-10 offset-md-2" role="main">
+      <header class="header" role="banner">
+        <%= render("components/dropdown_profile") %>
+      </header>
+      <div class="main-content">
+        <div class="top">
+          <div class="btn-back">
+            <%= link_to request.referer do %>
+              <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+            <% end %>
+          </div>
+        </div>
+        <div class="content">
+          <span class="display-desc">
+            <p>
+            </p>
+          </span>
+          <div class="bg-white detail-profile">
+            <div class="card">
+              <span class="profile-image">
+                <%= image_tag @user['avatar']['medium_square']['url'] unless  @user['avatar']['medium_square']['url'].nil? %>
+              </span>
+              <div class="right-desc">
+                <!--<p>Created at : 21/10/2023</p> -->
+                <button class="btn btn-solid-green">EDIT</button>
+              </div>
+            </div>
+
+            <div class="card-form">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Nama</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" placeholder="<%= @user['full_name']%>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Email</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" placeholder="<%= @user['email']%>">
+                      </div>
+                    </div>
+                  </div>
+                  <!--
+                  <div class="form-wrap">
+                    <label>Status User</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" placeholder="Yudhoyono">
+                      </div>
+                    </div>
+                  </div> -->
+                </div>
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Username</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" placeholder="<%= @user['username']%>">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-form">
+              <h4 class="title">Biodata Pantau Bersama</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Alamat</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" placeholder="<%= @user['location']%>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Pendidikan</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" placeholder="<%= @user['education']%>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Tentang User</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <textarea type="Email" class="form-control" placeholder="<%= @user['about'] %>"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Pekerjaan</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" placeholder="<%= @user['occupation']%>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Cluster</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" placeholder="<%= @user['cluster']['name'] unless @user['cluster'].nil? %>">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-form">
+              <h4 class="title">Data Lapor</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Tempat Lahir</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" placeholder="<%= @user['informant']['pob'] %>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Jenis Kelamin</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" placeholder="<%= @user['informant']['gender_str']%>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Kewarganegaraan</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" placeholder="<%= @user['informant']['nationality']%>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>No KTP</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" placeholder="<%= @user['informant']['identity_number'] %>">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Tanggal Lahir</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Tanggal Lahir" class="form-control" placeholder="<%= @user['informant']['dob'] %>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Pekerjaan Pelapor</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" placeholder="<%= @user['informant']['occupation']%>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>No Telepon</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" placeholder="<%= @user['informant']['phone_number'] %>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Alamat Lengkap</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <textarea type="Email" class="form-control" placeholder="<%= @user['informant']['address']%>"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+    </main>
+  </div>
+</div>
+<%= render("components/footer") %>

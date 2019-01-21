@@ -30,7 +30,7 @@ default: &default
 
 development:
   <<: *default
-  compile: true
+  compile: false
 
   # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:
@@ -63,7 +63,16 @@ production:
   <<: *default
 
   # Production depends on precompilation of packs prior to booting for performance.
-  compile: false
+  compile: true
+
+  # Cache manifest.json for performance
+  cache_manifest: true
+
+staging:
+  <<: *default
+
+  # Production depends on precompilation of packs prior to booting for performance.
+  compile: true
 
   # Cache manifest.json for performance
   cache_manifest: true

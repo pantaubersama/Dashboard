@@ -1,0 +1,8 @@
+<h1>Edit</h1>
+
+<%= form_tag(politic_path(@politic["id"]), method: :put, multipart: true) do %>
+  <%= text_field_tag(:title, @politic["title"]) %><br>
+  <%= text_field_tag(:body, @politic["body"]) %><br>
+  <%= file_field_tag(:image, @politic["image"]) %>
+  <%= submit_tag %>
+<% end %>

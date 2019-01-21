@@ -31,6 +31,10 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
+###doc [2] set up factory_girl
+# DEPRECATION gem 'factory_girl_rails'
+gem 'factory_bot_rails', '~> 4.0'
+
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
@@ -45,6 +49,13 @@ group :development do
 
   gem 'guard-rspec', require: false
   # then run $ bundle exec guard init rspec
+
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano3-unicorn'
+  gem 'capistrano-rvm'
+  gem 'capistrano-yarn'
+
 end
 
 group :test do
@@ -65,10 +76,6 @@ gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'rename'
 
 group :test do
-  ###doc [2] set up factory_girl
-  # DEPRECATION gem 'factory_girl_rails'
-  gem 'factory_bot_rails', '~> 4.0'
-
   ###doc [3] set up shoulda_matchers
   gem 'shoulda-matchers', '~> 3.1'
 
@@ -78,3 +85,17 @@ group :test do
   ###doc [5] set up database_cleaner
   gem 'database_cleaner'
 end
+
+gem 'seed_migration'
+
+gem 'unicorn', group: [:staging, :production]
+
+#auth
+gem 'devise'
+gem 'omniauth-identitas'
+
+gem 'pagy'
+gem 'simple_form'
+gem 'httparty'
+gem 'carrierwave', '~> 1.0'
+gem 'fog-aws'

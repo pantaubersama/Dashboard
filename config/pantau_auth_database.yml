@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("PANTAU_AUTH_RAILS_MAX_THREADS") { 5 } %>
+  database: <%= ENV["PANTAU_AUTH_DATABASE_NAME"] %>
+  username: <%= ENV["PANTAU_AUTH_DATABASE_USERNAME"] %>
+  password: <%= ENV["PANTAU_AUTH_DATABASE_PASSWORD"] %>
+  host: <%= ENV['PANTAU_AUTH_DATABASE_HOSTNAME'] %>
+  port: <%= ENV['PANTAU_AUTH_DATABASE_PORT'].to_i %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+staging:
+  <<: *default
+
+production:
+  <<: *default

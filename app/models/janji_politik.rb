@@ -1,0 +1,2 @@
+class JanjiPolitik < PemiluApplicationRecord
+end

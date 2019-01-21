@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+    <defs>
+        <style>
+            .cls-1,.cls-2{fill:none;fill-rule:evenodd}.cls-2{fill:#fff}
+        </style>
+    </defs>
+    <g id="ico-expand-more_4" transform="translate(6 8)">
+        <path id="Path_23" d="M-6-8h30v30H-6z" class="cls-1" data-name="Path 23"/>
+        <path id="Path_24" d="M13.25.6L7.5 6.35 1.75.6 0 2.35l7.5 7.5 7.5-7.5z" class="cls-2" data-name="Path 24" transform="translate(1.5 2.15)"/>
+    </g>
+</svg>

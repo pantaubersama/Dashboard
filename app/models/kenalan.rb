@@ -1,0 +1,2 @@
+class Kenalan < PemiluApplicationRecord
+end

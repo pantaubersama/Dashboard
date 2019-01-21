@@ -1,0 +1,760 @@
+<div class="d-flex main-wrapper">
+  <%= render("components/sidebar") %>
+  <div class="main-wrapper">
+    <main class="main col-md-10 offset-md-2" role="main">
+      <header class="header" role="banner">
+        <div class="tabs">  
+          <ul  class="nav nav-pills">
+            <li class="active"><a  href="#all" data-toggle="tab">Semua</a>
+            </li>
+            <li><a  href="#category" data-toggle="tab">Kategori Cluster</a>
+            </li>
+            <li><a href="#trash" data-toggle="tab">Sampah</a>
+            </li>
+          </ul>
+        </div>
+        <%= render("components/dropdown_profile") %>
+      </header>
+      <div class="tab-content clearfix">
+        <div class="main-content tab-pane active" id="all">
+          <div class="top ">
+            <div class="pagination-wrap">
+              <ul class="pagination">
+                <li class="page-item">
+                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                    <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" alt="Previous">
+                  </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active" aria-current="page">
+                  <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#"><img src="<%= asset_pack_path("views/assets/images/ic_arrow_right.svg") %>" alt="Next"></a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="modal-wrap">
+              <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
+                Buat Cluster <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>"  alt="add">
+              </button>
+                    
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <!-- <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5> -->
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <h3>Tambah Cluster</h3>
+                      <div class="form-wrap">
+                        <label>Upload Image</label>
+                        <div class="form-group">
+                          <div class="upload-image">
+                            <div class="custom-button">
+                              <label class="upload-img" for="file-input">
+                                <img src="<%= asset_pack_path("views/assets/images/ic_img.svg") %>" alt="add">
+                              </label>
+                              <input type="file" name="pic" id="file-input" accept="image/*">
+                            </div>
+                              <span>
+                                <p>Upload PNG/JPG</p>
+                                <p>Maks 512x512</p>
+                              </span>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 col-xs-12">
+                          <div class="form-wrap">
+                            <label>Nama Cluster</label>
+                            <div class="form-group"> 
+                              <div class="form-group">
+                                <input type="Cluster" class="form-control" placeholder="Nama Cluster">
+                                </div>
+                            </div>
+                          </div>            
+                          <div class="form-wrap">
+                            <label>Deskripsi</label>
+                            <div class="form-group"> 
+                              <div class="form-group">
+                                <textarea type="Email" class="form-control" placeholder="adellapratitas7@gmail.com"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                                                                                      
+                          <div class="form-wrap">
+                            <label>Akses Dashboard</label>
+                            <div class="form-group"> 
+                              <ul>
+                                <li>
+                                  <input class="styled-checkbox" id="styled-checkbox-1" type="checkbox" value="value1">
+                                  <label for="styled-checkbox-1">User Anggota</label>
+                                </li>
+                                <li>
+                                  <input class="styled-checkbox" id="styled-checkbox-2" type="checkbox" value="value1">
+                                  <label for="styled-checkbox-2">Janji Politik</label>
+                                </li>
+                                <li>
+                                  <input class="styled-checkbox" id="styled-checkbox-3" type="checkbox" value="value1">
+                                  <label for="styled-checkbox-3">Lapor</label>
+                                </li>
+                                <li>
+                                  <input class="styled-checkbox" id="styled-checkbox-4" type="checkbox" value="value1">
+                                  <label for="styled-checkbox-4">Perhitungan</label>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+
+                        </div>
+                          <div class="col-md-6 col-xs-12">            
+                                <div class="form-wrap">
+                                  <label>Kategori</label>
+                                  <div class="form-group"> 
+                                      <div class="form-group">
+                                            <select class="form-control" >
+                                              <option>Kategori Cluster</option>
+                                              <option>2</option>
+                                              <option>3</option>
+                                              <option>4</option>
+                                              <option>5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                            
+                                <div class="form-wrap">
+                                        <label>Admin</label>
+                                        <div class="form-group"> 
+                                            <div class="form-group">
+                                                <input type="Email" class="form-control" placeholder="adellapratitas7@gmail.com">
+                                              </div>
+                                          </div>
+                                </div>
+                          </div>
+
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-solid-green" data-dismiss="modal">Tambah</button>
+                      <button type="button" class="btn btn-transparent">Cancel</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content">
+          <span class="display-desc">
+            <p>
+              Displaying Content 1 - 30 of 500 in total
+            </p>
+          </span>
+          <div class="table">
+            <table>
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Admin</th>
+                  <th>Kategori</th>
+                  <th>Create At</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="number bold">1</td>
+                  <td class="name bold"><a href="clusters/1"> <img src="<%= asset_pack_path("views/assets/images/profile.jpg" ) %>">Universitas Gajah Mada</a></td>
+                  <td class="name bold">Nurlela Ahmad  </td>
+                  <td>Pendidikan</td>
+                  <td>21/10/2023</td>
+                  <td>      
+                    <button class="dropdown-toggle" type="button" id="dropdown-active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                      </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdown-active">
+                        <a class="dropdown-item" href="#">Lihat</a>
+                        <a class="dropdown-item" href="#">Hapus</a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="number bold">2</td>
+                  <td class="name bold"><a href="clusters/1"> <img src="<%= asset_pack_path("views/assets/images/profile.jpg" ) %>">Universitas Gajah Mada</a></td>
+                  <td class="name bold">Nurlela Ahmad  </td>
+                  <td>Pendidikan</td>
+                  <td>21/10/2023</td>
+                  <td>      
+                    <button class="dropdown-toggle" type="button" id="dropdown-active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                      </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdown-active">
+                        <a class="dropdown-item" href="#">Lihat</a>
+                        <a class="dropdown-item" href="#">Hapus</a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="number bold">3</td>
+                  <td class="name bold"><a href="clusters/1"> <img src="<%= asset_pack_path("views/assets/images/profile.jpg" ) %>">Universitas Gajah Mada</a></td>
+                  <td class="name bold">Nurlela Ahmad  </td>
+                  <td>Pendidikan</td>
+                  <td>21/10/2023</td>
+                  <td>      
+                    <button class="dropdown-toggle" type="button" id="dropdown-active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                      </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdown-active">
+                        <a class="dropdown-item" href="#">Lihat</a>
+                        <a class="dropdown-item" href="#">Hapus</a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="number bold">4</td>
+                  <td class="name bold"><a href="clusters/1"> <img src="<%= asset_pack_path("views/assets/images/profile.jpg" ) %>">Universitas Gajah Mada</a></td>
+                  <td class="name bold">Nurlela Ahmad  </td>
+                  <td>Pendidikan</td>
+                  <td>21/10/2023</td>
+                  <td>      
+                    <button class="dropdown-toggle" type="button" id="dropdown-active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                      </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdown-active">
+                        <a class="dropdown-item" href="#">Lihat</a>
+                        <a class="dropdown-item" href="#">Hapus</a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="number bold">5</td>
+                  <td class="name bold"><a href="clusters/1"> <img src="<%= asset_pack_path("views/assets/images/profile.jpg" ) %>">Universitas Gajah Mada</a></td>
+                  <td class="name bold">Nurlela Ahmad  </td>
+                  <td>Pendidikan</td>
+                  <td>21/10/2023</td>
+                  <td>      
+                    <button class="dropdown-toggle" type="button" id="dropdown-active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                      </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdown-active">
+                        <a class="dropdown-item" href="#">Lihat</a>
+                        <a class="dropdown-item" href="#">Hapus</a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="number bold">6</td>
+                  <td class="name bold"><a href="clusters/1"> <img src="<%= asset_pack_path("views/assets/images/profile.jpg" ) %>">Universitas Gajah Mada</a></td>
+                  <td class="name bold">Nurlela Ahmad  </td>
+                  <td>Pendidikan</td>
+                  <td>21/10/2023</td>
+                  <td>      
+                    <button class="dropdown-toggle" type="button" id="dropdown-active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                      </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdown-active">
+                        <a class="dropdown-item" href="#">Lihat</a>
+                        <a class="dropdown-item" href="#">Hapus</a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="number bold">7</td>
+                  <td class="name bold"><a href="clusters/1"> <img src="<%= asset_pack_path("views/assets/images/profile.jpg" ) %>">Universitas Gajah Mada</a></td>
+                  <td class="name bold">Nurlela Ahmad  </td>
+                  <td>Pendidikan</td>
+                  <td>21/10/2023</td>
+                  <td>      
+                    <button class="dropdown-toggle" type="button" id="dropdown-active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                      </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdown-active">
+                        <a class="dropdown-item" href="#">Lihat</a>
+                        <a class="dropdown-item" href="#">Hapus</a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="number bold">8</td>
+                  <td class="name bold"><a href="clusters/1"> <img src="<%= asset_pack_path("views/assets/images/profile.jpg" ) %>">Universitas Gajah Mada</a></td>
+                  <td class="name bold">Nurlela Ahmad  </td>
+                  <td>Pendidikan</td>
+                  <td>21/10/2023</td>
+                  <td>      
+                    <button class="dropdown-toggle" type="button" id="dropdown-active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                      </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdown-active">
+                        <a class="dropdown-item" href="#">Lihat</a>
+                        <a class="dropdown-item" href="#">Hapus</a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="number bold">9</td>
+                  <td class="name bold"><a href="clusters/1"> <img src="<%= asset_pack_path("views/assets/images/profile.jpg" ) %>">Universitas Gajah Mada</a></td>
+                  <td class="name bold">Nurlela Ahmad  </td>
+                  <td>Pendidikan</td>
+                  <td>21/10/2023</td>
+                  <td>      
+                    <button class="dropdown-toggle" type="button" id="dropdown-active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                      </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdown-active">
+                        <a class="dropdown-item" href="#">Lihat</a>
+                        <a class="dropdown-item" href="#">Hapus</a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="number bold">10</td>
+                  <td class="name bold"><a href="clusters/1"> <img src="<%= asset_pack_path("views/assets/images/profile.jpg" ) %>">Universitas Gajah Mada</a></td>
+                  <td class="name bold">Nurlela Ahmad  </td>
+                  <td>Pendidikan</td>
+                  <td>21/10/2023</td>
+                  <td>      
+                    <button class="dropdown-toggle" type="button" id="dropdown-active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                      </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdown-active">
+                        <a class="dropdown-item" href="#">Lihat</a>
+                        <a class="dropdown-item" href="#">Hapus</a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="filter">
+              <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample">
+                  <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" >
+                  <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
+                </a>
+              <div class="collapse filter-form" id="filter">
+                <div class="card card-body">
+                  <h4>Filter</h4>
+                  <div class="filter-wrap">
+                      <div class="form-wrap">
+                        <label>Status</label>
+                        <div class="form-group">
+                            <select class="form-control" >
+                              <option>Terverifikasi</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                          </div>
+                      </div>
+                      <div class="form-wrap">
+                        <label>User</label>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <input type="nama" class="form-control" placeholder="Nama">
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="form-wrap">
+                      <label>Email</label>
+                      <div class="form-group">
+                          <div class="form-group">
+                              <input type="email" class="form-control" placeholder="luna@gmail.com">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-wrap">
+                      <label>Cluster</label>
+                      <div class="form-group">
+                          <div class="form-group">
+                              <input type="cluster" class="form-control" placeholder="Nama Cluster">
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="button-wrapper">
+                    <button type="button" class="btn btn-solid-green" data-dismiss="modal">Done</button>
+                    <button type="button" class="btn btn-transparent">Reset</button>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+            
+        <div class="main-content tab-pane" id="category">
+        
+<div class="top">
+  <div class="pagination-wrap">
+      <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" alt="Previous"></a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item active" aria-current="page">
+            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#"><img src="<%= asset_pack_path("views/assets/images/ic_arrow_right.svg") %>" alt="Next"></a>
+          </li>
+        </ul>
+  </div>
+  <div class="modal-wrap">
+    <button type="button" class="btn btn-green" data-toggle="modal" data-target="#categoryClusterModal">
+        Create Kategori Cluster <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
+      </button>
+          
+      <div class="modal fade" id="categoryClusterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <!-- <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5> -->
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <h3>Tambah Kategori Cluster</h3>
+                  <div class="row">
+                      <div class="col-md-6 col-xs-12">
+
+                            <div class="form-wrap">
+                              <label>Kategori Cluster</label>
+                              <div class="form-group"> 
+                                  <div class="form-group">
+                                      <input type="Cluster" class="form-control" placeholder="Nama Cluster">
+                                    </div>
+                                </div>
+                            </div>            
+                            <div class="form-wrap">
+                              <label>Deskripsi</label>
+                              <div class="form-group"> 
+                                  <div class="form-group">
+                                      <textarea type="Email" class="form-control" placeholder="adellapratitas7@gmail.com"></textarea>
+                                      <div class="toolbar-text full">
+                                          <ul>
+                                              <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bold.svg") %>"></span></li>
+                                              <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_italic.svg") %>"></span></li>
+                                              <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>"></span></li>
+                                              <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>"></span></li>
+                                              <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>"></span></li>
+                                              <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>"></span></li>
+                                              <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>"></span></li>
+                                              <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>"></span></li>
+                                              <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>"></span></li>
+                                              <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>"></span></li>
+                                              <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>"></span></li>
+                                              <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>"></span></li>
+                                          </ul>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                      </div>
+
+                  </div>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-solid-green" data-dismiss="modal">Tambah</button>
+                  <button type="button" class="btn btn-transparent">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+  </div>
+</div>
+
+<div class="content">
+    <span class="display-desc">
+      <p>
+          Displaying Content 1 - 30 of 500 in total
+      </p>
+    </span>
+  <div class="table">
+      <table>
+        <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama</th>
+              <th>Deskripsi</th>
+              <th>Oleh</th>
+              <th>Create At</th>
+              <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td class="number bold">1</td>
+              <td class="name bold"><a href="<%= detail_category_clusters_path %>">UGM</a></td>
+              <td>Anak-anak muda dari dunia industri kreatif di Banda Aceh.</td>
+              <td>Nurlela Ahmad</td>
+              <td>21/10/23</td>
+              <td>      
+                <button class="dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                </button>
+                <div class="dropdown-menu" aria-labelledby="action">
+                    <a class="dropdown-item" href="#">Lihat</a>
+                    <a class="dropdown-item" href="#">Edit</a>
+                    <a class="dropdown-item" href="#">Hapus</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="number bold">2</td>
+              <td class="name bold"><a href="<%= detail_category_clusters_path %>">UGM</a></td>
+              <td>Anak-anak muda dari dunia industri kreatif di Banda Aceh.</td>
+              <td>Nurlela Ahmad</td>
+              <td>21/10/23</td>
+              <td>      
+                <button class="dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                </button>
+                <div class="dropdown-menu" aria-labelledby="action">
+                    <a class="dropdown-item" href="#">Lihat</a>
+                    <a class="dropdown-item" href="#">Edit</a>
+                    <a class="dropdown-item" href="#">Hapus</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="number bold">3</td>
+              <td class="name bold"><a href="<%= detail_category_clusters_path %>">UGM</a></td>
+              <td>Anak-anak muda dari dunia industri kreatif di Banda Aceh.</td>
+              <td>Nurlela Ahmad</td>
+              <td>21/10/23</td>
+              <td>      
+                <button class="dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                </button>
+                <div class="dropdown-menu" aria-labelledby="action">
+                    <a class="dropdown-item" href="#">Lihat</a>
+                    <a class="dropdown-item" href="#">Edit</a>
+                    <a class="dropdown-item" href="#">Hapus</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="number bold">4</td>
+              <td class="name bold"><a href="<%= detail_category_clusters_path %>">UGM</a></td>
+              <td>Anak-anak muda dari dunia industri kreatif di Banda Aceh.</td>
+              <td>Nurlela Ahmad</td>
+              <td>21/10/23</td>
+              <td>      
+                <button class="dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                </button>
+                <div class="dropdown-menu" aria-labelledby="action">
+                    <a class="dropdown-item" href="#">Lihat</a>
+                    <a class="dropdown-item" href="#">Edit</a>
+                    <a class="dropdown-item" href="#">Hapus</a>
+                </div>
+              </td>
+            </tr>
+
+        </tbody>
+        </table>
+  </div>
+  <div class="filter">
+      <a class="btn " data-toggle="collapse" href="#filter2" role="button" aria-expanded="false" aria-controls="collapseExample">
+          <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
+          <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
+        </a>
+      <div class="collapse filter-form" id="filter2">
+        <div class="card card-body">
+          <h4>Filter</h4>
+          <div class="filter-wrap">
+                <div class="form-wrap">
+                  <label>Nama Cluster</label>
+                  <div class="form-group">
+                      <div class="form-group">
+                          <input type="nama" class="form-control" placeholder="UGM">
+                        </div>
+                    </div>
+                </div>
+          </div>
+        </div>
+          <div class="button-wrapper">
+            <button type="button" class="btn btn-solid-green" data-dismiss="modal">Done</button>
+            <button type="button" class="btn btn-transparent">Reset</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+        </div>
+
+        <div class="main-content tab-pane" id="trash">
+          <div class="top ">
+            <div class="pagination-wrap">
+              <ul class="pagination">
+                <li class="page-item">
+                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>"  alt="Previous"></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active" aria-current="page">
+                  <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#"><img src="<%= asset_pack_path("views/assets/images/ic_arrow_right.svg") %>" alt="Next"></a>
+                </li>
+              </ul>
+            </div>
+            <div class="modal-wrap">
+              <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
+                  Create Username <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>"  alt="add">
+                </button>
+                
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <!-- <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5> -->
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <h3>Tambah Admin</h3>
+                      <div class="form-wrap">
+                        <label>User</label>
+                        <div class="form-group"> 
+                            <div class="form-group">
+                                <input type="Email" class="form-control" placeholder="adellapratitas7@gmail.com">
+                              </div>
+                          </div>
+                      </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-solid-green" data-dismiss="modal">Tambah</button>
+                        <button type="button" class="btn btn-transparent">Cancel</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="content">
+              <span class="display-desc">
+                <p>
+                    Displaying Content 1 - 10 of 500 in total
+                </p>
+              </span>
+            <div class="table">
+                  <table>
+                    <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Nama</th>
+                          <th>Admin</th>
+                          <th>Kategori</th>
+                          <th>Create At</th>
+                          <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                          <td class="number bold">1</td>
+                          <td class="name bold"><a href="detail-janji-politik.html"> <img src="<%= asset_pack_path("views/assets/images/profile.jpg") %>">Universitas  Gajah Mada</a></td>
+                          <td class="name bold">Nurlela Ahmad  </td>
+                          <td>Pendidikan</td>
+                          <td>21/10/2023</td>
+                          <td>      
+                            <button class="dropdown-toggle" type="button" id="dropdown-active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdown-active">
+                                <a class="dropdown-item" href="#">Lihat</a>
+                                <a class="dropdown-item" href="#">Hapus</a>
+                            </div>
+                          </td>
+                        </tr>
+                        <% if @list_cluster %>
+                          <% @list_cluster.each_with_index do |item, index| %>
+                          <tr>
+                            <% if !item["category"].nil? %>
+                            <td><%= index += 1 %></td>
+                            <td><%= item["name"] %></td>
+                            <td>Admin</td>
+                              <td><%= item["category"]["name"] %></td>
+                            <td>Created at</td>
+                            <td><%= link_to "Show", cluster_path(item["id"]) %></td>
+                            <td><%= link_to "Delete", cluster_path(item["id"]), method: :delete,
+                                    data: { confirm: 'Are you sure?' } %></td>
+                            <% end %>
+                          </tr>
+                          <% end %>
+                          <% end %>
+
+                    </tbody>
+                    </table>
+            </div>
+                  <div class="filter">
+                      <a class="btn " data-toggle="collapse" href="#filter3" role="button" aria-expanded="false" aria-controls="collapseExample">
+                          <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" >
+                          <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
+                      </a>
+                      <div class="collapse filter-form" id="filter3">
+                        <div class="card card-body">
+                          <h4>Filter</h4>
+                            <div class="form-wrap">
+                              <label>Status</label>
+                              <div class="form-group">
+                                  <select class="form-control" >
+                                    <option>Terverifikasi</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                  </select>
+                                </div>
+                            </div>
+                            <div class="form-wrap">
+                              <label>User</label>
+                              <div class="form-group">
+                                  <div class="form-group">
+                                      <input type="nama" class="form-control" placeholder="Nama">
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="form-wrap">
+                            <label>Email</label>
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="luna@gmail.com">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="form-wrap">
+                            <label>Cluster</label>
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <input type="cluster" class="form-control" placeholder="Nama Cluster">
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </main>
+  </div>
+</div>
+<%= render("components/footer") %>
