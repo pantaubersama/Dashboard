@@ -103,7 +103,7 @@
                     <div class="content">
                         <span class="display-desc">
                           <p>
-                              Displaying Content 1 - 100 of <%= @total_linimasa %> in total
+                              Displaying Content 1 - 30 of <%= @total_tweets %> in total
                           </p>
                         </span>
                         <div class="table">
@@ -120,7 +120,7 @@
                                 <tbody>
                                 <% @item_tweets.each_with_index do |item, index| %>
                                     <tr>
-                                        <td class="number bold"><%= (@number1.to_i - 1) * 30 + index+1 %></td>
+                                        <td class="number bold"><%= ((params[:page_tweet].present? ? params[:page_tweet].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %></td>
                                         <td class="name bold"><a href="<%= linimasa_path(item["id"]) %>"><%= item["team"]["title"] %></a></td>
                                         <td><%= item["account"]["username"] %></td>
                                         <td><%= item["source"]["text"].truncate(60) %></td>
@@ -164,7 +164,7 @@
                                             <label>Username</label>
                                             <div class="form-group">
                                                 <div class="form-group">
-                                                    <input name="q" value="<%= params[:q] %>" type="nama" class="form-control" placeholder="Nama">
+                                                    <input name="username" value="<%= params[:username] %>" type="nama" class="form-control" placeholder="Nama">
                                                 </div>
                                             </div>
                                         </div>
@@ -173,7 +173,7 @@
                                         <label>Isi</label>
                                         <div class="form-group">
                                             <div class="form-group">
-                                                <textarea class="form-control" rows="5" placeholder="Isi Tweet"></textarea>
+                                                <textarea name="isi" class="form-control" rows="5" placeholder="Isi Tweet"><%= params[:isi] %></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -283,7 +283,7 @@
                                 <tbody>
                                 <% @item_trash.each_with_index do |item, index| %>
                                 <tr>
-                                    <td class="number bold"><%= (@number2.to_i - 1) * 30 + index+1 %></td>
+                                    <td class="number bold"><%= ((params[:page_trash].present? ? params[:page_trash].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %></td>
                                     <td class="name bold"><a href="detail-user.html"><%= item["team"]["title"] %></a></td>
                                     <td><%= item["account"]["username"] %></td>
                                     <td><%= item["source"]["text"] %></td>
@@ -424,7 +424,7 @@
                     <div class="content">
                                 <span class="display-desc">
                                   <p>
-                                      Displaying Content 1 - 100 of <%= @total_user %> in total
+                                      Displaying Content 1 - 30 of <%= @total_user %> in total
                                   </p>
                                 </span>
                         <div class="table">
@@ -442,7 +442,7 @@
                                 <tbody>
                                 <% @item_users.each_with_index do |item, index| %>
                                 <tr>
-                                    <td class="number bold"><%= (@number3.to_i - 1) * 30 + index+1 %></td>
+                                    <td class="number bold"><%= ((params[:page_user].present? ? params[:page_user].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %></td>
                                     <td class="name bold"><a href="detail-user.html"><%= item["team"]["title"] %></a></td>
                                     <td><%= item["keywords"] %></td>
                                     <td>100</td>
