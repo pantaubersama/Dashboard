@@ -1,0 +1,266 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="205.326" height="128.558" viewBox="0 0 205.326 128.558">
+    <defs>
+        <style>
+            .cls-1{fill:url(#linear-gradient)}.cls-2{fill:url(#linear-gradient-2)}.cls-3{fill:url(#linear-gradient-3)}.cls-4{fill:url(#linear-gradient-4)}.cls-5{fill:url(#linear-gradient-5)}.cls-26,.cls-37,.cls-6,.cls-7{fill:none;stroke-miterlimit:10}.cls-26,.cls-6,.cls-7{stroke:#e97175;stroke-linecap:round;stroke-linejoin:round}.cls-6{stroke-width:4px}.cls-7{stroke-width:2px;stroke-dasharray:10 10}.cls-8{fill:url(#linear-gradient-6)}.cls-9{fill:#ffebef}.cls-10{fill:#eb3037}.cls-11{fill:url(#linear-gradient-12)}.cls-12{fill:url(#linear-gradient-13)}.cls-13{clip-path:url(#clip-path)}.cls-14{fill:#42b16d}.cls-15{fill:url(#linear-gradient-16)}.cls-16{fill:url(#linear-gradient-17)}.cls-17{fill:#b7c8ff}.cls-18{fill:#fff}.cls-19{fill:url(#linear-gradient-18)}.cls-20{fill:url(#linear-gradient-21)}.cls-21{fill:#f2f5ff}.cls-22{fill:#f2a384}.cls-23{fill:url(#linear-gradient-22)}.cls-24{fill:url(#linear-gradient-23)}.cls-25{fill:url(#linear-gradient-24)}.cls-26{stroke-dasharray:5 10}.cls-27{fill:url(#linear-gradient-26)}.cls-28{clip-path:url(#clip-path-2)}.cls-29,.cls-50,.cls-55{fill:#e97175}.cls-29,.cls-42{opacity:.5}.cls-30{fill:#850000}.cls-31{fill:#f2771d}.cls-32{fill:url(#linear-gradient-27)}.cls-33{fill:url(#linear-gradient-28)}.cls-34{fill:url(#linear-gradient-29)}.cls-35{fill:url(#linear-gradient-31)}.cls-36{fill:url(#linear-gradient-33)}.cls-37{stroke:#850000}.cls-38{fill:url(#linear-gradient-36)}.cls-39{fill:url(#linear-gradient-37)}.cls-40{fill:url(#linear-gradient-38)}.cls-41{clip-path:url(#clip-path-3)}.cls-42{fill:#eeb84e}.cls-43{fill:url(#linear-gradient-39)}.cls-44{fill:url(#linear-gradient-40)}.cls-45{clip-path:url(#clip-path-4)}.cls-46{fill:#b06c57}.cls-47{fill:url(#linear-gradient-41)}.cls-48{fill:#ddf4f1}.cls-49{fill:#6dd0c1}.cls-51{fill:url(#linear-gradient-46)}.cls-52{fill:url(#linear-gradient-48)}.cls-53{fill:#67010d}.cls-54{fill:url(#linear-gradient-49)}.cls-55{opacity:.806}.cls-56{fill:url(#linear-gradient-50)}.cls-57{fill:#98bbe9}.cls-58{fill:url(#linear-gradient-51)}.cls-59{fill:#5ace87}.cls-60{fill:#009175}.cls-61{fill:url(#linear-gradient-52)}
+        </style>
+        <linearGradient id="linear-gradient" x1=".5" x2=".673" y1=".321" y2="1.16" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#6dd0c1"/>
+            <stop offset="1" stop-color="#009175"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-2" x1=".61" x2=".502" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#fff"/>
+            <stop offset="1" stop-color="#e5eeff"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-3" x1=".495" x2=".495" y1="-.109" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#ffe579"/>
+            <stop offset="1" stop-color="#feb755"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-4" x1=".5" x2=".5" y1="-.109" xlink:href="#linear-gradient-3"/>
+        <linearGradient id="linear-gradient-5" x1=".5" x2="-.338" y1=".197" y2="2.945" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#ffebef"/>
+            <stop offset="1" stop-color="#e97175"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-6" x1="1.574" x2="1.188" y1="-.397" y2="1.159" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#e5edff"/>
+            <stop offset="1" stop-color="#e97175"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-12" x1=".833" x2=".599" y1=".113" y2=".973" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#eb3037"/>
+            <stop offset="1" stop-color="#850000"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-13" x1=".5" x2=".5" y1="-1.423" y2="1.702" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#e97175"/>
+            <stop offset="1" stop-color="#eb3037"/>
+        </linearGradient>
+        <clipPath id="clip-path">
+            <path id="Mask" d="M3.015 3.769h.452V2.11a.9.9 0 0 1 1.809 0v2.563a.905.905 0 0 1-1.055.892.911.911 0 0 1-.151.013H3.015v2.411H0V1.507a1.507 1.507 0 0 1 3.015 0z" class="cls-1"/>
+        </clipPath>
+        <linearGradient id="linear-gradient-16" x1="1.574" x2="1.188" y1="-.397" y2="1.159" xlink:href="#linear-gradient-5"/>
+        <linearGradient id="linear-gradient-17" x1="1.494" x2="1.574" y1="-.866" y2="2.197" xlink:href="#linear-gradient-5"/>
+        <linearGradient id="linear-gradient-18" x2="-.339" y1=".197" y2="2.027" xlink:href="#linear-gradient-5"/>
+        <linearGradient id="linear-gradient-21" x1=".5" x2=".5" y1="-1.423" y2="1.702" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#95b7e5"/>
+            <stop offset="1" stop-color="#476db1"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-22" x1=".5" x2=".552" y1=".278" y2="1.036" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#eb3037"/>
+            <stop offset="1" stop-color="#e97175"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-23" x1="1" x2="0" y1=".5" y2=".5" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#eb3037"/>
+            <stop offset="1" stop-color="#9b0012"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-24" x1=".607" x2=".521" y2=".5" xlink:href="#linear-gradient-13"/>
+        <linearGradient id="linear-gradient-26" x1=".61" x2=".502" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#fff"/>
+            <stop offset="1" stop-color="#ffebef"/>
+        </linearGradient>
+        <clipPath id="clip-path-2">
+            <path id="Body" d="M4.184.4c2.948-1.712 6.323 2.5 7.115 4.215s3.038 1.73 2.1 9.48.7 8.38.7 8.38 2.943-.419 1.532 3.543-3.268 3.915-6.819 4.355-6.133-.752-7.588-2.459 1.827-5.156 0-8.416C.521 18.24 0 10.514 0 7.991A8.948 8.948 0 0 1 4.184.4z" class="cls-2"/>
+        </clipPath>
+        <linearGradient id="linear-gradient-27" x1=".851" x2=".049" y1="1.093" y2="-.472" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#67010d"/>
+            <stop offset="1" stop-color="#9b0012"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-28" x1=".695" x2=".695" y1=".756" y2=".14" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#f4af92"/>
+            <stop offset="1" stop-color="#ec906c"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-29" x1=".5" x2=".673" y1=".321" y2="1.16" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#84f0a8"/>
+            <stop offset="1" stop-color="#48b676"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-31" x1="-.088" x2=".173" y1="1.097" y2=".154" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#fad0ba"/>
+            <stop offset="1" stop-color="#f2a384"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-33" x1="1" x2="0" y1=".5" y2=".5" xlink:href="#linear-gradient-12"/>
+        <linearGradient id="linear-gradient-36" x1=".5" x2=".552" y1=".278" y2="1.036" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#850000"/>
+            <stop offset="1" stop-color="#9b0012"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-37" x1=".607" x2=".5" xlink:href="#linear-gradient-2"/>
+        <linearGradient id="linear-gradient-38" x1=".495" x2=".495" y1="-.109" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#f9d65c"/>
+            <stop offset="1" stop-color="#f49422"/>
+        </linearGradient>
+        <clipPath id="clip-path-3">
+            <path id="Jacket" d="M2.881 6.066S-.67 19.57 1.66 27.457.191 44.51 1.082 48.863c6.659.694 11.63 6.743 11.63 6.743s2.1-2.692 1.883-11.825-2.4-9.64-2.742-13.8a96.307 96.307 0 0 1 0-10.348L8.747 4.035A41.82 41.82 0 0 0 5.289 1.45 21.661 21.661 0 0 0 2.1 0z" class="cls-3" transform="translate(-.868)"/>
+        </clipPath>
+        <linearGradient id="linear-gradient-39" x1=".5" x2=".5" y1="-.109" y2="1.002" xlink:href="#linear-gradient-3"/>
+        <linearGradient id="linear-gradient-40" x1=".5" x2=".5" y1="-.109" xlink:href="#linear-gradient-38"/>
+        <clipPath id="clip-path-4">
+            <path id="Jacket-2" d="M25.954 5.725s-1.7 4.468-2.3 6.341a11.5 11.5 0 0 0-.706 4.636c.407 3.65 1.539 4.845.558 13.576-.386 3.414-2.538 8.222-2.954 12.022-.647 5.929.944 7.98.546 8.961-.546 1.342-6.368.109-9.281 3.154-.938-1.812 2.626-8.2 2.626-9.175s.121-8.3 3.115-13.678 2.288-15.722 2.288-15.722-7.524-1.447-11.006-3.774S0 2.026 0 2.026.8 0 1.833 0s8.039 6.359 13.455 7.13c2.27.323 4.094-1.019 5.81-1.405a45.72 45.72 0 0 1 5.05-.7c.539-.184.534.276.534.276z" class="cls-4" data-name="Jacket"/>
+        </clipPath>
+        <linearGradient id="linear-gradient-41" x1=".857" x2=".049" y1="1.093" y2="-.472" xlink:href="#linear-gradient-27"/>
+        <linearGradient id="linear-gradient-46" x1=".833" x2=".599" y1=".113" y2=".973" xlink:href="#linear-gradient-23"/>
+        <linearGradient id="linear-gradient-48" x1=".833" x2=".599" y1=".113" y2=".974" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#9b0012"/>
+            <stop offset="1" stop-color="#67010d"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-49" x1=".5" x2=".5" y1="-1.423" y2="1.702" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#ffebef"/>
+            <stop offset="1" stop-color="#eb3037"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-50" x1=".5" x2=".5" y1="-1.043" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#fff"/>
+            <stop offset="1" stop-color="#e97175"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-51" x1=".5" x2=".673" y1=".321" y2="1.16" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#ddf4f1"/>
+            <stop offset="1" stop-color="#6dd0c1"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-52" x1=".607" x2=".5" xlink:href="#linear-gradient-26"/>
+    </defs>
+    <g id="Group_1213" data-name="Group 1213" transform="translate(-25.402 -131)">
+        <path id="Window_base" d="M3.015 0h107.478a3.015 3.015 0 0 1 3.015 3.015v77.631a.6.6 0 0 1-.6.6H.6a.6.6 0 0 1-.6-.6V3.015A3.015 3.015 0 0 1 3.015 0z" class="cls-5" data-name="Window base" transform="translate(25.403 131)"/>
+        <path id="Chart_bar_base" d="M.6 0h4.827a.6.6 0 0 1 .6.6v7.841a.6.6 0 0 1-.6.6H.6a.6.6 0 0 1-.6-.6V.6A.6.6 0 0 1 .6 0z" class="cls-6" data-name="Chart bar base" transform="translate(89.006 161.201)"/>
+        <path id="Chart_bar_base-2" d="M.6 0h4.827a.6.6 0 0 1 .6.6v10.856a.6.6 0 0 1-.6.6H.6a.6.6 0 0 1-.6-.6V.6A.6.6 0 0 1 .6 0z" class="cls-7" data-name="Chart bar base" transform="translate(105.108 158.021)"/>
+        <path id="Chart_bar_base-3" d="M.6 0h4.827a.6.6 0 0 1 .6.6v3.319a.6.6 0 0 1-.6.6H.6a.6.6 0 0 1-.6-.6V.6A.6.6 0 0 1 .6 0z" class="cls-8" data-name="Chart bar base" transform="translate(113.158 165.955)"/>
+        <path id="Chart_bar_base-4" d="M.6 0h4.827a.6.6 0 0 1 .6.6v7.841a.6.6 0 0 1-.6.6H.6a.6.6 0 0 1-.6-.6V.6A.6.6 0 0 1 .6 0z" class="cls-8" data-name="Chart bar base" transform="translate(121.37 161.201)"/>
+        <path id="Chart_bar_base-5" d="M.6 0h4.827a.6.6 0 0 1 .6.6v12.364a.6.6 0 0 1-.6.6H.6a.6.6 0 0 1-.6-.6V.6A.6.6 0 0 1 .6 0z" class="cls-8" data-name="Chart bar base" transform="translate(129.421 156.428)"/>
+        <path id="Chart_bar_base-6" d="M.6 0h4.827a.6.6 0 0 1 .6.6v15.379a.6.6 0 0 1-.6.6H.6a.6.6 0 0 1-.6-.6V.6A.6.6 0 0 1 .6 0z" class="cls-7" data-name="Chart bar base" transform="translate(97.056 153.233)"/>
+        <g id="UI" transform="translate(32.939 155.727)">
+            <path id="UI_base" d="M.6 0h7.54a.6.6 0 0 1 .6.6v7.54a.6.6 0 0 1-.6.6H.6a.6.6 0 0 1-.6-.6V.6A.6.6 0 0 1 .6 0z" class="cls-8" data-name="UI base" transform="translate(31.806)"/>
+            <path id="UI_base-2" d="M.6 0h21.1a.6.6 0 0 1 .6.6v7.54a.6.6 0 0 1-.6.6H.6a.6.6 0 0 1-.6-.6V.6A.6.6 0 0 1 .6 0z" class="cls-7" data-name="UI base" transform="translate(.151)"/>
+            <path id="UI_base-3" d="M.6 0h25.629a.6.6 0 0 1 .6.6v7.54a.6.6 0 0 1-.6.6H.6a.6.6 0 0 1-.6-.6V.6A.6.6 0 0 1 .6 0z" class="cls-8" data-name="UI base" transform="translate(.151 12.059)"/>
+            <path id="UI_base-4" d="M.6 0h7.54a.6.6 0 0 1 .6.6v7.54a.6.6 0 0 1-.6.6H.6a.6.6 0 0 1-.6-.6V.6A.6.6 0 0 1 .6 0z" class="cls-6" data-name="UI base" transform="translate(31.806 13.265)"/>
+            <path id="UI_base-5" d="M.6 0h7.54a.6.6 0 0 1 .6.6v7.54a.6.6 0 0 1-.6.6H.6a.6.6 0 0 1-.6-.6V.6A.6.6 0 0 1 .6 0z" class="cls-9" data-name="UI base" transform="translate(31.806 26.53)"/>
+            <path id="UI_base-6" d="M.6 0h7.54a.6.6 0 0 1 .6.6v7.54a.6.6 0 0 1-.6.6H.6a.6.6 0 0 1-.6-.6V.6A.6.6 0 0 1 .6 0z" class="cls-7" data-name="UI base" transform="translate(31.806 39.796)"/>
+            <path id="UI_base-7" d="M.6 0h26.081a.6.6 0 0 1 .6.6v26.38a.6.6 0 0 1-.6.6H.6a.6.6 0 0 1-.6-.6V.6A.6.6 0 0 1 .6 0z" class="cls-8" data-name="UI base" transform="translate(0 24.269)"/>
+        </g>
+        <g id="Titlebar" transform="translate(25.403 131)">
+            <path id="Titlebar_base" d="M3.015 0h107.478a3.015 3.015 0 0 1 3.015 3.015v8.291a.6.6 0 0 1-.6.6H.6a.6.6 0 0 1-.6-.6V3.015A3.015 3.015 0 0 1 3.015 0z" class="cls-10" data-name="Titlebar base"/>
+            <g id="Titlebar_button" data-name="Titlebar button" transform="translate(3.769 4.07)">
+                <circle id="Titlebar_button-2" cx="1.884" cy="1.884" r="1.884" class="cls-10" data-name="Titlebar button"/>
+                <circle id="Titlebar_button-3" cx="1.884" cy="1.884" r="1.884" class="cls-10" data-name="Titlebar button" transform="translate(5.879)"/>
+                <circle id="Titlebar_button-4" cx="1.884" cy="1.884" r="1.884" class="cls-10" data-name="Titlebar button" transform="translate(11.758)"/>
+            </g>
+        </g>
+        <g id="Chart" transform="translate(92.871 180.772)">
+            <path id="Path_52" d="M0 1h40.636" class="cls-6" data-name="Path 52" transform="translate(0 -1)"/>
+            <path id="Path_52_Copy" d="M0 1h40.636" class="cls-6" data-name="Path 52 Copy" transform="translate(0 3.824)"/>
+            <path id="Path_52_Copy_2" d="M0 1h40.636" class="cls-6" data-name="Path 52 Copy 2" transform="translate(0 8.647)"/>
+            <path id="Path_52_Copy_3" d="M0 1h40.636" class="cls-6" data-name="Path 52 Copy 3" transform="translate(0 13.471)"/>
+            <path id="Path_52_Copy_4" d="M0 1h40.636" class="cls-6" data-name="Path 52 Copy 4" transform="translate(0 18.295)"/>
+            <path id="Path_52_Copy_5" d="M0 1h40.636" class="cls-6" data-name="Path 52 Copy 5" transform="translate(0 23.119)"/>
+        </g>
+        <path id="Table_base" d="M0 0h74.014v3.015H0z" class="cls-11" data-name="Table base" transform="translate(73.473 209.545)"/>
+        <path id="Table_base-2" d="M.452 36.931A.453.453 0 0 1 0 36.479V0h4.824L.952 36.482a.5.5 0 0 1-.5.449zM.6.6v33.459L4.153.6z" class="cls-12" data-name="Table base" transform="translate(74.816 215.24)"/>
+        <path id="Table_base-3" d="M4.371 36.931a.5.5 0 0 1-.5-.45L0 0h4.824v36.479a.453.453 0 0 1-.453.452zM.67.6l3.55 33.456V.6H.67z" class="cls-12" data-name="Table base" transform="translate(140.807 215.24)"/>
+        <path id="Mask-2" d="M3.015 3.769h.452V2.11a.9.9 0 0 1 1.809 0v2.563a.905.905 0 0 1-1.055.892.911.911 0 0 1-.151.013H3.015v2.411H0V1.507a1.507 1.507 0 0 1 3.015 0z" class="cls-1" data-name="Mask" transform="translate(137.604 197.175)"/>
+        <g id="Cactus" class="cls-13" transform="translate(137.604 197.175)">
+            <path id="Combined_Shape" d="M4.974 9.464V0h.151v9.464zm-.452 0V0h.151v9.464zm-.452 0V0h.151v9.464zm-.452 0V0h.151v9.464zm-.452 0V0h.151v9.464zm-.452 0V0h.151v9.464zm-.452 0V0h.151v9.464zm-.452 0V0h.15v9.464zm-.452 0V0h.151v9.464zm-.452 0V0h.151v9.464zm-.452 0V0H.6v9.464zm-.454 0V0h.151v9.464z" class="cls-14" data-name="Combined Shape" transform="translate(0 -.452)"/>
+        </g>
+        <path id="vase" d="M0 0h7.537L5.862 4.824H1.675z" class="cls-15" transform="translate(135.436 204.467)"/>
+        <rect id="vase-2" width="7.688" height="1.507" class="cls-16" data-name="vase" rx=".754" transform="translate(135.281 204.175)"/>
+        <g id="Imac" transform="translate(92.93 182.838)">
+            <path id="Imac_base" d="M.6 0h36.332a.6.6 0 0 1 .6.6v20.654a.6.6 0 0 1-.6.6H.6a.6.6 0 0 1-.6-.6V.6A.6.6 0 0 1 .6 0z" class="cls-10" data-name="Imac base"/>
+            <path id="Imac_base-2" d="M0 0h8.291v4.974H0z" class="cls-17" data-name="Imac base" transform="translate(14.773 21.707)"/>
+            <path id="Imac_base-3" d="M0 0h34.52v18.843H0z" class="cls-18" data-name="Imac base" transform="translate(1.507 1.507)"/>
+        </g>
+        <path id="Note_base" d="M10.08.047l7.709 3.218a.6.6 0 0 1 .262.9l-9.244 13.2a.6.6 0 0 1-.726.211l-7.71-3.217a.6.6 0 0 1-.262-.9L9.354.257a.6.6 0 0 1 .726-.21z" class="cls-19" data-name="Note base" transform="translate(59.545 211.155)"/>
+        <path id="Combined_Shape-2" d="M2.641 2.965a.6.6 0 0 1-.241-.05L.365 2.039a.6.6 0 0 1-.215-.951L.844.3A.6.6 0 0 1 1.53.138l.326.136A1.194 1.194 0 0 1 2.608 0a.955.955 0 0 1 .347.062.628.628 0 0 1 .369.343.587.587 0 0 1-.024.472l.353.147a.6.6 0 0 1 .195.982l-.779.781a.6.6 0 0 1-.428.178zM2.6.3a.482.482 0 0 0-.376.179.265.265 0 0 0-.053.233.255.255 0 0 0 .162.164.4.4 0 0 0 .146.024.482.482 0 0 0 .377-.175.265.265 0 0 0 .053-.233.255.255 0 0 0-.162-.165A.4.4 0 0 0 2.6.3z" class="cls-15" data-name="Combined Shape" transform="translate(71.546 210.632)"/>
+        <g id="Pen" transform="rotate(97 -58.014 141.279)">
+            <path id="Pen_base" d="M.427 0A.427.427 0 0 0 0 .427v3.944h.854V.427A.427.427 0 0 0 .427 0z" class="cls-12" data-name="Pen base" transform="rotate(180 .427 2.544)"/>
+            <path id="Pen_base-2" d="M.095 0A.1.1 0 0 0 0 .095V1.41a.095.095 0 1 0 .19 0V.095A.1.1 0 0 0 .095 0z" class="cls-20" data-name="Pen base" transform="rotate(180 .57 2.437)"/>
+            <path id="Pen_base-3" d="M.237 0A.237.237 0 0 0 0 .237v.314a.237.237 0 1 0 .475 0V.237A.237.237 0 0 0 .237 0z" class="cls-21" data-name="Pen base" transform="rotate(180 .332 2.83)"/>
+            <path id="Pen_base-4" d="M.854 0H0l.38.788z" class="cls-21" data-name="Pen base" transform="rotate(180 .427 .394)"/>
+        </g>
+        <path id="Leg" d="M.016.695A1.594 1.594 0 0 1 2.653.681C4.009 2.109 4.369 2.621 5 3.156a3.375 3.375 0 0 0 1.316.72l-2.59.164L0 3.611Q0 .91.016.695z" class="cls-22" transform="translate(73.283 250.157)"/>
+        <path id="Pants" d="M3.094 16.142L0 7.325Q11.668-2.31 16.724.728c5.056 3.038 4.016 17.376 4.069 17.79s-2.957 1.555-3.527.413-3.778-8.029-4.1-10.553q-2.053 2.715-10.072 7.764z" class="cls-23" transform="translate(53.285 232.785)"/>
+        <path id="Leg-2" d="M5.207 3.367L1.1 2.436 0 2.8 1.67.6 4.59 0z" class="cls-22" data-name="Leg" transform="translate(42.844 251.745)"/>
+        <path id="Shoes" d="M.515.033C1.051-.234 1.723 1.218 2.7 1.218S4.3-.1 4.547.033c.733.389 1.8.578 2.968 1.035 2.881 1.125 3.16 1.286 2.741 2.957q0 .557-9.817.557a7.484 7.484 0 0 1-.428-2.176C-.02 1.395-.02.3.515.033z" class="cls-24" transform="translate(72.801 252.114)"/>
+        <path id="Pants-2" d="M28.266 13.284c-2.373 7.3-25.03 5.922-26.545 5.207-.865-.408.035-3.928.512-4.1 1.108-.4 16.558-1.771 13.592-1.107S-.412 12.1.01 5.221C.288.684.8-.538 3.8.2c1.542.38 5.27 2.019 6.764 2.445 9.73 2.778 19.861 4 17.702 10.639z" class="cls-25" data-name="Pants" transform="translate(44.907 237.361)"/>
+        <path id="Shoes-2" d="M8.076 2.743c-.11.512-1.327.1-1.872.747s.044 1.834-.189 1.922c-.682.256-1.406.849-2.38 1.355C1.24 8.012.971 8.1.026 6.835Q-.366 6.505 5.092 0a7.273 7.273 0 0 1 1.772 1c.73.581 1.322 1.231 1.212 1.743z" class="cls-24" data-name="Shoes" transform="translate(38.293 249.219)"/>
+        <path id="Texture" d="M0 8.471s16.535-1.278 13.511-3.822A37.931 37.931 0 0 0 5.5 0" class="cls-26" transform="translate(51.4 245.446)"/>
+        <path id="Body-2" d="M4.184.4c2.948-1.712 6.323 2.5 7.115 4.215s3.038 1.73 2.1 9.48.7 8.38.7 8.38 2.943-.419 1.532 3.543-3.268 3.915-6.819 4.355-6.133-.752-7.588-2.459 1.827-5.156 0-8.416C.521 18.24 0 10.514 0 7.991A8.948 8.948 0 0 1 4.184.4z" class="cls-27" data-name="Body" transform="translate(44.307 211.743)"/>
+        <g id="Body-3" class="cls-28" data-name="Body" transform="translate(44.307 211.743)">
+            <path id="Shadow" d="M3.707.084C4.923-.194 9.062.027 9.449 3.753a35.359 35.359 0 0 0 1.757 7.447s1.345 3.333 8.67 4.011a1.663 1.663 0 0 1 1.717 1.366 4.828 4.828 0 0 1-.371 2.78s-12.209 2.431-15.863 0S-.475 9.771.088 5.651 2.492.361 3.707.084z" class="cls-29" transform="translate(1.457 1.353)"/>
+        </g>
+        <path id="hair" d="M8.983 0s2.99 2.6 2.514 6.12-5.268 3.187-5.268 3.187L0 .931z" class="cls-30" transform="translate(47.639 203.496)"/>
+        <path id="Face" d="M13.032.317a18.252 18.252 0 0 1-.569 4.148c-.213.539.328.7 0 1.166-.148.208-1.113.749-1.269.948-1.517 1.936-3.341 3.4-3.767 3.228a17.952 17.952 0 0 1-2.072-1.513s-1.428 1.717-1.247 2.455-2.063 1.77-2.91.885A7.185 7.185 0 0 1 0 8.621l.541-3.166 1.712-3.123L4.7.317 11.914 0z" class="cls-22" transform="translate(49.084 198.831)"/>
+        <path id="Hair-2" d="M20.174 10.228s-.8 3.617-.317 4.987c0 0-.791.826-1.339 1.291-.526.446 6.96-1.954 6.96-5.763S23.769 6.765 22.8 6.459 19.577-.56 13.685.038s-4.37 5.132-8.3 7.611S-1.586 14.608.9 18.289s5.316 4.1 9.261 3.012c2.2-.6 2.031-4.454 2.24-8 .016-.267-.708-.2-.768-.887a1.667 1.667 0 0 1 .768-1.668c1.282-.515 3.082 1.509 4.326 1.258 4.346-.882 3.447-1.776 3.447-1.776z" class="cls-30" data-name="Hair" transform="translate(41.622 188.615)"/>
+        <path id="Hand" d="M1.726 6.593L0 5.272l2.448-2.06.463-1.993L3.2.864A1.13 1.13 0 0 0 4.1.79c.311-.232.747-.881 1.09-.78.053.016.476.149.509.268.05.176-.3.359-.223.407a1.484 1.484 0 0 1 .673 1.8 6.019 6.019 0 0 1-2.325 1.992z" class="cls-22" transform="translate(68.549 215.85)"/>
+        <path id="Sleeve" d="M3.665.051A4.564 4.564 0 0 1 8.72 4.286c.387 3.727.267 7.361 1.614 8.75s2.4.186 9.916-2.735a1.663 1.663 0 0 1 1.717 1.366c.289 1.452 0 1.369 0 1.369s-9.432 8.858-13.574 7.43S-.518 9.738.046 5.618 2.45.328 3.665.051z" class="cls-9" transform="translate(46.56 210.097)"/>
+        <path id="Jacket-3" d="M.794 12.153c2.719 4.082 26.418 4.67 26.418 4.67h7.621L29.986 6.41 16 0S-1.925 8.072.794 12.153z" class="cls-31" data-name="Jacket" transform="translate(142.635 215.385)"/>
+        <path id="Face-2" d="M.4.348a13.169 13.169 0 0 0-.387 2.815c.1.793.7 1.3.88 1.747.232.591-.234.756.124 1.263.161.228 1.212.821 1.382 1.039 1.652 2.122 3.64 3.732 4.1 3.538A19.564 19.564 0 0 0 8.76 9.091s2.39.494 1.114 4.184-.99 5.89 1.593 4.864 7.07-7.655 7.07-7.655a7.738 7.738 0 0 1-3.424-1.439 5.189 5.189 0 0 1-1.108-3.065L12.14 2.556 9.479.348 1.615 0z" class="cls-22" data-name="Face" transform="rotate(14.98 -526.312 656.388)"/>
+        <path id="Hair-3" d="M0 8.357S1 .59 5.7.033s7.3 6.106 9.292 6.721S24.14 8.547 27.1 10.506s2.13 6.291 5.472 6.462S46.6 19.474 40.524 32.6c-3.793 8.19-17.584 12.642-19.567 5.24-2.268-8.465-6.019-3.338-9.587-6.5s-.89-5.9-2.172-8.1-2.955.171-5.833-2.319C.282 18.247.9 16.407.751 13.508A27.485 27.485 0 0 0 0 8.357z" class="cls-32" data-name="Hair" transform="rotate(14.98 -465.244 716.55)"/>
+        <path id="Neck" d="M1.688 3.1s2.388.491 1.112 4.166-.989 5.866 1.592 4.844 7.063-7.624 7.063-7.624a7.744 7.744 0 0 1-3.42-1.433A5.157 5.157 0 0 1 6.928 0L.864.01a3.054 3.054 0 0 1 .715 1.56C1.667 2.523.043 3.937 0 4.329-.019 4.5 1.688 3.1 1.688 3.1z" class="cls-33" transform="rotate(14.98 -554.24 680.178)"/>
+        <ellipse id="hairbands" cx="2.336" cy="2.563" class="cls-34" rx="2.336" ry="2.563" transform="rotate(14.98 -497.006 702.723)"/>
+        <path id="Hair-4" d="M9.907 14.9c-.221.6 1.189 1.032 1.644 1.654.6.507-11.118 2.1-11.537-5.664s8.674-7.01 9.735-7.343S15.89-.665 18.651.1c2.74.759 4.983 3.559 5.524 7.8.653 5.117-.091 8.158-1.162 8.445-1.8.48-6.243-1.192-6.243-1.192a1.679 1.679 0 0 0 .593-2.564c-1.028-1.84-2.781-.912-2.781.709l-.92-1.042-4.42.7s.936 1.202.665 1.944z" class="cls-32" data-name="Hair" transform="rotate(14.98 -479.163 625.52)"/>
+        <g id="Foot" transform="translate(144.499 203.538)">
+            <path id="Leg-3" d="M4.457 0l.48 2.977a3.038 3.038 0 0 1-2.164 1.189 4.934 4.934 0 0 1-2.292-.6L0 .312z" class="cls-35" data-name="Leg" transform="translate(4.984 48.636)"/>
+            <path id="Leg-4" d="M4.457 0l.48 2.977a3.038 3.038 0 0 1-2.164 1.189 4.934 4.934 0 0 1-2.292-.6L0 .312z" class="cls-35" data-name="Leg" transform="translate(19.872 48.636)"/>
+            <path id="Shoes-3" d="M9.936 0c.364 0 .364 1.229.38 2.164a8.637 8.637 0 0 1-.186 1.556.6.6 0 0 1-.563.5C3.722 4.436.2 4.43.189 4.207c-.467-1.52-.213-1.684 2.438-2.877C3.7.846 4.694.614 5.364.216c.229-.136.71.965 2.294.965S9.571 0 9.936 0z" class="cls-36" data-name="Shoes" transform="translate(14.888 51.205)"/>
+            <path id="Shoes-4" d="M9.936 0c.364 0 .364 1.229.38 2.164a8.637 8.637 0 0 1-.186 1.556.6.6 0 0 1-.563.5C3.722 4.436.2 4.43.189 4.207c-.467-1.52-.213-1.684 2.438-2.877C3.7.846 4.694.614 5.364.216c.229-.136.71.965 2.294.965S9.571 0 9.936 0z" class="cls-36" data-name="Shoes" transform="translate(0 51.205)"/>
+            <path id="Pants-3" d="M25.106 0a45.481 45.481 0 0 0 0 5.471q.327.852-3.84 21.269c.238 13.281 2.219 20.576 1.981 21.886-.356 1.965-4.5 1.965-5 .545q-.5-1.42-4.16-23.082l-.427-11.326q-2.56 4.452-7.154 12.128c.5 14.085 2.4 21.541 1.741 22.366-.589.735-4.471 1.254-4.7 0Q0 34.682 0 26.742T7.3 0z" class="cls-25" data-name="Pants" transform="translate(1.207)"/>
+            <path id="Texture-2" d="M2.969 41.347L.088 20.729a9.2 9.2 0 0 1 .025-2.712L2.969 0" class="cls-37" data-name="Texture" transform="translate(19.743 6.977)"/>
+            <path id="Shadow-2" d="M.059 13.973L0 13.956 4.952 0s.5.417 2.258 1.85Q4.653 6.3.059 13.973z" class="cls-38" data-name="Shadow" transform="translate(7.658 12.913)"/>
+        </g>
+        <path id="Body-4" d="M3.629 2.981l-2.176 1.6L0 12.2q4.395 7.515 4.954 9.6a45.436 45.436 0 0 1 .646 5.343q.01.109.024.217a5.412 5.412 0 0 0 6.06 4.674c4.176-.539 7.313-2.126 8.976-4.722 1.146-1.789-.663-23.7-1.991-24.54S16.425.557 10.9 0Q6 6.615 4.01 6.234c-1.327-.254-.934-1.462-.381-3.253z" class="cls-39" data-name="Body" transform="rotate(14.98 -572.163 677.315)"/>
+        <g id="Jacket-4" data-name="Jacket" transform="translate(166.466 175.584)">
+            <path id="Jacket-5" d="M2.881 6.066S-.67 19.57 1.66 27.457.191 44.51 1.082 48.863c6.659.694 11.63 6.743 11.63 6.743s2.1-2.692 1.883-11.825-2.4-9.64-2.742-13.8a96.307 96.307 0 0 1 0-10.348L8.747 4.035A41.82 41.82 0 0 0 5.289 1.45 21.661 21.661 0 0 0 2.1 0z" class="cls-40" data-name="Jacket" transform="translate(-.868)"/>
+            <g id="Jacket-6" class="cls-41" data-name="Jacket">
+                <path id="Shadow-3" d="M4.979 8.716s-1.731-2.326 0-7.641c.409-1.256 2.133-1.6 4.594 0 2.95 1.917 7.453 10.065 5.35 16.041-3.24 9.203-8.578 11.726-11.523 12.329-.563.115-.683-.165-1.861 1.056-2 2.078.478-5.127.478-5.127s5.677-8.063 5.203-10.791a22.318 22.318 0 0 0-2.241-5.867z" class="cls-42" data-name="Shadow" transform="translate(-.229 6.562)"/>
+            </g>
+        </g>
+        <path id="Hand-2" d="M6.473 1.679l-2.042 2.17a6.019 6.019 0 0 1-1.91 2.4A1.484 1.484 0 0 1 .7 5.635C.615 5.517.059 5.5.015 5.372c-.115-.34.425-.814.741-1.117.472-.451-.115-.377.113-.864q.231-.491 2.25-.873L5.092 0z" class="cls-22" data-name="Hand" transform="translate(163.331 208.077)"/>
+        <path id="Path_46" d="M2.889 8.716s-1.731-2.326 0-7.641c.409-1.256 2.133-1.6 4.594 0 2.95 1.917 6.611 11.083 4.508 17.059C8.133 29.094 4.638 29.322 2.48 30.7S0 28.895 0 28.895s6.084-8.845 5.609-11.573a69.708 69.708 0 0 0-2.72-8.606z" class="cls-43" data-name="Path 46" transform="translate(168.399 178.111)"/>
+        <path id="Hand-3" d="M5.037 7.756L2.938 5.64A6.019 6.019 0 0 1 .611 3.648a1.484 1.484 0 0 1 .673-1.8C1.4 1.769-.123.043.008 0 .352-.1 2.37 1.627 2.661 1.954c.434.487.381-.1.859.143q.478.245.794 2.279l2.448 2.06z" class="cls-22" data-name="Hand" transform="translate(125.174 163.988)"/>
+        <g id="Jacket-7" data-name="Jacket" transform="translate(130.085 171.026)">
+            <path id="Jacket-8" d="M25.954 5.725s-1.7 4.468-2.3 6.341a11.5 11.5 0 0 0-.706 4.636c.407 3.65 1.539 4.845.558 13.576-.386 3.414-2.538 8.222-2.954 12.022-.647 5.929.944 7.98.546 8.961-.546 1.342-6.368.109-9.281 3.154-.938-1.812 2.626-8.2 2.626-9.175s.121-8.3 3.115-13.678 2.288-15.722 2.288-15.722-7.524-1.447-11.006-3.774S0 2.026 0 2.026.8 0 1.833 0s8.039 6.359 13.455 7.13c2.27.323 4.094-1.019 5.81-1.405a45.72 45.72 0 0 1 5.05-.7c.539-.184.534.276.534.276z" class="cls-44" data-name="Jacket"/>
+            <g id="Jacket-9" class="cls-45" data-name="Jacket">
+                <path id="Shadow-4" d="M12.54 4.491a9.08 9.08 0 0 1 .605-3.09c.572-1.188.321-1.4.321-1.4S7.224 3.088 3.015 1.4s2.12 4.63 2.12 4.63z" class="cls-42" data-name="Shadow" transform="translate(7.108 12.059)"/>
+            </g>
+        </g>
+        <g id="Head" transform="translate(95.326 177.605)">
+            <path id="Neck-2" d="M3.151 11.085a23.237 23.237 0 0 1-1.125 2.991c-.426.731.332 2.571 2.186 2.571s6.063-1.687 6.063-1.687a6.893 6.893 0 0 1-1.319-2.235 6.806 6.806 0 0 1 0-2.982s2.132-4.99 1.686-6.069S5.854 0 5.854 0 1.322 1.867 1.322 3.273v2.5S0 5.2 0 6.67s1.709 2.006 1.709 2.006z" class="cls-46" data-name="Neck" transform="translate(.976 5.228)"/>
+            <path id="Hair-5" d="M7.8 1.171c.87.459 3.508 1.224 3.974 1.946a3.609 3.609 0 0 1 .409 2.916s1.513 2.079 0 5.864-2.5 4.167-4.383 4.4-3.246-1.827-3.881-3.365a4.94 4.94 0 0 0-1.655-2.192l-.326-2.625S0 7.928 0 4.623s2.264-6.372 7.8-3.452z" class="cls-47" data-name="Hair"/>
+        </g>
+        <path id="Leg-5" d="M.6.036c.182-.124 2.789.011 2.481 1.409a17.879 17.879 0 0 0-.455 2.518 1.112 1.112 0 0 1-.572.9l-1.714-.9L0 2.657A9.652 9.652 0 0 1 .6.036z" class="cls-46" data-name="Leg" transform="translate(121.017 243.861)"/>
+        <path id="Shoes-5" d="M1.289 0c.508-.079.664 1.3 1.463 1.563S4.4.893 4.572 1.07c.492.516 1.308.955 2.138 1.644 2.043 1.7 2.227 1.9 1.435 3.179Q7.995 6.356 0 3.758a6.639 6.639 0 0 1 .238-1.919C.486.992.781.083 1.289 0z" class="cls-36" data-name="Shoes" transform="translate(119.393 245.917)"/>
+        <path id="Leg-6" d="M2.923.377a8.066 8.066 0 0 1-.172 2.286l-.823 1.07L0 3.888a1.387 1.387 0 0 0 .584-.782A14.852 14.852 0 0 0 1.1.829C1.357-.578 2.8.191 2.923.377z" class="cls-46" data-name="Leg" transform="translate(106.426 242.736)"/>
+        <path id="Shoes-6" d="M4.094.653c.573.052.8.33 1.039 1.158A5.594 5.594 0 0 1 5.3 3.7q-3.678 1-4.394.72C-1.015 3.681.671 1.161.957.9A4.459 4.459 0 0 1 2.57.065c.922-.3.951.535 1.524.588z" class="cls-36" data-name="Shoes" transform="translate(104.931 244.483)"/>
+        <path id="Pants-4" d="M3.332 3.179s8.706-3.91 12.49 0-5.053 17.907-5.654 19.675-2.273.633-2.906.464-1.148-1.055-1.148-1.055l2.737-11.15-6.88-.933L0 5.878z" class="cls-30" data-name="Pants" transform="translate(115.129 222.169)"/>
+        <path id="Pants-5" d="M3.332 3.741s9.793-4.579 11.555-2.29 3.271 9.816-5.544 20.949a2.989 2.989 0 0 1-1.694.568c-.74-.106-1.233-1.35-1.233-1.35l2.436-9.944-6.88-.933L0 6.439z" class="cls-30" data-name="Pants" transform="translate(100.566 221.607)"/>
+        <path id="Body-5" d="M27.045 21.224s4.19 1.916 5.1.958.8-1.417.8-1.417 8.1.683 9.864 4.4 6.442 16.11 8.48 13.63a24.394 24.394 0 0 0 2.842-4.1s-1.34-1.243-1.34-1.513.893-.284 1.34-.142.364-3.113.646-3.327.714 2.287.714 2.287.643-2.7.872-2.589 0 3 0 3 1.134-1.341 1.307-1.133-.671 1.9-.671 1.9 1.043-.382 1.043-.142-1.042.969-1.042.969l-.637 1.184s-2.32 9.01-6.74 9.565-3.522 0-3.522 0 1.08 1.483.785 2.479-2.277 5.964-4.343 6.8-11.787-4.25-11.787-4.25l-10.951-10.1-1.08-11.075S3.384 19.908 2.073 5.792l-.439-1.405S.107 2.729.016 2.5s.978.282.978.282-.541-1.535-.4-1.7 1.04.962 1.04.962S1.7.089 1.92.008 2.579 1.7 2.579 1.7 2.784.137 3 .315a11.344 11.344 0 0 1 .387 2.468s.845-.736.942-.474a7.353 7.353 0 0 1-.5 1.829S10.155 14.664 14.493 16.5a103.907 103.907 0 0 0 12.882 3.78z" class="cls-46" data-name="Body" transform="translate(70.576 177.614)"/>
+        <path id="Body-6" d="M17.343 6.351c2.6.734 5.078-2.37 5.078-2.37s6.107.475 7.875 4.192c1.036 2.178 3.07 7.335 4.986 10.733C36.636 21.307 30.3 24.3 30.3 24.3s1.886 2.854 3.8 3.7a2.925 2.925 0 0 1 .276 2.237c-.3 1-2.277 5.964-4.343 6.8s-11.787-4.25-11.787-4.25L7.293 22.689l-1.37-10.954S.678 9.753.382 8.544C-1.1 2.5 2.039-.877 4.58.2a50.863 50.863 0 0 0 10.386 2.716 3.329 3.329 0 0 0 2.377 3.435z" class="cls-48" data-name="Body" transform="translate(83.54 195.212)"/>
+        <path id="Texture-3" d="M26.223 31.738a1.583 1.583 0 1 1 2.037-1.909 1.564 1.564 0 0 1-.079 1.045 1.59 1.59 0 0 1-.7.758 10.476 10.476 0 0 1-1.258.106zm-1.354-7.878a1.586 1.586 0 1 1 .411-.054 1.584 1.584 0 0 1-.411.054zM10.19 18.607a1.583 1.583 0 1 1 2.037-1.907 1.566 1.566 0 0 1-.079 1.045 1.59 1.59 0 0 1-.7.758 10.424 10.424 0 0 1-1.258.104zm7.425-1.154a1.583 1.583 0 1 1 .411-.054 1.584 1.584 0 0 1-.411.054zm6.866-1.153a1.587 1.587 0 1 1 .411-.054 1.584 1.584 0 0 1-.411.054zM8.836 10.729a1.583 1.583 0 0 1-.408-3.112 1.6 1.6 0 0 1 .411-.054 1.583 1.583 0 0 1 .409 3.112 1.607 1.607 0 0 1-.412.054zm8.778-.848a1.582 1.582 0 0 1-1.528-1.164 1.549 1.549 0 0 1 .155-1.187 1.57 1.57 0 0 1 .964-.736 1.586 1.586 0 0 1 1.94 1.106 1.549 1.549 0 0 1-.155 1.187 1.57 1.57 0 0 1-.964.736 1.6 1.6 0 0 1-.411.058zm6.866-1.147a1.582 1.582 0 0 1-1.527-1.164 1.549 1.549 0 0 1 .155-1.186 1.57 1.57 0 0 1 .964-.736 1.6 1.6 0 0 1 .411-.054 1.583 1.583 0 0 1 1.528 1.164 1.549 1.549 0 0 1-.155 1.186 1.57 1.57 0 0 1-.964.736 1.6 1.6 0 0 1-.411.054zM1.582 4.323a1.586 1.586 0 1 1 .411-.054 1.585 1.585 0 0 1-.411.054zm6.867-1.157A1.583 1.583 0 0 1 8.04.054a1.581 1.581 0 0 1 1.938 1.12 1.583 1.583 0 0 1-1.119 1.938 1.606 1.606 0 0 1-.41.054z" class="cls-49" data-name="Texture" transform="translate(85.968 198.55)"/>
+        <path id="Chair_base" d="M0 0h1.809v7.386H0z" class="cls-50" data-name="Chair base" transform="translate(112.069 237.399)"/>
+        <circle id="Wheel" cx="1.357" cy="1.357" r="1.357" class="cls-11" transform="translate(101.159 252.925)"/>
+        <circle id="Wheel-2" cx="1.357" cy="1.357" r="1.357" class="cls-11" data-name="Wheel" transform="translate(121.424 252.925)"/>
+        <circle id="Wheel-3" cx="1.357" cy="1.357" r="1.357" class="cls-51" data-name="Wheel" transform="translate(111.613 254.432)"/>
+        <path id="Chair_base-2" d="M8.876 1.782L8.771.659A.6.6 0 0 1 9.384 0l2.591.054h.034a.6.6 0 0 1 .555.646l-.074.965 8.25 5.665q.034.023.065.049a.922.922 0 0 1 .124 1.3 1.214 1.214 0 0 1-1.523.291l-7.173-3.958-.393 5.1a1.116 1.116 0 0 1-1.084 1.03 1.077 1.077 0 0 1-1.1-.977l-.493-5.3-7.43 4.1a1.214 1.214 0 0 1-1.522-.288.922.922 0 0 1 .124-1.3L.4 7.33l8.413-5.775z" class="cls-12" data-name="Chair base" transform="translate(102.156 244.648)"/>
+        <path id="Chair_base-3" d="M2.748.215A2.381 2.381 0 0 0 0 .822c.142.9.231 1.295.235 1.316C1.668 9.864 7.221 17.3 11.543 21.96c3.7 3.981 6.265 6.352 6.265 6.352a9.409 9.409 0 0 0 4.592-.532c.911-.4 2.34-.282 2.3-1.535-.084-2.583-2.379-3.888-3.284-7.629-.85-3.51.106-10.661-2.462-12.132S13.167 7.565 8.266 5.437C4.8 3.931 3.661.724 2.748.215z" class="cls-52" data-name="Chair base" transform="translate(87.998 207.865)"/>
+        <path id="Chair_base-4" d="M3.272.809c2.459-.676 5.784-1.419 7.469 0s.91 3.7-.217 4.982-10 2.465-10 2.465L0 3.93A7.294 7.294 0 0 0 3.272.809z" class="cls-53" data-name="Chair base" transform="translate(114.539 229.229)"/>
+        <path id="Chair_base-5" d="M0 0s1.674 13.308 2.906 17.513a15.8 15.8 0 0 0 4.547 7.746c1.714 1.7 8.122 4.675 13.242 4.938 4.531.233 10.859-1.092 13.2-2.547s3.552-4.577.905-5.353-11.178 2.42-11.981 2.071c-4.472-1.94-3.109-15.4-5.264-16.826-2.049-1.357-6.419.385-11.681-1.942C3.56 4.583 0 0 0 0z" class="cls-54" data-name="Chair base" transform="translate(88.304 208.791)"/>
+        <ellipse id="Shadow-5" cx="13.416" cy="2.336" class="cls-55" data-name="Shadow" rx="13.416" ry="2.336" transform="translate(190.674 254.885)"/>
+        <path id="Leaf" d="M6.337.012C3.672.277 4.591 6.286 3.859 7.4s-2.787 1.437-2.5 3.841 2.27 2.323 2.507 4.32-4.224 1.734-3.843 4.886 3.82 4.108 4.046 6.007S2.592 29.1 3.1 33.3s3.975 5.064 9.158 5.431 8.4-1.051 7.895-5.582-6.007-4.4-6.687-6.888 2.806-3.826 2.479-6.734-5.57-2.774-5.837-5.1 3.836-3.589 3.564-6-1.315-2.772-3.28-3.6C8.42 4.012 9-.254 6.337.012z" class="cls-56" transform="rotate(16 -614.371 829.06)"/>
+        <path id="leaves_base" d="M4.7 5.5a.164.164 0 0 0 .214-.159.279.279 0 0 0-.182-.279C2.111 4.273.683 2.68.4.231A.256.256 0 0 0 .172 0 .176.176 0 0 0 0 .216C.316 2.885 1.9 4.655 4.7 5.5z" class="cls-57" data-name="leaves base" transform="rotate(16 -723.557 837.972)"/>
+        <path id="leaves_base-2" d="M5.039 3.715a.175.175 0 0 0 .14-.239.265.265 0 0 0-.255-.207C3.16 3.411 1.657 2.376.375.134A.229.229 0 0 0 .089.017.2.2 0 0 0 .036.3c1.376 2.409 3.056 3.568 5.003 3.415z" class="cls-57" data-name="leaves base" transform="rotate(16 -690.788 835.195)"/>
+        <path id="leaves_base-3" d="M2.633 1.829a.127.127 0 0 0 .1-.167.166.166 0 0 0-.173-.129C1.661 1.662.9 1.187.255.083A.149.149 0 0 0 .061.015a.141.141 0 0 0-.038.2c.712 1.209 1.59 1.759 2.61 1.614z" class="cls-10" data-name="leaves base" transform="rotate(16 -645.986 836.332)"/>
+        <path id="leaves_base-4" d="M.134 2.081A.149.149 0 0 1 0 1.924a.14.14 0 0 1 .141-.144C1.057 1.825 1.7 1.276 2.078.1a.133.133 0 0 1 .176-.09.159.159 0 0 1 .083.2C1.918 1.5 1.177 2.133.134 2.081z" class="cls-10" data-name="leaves base" transform="rotate(16 -640.445 846.46)"/>
+        <path id="leaves_base-5" d="M.194 3.488A.23.23 0 0 1 0 3.247a.2.2 0 0 1 .207-.2C1.846 3.2 3 2.254 3.689.141a.187.187 0 0 1 .257-.124.246.246 0 0 1 .12.3C3.319 2.6 2.019 3.666.194 3.488z" class="cls-57" data-name="leaves base" transform="rotate(16 -682.481 851.112)"/>
+        <path id="leaves_base-6" d="M.194 3.328A.244.244 0 0 1 0 3.077a.186.186 0 0 1 .207-.193C1.846 3.117 3 2.22 3.689.133a.179.179 0 0 1 .257-.112.257.257 0 0 1 .12.3C3.319 2.58 2.019 3.591.194 3.328z" class="cls-57" data-name="leaves base" transform="rotate(16 -725.156 857.135)"/>
+        <path id="leaves_base-7" d="M6.136 41.2a.371.371 0 0 0 .3.327c.147.015.45-.089.43-.255a23.524 23.524 0 0 1-.807-4.24c-.313-2.691.585-7.1-.039-10.1S2 18.272.78 13.829c-.992-3.6-.314-6.891-.206-9.071A19.364 19.364 0 0 0 .155 0a31.643 31.643 0 0 1 .273 4.766C.277 6.88-.3 9.673.2 12.751c.922 5.739 4.745 10.8 5.184 14.608s-.417 6.12-.2 9.457q.216 3.332.952 4.384z" class="cls-50" data-name="leaves base" transform="rotate(16 -630.951 850.095)"/>
+        <path id="Leaf-2" d="M10.014 0c2.665 0 2.455 6.28 3.309 7.377s2.935 1.311 2.935 3.858-1.983 2.547-1.983 4.644 4.417 1.71 4.417 5.088-3.327 4.369-3.327 6.373 1.8 2.846 1.8 7.318-3.4 5.131-8.579 5.131S0 38.152 0 33.681s5.534-4.2 5.931-6.7-3.242-3.87-3.242-6.772 5.243-2.9 5.243-5.273-4.225-3.45-4.225-5.868.993-2.851 2.848-3.832S7.349 0 10.014 0z" class="cls-58" data-name="Leaf" transform="rotate(-17 789.159 -506.662)"/>
+        <path id="Leaves_base-8" d="M.239 5.483A.2.2 0 0 1 0 5.3a.236.236 0 0 1 .15-.277 4.524 4.524 0 0 0 3.8-4.8.2.2 0 1 1 .394 0 4.965 4.965 0 0 1-4.105 5.26z" class="cls-59" data-name="Leaves base" transform="rotate(-17 892.28 -551.42)"/>
+        <path id="Leaves_base-9" d="M.26 5.477a.194.194 0 0 1-.25-.149.243.243 0 0 1 .127-.293C1.823 4.388 2.66 2.807 2.66.233A.218.218 0 0 1 2.858 0a.218.218 0 0 1 .2.233C3.057 3 2.121 4.764.26 5.477z" class="cls-60" data-name="Leaves base" transform="rotate(8 -1506.896 1541.067)"/>
+        <path id="Leaves_base-10" d="M.177 2.873a.132.132 0 0 1-.171-.1.164.164 0 0 1 .087-.2C.95 2.25 1.375 1.457 1.375.157A.147.147 0 0 1 1.511 0a.147.147 0 0 1 .135.157c0 1.428-.492 2.343-1.469 2.716z" class="cls-60" data-name="Leaves base" transform="rotate(8 -1420.892 1517.995)"/>
+        <path id="Leaves_base-11" d="M1.469 2.873a.132.132 0 0 0 .171-.1.164.164 0 0 0-.087-.2C.7 2.25.271 1.457.271.157A.147.147 0 0 0 .135 0 .147.147 0 0 0 0 .157C0 1.585.492 2.5 1.469 2.873z" class="cls-60" data-name="Leaves base" transform="rotate(-42 373.775 -145.732)"/>
+        <path id="Leaves_base-12" d="M2.563 5.065a.192.192 0 0 0 .248-.149.244.244 0 0 0-.126-.293C1.154 4.032.394 2.588.394.233A.217.217 0 0 0 .2 0a.217.217 0 0 0-.2.233c0 2.545.858 4.175 2.563 4.832z" class="cls-60" data-name="Leaves base" transform="rotate(-42 389.75 -139.752)"/>
+        <path id="Leaves_base-13" d="M2.563 5.065a.192.192 0 0 0 .248-.149.244.244 0 0 0-.126-.293C1.154 4.032.394 2.588.394.233A.217.217 0 0 0 .2 0a.217.217 0 0 0-.2.233c0 2.545.858 4.175 2.563 4.832z" class="cls-60" data-name="Leaves base" transform="rotate(-42 407.26 -135.078)"/>
+        <path id="Leaves_base-14" d="M1.579 42.362a.289.289 0 0 1-.266.308c-.147 0-.465-.138-.465-.308a23.849 23.849 0 0 0 .321-4.308c0-2.755-1.413-7.342-1.133-10.385s3.026-8.829 3.727-13.433c.57-3.746-.487-7.11-.848-9.34A20.388 20.388 0 0 1 2.782 0a33.469 33.469 0 0 0 .28 4.9c.394 2.161 1.291 5.011 1.156 8.211-.25 5.952-3.49 11.128-3.49 15.02s1.13 6.328 1.3 9.769-.449 4.462-.449 4.462z" class="cls-60" data-name="Leaves base" transform="rotate(-17 798.306 -533.358)"/>
+        <path id="Leaf-3" d="M8.678 0C6.014 0 6.224 5.373 5.369 6.312s-2.935 1.122-2.935 3.3 1.983 2.179 1.983 3.973S0 15.05 0 17.939s3.327 3.738 3.327 5.453-1.8 2.435-1.8 6.261 3.4 4.39 8.579 4.39 8.584-1.4 8.584-5.226-5.534-3.591-5.931-5.735S16 19.771 16 17.288s-5.243-2.483-5.243-4.511 4.225-2.949 4.225-5.019-.993-2.439-2.848-3.278S11.343 0 8.678 0z" class="cls-61" data-name="Leaf" transform="rotate(28 -314.892 535.323)"/>
+        <path id="Leaves_base-15" d="M4.111 4.691a.2.2 0 0 0 .234-.152.2.2 0 0 0-.15-.237C1.643 3.739.394 2.383.394.2A.2.2 0 0 0 .2 0a.2.2 0 0 0-.2.2c0 2.383 1.388 3.891 4.111 4.491z" class="cls-50" data-name="Leaves base" transform="rotate(28 -372.917 533.146)"/>
+        <path id="Leaves_base-16" d="M2.8 4.686a.2.2 0 0 0 .123-.379C1.234 3.754.4 2.4.4.2a.2.2 0 1 0-.4 0c0 2.364.936 3.876 2.8 4.486z" class="cls-50" data-name="Leaves base" transform="rotate(3 -4264.668 4106.27)"/>
+        <path id="Leaves_base-17" d="M1.469 2.459a.135.135 0 1 0 .083-.259A1.9 1.9 0 0 1 .271.134a.135.135 0 0 0-.271 0 2.163 2.163 0 0 0 1.469 2.325z" class="cls-50" data-name="Leaves base" transform="rotate(3 -4074.613 4197.27)"/>
+        <path id="Leaves_base-18" d="M.177 2.459A.135.135 0 1 1 .093 2.2 1.9 1.9 0 0 0 1.375.134a.135.135 0 0 1 .271 0A2.163 2.163 0 0 1 .177 2.459z" class="cls-50" data-name="Leaves base" transform="rotate(53 -110.333 328.321)"/>
+        <path id="Leaves_base-19" d="M.258 4.334a.2.2 0 0 1-.248-.128.2.2 0 0 1 .126-.251C1.667 3.45 2.428 2.215 2.428.2a.2.2 0 1 1 .394 0C2.821 2.377 1.963 3.771.258 4.334z" class="cls-50" data-name="Leaves base" transform="rotate(53 -121.049 330.764)"/>
+        <path id="Leaves_base-20" d="M.258 4.334a.2.2 0 0 1-.248-.128.2.2 0 0 1 .126-.251C1.667 3.45 2.428 2.215 2.428.2a.2.2 0 1 1 .394 0C2.821 2.377 1.963 3.771.258 4.334z" class="cls-50" data-name="Leaves base" transform="rotate(53 -133.192 333.446)"/>
+        <path id="Leaves_base-21" d="M2.653 36.245a.265.265 0 0 0 .266.264c.147 0 .465-.118.465-.264a17.548 17.548 0 0 1-.321-3.686c0-2.357 1.413-6.282 1.133-8.886S1.17 16.12.469 12.181C-.1 8.976.957 6.1 1.317 4.19A14.947 14.947 0 0 0 1.45 0a24.546 24.546 0 0 1-.28 4.19C.775 6.038-.121 8.477.014 11.215c.25 5.1 3.49 9.524 3.49 12.854s-1.13 5.414-1.3 8.358.449 3.818.449 3.818z" class="cls-50" data-name="Leaves base" transform="rotate(28 -325.019 547.838)"/>
+        <path id="Vase_base" d="M0 0h15.914l-3.537 9.978H3.536z" class="cls-15" data-name="Vase base" transform="translate(196.419 247.207)"/>
+        <rect id="Vase_base-2" width="16.232" height="3.118" class="cls-16" data-name="Vase base" rx="1.559" transform="translate(196.1 246.895)"/>
+    </g>
+</svg>

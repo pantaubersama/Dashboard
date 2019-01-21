@@ -7,31 +7,46 @@
     </div>
     <nav class="nav" role="navigation">
       <ul>
-        <li class="nav-item"><a href="#"><img src="<%= asset_pack_path("views/assets/images/ic_home.svg") %>"> Home</a>
+        <li class="nav-item">
+          <%= link_to dashboards_path, class: 'sub-nav-item' do %>
+            <img src="<%= asset_pack_path("views/assets/images/ic_home.svg") %>"> Home
+          <% end %>
         </li>
-        <li class="nav-item" data-toggle="collapse" href="#collapseUser" role="button"
+        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse" href="#collapseUser" role="button"
             aria-expanded="false"
             aria-controls="collapseUser">
-          <a href="#"><img src="<%= asset_pack_path("views/assets/images/ic_user-black.svg") %>"> User</a>
-          <div class="collapse sub-nav" id="collapseUser">
-            <%= link_to 'List Admin', users_list_admin_path, class: 'sub-nav-item' %>
-            <a class="sub-nav-item active" href="#">List User</a>
-            <a class="sub-nav-item" href="#">List User Cluster</a>
-            <a class="sub-nav-item" href="#">List Cluster</a>
-            <a class="sub-nav-item" href="#">Promotor</a>
+          <%= link_to users_list_user_path, class: 'sub-nav-item' do %>
+            <img src="<%= asset_pack_path("views/assets/images/ic_user-black.svg") %>"> User
+          <% end %>
+          <div class="collapse in sub-nav" id="collapseUser">
+            <%= link_to 'List Admin', users_list_admin_path, class: "sub-nav-item nav-link" %>
+            <%= link_to 'List User', users_list_user_path, class: "sub-nav-item nav-link" %>
+            <%= link_to 'List User Cluster',
+                        users_list_user_cluster_path,
+                        class: "sub-nav-item nav-link list_user_cluster #{action_name == 'list_user_cluster' ? 'active' : ''}" %>
+            <%= link_to 'List Cluster',
+                        clusters_path,
+                        class: "sub-nav-item nav-link #{controller_name == 'clusters' ? 'active' : ''}" %>
+            <%= link_to 'User Verification',
+                        users_list_verification_path,
+                        class: "sub-nav-item nav-link #{action_name == 'verification_list' ? 'active' : ''}" %>
+            <a class="sub-nav-item nav-link" href="#">Promotor</a>
           </div>
         </li>
-        <li class="nav-item" data-toggle="collapse" href="#collapseTimeline" role="button"
+        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse" href="#collapseTimeline" role="button"
             aria-expanded="false"
             aria-controls="collapseTimeline">
           <a href="#"><img src="<%= asset_pack_path("views/assets/images/ic_timeline-black.svg") %>"> Timeline</a>
-          <div class="collapse sub-nav" id="collapseTimeline">
-            <a class="sub-nav-item active" href="#">Linimasa</a>
-            <a class="sub-nav-item" href="#">Janji Politik</a>
+          <div class="collapse in sub-nav" id="collapseTimeline">
+            <%= link_to 'Linimasa', linimasa_index_path, class: "sub-nav-item nav-link" %>
+            <%= link_to 'Janji Politik', politics_path, class: "sub-nav-item nav-link" %>
           </div>
         </li>
         <li class="nav-item">
-          <a href="#"><img src="<%= asset_pack_path("views/assets/images/ic_book-black.svg") %>"> Pendidikan</a></li>
+          <a href="<%= pendidikan_politik_list_pertanyaan_path %>">
+            <img src="<%= asset_pack_path("views/assets/images/ic_book-black.svg") %>"> Pendidikan
+          </a>
+        </li>
         <li class="nav-item">
           <a href="#"><img src="<%= asset_pack_path("views/assets/images/ic_ws-black.svg") %>"> Wordstadium</a></li>
         <li class="nav-item">

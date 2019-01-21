@@ -2,7 +2,20 @@
   <%= render("components/sidebar") %>
   <div class="main-wrapper">
     <main class="main col-md-10 offset-md-2" role="main">
-      <%= render("components/header") %>
+      <header class="header" role="banner">
+          <div class="tabs">
+            <ul class="nav nav-pills">
+              <li class="active"><a href="#list-pertanyaan" data-toggle="tab">List Pertanyaan</a>
+              </li>
+              <li><a href="#terpilih" data-toggle="tab">Terpilih</a>
+              </li>
+              <li><a href="#trash" data-toggle="tab">Trash</a>
+              </li>
+            </ul>
+          </div>
+
+          <%= render("components/dropdown_profile") %>
+        </header>
       <div class="tab-content clearfix">
         <div class="main-content tab-pane active" id="list-pertanyaan">
           <div class="top ">
@@ -24,11 +37,11 @@
               </ul>
             </div>
             <div class="modal-wrap">
-              <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
+              <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal3">
                 Tambah Username <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
               </button>
 
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+              <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog"
                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
@@ -101,7 +114,7 @@
                 <tbody>
                 <tr>
                   <td class="number bold">1</td>
-                  <td class="name bold"><a href="detail-pertanyaan.html"><img
+                  <td class="name bold"><a href="edit_pertanyaan"><img
                     src="<%= asset_pack_path("views/assets/images/profile.jpg") %>">Lilian Chu
                   </a></td>
                   <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit ?</td>
@@ -114,8 +127,8 @@
                       <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
                     </button>
                     <div class="dropdown-menu" aria-labelledby="action">
-                      <a class="dropdown-item" href="detail-pertanyaan.html">Lihat</a>
-                      <a class="dropdown-item" href="#">Edit</a>
+                      <a class="dropdown-item" href="edit_pertanyaan">Lihat</a>
+                      <a class="dropdown-item" href="edit_pertanyaan">Edit</a>
                       <a class="dropdown-item" href="#">Hapus</a>
                     </div>
                   </td>
@@ -194,11 +207,11 @@
               </ul>
             </div>
             <div class="modal-wrap">
-              <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
+              <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal2">
                 Create Folder <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
               </button>
 
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+              <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
