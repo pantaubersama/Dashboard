@@ -3,68 +3,75 @@ class UserVerificationsController < ApplicationController
   before_action :set_api_user
 
   def verification_list
-    if params[:page_user_requested].present?
-      @users_requested = @user_api.all_verification(
-        page=1,
-        per_page=25,
-        q="*",
-        o="and",
-        m="word_start",
-        status="requested"
-      )["data"]["users"]
-    else
-      @users_requested = @user_api.all_verification(
-        page=1,
-        per_page=25,
-        q="*",
-        o="and",
-        m="word_start",
-        status="requested"
-      )["data"]["users"]
-    end
-    @pagy_users_requested, @item_users_requested = pagy_array(@users_requested, page_param: :page_user_requested)
 
-    if params[:page_user_accepted].present?
-      @users_accepted = @user_api.all_verification(
-        page=1,
-        per_page=25,
-        q="*",
-        o="and",
-        m="word_start",
-        status="verified"
-      )["data"]["users"]
-    else
-      @users_accepted = @user_api.all_verification(
-        page=1,
-        per_page=25,
-        q="*",
-        o="and",
-        m="word_start",
-        status="verified"
-      )["data"]["users"]
-    end
-    @pagy_users_accepted, @item_users_accepted = pagy_array(@users_accepted, page_param: :page_user_accepted)
+    # user verification tertunda
+    request_users_requested = @user_api.all_verification(
+      params[:page_user_requested].present? ? params[:page_user_requested] : 1,
+      Pagy::VARS[:items],
+      params[:nama_ditunda].present? ? params[:nama_ditunda] : "*",
+      o="and",
+      m="word_start",
+      status="requested"
+    )
 
-    if params[:page_user_rejected].present?
-      @users_rejected = @user_api.all_verification(
-        page=1,
-        per_page=25,
-        q="*",
-        o="and",
-        m="word_start",
-        filter_by="rejected"
-      )["data"]["users"]
-    else
-      @users_rejected = @user_api.all_verification(
-        page=1,
-        per_page=25,
-        q="*",
-        o="and",
-        m="word_start",
-        filter_by="rejected"
-      )["data"]["users"]
-    end
-    @pagy_users_rejected, @item_users_rejected = pagy_array(@users_rejected, page_param: :page_user_rejected)
+    totalPageUserRequested = request_users_requested['data']['meta']['pages']['total']
+    totalDataUserRequested = (totalPageUserRequested*Pagy::VARS[:items])
+    total_array = (1..totalDataUserRequested).to_a
+
+    @pagy_users_requested = Pagy.new(
+                            count: total_array.count,
+                            page: params[:page_user_requested].present? ? params[:page_user_requested] : 1 ,
+                            page_param: :page_user_requested
+                          )
+
+    @users_requested = request_users_requested["data"]["users"]
+    # end user verification ditunda
+
+    # user verification diterima
+    request_users_accepted = @user_api.all_verification(
+      params[:page_user_accepted].present? ? params[:page_user_accepted] : 1,
+      Pagy::VARS[:items],
+      params[:nama_diterima].present? ? params[:nama_diterima] : "*",
+      o="and",
+      m="word_start",
+      status="verified"
+    )
+
+    totalPage = request_users_accepted['data']['meta']['pages']['total']
+    totalData = (totalPage*Pagy::VARS[:items])
+    total_array = (1..totalData).to_a
+
+    @pagy_users_accepted = Pagy.new(
+                            count: total_array.count,
+                            page: params[:page_user_accepted].present? ? params[:page_user_accepted] : 1 ,
+                            page_param: :page_user_accepted
+                          )
+
+    @users_accepted = request_users_accepted["data"]["users"]
+    # end user verification diterima
+
+    # user verification ditolak
+    request_users_rejected = @user_api.all_verification(
+      params[:page_user_rejected].present? ? params[:page_user_rejected] : 1,
+      Pagy::VARS[:items],
+      params[:nama_ditolak].present? ? params[:nama_ditolak] : "*",
+      o="and",
+      m="word_start",
+      filter_by="rejected"
+    )
+
+    totalPage = request_users_rejected['data']['meta']['pages']['total']
+    totalData = (totalPage*Pagy::VARS[:items])
+    total_array = (1..totalData).to_a
+
+    @pagy_users_rejected = Pagy.new(
+                            count: total_array.count,
+                            page: params[:page_user_rejected].present? ? params[:page_user_rejected] : 1 ,
+                            page_param: :page_user_rejected
+                          )
+
+    @users_rejected = request_users_rejected["data"]["users"]
+    # user verification ditolak
 
     render "pages/users/list_user_verification"
   end
