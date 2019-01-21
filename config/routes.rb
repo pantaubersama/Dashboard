@@ -1,18 +1,30 @@
 Rails.application.routes.draw do
-
+  
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-  root 'users#edit_user'
+
+  resources :dashboards, only: [:index]
+  resources :badges, only: [:index, :show]
+  resources :broadcasts, only: [:index, :show]
+
+  root 'dashboards#index'
 
   scope '/users' do
     get '/edit_user', to: 'users#edit_user', as: 'users_edit_user'
     get '/list_admin', to: 'users#list_admin', as: 'users_list_admin'
     get '/list_user', to: 'users#list_user', as: 'users_list_user'
+    get '/list_user_cluster', to: 'users#list_user_cluster', as: 'users_list_user_cluster'
+    get '/detail_user_cluster', to: 'users#detail_user_cluster', as: 'users_detail_user_cluster'
     get '/list_user_verification', to: 'users#verification_list', as: 'users_list_verification'
     get '/user/:id', to: 'users#show', as: 'user_show'
     get '/approve_verification', to: 'users#approve', as: 'users_approve_verification'
     post '/approve_verification', to: 'users#approve_verification', as: 'approve_verification'
     get '/reject_verification/:id', to: 'users#reject_verification', as: 'reject_verification'
-    resources :clusters
+    get '/detail_user_verification', to: 'users#detail_user_verification', as: 'detail_verification'
+    resources :clusters do
+      collection do 
+        get :detail_category
+      end
+    end
   end
 
   scope '/timeline', module: 'timeline' do
@@ -35,4 +47,5 @@ Rails.application.routes.draw do
   resources :banner, only: [:edit, :update, :show, :index]
   post 'admin/make_admin',to: 'admins#make_admin', as: 'make_admin'
   get 'admin/delete_admin/:id',to: 'admins#delete_admin', as: 'delete_admin'
+
 end
