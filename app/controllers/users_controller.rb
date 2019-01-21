@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include Pagy::Backend
-  before_action :set_api_user, only: [:list_user, :show, :approve_verification, :reject_verification, :verification_list]
+  before_action :set_api_user
 
   def edit_user
     @pages = { page: "edit_user" }
@@ -109,6 +109,11 @@ class UsersController < ApplicationController
 
     render "pages/users/list_user_verification"
   end
+
+  def show_user_verification
+    render "pages/users/show_user_verification"
+  end
+
 
   def approve
     render "pages/users/approve_verification"

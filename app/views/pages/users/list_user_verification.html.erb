@@ -172,9 +172,8 @@
                 <tr>
                   <th>No</th>
                   <th>Nama</th>
-                  <th>Cluster</th>
                   <th>Email</th>
-                  <th>Status</th>
+                  <th>Dikirim Tanggal</th>
                   <th></th>
                 </tr>
               </thead>
@@ -187,16 +186,16 @@
                     <%= index+1 %>
                   </td>
                   <td class="name bold">
-                    <%= link_to  user_show_path(user['id']) do %>
+                    <%= link_to  show_user_verification_path(user['id']) do %>
                       <%= image_tag user['avatar']['medium_square']['url'] unless user['avatar']['medium_square']['url'].nil? %>
                       <%= user['full_name'] %>
                     <% end %>
                   </td>
                   <td>
-                    <%= user['cluster']['name'] %>
+                    <%= user['email'] %>
                   </td>
                   <td>
-                    <%= user['email'] %>
+                    <%= user['sent_at'] %>
                   </td>
                   <td class="image">
                     <% if user['verified'] %>
@@ -209,8 +208,7 @@
                       <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
                     </button>
                     <div class="dropdown-menu" aria-labelledby="action">
-                      <%= link_to 'Lihat', user_show_path(user['id']), class: 'dropdown-item' %>
-                      <%= link_to 'Reject', reject_verification_path(user['id']), class: 'dropdown-item' %>
+                      <%= link_to 'Lihat', show_user_verification_path(user['id']), class: 'dropdown-item' %>
                     </div>
                   </td>
                 </tr>
@@ -222,8 +220,8 @@
             <div class="filter">
               <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
                 aria-controls="collapseExample">
-                <img src="assets/img/ic_arrow-left.svg">
-                <img src="assets/img/ic_filter.svg">
+                <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
+                <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
               </a>
               <div class="collapse filter-form" id="filter">
                 <div class="card card-body">
@@ -245,12 +243,13 @@
                         </div>
                       </div>
                     </div>
+                    <button type="button" data-dismiss="modal">Done</button>
                   </div>
 
 
                   <div class="button-wrapper">
-                    <button type="button" class="btn btn-solid-green" data-dismiss="modal">Done</button>
-                    <button type="button" class="btn btn-transparent">Reset</button>
+                    <%# <button type="button" class="btn btn-solid-green" data-dismiss="modal">Done</button> %>
+                    <%# <button type="button" class="btn btn-transparent">Reset</button> %>
                   </div>
                 </div>
               </div>
@@ -338,9 +337,8 @@
                   <tr>
                     <th>No</th>
                     <th>Nama</th>
-                    <th>Cluster</th>
                     <th>Email</th>
-                    <th>Status</th>
+                    <th>Dikirim Tanggal</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -353,21 +351,16 @@
                       <%= index+1 %>
                     </td>
                     <td class="name bold">
-                      <%= link_to  user_show_path(user['id']) do %>
+                      <%= link_to  show_user_verification_path(user['id']) do %>
                         <%= image_tag user['avatar']['medium_square']['url'] unless user['avatar']['medium_square']['url'].nil? %>
                         <%= user['full_name'] %>
                       <% end %>
                     </td>
                     <td>
-                      <%= user['cluster']['name'] %>
-                    </td>
-                    <td>
                       <%= user['email'] %>
                     </td>
-                    <td class="image">
-                      <% if user['verified'] %>
-                      <img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>"/>
-                      <% end %>
+                    <td>
+                      <%= user['sent_at'] %>
                     </td>
                     <td>
                       <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
@@ -375,8 +368,8 @@
                         <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
                       </button>
                       <div class="dropdown-menu" aria-labelledby="action">
-                        <%= link_to 'Lihat', user_show_path(user['id']), class: 'dropdown-item' %>
-                        <%= link_to 'Reject', reject_verification_path(user['id']), class: 'dropdown-item' %>
+                        <%= link_to 'Lihat', show_user_verification_path(user['id']), class: 'dropdown-item' %>
+
                       </div>
                     </td>
                   </tr>
@@ -518,9 +511,8 @@
                   <tr>
                     <th>No</th>
                     <th>Nama</th>
-                    <th>Cluster</th>
                     <th>Email</th>
-                    <th>Status</th>
+                    <th>Dikirim Tanggal</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -533,21 +525,16 @@
                       <%= index+1 %>
                     </td>
                     <td class="name bold">
-                      <%= link_to  user_show_path(user['id']) do %>
+                      <%= link_to  show_user_verification_path(user['id']) do %>
                         <%= image_tag user['avatar']['medium_square']['url'] unless user['avatar']['medium_square']['url'].nil? %>
                         <%= user['full_name'] %>
                       <% end %>
                     </td>
                     <td>
-                      <%= user['cluster']['name'] %>
-                    </td>
-                    <td>
                       <%= user['email'] %>
                     </td>
-                    <td class="image">
-                      <% if user['verified'] %>
-                      <img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>"/>
-                      <% end %>
+                    <td>
+                      <%= user['sent_at'] %>
                     </td>
                     <td>
                       <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
@@ -555,8 +542,8 @@
                         <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
                       </button>
                       <div class="dropdown-menu" aria-labelledby="action">
-                        <%= link_to 'Lihat', user_show_path(user['id']), class: 'dropdown-item' %>
-                        <%= link_to 'Reject', reject_verification_path(user['id']), class: 'dropdown-item' %>
+                        <%= link_to 'Lihat', show_user_verification_path(user['id']), class: 'dropdown-item' %>
+
                       </div>
                     </td>
                   </tr>

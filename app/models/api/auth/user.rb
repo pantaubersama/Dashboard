@@ -27,6 +27,17 @@ class Api::Auth::User < InitApiAuth
     self.class.get('/dashboard/v1/users/verifications', options)
   end
 
+  def show_user_verification id
+    options = {
+      headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
+      query: {
+        id: id,
+      }
+    }
+    self.class.get('/dashboard/v1/verifications/show', options)
+  end
+
+
 
   def find_simple id
     self.class.get("/v1/users/#{id}/simple")
