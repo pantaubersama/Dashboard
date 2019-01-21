@@ -11,10 +11,10 @@ Rails.application.routes.draw do
   scope '/users' do
     get '/edit_user', to: 'users#edit_user', as: 'users_edit_user'
     get '/list_user', to: 'users#list_user', as: 'users_list_user'
-    resources :clusters
     get '/list_user_cluster', to: 'users#list_user_cluster', as: 'users_list_user_cluster'
     get '/detail_user_cluster', to: 'users#detail_user_cluster', as: 'users_detail_user_cluster'
     get '/user/:id', to: 'users#show', as: 'user_show'
+    resources :user_clusters
     resources :clusters do
       collection do
         get :detail_category
