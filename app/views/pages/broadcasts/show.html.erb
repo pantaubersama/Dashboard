@@ -1,2 +1,14 @@
-<h1>Broadcasts#show</h1>
-<p>Find me in app/views/broadcasts/show.html.erb</p>
+<div class="d-flex main-wrapper">
+  <%= render("components/sidebar") %>
+  <div class="main-wrapper">
+    <main class="main col-md-10 offset-md-2" role="main">
+      <header class="header" role="banner">
+        <%= render("components/dropdown_profile") %>
+      </header>
+      <div class="main-content">
+        show
+      </div>
+    </main>
+  </div>
+</div>
+<%= render("components/footer") %>
