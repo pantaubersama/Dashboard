@@ -6,20 +6,20 @@ class Timeline::LinimasaController < ApplicationController
     if params[:filter].present? || params[:q].present?
       @tweets = @linimasa.filter_tweet(params[:filter], params[:q])["data"]["feeds"]
       @pagy_tweets, @item_tweets = pagy_array(@tweets, items: 30, page_param: :page_tweet)
-      @total_linimasa = @linimasa.filter_tweet(params[:filter], params[:q])["data"]["feeds"].count
+      # @total_linimasa = @linimasa.filter_tweet(params[:filter], params[:q])["data"]["feeds"].count
     else
       @tweets = @linimasa.list_tweet["data"]["feeds"]
       @pagy_tweets, @item_tweets = pagy_array(@tweets, items: 30, page_param: :page_tweet)
-      @total_linimasa = @linimasa.list_tweet["data"]["feeds"].count
+      # @total_linimasa = @linimasa.list_tweet["data"]["feeds"].count
     end
 
     @trash = @linimasa.get_trash["data"]["feeds"]
     @pagy_trash, @item_trash = pagy_array(@trash, items: 30, page_param: :page_trash)
-    @total_trash = @linimasa.get_trash["data"]["feeds"].count
+    # @total_trash = @linimasa.get_trash["data"]["feeds"].count
 
     @users = @linimasa.get_user_list["data"]["crowlings"]
     @pagy_users, @item_users = pagy_array(@users, items: 30, page_param: :page_user)
-    @total_user = @linimasa.get_user_list["data"]["crowlings"].count
+    # @total_user = @linimasa.get_user_list["data"]["crowlings"].count
 
     @number1 = params[:page_tweet] || 1
     @number2 = params[:page_trash] || 1
@@ -55,14 +55,13 @@ class Timeline::LinimasaController < ApplicationController
 
   def destroy
     if @linimasa.delete_tweet(params[:id])
-      redirect_to linimasa_index_path
+      redirect_to root_path
     end
   end
 
   def delete_user
     if @linimasa.delete_username(params[:id])
       redirect_to linimasa_index_path
-      # byebug
     end
   end
 

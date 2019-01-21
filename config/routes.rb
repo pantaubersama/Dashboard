@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     post '/approve_verification', to: 'users#approve_verification', as: 'approve_verification'
     get '/reject_verification/:id', to: 'users#reject_verification', as: 'reject_verification'
     resources :clusters
+    resources :user_clusters
   end
 
   scope '/timeline', module: 'timeline' do

@@ -131,7 +131,7 @@
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="action">
                                                 <a class="dropdown-item" href="<%= linimasa_path(item["id"]) %>">Lihat</a>
-                                                <a class="dropdown-item" href="#">Delete</a>
+                                                <%= link_to "Delete", linimasa_path(item["id"]), method: :delete, class: "dropdown-item" %>
                                             </div>
                                         </td>
                                     <tr>
@@ -139,54 +139,56 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="filter">
-                            <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
-                               aria-controls="collapseExample">
-                                <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
-                                <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
-                            </a>
-                            <div class="collapse filter-form">
-                                <div class="card card-body">
-                                    <h4>Filter</h4>
-                                    <div class="form-wrap">
-                                        <label>Status</label>
-                                        <div class="form-group">
-                                            <select class="form-control">
-                                                <option>Terverifikasi</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
+
+                        <%= form_tag(linimasa_index_path, method: :get) do %>
+                            <div class="filter">
+                                <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
+                                   aria-controls="collapseExample">
+                                    <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
+                                    <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
+                                </a>
+                                <div id="filter" class="collapse filter-form">
+                                    <div class="card card-body">
+                                        <h4>Filter</h4>
+                                        <div class="form-wrap">
+                                            <label>Team</label>
+                                            <div class="form-group">
+                                                <select id="selected_filter" class="form-control" name="filter">
+                                                    <option value="team_all">Team All</option>
+                                                    <option value="team_id_1">Jokowi - Makruf</option>
+                                                    <option value="team_id_2">Prabowo - Sandi</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-wrap">
+                                            <label>Username</label>
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <input name="q" value="<%= params[:q] %>" type="nama" class="form-control" placeholder="Nama">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-wrap">
-                                        <label>User</label>
+                                        <label>Isi</label>
                                         <div class="form-group">
                                             <div class="form-group">
-                                                <input type="nama" class="form-control" placeholder="Nama">
+                                                <textarea class="form-control" rows="5" placeholder="Isi Tweet"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-wrap">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <button id="send" type="submit">Done</button>
+                                                <button id="reset" type="button">Reset</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-wrap">
-                                    <label>Email</label>
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="luna@gmail.com">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-wrap">
-                                    <label>Cluster</label>
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            <input type="cluster" class="form-control" placeholder="Nama Cluster">
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-                        </div>
+                        <% end %>
+
                     </div>
                 </div>
 
@@ -452,6 +454,7 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="action">
                                             <a class="dropdown-item" href="<%= detail_user_path(item["id"]) %>">Lihat</a>
+                                            <%= link_to "Delete", delete_user_path(item["id"]), method: :delete, class: "dropdown-item" %>
                                         </div>
                                     </td>
                                 <% end %>
