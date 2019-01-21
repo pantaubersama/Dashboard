@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include Pagy::Backend
-  before_action :set_api_user, only: [:list_user, :show, :approve_verification, :reject_verification]
+  before_action :set_api_user, only: [:list_user, :show, :approve_verification, :reject_verification, :verification_list]
 
   def edit_user
     @pages = { page: "edit_user" }
@@ -44,7 +44,69 @@ class UsersController < ApplicationController
   end
 
   def verification_list
-    # @users = UserPantauAuth.joins(:verification).where("verifications.status = '1'")
+    if params[:page_user_requested].present?
+      @users_requested = @user_api.all_verification(
+        page=1,
+        per_page=25,
+        q="*",
+        o="and",
+        m="word_start",
+        status="requested"
+      )["data"]["users"]
+    else
+      @users_requested = @user_api.all_verification(
+        page=1,
+        per_page=25,
+        q="*",
+        o="and",
+        m="word_start",
+        status="requested"
+      )["data"]["users"]
+    end
+    @pagy_users_requested, @item_users_requested = pagy_array(@users_requested, page_param: :page_user_requested)
+
+    if params[:page_user_accepted].present?
+      @users_accepted = @user_api.all_verification(
+        page=1,
+        per_page=25,
+        q="*",
+        o="and",
+        m="word_start",
+        status="verified"
+      )["data"]["users"]
+    else
+      @users_accepted = @user_api.all_verification(
+        page=1,
+        per_page=25,
+        q="*",
+        o="and",
+        m="word_start",
+        status="verified"
+      )["data"]["users"]
+    end
+    @pagy_users_accepted, @item_users_accepted = pagy_array(@users_accepted, page_param: :page_user_accepted)
+
+    if params[:page_user_rejected].present?
+      @users_rejected = @user_api.all_verification(
+        page=1,
+        per_page=25,
+        q="*",
+        o="and",
+        m="word_start",
+        filter_by="rejected"
+      )["data"]["users"]
+    else
+      @users_rejected = @user_api.all_verification(
+        page=1,
+        per_page=25,
+        q="*",
+        o="and",
+        m="word_start",
+        filter_by="rejected"
+      )["data"]["users"]
+    end
+    @pagy_users_rejected, @item_users_rejected = pagy_array(@users_rejected, page_param: :page_user_rejected)
+
     render "pages/users/list_user_verification"
   end
 
