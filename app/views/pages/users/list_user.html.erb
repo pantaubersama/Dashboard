@@ -74,7 +74,7 @@
                 <% @users.each_with_index do |user, index| %>
                 <tr>
                   <td class="number bold">
-                    <%= index+1 %>
+                    <%= ((params[:page_user].present? ? params[:page_user].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %>
                   </td>
                   <td class="name bold">
                     <%= link_to  user_show_path(user['id']) do %>
@@ -117,26 +117,26 @@
               <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
               <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
             </a>
-            <div class="collapse filter-form">
+            <div id="filter" class="collapse filter-form">
               <div class="card card-body">
                 <h4>Filter</h4>
                 <div class="form-wrap">
+                <%= form_tag(users_list_user_path, method: :get) do %>
                   <label>Status</label>
                   <div class="form-group">
-                    <select class="form-control">
-                      <option>Terverifikasi</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
+                    <%= select_tag(:verified, options_for_select([
+                        ['', ''],
+                        ['Verified True', 'verified_true'],
+                        ['Verified False', 'verified_false'],
+                        ['Verified All', 'verified_all']
+                      ]), class: 'form-control') %>
                   </div>
                 </div>
                 <div class="form-wrap">
                   <label>User</label>
                   <div class="form-group">
                     <div class="form-group">
-                      <input type="nama" class="form-control" placeholder="Nama">
+                      <%= text_field_tag :nama, "", class: 'form-control', placeholder: 'Nama' %>
                     </div>
                   </div>
                 </div>
@@ -145,7 +145,7 @@
                 <label>Email</label>
                 <div class="form-group">
                   <div class="form-group">
-                    <input type="email" class="form-control" placeholder="luna@gmail.com">
+                    <%= text_field_tag :email, "", class: 'form-control', placeholder: 'myusuf@extrainteger.com' %>
                   </div>
                 </div>
               </div>
@@ -153,10 +153,15 @@
                 <label>Cluster</label>
                 <div class="form-group">
                   <div class="form-group">
-                    <input type="cluster" class="form-control" placeholder="Nama Cluster">
+                    <%= text_field_tag :cluster, "", class: 'form-control', placeholder: 'Nama Cluster' %>
                   </div>
                 </div>
               </div>
+
+              <button> Done</button>
+              <button data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample"> Cancel</button>
+              <% end %>
+
             </div>
           </div>
         </div>

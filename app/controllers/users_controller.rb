@@ -9,18 +9,26 @@ class UsersController < ApplicationController
 
 
   def list_user
-    @get_total_page = @user_api.all(1, Pagy::VARS[:items])
-    @totalPage = @get_total_page['data']['meta']['pages']['total']
+    @request = @user_api.all(
+                              params[:page_user].present? ? params[:page_user] : 1,
+                              Pagy::VARS[:items],
+                              params[:nama].present? ? params[:nama] : "*",
+                              "and",
+                              "word_start",
+                              params[:verified].present? ? params[:verified] : ''
+                            )
+
+    @totalPage = @request['data']['meta']['pages']['total']
     @totalData = (@totalPage*Pagy::VARS[:items])
     total_array = (1..@totalData).to_a
 
-    if params[:page_user].present?
-      @pagy_users = Pagy.new(count: total_array.count, page: params[:page_user], page_param: :page_user)
-      @users = @user_api.all(params[:page_user], Pagy::VARS[:items])["data"]["users"]
-    else
-      @pagy_users = Pagy.new(count: total_array.count, page_param: :page_user)
-      @users = @user_api.all(1, Pagy::VARS[:items])["data"]["users"]
-    end
+    @pagy_users = Pagy.new(
+                            count: total_array.count,
+                            page: params[:page_user].present? ? params[:page_user] : 1 ,
+                            page_param: :page_user
+                          )
+
+    @users = @request["data"]["users"]
 
     render "pages/users/list_user"
   end
