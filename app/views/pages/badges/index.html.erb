@@ -1,2 +1,231 @@
-<h1>Badges#index</h1>
-<p>Find me in app/views/badges/index.html.erb</p>
+<div class="d-flex main-wrapper">
+  <%= render("components/sidebar") %>
+  <div class="main-wrapper">
+    <main class="main col-md-10 offset-md-2" role="main">
+      <header class="header" role="banner">
+        <%= render("components/dropdown_profile") %>
+      </header>
+      <div class="main-content">
+          <div class="top">
+            <div class="pagination-wrap">
+              <ul class="pagination">
+                <li class="page-item">
+                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><img
+                    src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" alt="Previous"></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active" aria-current="page">
+                  <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#"><img src="<%= asset_pack_path("views/assets/images/ic_arrow_right.svg") %>" alt="Next"></a>
+                </li>
+              </ul>
+            </div>
+            <div class="modal-wrap">
+              <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
+                  Create Badge <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
+                </button>
+                              
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <!-- <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5> -->
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <h3>Tambah Badge</h3>
+                              <div class="form-wrap">
+                                  <label>Upload Image</label>
+                                  <div class="form-group">
+                                      <div class="upload-image">
+                                        <div class="custom-button">
+                                            <label class="upload-img" for="file-input">
+                                              <img src="<%= asset_pack_path("views/assets/images/ic_img.svg") %>" alt="add">
+                                            </label>
+                                            <input type="file" name="pic" id="file-input" accept="image/*">
+                                        </div>
+                                              <span>
+                                                      <p>Upload PNG/JPG</p>
+                                                      <p>Maks 512x512</p>
+                                              </span>
+                                        </div>
+                                    </div>
+                                </div>
+                              <div class="row">
+                                  <div class="col-md-6 col-xs-12">
+    
+                                        <div class="form-wrap">
+                                          <label>Nama Badge</label>
+                                          <div class="form-group"> 
+                                              <div class="form-group">
+                                                  <input type="Cluster" class="form-control" placeholder="Nama Badge">
+                                                </div>
+                                            </div>
+                                        </div>            
+                                        <div class="form-wrap">
+                                          <label>Deskripsi</label>
+                                          <div class="form-group"> 
+                                              <div class="form-group">
+                                                  <textarea type="Email" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                  </div>
+                                  <div class="col-md-6 col-xs-12">
+                                  </div>
+
+                              </div>
+
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-solid-green" data-dismiss="modal">Tambah</button>
+                              <button type="button" class="btn btn-transparent">Cancel</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+            </div>
+          </div>
+          <div class="content">
+            <span class="display-desc">
+                <p>
+                    Displaying Content 1 - 30 of 500 in total
+                </p>
+            </span>
+            <div class="table">
+              <table>
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Deskripsi</th>
+                  <th>Oleh</th>
+                  <th>Create At</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td class="number bold">1</td>
+                  <td class="name bold"><a href="<%= badge_path(1) %>"> <img src="<%= asset_pack_path("views/assets/images/profile.jpg") %> ">Kepo</a>
+                  </td>
+                  <td>Ikut Tanya Calon Presiden Pertama Kali</td>
+                  <td>Nurlela Ahmad</td>
+                  <td>21/10/23</td>
+                  <td>
+                    <button class="dropdown-toggle" type="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                      <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="action">
+                      <a class="dropdown-item" href="#">Lihat</a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="number bold">1</td>
+                  <td class="name bold"><a href="<%= badge_path(1) %>"> <img src="<%= asset_pack_path("views/assets/images/profile.jpg") %> ">Kepo</a>
+                  </td>
+                  <td>Ikut Tanya Calon Presiden Pertama Kali</td>
+                  <td>Nurlela Ahmad</td>
+                  <td>21/10/23</td>
+                  <td>
+                    <button class="dropdown-toggle" type="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                      <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="action">
+                      <a class="dropdown-item" href="#">Lihat</a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="number bold">1</td>
+                  <td class="name bold"><a href="<%= badge_path(1) %>"> <img src="<%= asset_pack_path("views/assets/images/profile.jpg") %> ">Kepo</a>
+                  </td>
+                  <td>Ikut Tanya Calon Presiden Pertama Kali</td>
+                  <td>Nurlela Ahmad</td>
+                  <td>21/10/23</td>
+                  <td>
+                    <button class="dropdown-toggle" type="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                      <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="action">
+                      <a class="dropdown-item" href="#">Lihat</a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="number bold">1</td>
+                  <td class="name bold"><a href="<%= badge_path(1) %>"> <img src="<%= asset_pack_path("views/assets/images/profile.jpg") %> ">Kepo</a>
+                  </td>
+                  <td>Ikut Tanya Calon Presiden Pertama Kali</td>
+                  <td>Nurlela Ahmad</td>
+                  <td>21/10/23</td>
+                  <td>
+                    <button class="dropdown-toggle" type="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                      <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="action">
+                      <a class="dropdown-item" href="#">Lihat</a>
+                    </div>
+                  </td>
+                </tr>
+
+                </tbody>
+              </table>
+            </div>
+            <div class="filter">
+              <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
+                 aria-controls="collapseExample">
+                <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
+                <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
+              </a>
+              <div class="collapse filter-form" id="filter">
+                <div class="card card-body">
+                  <h4>Filter</h4>
+                  <div class="form-wrap">
+                    <label>Status</label>
+                    <div class="form-group">
+                      <select class="form-control">
+                        <option>Terverifikasi</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>User</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="nama" class="form-control" placeholder="Nama">
+                            </tbody>
+                            </table>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="button-wrapper">
+                      <button type="button" class="btn btn-solid-green" data-dismiss="modal">Done</button>
+                      <button type="button" class="btn btn-transparent">Reset</button>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </main>
+  </div>
+</div>
+<%= render("components/footer") %>
