@@ -49,8 +49,7 @@ Rails.application.routes.draw do
   # user verifications
   get '/list_user_verification', to: 'user_verifications#verification_list', as: 'users_list_verification'
   get '/user_verification/:id', to: 'user_verifications#show_user_verification', as: 'show_user_verification'
-  get '/approve_verification', to: 'user_verifications#approve', as: 'users_approve_verification'
-  post '/approve_verification', to: 'user_verifications#approve_verification', as: 'approve_verification'
+  get '/approve_verification/:id', to: 'user_verifications#approve_verification', as: 'approve_verification'
   get '/reject_verification/:id', to: 'user_verifications#reject_verification', as: 'reject_verification'
 
 end

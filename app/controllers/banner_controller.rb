@@ -4,7 +4,11 @@ class BannerController < ApplicationController
   include Pagy::Backend
 
   def index
-    @banners = BannerInfo.order(created_at: :desc)
+    if params[:nama].present?
+      @banners = BannerInfo.where(title: params[:nama]).order(created_at: :desc)
+    else
+      @banners = BannerInfo.order(created_at: :desc)
+    end
     @pagy_banners, @item_banners = pagy_array(@banners, items: 30, page_param: :page_user)
   end
 

@@ -80,46 +80,21 @@
               <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
               <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
             </a>
-            <div class="collapse filter-form">
+            <div id="filter" class="collapse filter-form">
               <div class="card card-body">
                 <h4>Filter</h4>
-                <div class="form-wrap">
-                  <label>Status</label>
-                  <div class="form-group">
-                    <select class="form-control">
-                      <option>Terverifikasi</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-wrap">
-                  <label>User</label>
-                  <div class="form-group">
+                  <%= form_tag(banner_index_path, method: :get) do %>
+                  <div class="form-wrap">
+                    <label>Nama Banner</label>
                     <div class="form-group">
-                      <input type="nama" class="form-control" placeholder="Nama">
+                      <div class="form-group">
+                        <%= text_field_tag :nama, "", class: 'form-control', placeholder: 'Nama Banner' %>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="form-wrap">
-                <label>Email</label>
-                <div class="form-group">
-                  <div class="form-group">
-                    <input type="email" class="form-control" placeholder="luna@gmail.com">
-                  </div>
-                </div>
-              </div>
-              <div class="form-wrap">
-                <label>Cluster</label>
-                <div class="form-group">
-                  <div class="form-group">
-                    <input type="cluster" class="form-control" placeholder="Nama Cluster">
-                  </div>
-                </div>
-              </div>
+                <button> Done</button>
+                <button data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample"> Cancel</button>
+                <% end %>
             </div>
           </div>
         </div>
