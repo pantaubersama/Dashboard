@@ -1,13 +1,25 @@
 Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-  root 'users#edit_user'
+
+  resources :dashboards, only: [:index]
+  resources :badges, only: [:index, :show]
+  resources :broadcasts, only: [:index, :show]
+
+  root 'dashboards#index'
 
   scope '/users' do
     get '/edit_user', to: 'users#edit_user', as: 'users_edit_user'
     get '/list_user', to: 'users#list_user', as: 'users_list_user'
-    get '/user/:id', to: 'users#show', as: 'user_show'
     resources :clusters
+    get '/list_user_cluster', to: 'users#list_user_cluster', as: 'users_list_user_cluster'
+    get '/detail_user_cluster', to: 'users#detail_user_cluster', as: 'users_detail_user_cluster'
+    get '/user/:id', to: 'users#show', as: 'user_show'
+    resources :clusters do
+      collection do
+        get :detail_category
+      end
+    end
   end
 
   scope '/timeline', module: 'timeline' do
@@ -40,4 +52,5 @@ Rails.application.routes.draw do
   get '/approve_verification', to: 'user_verifications#approve', as: 'users_approve_verification'
   post '/approve_verification', to: 'user_verifications#approve_verification', as: 'approve_verification'
   get '/reject_verification/:id', to: 'user_verifications#reject_verification', as: 'reject_verification'
+
 end
