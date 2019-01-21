@@ -19,9 +19,13 @@ class AdminsController < ApplicationController
   end
 
   def index
-    @admins = UserPantauAuth.joins('INNER JOIN "users_roles" ON "users_roles"."user_id" = "users"."id" INNER JOIN "roles" ON "roles"."id" = "users_roles"."role_id"').where("roles.name = 'admin'").where('users.deleted_at IS NULL')
+    @admins = UserPantauAuth.joins('INNER JOIN "users_roles" ON "users_roles"."user_id" = "users"."id" INNER JOIN "roles" ON "roles"."id" = "users_roles"."role_id"')
+    .where("roles.name = 'admin'")
+    .where("users.full_name LIKE ?", "%#{ params[:nama].present? ? params[:nama] : '' }%")
+    .where("users.email LIKE ?", "%#{ params[:email].present? ? params[:email] : '' }%")
+    .where('users.deleted_at IS NULL')
 
-    @pagy_admins, @item_admins = pagy_array(@admins, items: 30, page_param: :page_user)
+    @pagy_admins, @item_admins = pagy_array(@admins, page_param: :page_user)
   end
 
 
