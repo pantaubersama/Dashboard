@@ -4,22 +4,33 @@ class Timeline::PoliticsController < ApplicationController
   before_action :get_janji, only: [:show, :edit, :update]
 
   def index
-    if params[:filter].present? || params[:q].present? || params[:cluster_id].present?
-      @janji_politiks = @janji.filter_politics(params[:filter], params[:q], params[:cluster_id])["data"]["janji_politiks"]
-      @pagy_politics, @item_politics = pagy_array(@janji_politiks, items: 30, page_param: :page_politics)
-      @total_records = @janji.filter_politics(params[:filter], params[:q], params[:cluster_id])["data"]["janji_politiks"].count
-    else
-      @janji_politiks = @janji.get_politics["data"]["janji_politiks"]
-      @pagy_politics, @item_politics = pagy_array(@janji_politiks, items: 30, page_param: :page_politics)
-      @total_records = @janji.get_politics["data"]["janji_politiks"].count
-    end
+    # ========================== Janji Politik ========================== 
+    @init_index = @janji.get_politics(params[:page_politic].present? ? params[:page_politic] : 1,
+                                          Pagy::VARS[:items], params[:filter].present? ? params[:filter] : "",
+                                          params[:q].present? ? params[:q] : "", 
+                                          params[:cluster_id].present? ? params[:cluster_id] : "")
+    n1 = @init_index["data"]["meta"]["pages"]["total"]
+    @records = (n1*Pagy::VARS[:items])
+    total_pages = (1..@records).to_a
+    @pagy_politics = Pagy.new(count: total_pages.count, page: params[:page_politic].present? ? params[:page_politic] : 1,
+                              page_param: :page_politic)
+    last_page = @janji.get_politics(n1, Pagy::VARS[:items], nil, nil, nil)["data"]["janji_politiks"].size
+    @total_politics = (@records - Pagy::VARS[:items]) + last_page
 
-    @trash_politics = @janji.get_trashes["data"]["politiks"]
-    @pagy_trash, @item_trash = pagy_array(@trash_politics, items: 30, page_param: :page_trash)
-    @total_trash = @janji.get_trashes["data"]["politiks"].count
-    
-    @number = params[:page_politics] || 1
-    @number_trash = params[:page_trashes] || 1
+    @item_politics = @init_index["data"]["janji_politiks"]
+
+    # ========================== Trash Janji Politik ========================== 
+    @init_trash = @janji.get_trashes(params[:page_politic].present? ? params[:page_politic] : 1,
+                                          Pagy::VARS[:items])
+    n2 = @init_trash["data"]["meta"]["pages"]["total"]
+    @record_trash = (n2*Pagy::VARS[:items])
+    total_page_trash = (1..@record_trash).to_a
+    @pagy_trash = Pagy.new(count: total_page_trash.count, page: params[:page_trash].present? ? params[:page_trash] : 1,
+                              page_param: :page_trash)
+    last_page = @janji.get_trashes(n2, Pagy::VARS[:items])["data"]["politiks"].size
+    @total_trash = (@record_trash - Pagy::VARS[:items]) + last_page
+
+    @item_trash = @init_trash["data"]["politiks"]
 
     @pages = { page: "index" }
     render "pages/timeline/politics/index"
