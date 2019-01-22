@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :clusters do
       collection do
         get :detail_category
+        get :search_categories
       end
     end
   end
