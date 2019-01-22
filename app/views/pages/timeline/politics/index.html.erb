@@ -42,7 +42,7 @@
           <div class="content">
                         <span class="display-desc">
                           <p>
-                              Displaying Content 1 - 100 of <%= @total_records %> in total
+                              Displaying Content 1 - 30 of <%= @total_politics %> in total
                           </p>
                         </span>
             <div class="table">
@@ -60,11 +60,11 @@
                 <tbody>
                 <% @item_politics.each_with_index do |item, index| %>
                 <tr>
-                  <td class="number bold"><%= (@number.to_i - 1) * 30 + index+1 %></td>
-                  <td class="name bold"><a href="detail-janji-politik.html"> <img src="<%= item["creator"]["avatar"]["thumbnail"]["url"] %>"><%= item["creator"]["full_name"] %></a>
+                  <td class="number bold"><%= ((params[:page_politic].present? ? params[:page_politic].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %></td>
+                  <td class="name bold"><a href="<%= politic_path(item["id"]) %>"> <img src="<%= item["creator"]["avatar"]["thumbnail"]["url"] %>"><%= item["creator"]["full_name"] %></a>
                   </td>
                   <td><%= item["title"].truncate(30) %></td>
-                  <td><%= item.["creator"]["cluster"]["name"] %></td>
+                  <td><%= item["creator"]["cluster"].present? ? item["creator"]["cluster"]["name"] : "Belum Ada" %></td>
                   <td><%= item["created_at_in_word"]["id"] %></td>
                   <td>
                     <button class="dropdown-toggle" type="button" data-toggle="dropdown"
@@ -81,54 +81,60 @@
                 </tbody>
               </table>
             </div>
-            <div class="filter">
-              <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
-                 aria-controls="collapseExample">
-                <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
-                <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
-              </a>
-              <div id="filter" class="collapse filter-form">
-                <div class="card card-body">
-                  <h4>Filter</h4>
-                  <div class="form-wrap">
-                    <label>Status</label>
-                    <div class="form-group">
-                      <select class="form-control">
-                        <option>Terverifikasi</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="form-wrap">
-                    <label>User</label>
-                    <div class="form-group">
+
+            <%= form_tag(politics_path, method: :get) do %>
+              <div class="filter">
+                <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
+                   aria-controls="collapseExample">
+                  <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
+                  <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
+                </a>
+                <div id="filter" class="collapse filter-form">
+                  <div class="card card-body">
+                    <h4>Filter</h4>
+                    <div class="form-wrap">
+                      <label>Status</label>
                       <div class="form-group">
-                        <input type="nama" class="form-control" placeholder="Nama">
+                        <select class="form-control" name="filter">
+                          <option value="user_verified_all">Semua Verifikasi</option>
+                          <option value="user_verified_true">Terverifikasi</option>
+                          <option value="user_verified_false">Belum Terverifikasi</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-wrap">
+                      <label>User</label>
+                      <div class="form-group">
+                        <div class="form-group">
+                          <input name="q" value="<%= params[:q] %>" type="nama" class="form-control" placeholder="Nama">
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="form-wrap">
-                  <label>Email</label>
-                  <div class="form-group">
+                  <div class="form-wrap">
+                    <label>Email</label>
                     <div class="form-group">
-                      <input type="email" class="form-control" placeholder="luna@gmail.com">
+                      <div class="form-group">
+                        <input type="email" class="form-control" placeholder="luna@gmail.com">
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="form-wrap">
-                  <label>Cluster</label>
-                  <div class="form-group">
+                  <div class="form-wrap">
+                    <label>Cluster</label>
                     <div class="form-group">
-                      <input type="cluster" class="form-control" placeholder="Nama Cluster">
+                      <div class="form-group">
+                        <input name="cluster_id" value="<%= params[:cluster_id] %>" type="cluster" class="form-control" placeholder="Nama Cluster">
+                      </div>
                     </div>
+                  </div>
+                  <div class="button-wrapper">
+                    <button id="send" type="submit" class="btn btn-solid-green" data-dismiss="modal">Done</button>
+                    <button id="reset" type="submit" class="btn btn-transparent">Reset</button>
                   </div>
                 </div>
               </div>
-            </div>
+            <% end %>
+
           </div>
         </div>
 
@@ -169,7 +175,7 @@
           <div class="content">
             <span class="display-desc">
               <p>
-                  Displaying Content 1 - 100 of <%= @total_trash %> in total
+                  Displaying Content 1 - 30 of <%= @total_trash %> in total
               </p>
             </span>
             <div class="table">
@@ -185,28 +191,28 @@
                 </tr>
                 </thead>
                 <tbody>
-                <% @item_trash.each_with_index do |item, index| %>
-                  <tr>
-                    <td class="number bold"><%= (@number_trash.to_i - 1) * 30 + index+1 %></td>
-                    <td class="name bold"><a href="detail-janji-politik.html"> <img src="<%= item["creator"]["avatar"]["thumbnail"]["url"] %>"><%= item["creator"]["full_name"] %></a>
-                    </td>
-                    <td><%= item["title"].truncate(30) %></td>
-                    <td><%= item["creator"]["cluster"]["name"] %></td>
-                    <td><%= item["created_at_in_word"]["id"] %></td>
-                    <td>
-                      <button class="dropdown-toggle" type="button" data-toggle="dropdown"
-                              aria-haspopup="true" aria-expanded="false">
-                        <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="action">
-                        <a class="dropdown-item" href="<%= detail_politic_trash_path(item["id"]) %>">Lihat</a>
-                      </div>
-                    </td>
+                  <% @item_trash.each_with_index do |item, index| %>
+                    <tr>
+                      <td class="number bold"><%= ((params[:page_trash].present? ? params[:page_trash].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %></td>
+                      <td class="name bold"><a href="<%= politic_path(item["id"]) %>"> <img src="<%= item["creator"]["avatar"]["thumbnail"]["url"] %>"><%= item["creator"]["full_name"] %></a>
+                      </td>
+                      <td><%= item["title"].truncate(30) %></td>
+                      <td><%= item["creator"]["cluster"].present? ? item["creator"]["cluster"]["name"] : "Belum Ada" %></td>
+                      <td><%= item["created_at_in_word"]["id"] %></td>
+                      <td>
+                        <button class="dropdown-toggle" type="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                          <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="action">
+                          <a id="testing2" class="dropdown-item" href="<%= detail_politic_trash_path(item["id"]) %>">Lihat</a>
+                        </div>
+                      </td>
                   <% end %>
                 </tbody>
               </table>
             </div>
-            <div class="filter">
+<!--             <div class="filter">
               <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
                  aria-controls="collapseExample">
                 <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
@@ -253,7 +259,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
