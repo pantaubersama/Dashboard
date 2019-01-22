@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   include Pagy::Backend
   before_action :set_api_user
-  before_action :set_user, only: [:edit, :update, :show]
+  before_action :set_user, only: [:edit,:show]
 
   def edit_user
     @pages = { page: "edit_user" }
@@ -42,21 +42,30 @@ class UsersController < ApplicationController
   end
 
   def update
-    request = @user_api.update_detail(
-        full_name = params[:full_name].present? ? params[:full_name] : '',
-        username = params[:username].present? ? params[:username] : '',
-        about = params[:about].present? ? params[:about] : '',
-        location = params[:location].present? ? params[:location] : '',
-        education = params[:education].present? ? params[:education] : '',
-        occupation = params[:occupation].present? ? params[:occupation] : ''
-      )
-      if request.code == 200
-        flash[:success] = "Update Sucessful"
-        redirect_to user_edit_path(@user['id'])
-      else
-        flash[:success] = "Oops Update Failed"
-        redirect_to user_edit_path(@user['id'])
-      end
+    user = UserPantauAuth.find(params[:id])
+    if user.update(update_params)
+      flash[:success] = "Update Sucessful"
+      redirect_to user_edit_path(params['id'])
+    else
+      flash[:success] = "Oops Update Failed"
+      render :edit
+    end
+
+    # request = @user_api.update_detail(
+    #     full_name = params[:full_name].present? ? params[:full_name] : '',
+    #     username = params[:username].present? ? params[:username] : '',
+    #     about = params[:about].present? ? params[:about] : '',
+    #     location = params[:location].present? ? params[:location] : '',
+    #     education = params[:education].present? ? params[:education] : '',
+    #     occupation = params[:occupation].present? ? params[:occupation] : ''
+    #   )
+    #   if request.code == 200
+    #     flash[:success] = "Update Sucessful"
+    #     redirect_to user_edit_path(@user['id'])
+    #   else
+    #     flash[:success] = "Oops Update Failed"
+    #     render :edit
+    #   end
   end
 
 
@@ -70,6 +79,11 @@ class UsersController < ApplicationController
     def set_user
       @user = @user_api.find_full(params[:id])['data']['user']
     end
+
+    def update_params
+      params.permit(:full_name, :username, :about, :location, :education, :occupation)
+    end
+
 
 
 
