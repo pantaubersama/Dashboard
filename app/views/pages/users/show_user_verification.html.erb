@@ -24,14 +24,15 @@
                 </span>
                 <div class="right-desc">
                     <%# <p>Created at : 21/10/2023</p> %>
-                    <%= link_to reject_verification_path(@verification['user']['id'])  do %>
-                    <button class="btn btn-green">DITOLAK</button>
+                    <% if @verification['status'] == 'verified' %>
+                       <%= link_to reject_verification_path(@verification['user']['id'])  do %>
+                       <button class="btn btn-green">DITOLAK</button>
+                       <% end %>
+                    <% else %>
+                      <%= link_to approve_verification_path(@verification['user']['id']) do  %>
+                      <button class="btn btn-solid-green">DITERIMA</button>
+                      <% end %>
                     <% end %>
-
-                    <%= link_to approve_verification_path(@verification['user']['id']) do  %>
-                    <button class="btn btn-solid-green">DITERIMA</button>
-                    <% end %>
-
                 </div>
             </div>
 

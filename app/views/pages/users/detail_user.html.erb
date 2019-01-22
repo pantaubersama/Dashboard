@@ -25,7 +25,10 @@
               </span>
               <div class="right-desc">
                 <!--<p>Created at : 21/10/2023</p> -->
-                <button class="btn btn-solid-green">EDIT</button>
+                <%= link_to user_edit_path(@user['id']) do %>
+                  <button class="btn btn-solid-green">EDIT</button>
+                <% end %>
+
               </div>
             </div>
 

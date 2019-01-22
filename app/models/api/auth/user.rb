@@ -92,6 +92,23 @@ class Api::Auth::User < InitApiAuth
   end
 
 
+  def update_detail(full_name, username, about, location, education, occupation)
+    option = {
+      headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
+      body: {
+        full_name: full_name,
+        username: username,
+        about: about,
+        location: location,
+        education: education,
+        occupation: occupation
+      }
+    }
+    self.class.put('/v1/me', option)
+  end
+
+
+
 
 
 end

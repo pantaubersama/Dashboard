@@ -46,6 +46,10 @@ Rails.application.routes.draw do
   post '/admins/make_admin',to: 'admins#make_admin', as: 'make_admin'
   get '/admins/delete_admin/:id',to: 'admins#delete_admin', as: 'delete_admin'
 
+  # users
+  get '/user/:id/edit', to: 'users#edit', as: 'user_edit'
+  put '/user/:id', to: 'users#update', as: 'user_update'
+
   # user verifications
   get '/list_user_verification', to: 'user_verifications#verification_list', as: 'users_list_verification'
   get '/user_verification/:id', to: 'user_verifications#show_user_verification', as: 'show_user_verification'
