@@ -49,7 +49,8 @@ Rails.application.routes.draw do
   # users
   get '/user/:id/edit', to: 'users#edit', as: 'user_edit'
   put '/user/:id', to: 'users#update', as: 'user_update'
-  put 'user/:id/informant', to: 'users#update_informant', as: 'user_update_informant'
+  put '/user/:id/informant', to: 'users#update_informant', as: 'user_update_informant'
+  put '/user/:id/avatar', to: 'users#update_avatar', as: 'user_update_avatar'
 
   # user verifications
   get '/list_user_verification', to: 'user_verifications#verification_list', as: 'users_list_verification'

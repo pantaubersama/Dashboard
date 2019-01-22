@@ -24,6 +24,13 @@
               <span class="profile-image">
                 <%= image_tag @user['avatar']['medium_square']['url'] unless  @user['avatar']['medium_square']['url'].nil? %>
               </span>
+              <%= form_tag(user_update_avatar_path(@user['id']), method: :put, multipart: true) do %>
+                <div class="form-wrap">
+                  <label>Avatar</label>
+                  <%= file_field_tag :avatar  %>
+                </div>
+                <button class="btn btn-solid-green" type="submit"> Update</button>
+              <% end %>
               <div class="right-desc">
                 <!--<p>Created at : 21/10/2023</p> -->
               </div>

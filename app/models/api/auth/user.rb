@@ -126,6 +126,18 @@ class Api::Auth::User < InitApiAuth
     self.class.put('/dashboard/v1/users/update_informant', option)
   end
 
+  def update_avatar(id, avatar)
+    option = {
+      headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
+      body: {
+        id: id,
+        avatar: File.open(avatar)
+      }
+    }
+    self.class.put('/dashboard/v1/users/update_informant', option)
+  end
+
+
 
 
 

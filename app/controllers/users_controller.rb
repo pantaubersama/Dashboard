@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   include Pagy::Backend
   before_action :set_api_user
-  before_action :set_user, only: [:edit,:show, :update_informant, :update]
+  before_action :set_user, only: [:edit,:show, :update_informant, :update, :update_avatar]
 
   def edit_user
     @pages = { page: "edit_user" }
@@ -80,6 +80,21 @@ class UsersController < ApplicationController
       render :edit
     end
   end
+
+  def update_avatar
+    request = @user_api.update_avatar(
+                                        id = params[:id],
+                                        avatar = params[:avatar].tempfile
+                                      )
+    if request.code == 200
+      flash[:success] = "Update Sucessful"
+      redirect_to user_edit_path(@user['id'])
+    else
+      flash[:success] = "Oops Update Failed"
+      render :edit
+    end
+  end
+
 
   private
     def set_api_user
