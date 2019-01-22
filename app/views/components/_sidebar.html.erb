@@ -31,6 +31,8 @@
                         users_list_verification_path,
                         class: "sub-nav-item nav-link #{action_name == 'verification_list' ? 'active' : ''}" %>
             <a class="sub-nav-item nav-link" href="#">Promotor</a>
+            <%= link_to 'Banner',banner_index_path,
+              class: "sub-nav-item nav-link #{action_name == 'banner' ? 'active' : ''}" %>
           </div>
         </li>
         <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse" href="#collapseTimeline" role="button"
