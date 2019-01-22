@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   end
 
   resources :banner, only: [:edit, :update, :show, :index]
+  resources :political_party
 
   # admins
   get '/admins', to: 'admins#index', as: 'users_list_admin'

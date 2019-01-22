@@ -6,8 +6,13 @@
         <%= render("components/dropdown_profile") %>
       </header>
       <div class="main-content">
-        <div class="top">
+      <div class="top">
+        <div class="btn-back">
+          <%= link_to request.referer do %>
+            <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+          <% end %>
         </div>
+      </div>
         <div class="content">
           <div class="bg-white detail-profile">
             <div class="card">
@@ -38,14 +43,10 @@
                     <label>Deskripsi</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <Textarea type="Deskripsi" class="form-control" placeholder="">
-                                                    <%= @banner.body %>
-                                                  </Textarea>
+                        <Textarea type="Deskripsi" class="form-control" placeholder=""><%= @banner.body %></Textarea>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-md-6">
                 </div>
               </div>
             </div>
