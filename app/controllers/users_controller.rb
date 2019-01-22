@@ -42,47 +42,44 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = UserPantauAuth.find(params[:id])
-    if user.update(update_params)
+    request = @user_api.update_detail(
+                                      id = params[:id],
+                                      full_name = params[:full_name].present? ? params[:full_name] : '',
+                                      username = params[:username].present? ? params[:username] : '',
+                                      about = params[:about].present? ? params[:about] : '',
+                                      location = params[:location].present? ? params[:location] : '',
+                                      education = params[:education].present? ? params[:education] : '',
+                                      occupation = params[:occupation].present? ? params[:occupation] : ''
+                                    )
+    if request.code == 200
       flash[:success] = "Update Sucessful"
-      redirect_to user_edit_path(params['id'])
+      redirect_to user_edit_path(@user['id'])
     else
       flash[:success] = "Oops Update Failed"
       render :edit
     end
-
-    # request = @user_api.update_detail(
-    #     full_name = params[:full_name].present? ? params[:full_name] : '',
-    #     username = params[:username].present? ? params[:username] : '',
-    #     about = params[:about].present? ? params[:about] : '',
-    #     location = params[:location].present? ? params[:location] : '',
-    #     education = params[:education].present? ? params[:education] : '',
-    #     occupation = params[:occupation].present? ? params[:occupation] : ''
-    #   )
-    #   if request.code == 200
-    #     flash[:success] = "Update Sucessful"
-    #     redirect_to user_edit_path(@user['id'])
-    #   else
-    #     flash[:success] = "Oops Update Failed"
-    #     render :edit
-    #   end
   end
 
   def update_informant
-    user = UserPantauAuth.find(params[:id])
-    if user.informant.update(update_informant_params)
+    request = @user_api.update_informant(
+                                          id = params[:id],
+                                          identity_number = params[:identity_number].present? ? params[:identity_number] : '',
+                                          pob = params[:pob].present? ? params[:pob] : '',
+                                          dob = params[:dob].present? ? params[:dob] : '',
+                                          gender = params[:gender].present? ? params[:gender] : '',
+                                          occupation = params[:occupation].present? ? params[:occupation] : '',
+                                          nationality = params[:nationality].present? ? params[:nationality] : '',
+                                          address = params[:address].present? ? params[:address] : '',
+                                          phone_number = params[:phone_number].present? ? params[:phone_number] : ''
+                                        )
+    if request.code == 200
       flash[:success] = "Update Sucessful"
-      redirect_to user_edit_path(params['id'])
+      redirect_to user_edit_path(@user['id'])
     else
       flash[:success] = "Oops Update Failed"
       render :edit
     end
   end
-
-
-
-
-
 
   private
     def set_api_user
@@ -92,19 +89,5 @@ class UsersController < ApplicationController
     def set_user
       @user = @user_api.find_full(params[:id])['data']['user']
     end
-
-    def update_params
-      params.permit(:avatar, :full_name, :username, :about, :location, :education, :occupation)
-    end
-
-    def update_informant_params
-      params.permit(:identity_number, :pob, :dob, :gender, :occupation, :nationality, :address, :phone_number)
-    end
-
-
-
-
-
-
 
 end
