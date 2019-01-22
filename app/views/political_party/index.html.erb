@@ -1,0 +1,109 @@
+<div class="d-flex main-wrapper">
+  <%= render("components/sidebar") %>
+  <div class="main-wrapper">
+    <main class="main col-md-10 offset-md-2" role="main">
+      <header class="header" role="banner">
+        <%= render("components/dropdown_profile") %>
+      </header>
+      <div class="main-content">
+        <div class="top">
+          <% link = pagy_link_proc(@pagy) %>
+          <div class="pagination-wrap">
+            <ul class="pagination">
+              <% if @pagy.prev %>
+              <li class="page-item">
+                <%== link.call(@pagy.prev, pagy_t('pagy.nav.prev')) %>
+              </li>
+              <% else  %>
+              <li class="page-item disabled">
+                <%== link.call(@pagy.prev, pagy_t('pagy.nav.prev')) %>
+              </li>
+              <% end %>
+
+              <% @pagy.series.each do |item| %>
+              <% if item.is_a?(Integer) %>
+              <li id="testtest" class="page-item">
+                <%== link.call(item) %>
+              </li>
+              <% elsif item.is_a?(String) %>
+              <li class="page-item active" aria-current="page">
+                <%== link.call(item) %>
+              </li>
+              <% elsif item == :gap %>
+              <li class="page-item disabled gap"><a href="#" class="page-link">
+                  <%== pagy_t('pagy.nav.gap') %></a></li>
+              <% end %>
+              <% end %>
+
+              <% if @pagy.next %>
+              <li class="page-item">
+                <%== link.call(@pagy.next, pagy_t('pagy.nav.next')) %>
+              </li>
+              <% else %>
+              <li class="page-item disabled">
+                <%== link.call(@pagy.next, pagy_t('pagy.nav.next')) %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+
+        <div class="content">
+          <span class="display-desc">
+            <p>
+            </p>
+          </span>
+          <div class="col-md-12">
+            <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>">
+              <%= value %>
+            </div>
+            <% end %>
+          </div>
+          <span class="display-desc">
+            <p>
+            </p>
+          </span>
+
+          <div class="table">
+            <table>
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Image</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+
+
+                <% @parties.each_with_index do |party, index| %>
+                <tr>
+                  <td><%= ((params[:page].present? ? params[:page].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %></td>
+                  <td><%= party['name'] %></td>
+                  <td><%= link_to 'Logo', party['image']['url'] %></td>
+                  <td>
+                    <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                      aria-expanded="false">
+                      <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="action">
+                      <%= link_to 'Lihat', political_party_path(party['id']), class: 'dropdown-item' %>
+                    </div>
+                  </td>
+                </tr>
+                <% end %>
+
+
+              </tbody>
+            </table>
+
+
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<%= render("components/footer") %>

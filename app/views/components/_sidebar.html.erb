@@ -33,6 +33,8 @@
             <a class="sub-nav-item nav-link" href="#">Promotor</a>
             <%= link_to 'Banner',banner_index_path,
               class: "sub-nav-item nav-link #{action_name == 'banner' ? 'active' : ''}" %>
+              <%= link_to 'Political Party',political_party_index_path,
+              class: "sub-nav-item nav-link " %>
           </div>
         </li>
         <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse" href="#collapseTimeline" role="button"
