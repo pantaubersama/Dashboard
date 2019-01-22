@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   include Pagy::Backend
   before_action :set_api_user
-  before_action :set_user, only: [:edit,:show]
+  before_action :set_user, only: [:edit,:show, :update_informant, :update]
 
   def edit_user
     @pages = { page: "edit_user" }
