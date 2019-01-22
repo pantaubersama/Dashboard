@@ -49,6 +49,14 @@
                       </div>
                     </div>
                   </div>
+                  <div class="form-wrap">
+                    <label>occupation</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <%= text_field_tag :occupation, @user['occupation'], class: 'form-control', placeholder: 'occupation' %>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-wrap">
@@ -86,12 +94,80 @@
                     </div>
                   </div>
                 </div>
+              </div>
+            <button class="btn btn-solid-green" type="submit"> Update</button>
+            </div>
+            <% end %>
+
+
+            <%= form_tag(user_update_informant_path(@user['id']), method: :put) do %>
+            <%= hidden_field_tag(:id, @user['id']) %>
+            <div class="card-form">
+              <div class="row">
                 <div class="col-md-6">
                   <div class="form-wrap">
-                    <label>occupation</label>
+                    <label>Tempat Lahir</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <%= text_field_tag :occupation, @user['occupation'], class: 'form-control', placeholder: 'occupation' %>
+                        <%= text_field_tag :pob, @user['informant']['pob'], class: 'form-control', placeholder: 'Tempat Lahir' %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Jenis Kelamin</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <%= select_tag(:gender, options_for_select([['Laki - Laki', 1], ['Perempuan', 0]],@user['informant']['gender'])) %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Kewarganegaraan</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <%= text_field_tag :nationality, @user['informant']['nationality'], class: 'form-control', placeholder: 'Kewarganegaraan' %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>No KTP</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <%= text_field_tag :identity_number, @user['informant']['identity_number'], class: 'form-control', placeholder: 'No KTP' %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Tanggal Lahir</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <%= date_field :dob, @user['informant']['dob'], class: 'form-control', placeholder: 'Tanggal Lahir' %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Pekerjaan Pelapor</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <%= text_field_tag :occupation, @user['informant']['occupation'], class: 'form-control', placeholder: 'Pekerjaan Pelapor' %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>No Telepon</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <%= text_field_tag :phone_number, @user['informant']['phone_number'], class: 'form-control', placeholder: 'No Telepon' %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Alamat Lengkap</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <%= text_area_tag :address, @user['informant']['address'], class: 'form-control', placeholder: 'Alamat Lengkap' %>
                       </div>
                     </div>
                   </div>

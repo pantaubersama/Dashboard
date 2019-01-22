@@ -68,6 +68,19 @@ class UsersController < ApplicationController
     #   end
   end
 
+  def update_informant
+    user = UserPantauAuth.find(params[:id])
+    if user.informant.update(update_informant_params)
+      flash[:success] = "Update Sucessful"
+      redirect_to user_edit_path(params['id'])
+    else
+      flash[:success] = "Oops Update Failed"
+      render :edit
+    end
+  end
+
+
+
 
 
 
@@ -81,8 +94,13 @@ class UsersController < ApplicationController
     end
 
     def update_params
-      params.permit(:full_name, :username, :about, :location, :education, :occupation)
+      params.permit(:avatar, :full_name, :username, :about, :location, :education, :occupation)
     end
+
+    def update_informant_params
+      params.permit(:identity_number, :pob, :dob, :gender, :occupation, :nationality, :address, :phone_number)
+    end
+
 
 
 
