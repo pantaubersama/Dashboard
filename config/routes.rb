@@ -17,8 +17,11 @@ Rails.application.routes.draw do
     resources :user_clusters
     resources :clusters do
       collection do
-        get :detail_category
+        get '/detail_category/:id', to: 'clusters#detail_category', as: 'detail_category'
+        put '/update_category/:id', to: 'clusters#update_category', as: 'update_category'
+        get '/edit_category/:id', to: 'clusters#edit_category', as: 'edit_category'
         get :search_categories
+        post :create_category
       end
     end
   end
@@ -41,6 +44,7 @@ Rails.application.routes.draw do
   end
 
   resources :banner, only: [:edit, :update, :show, :index]
+  resources :political_party
 
   # admins
   get '/admins', to: 'admins#index', as: 'users_list_admin'
@@ -50,6 +54,8 @@ Rails.application.routes.draw do
   # users
   get '/user/:id/edit', to: 'users#edit', as: 'user_edit'
   put '/user/:id', to: 'users#update', as: 'user_update'
+  put '/user/:id/informant', to: 'users#update_informant', as: 'user_update_informant'
+  put '/user/:id/avatar', to: 'users#update_avatar', as: 'user_update_avatar'
 
   # user verifications
   get '/list_user_verification', to: 'user_verifications#verification_list', as: 'users_list_verification'

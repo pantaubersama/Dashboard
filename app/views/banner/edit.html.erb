@@ -2,81 +2,71 @@
   <%= render("components/sidebar") %>
   <div class="main-wrapper">
     <main class="main col-md-10 offset-md-2" role="main">
-      <%= render("components/header") %>
+      <header class="header" role="banner">
+        <%= render("components/dropdown_profile") %>
+      </header>
       <div class="main-content">
-        <div class="top">
-        </div>
-        <div class="content">
-
-          <%= form_with(model: @banner, local: true, url: banner_path(@banner), :id => "custom_id", :class => "custom_class")  do |form| %>
-            <%= form.label :title, :class => "form-control-label" %>
-            <%= form.text_area :title, :class => "form-control", :placeholder => "Title" %>
-            <%= form.label :body, :class => "form-control-label" %>
-            <%= form.text_area :body, :class => "form-control", :placeholder => "Body" %>
-            <%= select_tag(:page_name, options_for_select([['Pilpres', 'pilpres'], ['Janji Politik', 'janji politik'],['Tanya', 'tanya'], ['Kuis', 'kuis']])) %><br>
-            <%= form.label :image, :class => "form-control-label" %>
-            <%= form.file_field :image %>
-            <%= form.label :header_image, :class => "form-control-label" %>
-            <%= form.file_field :header_image %>
-
-            <div class="actions">
-              <%= form.submit 'Save', :class => "btn btn-primary" %>
-              <%= link_to  request.referer , {:class => "btn btn-primary"}  do %>
-                  Cancel
-              <% end %>
-            </div>
+      <div class="top">
+        <div class="btn-back">
+          <%= link_to request.referer do %>
+            <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
           <% end %>
-
-
-
-
-          <div class="filter">
-            <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
-               aria-controls="collapseExample">
-              <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
-              <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
-            </a>
-            <div class="collapse filter-form">
-              <div class="card card-body">
-                <h4>Filter</h4>
-                <div class="form-wrap">
-                  <label>Status</label>
-                  <div class="form-group">
-                    <select class="form-control">
-                      <option>Terverifikasi</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-wrap">
-                  <label>User</label>
-                  <div class="form-group">
+        </div>
+      </div>
+        <div class="content">
+          <%= render("components/flash_message") %>
+          <div class="bg-white detail-profile">
+            <%= form_tag(banner_path(@banner), method: :put, multipart: true) do %>
+            <div class="card-form">
+              <div class="row">
+                <div class="col-md-10">
+                  <div class="form-wrap">
+                    <label>Title</label>
                     <div class="form-group">
-                      <input type="nama" class="form-control" placeholder="Nama">
+                      <div class="form-group">
+                        <%= text_field_tag :title, @banner.title, class: 'form-control', placeholder: 'Title' %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Body</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <%= text_area_tag :body, @banner.body, class: 'form-control', placeholder: 'Body' %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Page Name</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <%= select_tag(:page_name, options_for_select([['Pilpres', 'pilpres'], ['Janji Politik', 'janji politik'],['Tanya', 'tanya'], ['Kuis', 'kuis']], @banner.page_name)) %>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-wrap">
+                    <label>Image</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <%= file_field_tag :image  %>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-wrap">
+                    <label>Header Image</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <%= file_field_tag :header_image  %>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="form-wrap">
-                <label>Email</label>
-                <div class="form-group">
-                  <div class="form-group">
-                    <input type="email" class="form-control" placeholder="luna@gmail.com">
-                  </div>
-                </div>
-              </div>
-              <div class="form-wrap">
-                <label>Cluster</label>
-                <div class="form-group">
-                  <div class="form-group">
-                    <input type="cluster" class="form-control" placeholder="Nama Cluster">
-                  </div>
-                </div>
-              </div>
+              <button class="btn btn-solid-green" type="submit"> Update</button>
             </div>
+            <% end %>
           </div>
         </div>
       </div>
@@ -84,4 +74,3 @@
   </div>
 </div>
 <%= render("components/footer") %>
-

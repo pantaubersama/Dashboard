@@ -1,0 +1,7 @@
+<%= form_tag(update_category_clusters_path(@detail_category["id"]), method: :put) do  %>
+  <%= label_tag :Name %>
+  <%= text_field_tag :name, @detail_category["name"] %><br>
+  <%= label_tag :Description %>
+  <%= text_field_tag :description, @detail_category["description"] %><br>
+  <%= submit_tag %>
+<% end %>

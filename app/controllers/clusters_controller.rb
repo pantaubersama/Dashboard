@@ -1,7 +1,7 @@
 class ClustersController < ApplicationController
   include Pagy::Backend
   before_action :set_from_api
-  before_action :get_cluster_id, only: [:edit, :show]
+  before_action :get_cluster_id, only: [:edit, :show, :update]
 
   def index
     # ============================= Clusters =============================
@@ -39,11 +39,6 @@ class ClustersController < ApplicationController
     render "pages/clusters/show"
   end
 
-  def new
-    @pages = { page: "new" }
-    render "pages/clusters/new"
-  end
-
   def edit
     @pages = { page: "edit" }
     render "pages/clusters/edit"
@@ -51,25 +46,45 @@ class ClustersController < ApplicationController
 
   def create
     if @cluster.create_cluster(params[:name], params[:category_id], params[:description], 
-                               params[:requester_id], params[:image], params[:status])
-      redirect_to clusters_path, notice: "Success"
+                            params[:requester_id], params[:image].tempfile, params[:status])
+      redirect_to clusters_path
     end
   end
 
   def update
-    par = ([params[:name], params[:category_id], params[:description], 
-            params[:requester_id], params[:image], params[:status]]).to_json
-    if @cluster.update_cluster(params[:id], par)
-      redirect_to clusters_path, notice: "Success"
+    if @cluster.update_cluster(params[:id], params[:name], params[:category_id], params[:description], 
+      params[:requester_id], params[:image].tempfile, params[:status])
+      redirect_to clusters_path
     end
   end
 
   def destroy
-    
+    if @cluster.delete_cluster(params[:id])
+      redirect_to clusters_path
+    end
   end
 
   def detail_category
+    @detail_category = @cluster.show_category(params[:id])["data"]["category"]
     render "pages/clusters/detail_category"
+  end
+
+  def create_category
+    if @cluster.add_category(params[:name], params[:description])
+      redirect_to clusters_path
+    end
+  end
+
+  def edit_category
+    @detail_category = @cluster.show_category(params[:id])["data"]["category"]
+    @pages = { page: "edit_category" }
+    render "pages/clusters/edit_category"
+  end
+
+  def update_category
+    if @cluster.update_kategori(params[:id], params[:name], params[:description])
+      redirect_to clusters_path
+    end
   end
 
   private
