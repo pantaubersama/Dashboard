@@ -91,6 +91,8 @@
                   <td class="image">
                     <% if user['verified'] %>
                     <img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>"/>
+                    <% else %>
+                    <img src="<%= asset_pack_path("views/assets/images/ic_status_nonactive.png") %>"/>
                     <% end %>
                   </td>
                   <td>
@@ -128,14 +130,14 @@
                         ['Verified True', 'verified_true'],
                         ['Verified False', 'verified_false'],
                         ['Verified All', 'verified_all']
-                      ]), class: 'form-control') %>
+                      ], params[:verified]), class: 'form-control') %>
                   </div>
                 </div>
                 <div class="form-wrap">
                   <label>User</label>
                   <div class="form-group">
                     <div class="form-group">
-                      <%= text_field_tag :nama, "", class: 'form-control', placeholder: 'Nama' %>
+                      <%= text_field_tag :nama, params[:nama].present? ? params[:nama] : '', class: 'form-control', placeholder: 'Nama' %>
                     </div>
                   </div>
                 </div>
@@ -144,7 +146,7 @@
                 <label>Email</label>
                 <div class="form-group">
                   <div class="form-group">
-                    <%= text_field_tag :email, "", class: 'form-control', placeholder: 'myusuf@extrainteger.com' %>
+                    <%= text_field_tag :email, params[:email].present? ? params[:email] : '', class: 'form-control', placeholder: 'myusuf@extrainteger.com' %>
                   </div>
                 </div>
               </div>
@@ -152,7 +154,7 @@
                 <label>Cluster</label>
                 <div class="form-group">
                   <div class="form-group">
-                    <%= text_field_tag :cluster, "", class: 'form-control', placeholder: 'Nama Cluster' %>
+                    <%= text_field_tag :cluster, params[:cluster].present? ? params[:cluster] : '', class: 'form-control', placeholder: 'Nama Cluster' %>
                   </div>
                 </div>
               </div>
