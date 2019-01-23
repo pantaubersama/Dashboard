@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :dashboards, only: [:index]
-  resources :badges, only: [:index, :show]
   resources :broadcasts, only: [:index, :show]
 
   root 'dashboards#index'
@@ -41,6 +40,7 @@ Rails.application.routes.draw do
 
   resources :banner, only: [:edit, :update, :show, :index]
   resources :political_party
+  resources :badges
 
   # admins
   get '/admins', to: 'admins#index', as: 'users_list_admin'
