@@ -84,7 +84,7 @@ class UsersController < ApplicationController
   def update_avatar
     request = @user_api.update_avatar(
                                         id = params[:id],
-                                        avatar = params[:avatar].tempfile
+                                        avatar = params[:avatar]
                                       )
     if request.code == 200
       flash[:success] = "Update Sucessful"
