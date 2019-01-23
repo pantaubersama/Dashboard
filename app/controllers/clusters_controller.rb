@@ -1,6 +1,7 @@
 class ClustersController < ApplicationController
   include Pagy::Backend
-  before_action :set_from_api, except: :edit
+  before_action :set_from_api
+  before_action :get_cluster_id, only: [:edit, :show]
 
   def index
     # ============================= Clusters =============================
@@ -15,6 +16,15 @@ class ClustersController < ApplicationController
                                    page_param: :page_cluster)
     @clusters = @init_cluster["data"]["clusters"]
 
+    # ============================= Categories =============================
+    @init_cat = @cluster.get_categories(params[:page_cat] || 1, Pagy::VARS[:items])
+    n2 = @init_cat["data"]["meta"]["pages"]["total"]
+    @cat_records = (n2*Pagy::VARS[:items])
+    total_page_cat = (1..@cat_records).to_a
+    @pagy_categories = Pagy.new(count: total_page_clusters.count, page: params[:page_cat].present? ? params[:page_cat] : 1,
+                                page_param: :page_cat)
+    @list_categories = @init_cat["data"]["categories"]
+
     @pages = { page: "index" }
     render "pages/clusters/index"
   end
@@ -25,8 +35,6 @@ class ClustersController < ApplicationController
   end
 
   def show
-    @cluster_detail = Cluster.find(params[:id])
-
     @pages = { page: "show" }
     render "pages/clusters/show"
   end
@@ -37,8 +45,6 @@ class ClustersController < ApplicationController
   end
 
   def edit
-    @cluster = Cluster.find(params[:id])
-
     @pages = { page: "edit" }
     render "pages/clusters/edit"
   end
@@ -47,7 +53,6 @@ class ClustersController < ApplicationController
     if @cluster.create_cluster(params[:name], params[:category_id], params[:description], 
                                params[:requester_id], params[:image], params[:status])
       redirect_to clusters_path, notice: "Success"
-      byebug
     end
   end
 
@@ -70,7 +75,11 @@ class ClustersController < ApplicationController
   private
     def set_from_api
       @cluster = Api::Auth::Cluster.new
-      @categories = @cluster.get_categories["data"]["categories"]
-      @user = User.all
+      @categories = @cluster.get_categories(nil, nil)["data"]["categories"]
+      @user = UserPantauAuth.all
+    end
+
+    def get_cluster_id
+      @cluster_detail = Cluster.find(params[:id])
     end
 end
