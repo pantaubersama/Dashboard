@@ -46,7 +46,7 @@
                   <label>Logo</label>
                   <div class="form-group">
                     <div class="form-group">
-                      <%= image_tag @party['image']['url'] %>
+                      <%= image_tag @party['image']['url'] unless @party['image']['url'].nil? %>
                     </div>
                   </div>
                 </div>
