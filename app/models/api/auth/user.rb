@@ -131,7 +131,7 @@ class Api::Auth::User < InitApiAuth
       headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
       body: {
         id: id,
-        avatar: File.new(avatar)
+        avatar: File.new(avatar.path)
       }
     }
     self.class.put('/dashboard/v1/users/update_informant', option)
