@@ -89,13 +89,13 @@ class UsersController < ApplicationController
 
     if request.code == 200 || request.code == 201
       flash[:success] = "Update Sucessful"
-      redirect_to badges_path
+      redirect_to user_edit_path(@user['id'])
     elsif request.code == 422
       flash[:warning] = "Error #{request.code} #{request['error']['errors']}"
-      redirect_to badges_path
+      render :edit
     else
       flash[:warning] = "Oops Update Failed #{request.code} #{request['error']['errors']}"
-      redirect_to badges_path
+      render :edit
     end
   end
 
