@@ -31,6 +31,18 @@ class UsersController < ApplicationController
 
     @users = @request["data"]["users"]
 
+    ######## count data
+    last_page = @user_api.all(
+      @totalPage,
+      Pagy::VARS[:items],
+      params[:nama].present? ? params[:nama] : "*",
+      "and",
+      "word_start",
+      params[:verified].present? ? params[:verified] : ''
+    )['data']['users'].size
+    @total_users = (@totalData - Pagy::VARS[:items]) + last_page
+    @total_row_per_page = @request["data"]["users"].size
+
     render "pages/users/list_user"
   end
 
