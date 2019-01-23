@@ -88,7 +88,7 @@
                           <label>Nama Badge</label>
                           <div class="form-group">
                             <div class="form-group">
-                              <%= text_field_tag :name,'', class: 'form-control', placeholder: 'Nama Badge' %>
+                              <%= text_field_tag :name,'', class: 'form-control', placeholder: 'Nama Badge', require: 'require' %>
                             </div>
                           </div>
                         </div>
@@ -97,6 +97,31 @@
                           <div class="form-group">
                             <div class="form-group">
                               <%= text_area_tag :description, '', class: 'form-control', placeholder: 'Description' %>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-wrap">
+                          <label>Code</label>
+                          <div class="form-group">
+                            <div class="form-group">
+                              <%= text_field_tag :code, '', class: 'form-control', placeholder: 'Code', require:'require' %>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-wrap">
+                          <label>Namespace</label>
+                          <div class="form-group">
+                            <div class="form-group">
+                              <%= select_tag(:namespace, options_for_select([
+                                ['badge_janji_politik', 'badge_janji_politik'],
+                                ['badge_tanya', 'badge_tanya'],
+                                ['badge_tanya_interaksi', 'badge_tanya_interaksi'],
+                                ['badge_kuis', 'badge_kuis'],
+                                ['badge_lapor', 'badge_lapor'],
+                                ['badge_profile', 'badge_profile'],
+                                ['badge_relawan', 'badge_relawan'],
+                                ['badge_pantau_bersama', 'badge_pantau_bersama'],
+                                ])) %>
                             </div>
                           </div>
                         </div>

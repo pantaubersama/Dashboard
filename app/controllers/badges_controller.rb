@@ -26,7 +26,7 @@ class BadgesController < ApplicationController
   def show
     if @request.code == 200
       @badge = @request['data']['badge']
-    elsif request.code == 404
+    elsif @request.code == 404
       flash[:warning] = "Not Found"
       redirect_to badges_path
     end
@@ -36,20 +36,20 @@ class BadgesController < ApplicationController
     request = @badge_api.create(
       name = params[:name],
       description = params[:description].present? ? params[:description] : '',
-      image = params[:image].present? ? params[:image].tempfile : '',
-      image_gray = params[:image].present? ? params[:image].tempfile : '',
+      image = params[:image].present? ? params[:image] : '',
+      image_gray = params[:image].present? ? params[:image] : '',
       position = params[:position].present? ? params[:position] : '',
       code = params[:code].present? ? params[:code] : '',
       namespace = params[:namespace].present? ? params[:namespace] : ''
     )
-    if request.code == 200
+    if request.code == 200 || request.code == 201
       flash[:success] = "Create Sucessful"
       redirect_to badges_path
     elsif request.code == 422
       flash[:warning] = "Error #{request.code} #{request['error']['errors']}"
       redirect_to badges_path
     else
-      flash[:warning] = "Oops Create Failed"
+      flash[:warning] = "Oops Create Failed #{request.code} #{request['error']['errors']}"
       redirect_to badges_path
     end
 
@@ -60,8 +60,8 @@ class BadgesController < ApplicationController
                                 id = params[:id],
                                 name = params[:name],
                                 description = params[:description].present? ? params[:description] : '',
-                                image = params[:image].present? ? params[:image].tempfile : '',
-                                image_gray = params[:image].present? ? params[:image].tempfile : '',
+                                image = params[:image].present? ? params[:image] : '',
+                                image_gray = params[:image].present? ? params[:image] : '',
                                 position = params[:position].present? ? params[:position] : '',
                                 code = params[:code].present? ? params[:code] : '',
                                 namespace = params[:namespace].present? ? params[:namespace] : ''
@@ -76,9 +76,9 @@ class BadgesController < ApplicationController
   end
 
   def edit
-    if request.code == 200
+    if @request.code == 200
       @badge = @request['data']['badge']
-    elsif request.code == 404
+    elsif @request.code == 404
       flash[:warning] = "Not Found"
       redirect_to badges_path
     end
