@@ -86,7 +86,6 @@ class UsersController < ApplicationController
                                         id = params[:id],
                                         avatar = params[:avatar]
                                       )
-
     if request.code == 200 || request.code == 201
       flash[:success] = "Update Sucessful"
       redirect_to user_edit_path(@user['id'])

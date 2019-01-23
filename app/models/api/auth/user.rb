@@ -134,7 +134,7 @@ class Api::Auth::User < InitApiAuth
         avatar: File.new(avatar.path)
       }
     }
-    self.class.put('/dashboard/v1/users/update_informant', option)
+    self.class.put('/dashboard/v1/users/avatar', option)
   end
 
 
