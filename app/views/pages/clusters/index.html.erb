@@ -550,7 +550,7 @@
                       <td class="number bold">
                         <%= ((params[:page_trash].present? ? params[:page_trash].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %>
                       </td>
-                      <td class="name bold"><a href=""> <img src="<%= item["image"] %>"><%= item["name"] %></a></td>
+                      <td class="name bold"><a href="<%= detail_trash_clusters_path(item["id"]) %>"> <img src="<%= item["image"] %>"><%= item["name"] %></a></td>
                       <td class="name bold"><%= item["requester"]["full_name"] %></td>
                       <td><%= item["category"]["name"] %></td>
                       <td>21/10/2023</td>
@@ -560,8 +560,7 @@
                           <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdown-active">
-                          <a class="dropdown-item" href="#">Lihat</a>
-                          <a class="dropdown-item" href="#">Hapus</a>
+                          <a class="dropdown-item" href="<%= detail_trash_clusters_path(item["id"]) %>">Lihat</a>
                         </div>
                       </td>
                     </tr>

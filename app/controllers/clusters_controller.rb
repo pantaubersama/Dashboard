@@ -96,6 +96,12 @@ class ClustersController < ApplicationController
     end
   end
 
+  def detail_trash
+    @trash_detail = @cluster.show_trash(params[:id])["data"]["cluster"]
+    @pages = { page: "detail_trash" }
+    render "pages/clusters/detail_trash"
+  end
+
   private
     def set_from_api
       @cluster = Api::Auth::Cluster.new

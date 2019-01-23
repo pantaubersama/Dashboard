@@ -77,4 +77,14 @@ class Api::Auth::Cluster < InitApiAuth
     self.class.get("/dashboard/v1/clusters/trash", @options)
   end
 
+  def show_trash(id)
+    @options = {
+      headers: {
+        # Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
+        Authorization: "Bearer e10e623493e0ac78b36c0284bba2efe28a9f41d0741924ea85569795b23eb1ed"},
+      query: {id: id}
+      }
+    self.class.get("/dashboard/v1/clusters/trash/#{id}", @options)
+  end
+
 end

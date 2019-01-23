@@ -1,0 +1,103 @@
+<div class="d-flex main-wrapper">
+    <%= render("components/sidebar") %>
+    <div class="main-wrapper">
+      <main class="main col-md-10 offset-md-2" role="main">
+        <header class="header" role="banner">
+          <div class="tabs">  
+            <ul  class="nav nav-pills">
+              <li class="active"><a  href="#all" data-toggle="tab">Semua</a>
+              </li>
+              <li><a href="#trash" data-toggle="tab">Sampah</a>
+              </li>
+            </ul>
+          </div>
+          <%= render("components/dropdown_profile") %>
+        </header>
+        <div class="tab-content clearfix">
+          <div class="main-content">
+            <div class="top">
+              <div class="btn-back">
+                <a href="<%= clusters_path %>">
+                  <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+                </a>
+              </div>
+            </div>
+            <div class="content">
+              <span class="display-desc">
+                <p>
+                </p>
+              </span>
+              <div class="bg-white detail-profile">
+                <div class="card">
+                  <span class="profile-image">
+                    <label>Gambar Cluster</label>
+                    <img src="<%= @trash_detail["image"] %>">
+                  </span>
+                  <div class="right-desc">
+                    <p>Created at : 21/10/2023</p>
+                  </div>
+                </div>
+  
+                <div class="card-form">
+                  <div class="row">
+                    <div class="col-md-6">
+  
+                      <div class="form-wrap">
+                        <label>Nama Cluster</label>
+                        <div class="form-group">
+                          <div class="form-group">
+                            <input type="Email" class="form-control" value="<%= @trash_detail["name"] %>" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+  
+                      <div class="form-wrap">
+                        <label>Deskripsi</label>
+                        <div class="form-group">
+                          <div class="form-group">
+                            <Textarea type="Deskripsi" class="form-control" placeholder="andry@pantaubersama.co.id"><%= @trash_detail["description"] %></Textarea>
+                          </div>
+                        </div>
+                      </div>
+                                                                                                                              
+                      <div class="form-wrap">
+                        <label>Akses Dashboard</label>
+                          <div class="form-group"> 
+                            <ul>
+                              <li>
+                                  <input class="styled-checkbox" id="styled-checkbox-1" type="checkbox" value="value1">
+                                  <label for="styled-checkbox-1">User Anggota</label>
+                              </li>
+                            </ul>
+                          </div>
+                      </div>
+  
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-wrap">
+                            <label>Kategori</label>
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <input type="Kategori" class="form-control" placeholder="" value="<%= @trash_detail["category"]["name"] %>">
+                                  </div>
+                              </div>
+                        </div>
+                        <div class="form-wrap">
+                            <label>Admin</label>
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <input type="Email" class="form-control" placeholder="" value="<%= @trash_detail["requester"]["full_name"] %>">
+                                  </div>
+                              </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <%= render("components/footer") %>
