@@ -84,13 +84,16 @@ class UsersController < ApplicationController
   def update_avatar
     request = @user_api.update_avatar(
                                         id = params[:id],
-                                        avatar = params[:avatar].tempfile
+                                        avatar = params[:avatar]
                                       )
-    if request.code == 200
+    if request.code == 200 || request.code == 201
       flash[:success] = "Update Sucessful"
       redirect_to user_edit_path(@user['id'])
+    elsif request.code == 422
+      flash[:warning] = "Error #{request.code} #{request['error']['errors']}"
+      render :edit
     else
-      flash[:success] = "Oops Update Failed"
+      flash[:warning] = "Oops Update Failed #{request.code} #{request['error']['errors']}"
       render :edit
     end
   end

@@ -20,7 +20,7 @@ class Api::Auth::PoliticalParty < InitApiAuth
       headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
       body: {
         name: name,
-        image: image
+        image: File.new(image.path)
       }
     }
     self.class.put("/dashboard/v1/political_parties/#{id}", options)

@@ -16,47 +16,55 @@
         <div class="content">
           <span class="display-desc">
             <p>
+              <!-- Displaying Content 1 - 30 of 500 in total -->
             </p>
           </span>
           <div class="bg-white detail-profile">
             <div class="card">
+              <span class="profile-image">
+                <label>Badge</label>
+                <%= image_tag @badge['image']['thumbnail']['url'] unless @badge['image']['thumbnail']['url'].nil?  %>
+              </span>
               <div class="right-desc">
-                <!--<p>Created at : 21/10/2023</p> -->
-                <%= link_to edit_political_party_path(@party['id']) do %>
+                <%= link_to edit_badge_path(@badge['id']) do %>
                   <button class="btn btn-solid-green">EDIT</button>
                 <% end %>
-                <%= link_to political_party_path(@party['id']), method: :delete do %>
-                  <button class="btn btn-solid-green" style="background-color:red">HAPUS</button>
+                <%= link_to badge_path(@badge['id']), method: :delete do %>
+                  <button class="btn btn-solid-green" style="background-color:red">Delete</button>
                 <% end %>
+
               </div>
             </div>
 
             <div class="card-form">
               <div class="row">
-                <div class="form-wrap">
-                  <label>Nama</label>
-                  <div class="form-group">
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Nama Badge</label>
                     <div class="form-group">
-                      <%= @party['name'] %>
+                      <div class="form-group">
+                        <input type="Email" class="form-control" placeholder="Nama Badge" value="<%= @badge['name']%>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Deskripsi</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <Textarea class="form-control"><%= @badge['description'] %></Textarea>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6">
-                <div class="form-wrap">
-                  <label>Logo</label>
-                  <div class="form-group">
-                    <div class="form-group">
-                      <%= image_tag @party['image']['url'] unless @party['image']['url'].nil? %>
-                    </div>
-                  </div>
-                </div>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
-    </main>
+      </div>
   </div>
+  </main>
+</div>
 </div>
 <%= render("components/footer") %>

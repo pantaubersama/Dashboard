@@ -9,7 +9,7 @@
         <div class="top">
           <div class="btn-back">
             <%= link_to request.referer do %>
-              <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+            <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
             <% end %>
           </div>
         </div>
@@ -18,42 +18,33 @@
             <p>
             </p>
           </span>
+          <%= render("components/flash_message") %>
           <div class="bg-white detail-profile">
             <div class="card">
+              <span class="profile-image">
+              </span>
               <div class="right-desc">
-                <!--<p>Created at : 21/10/2023</p> -->
-                <%= link_to edit_political_party_path(@party['id']) do %>
-                  <button class="btn btn-solid-green">EDIT</button>
-                <% end %>
-                <%= link_to political_party_path(@party['id']), method: :delete do %>
-                  <button class="btn btn-solid-green" style="background-color:red">HAPUS</button>
-                <% end %>
               </div>
             </div>
-
+            <%= form_tag(badge_path(@badge['id']), method: :put) do %>
             <div class="card-form">
               <div class="row">
                 <div class="form-wrap">
-                  <label>Nama</label>
-                  <div class="form-group">
-                    <div class="form-group">
-                      <%= @party['name'] %>
-                    </div>
-                  </div>
+                  <label for="">Nama</label>
+                  <%= text_field_tag :name, @badge['name'], class: 'form-control', placeholder: 'Nama Partai' %>
                 </div>
-                <div class="col-md-6">
                 <div class="form-wrap">
-                  <label>Logo</label>
-                  <div class="form-group">
-                    <div class="form-group">
-                      <%= image_tag @party['image']['url'] unless @party['image']['url'].nil? %>
-                    </div>
-                  </div>
+                  <label for="">Deskripsi</label>
+                  <%= text_area_tag :description, @badge['description'], class: 'form-control', placeholder: 'Deskripsi' %>
                 </div>
+                <div class="form-wrap">
+                  <label>Image</label>
+                  <%= file_field_tag :image  %>
                 </div>
+                <button class="btn btn-solid-green" type="submit"> Update</button>
               </div>
             </div>
-
+            <% end %>
           </div>
         </div>
     </main>
