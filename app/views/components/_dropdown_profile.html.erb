@@ -2,7 +2,7 @@
   <button class="dropdown-toggle" type="button" id="profile" data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false">
-    <img src="<%= asset_pack_path("views/assets/images/profile.jpg") %>">
+    <%= image_tag session[:avatar_admin] %>
     <div class="desc">
       <h5><%= current_user.name %></h5>
       <p>Admin</p>
