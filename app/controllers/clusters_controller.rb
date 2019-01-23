@@ -25,6 +25,15 @@ class ClustersController < ApplicationController
                                 page_param: :page_cat)
     @list_categories = @init_cat["data"]["categories"]
 
+    # ============================= Categories =============================
+    @init_trash = @cluster.list_trash(params[:page_cat] || 1, Pagy::VARS[:items])
+    n3 = @init_trash["data"]["meta"]["pages"]["total"]
+    @trash_records = (n2*Pagy::VARS[:items])
+    total_page_trash = (1..@trash_records).to_a
+    @pagy_trash = Pagy.new(count: total_page_trash.count, page: params[:page_trash].present? ? params[:page_trash] : 1,
+                                page_param: :page_trash)
+    @list_trash = @init_trash["data"]["clusters"]
+
     @pages = { page: "index" }
     render "pages/clusters/index"
   end

@@ -484,57 +484,47 @@
 
         <div class="main-content tab-pane" id="trash">
           <div class="top ">
-            <div class="pagination-wrap">
-              <ul class="pagination">
-                <li class="page-item">
-                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" alt="Previous"></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active" aria-current="page">
-                  <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#"><img src="<%= asset_pack_path("views/assets/images/ic_arrow_right.svg")
-                      %>" alt="Next"></a>
-                </li>
-              </ul>
-            </div>
-            <div class="modal-wrap">
-              <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
-                Create Username <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>"
-                alt="add">
-              </button>
-
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <!-- <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5> -->
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <h3>Tambah Admin</h3>
-                      <div class="form-wrap">
-                        <label>User</label>
-                        <div class="form-group">
-                          <div class="form-group">
-                            <input type="Email" class="form-control" placeholder="adellapratitas7@gmail.com">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-solid-green" data-dismiss="modal">Tambah</button>
-                      <button type="button" class="btn btn-transparent">Cancel</button>
-                    </div>
-                  </div>
-                </div>
+            
+              <% link = pagy_link_proc(@pagy_trash) %>
+              <div class="pagination-wrap">
+                <ul class="pagination">
+                  <% if @pagy_trash.prev %>
+                  <li class="page-item">
+                    <%== link.call(@pagy_trash.prev, pagy_t('pagy.nav.prev')) %>
+                  </li>
+                  <% else  %>
+                  <li class="page-item disabled">
+                    <%== link.call(@pagy_trash.prev, pagy_t('pagy.nav.prev')) %>
+                  </li>
+                  <% end %>
+  
+                  <% @pagy_trash.series.each do |item| %>
+                  <% if item.is_a?(Integer) %>
+                  <li id="testtest" class="page-item">
+                    <%== link.call(item) %>
+                  </li>
+                  <% elsif item.is_a?(String) %>
+                  <li class="page-item active" aria-current="page">
+                    <%== link.call(item) %>
+                  </li>
+                  <% elsif item == :gap %>
+                  <li class="page-item disabled gap"><a href="#" class="page-link">
+                      <%== pagy_t('pagy.nav.gap') %></a></li>
+                  <% end %>
+                  <% end %>
+  
+                  <% if @pagy_trash.next %>
+                  <li class="page-item">
+                    <%== link.call(@pagy_trash.next, pagy_t('pagy.nav.next')) %>
+                  </li>
+                  <% else %>
+                  <li class="page-item disabled">
+                    <%== link.call(@pagy_trash.next, pagy_t('pagy.nav.next')) %>
+                  </li>
+                  <% end %>
+                </ul>
               </div>
-            </div>
+
           </div>
           <div class="content">
             <span class="display-desc">
@@ -555,51 +545,27 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td class="number bold">1</td>
-                    <td class="name bold"><a href="detail-janji-politik.html"> <img src="<%= asset_pack_path("views/assets/images/profile.jpg")
-                          %>">Universitas Gajah Mada</a></td>
-                    <td class="name bold">Nurlela Ahmad </td>
-                    <td>Pendidikan</td>
-                    <td>21/10/2023</td>
-                    <td>
-                      <button class="dropdown-toggle" type="button" id="dropdown-active" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdown-active">
-                        <a class="dropdown-item" href="#">Lihat</a>
-                        <a class="dropdown-item" href="#">Hapus</a>
-                      </div>
-                    </td>
-                  </tr>
-                  <% if @list_cluster %>
-                  <% @list_cluster.each_with_index do |item, index| %>
-                  <tr>
-                    <% if !item["category"].nil? %>
-                    <td>
-                      <%= index += 1 %>
-                    </td>
-                    <td>
-                      <%= item["name"] %>
-                    </td>
-                    <td>Admin</td>
-                    <td>
-                      <%= item["category"]["name"] %>
-                    </td>
-                    <td>Created at</td>
-                    <td>
-                      <%= link_to "Show", cluster_path(item["id"]) %>
-                    </td>
-                    <td>
-                      <%= link_to "Delete", cluster_path(item["id"]), method: :delete,
-                                    data: { confirm: 'Are you sure?' } %>
-                    </td>
-                    <% end %>
-                  </tr>
+                  <% @list_trash.each_with_index do |item, index| %>
+                    <tr>
+                      <td class="number bold">
+                        <%= ((params[:page_trash].present? ? params[:page_trash].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %>
+                      </td>
+                      <td class="name bold"><a href=""> <img src="<%= item["image"] %>"><%= item["name"] %></a></td>
+                      <td class="name bold"><%= item["requester"]["full_name"] %></td>
+                      <td><%= item["category"]["name"] %></td>
+                      <td>21/10/2023</td>
+                      <td>
+                        <button class="dropdown-toggle" type="button" id="dropdown-active" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                          <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdown-active">
+                          <a class="dropdown-item" href="#">Lihat</a>
+                          <a class="dropdown-item" href="#">Hapus</a>
+                        </div>
+                      </td>
+                    </tr>
                   <% end %>
-                  <% end %>
-
                 </tbody>
               </table>
             </div>
