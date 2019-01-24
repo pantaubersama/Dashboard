@@ -22,8 +22,8 @@
             <%= link_to 'List Admin', users_list_admin_path, class: "sub-nav-item nav-link" %>
             <%= link_to 'List User', users_list_user_path, class: "sub-nav-item nav-link" %>
             <%= link_to 'List User Cluster',
-                        users_list_user_cluster_path,
-                        class: "sub-nav-item nav-link list_user_cluster #{action_name == 'list_user_cluster' ? 'active' : ''}" %>
+                        user_clusters_path,
+                        class: "sub-nav-item nav-link user_clusters_path #{controller_name == 'user_clusters' ? 'active' : ''}" %>
             <%= link_to 'List Cluster',
                         clusters_path,
                         class: "sub-nav-item nav-link #{controller_name == 'clusters' ? 'active' : ''}" %>
