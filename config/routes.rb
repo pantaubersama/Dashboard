@@ -43,7 +43,12 @@ Rails.application.routes.draw do
 
   resources :banner, only: [:edit, :update, :show, :index]
   resources :political_party
-  resources :badges
+  resources :badges do
+    collection do
+      get 'grant', to: 'badges#grant_badge', as: 'grant_badge'
+      post 'grant', to: 'badges#grant_badge_user'
+    end
+  end
   resources :questions
 
   # admins

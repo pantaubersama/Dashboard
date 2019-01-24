@@ -14,7 +14,6 @@ import 'jquery-ujs'
 import 'bootstrap'
 // import './modernizr'
 import '@fortawesome/fontawesome-free/js/all.js'
-
 import Rails from 'rails-ujs'
 
 Rails.start();
