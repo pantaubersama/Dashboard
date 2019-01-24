@@ -40,8 +40,8 @@ class Api::Auth::Badge < InitApiAuth
       body: {
         name: name,
         description: description,
-        image: image,
-        image_gray: image_gray,
+        image: File.new(image.path),
+        image_gray: File.new(image_gray.path),
         position: position,
         code: code,
         namespace: namespace
