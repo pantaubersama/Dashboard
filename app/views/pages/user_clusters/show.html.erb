@@ -1,0 +1,210 @@
+<div class="d-flex main-wrapper">
+  <%= render("components/sidebar") %>
+  <div class="main-wrapper">
+    <main class="main col-md-10 offset-md-2" role="main">
+      <header class="header" role="banner">
+        <%= render("components/dropdown_profile") %>
+      </header>
+      <div class="main-content">
+        <div class="top">
+          <div class="btn-back">
+            <%= link_to request.referer do %>
+              <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+            <% end %>
+          </div>
+        </div>
+        <div class="content">
+          <span class="display-desc">
+            <p>
+            </p>
+          </span>
+          <div class="bg-white detail-profile">
+            <div class="card">
+              <span class="profile-image">
+                <%= image_tag @detail_user_cluster['avatar']['medium_square']['url'] unless  @detail_user_cluster['avatar']['medium_square']['url'].nil? %>
+              </span>
+              <div class="right-desc">
+              </div>
+            </div>
+
+            <div class="card-form">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Nama Depan</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" value="<%= @detail_user_cluster['full_name']%>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Email</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" value="<%= @detail_user_cluster['email']%>">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Nama Belakang</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" value="<%= @detail_user_cluster['full_name']%>">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Username</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" value="<%= @detail_user_cluster['username']%>">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Status</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" value="<%= @detail_user_cluster['status']%>">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-form">
+              <h4 class="title">Biodata Pantau Bersama</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Alamat</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" value="<%= @detail_user_cluster['location']%>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Pendidikan</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" value="<%= @detail_user_cluster['education']%>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Tentang detail_user_cluster</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <textarea type="Email" class="form-control" placeholder=""><%= @detail_user_cluster['about'] %></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Pekerjaan</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" value="<%= @detail_user_cluster['occupation']%>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Cluster</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" value="<%= @detail_user_cluster['cluster']['name'] unless @detail_user_cluster['cluster'].nil? %>">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-form">
+              <h4 class="title">Data Lapor</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Tempat Lahir</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" value="<%= @detail_user_cluster['informant']['pob'] %>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Jenis Kelamin</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" value="<%= @detail_user_cluster['informant']['gender_str']%>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Kewarganegaraan</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" value="<%= @detail_user_cluster['informant']['nationality']%>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>No KTP</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" value="<%= @detail_user_cluster['informant']['identity_number'] %>">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Tanggal Lahir</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Tanggal Lahir" class="form-control" value="<%= @detail_user_cluster['informant']['dob'] %>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Pekerjaan Pelapor</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" value="<%= @detail_user_cluster['informant']['occupation']%>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>No Telepon</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" value="<%= @detail_user_cluster['informant']['phone_number'] %>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Alamat Lengkap</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <textarea type="Email" class="form-control" value=""><%= @detail_user_cluster['informant']['address']%></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+    </main>
+  </div>
+</div>
+<%= render("components/footer") %>
