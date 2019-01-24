@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   resources :political_party
   resources :badges
   resources :questions
+  resources :quiz
 
   # admins
   get '/admins', to: 'admins#index', as: 'users_list_admin'
