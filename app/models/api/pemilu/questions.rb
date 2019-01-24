@@ -15,4 +15,12 @@ class Api::Pemilu::Questions < InitApiPemilu
     }
     self.class.get("/pendidikan_politik/v1/questions", options)
   end
+
+  def find id
+    options = {
+      headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}
+    }
+    self.class.get("/pendidikan_politik/v1/questions/#{id}", options)
+  end
+
 end
