@@ -47,6 +47,11 @@
             </ul>
           </div>
           <div class="modal-wrap">
+            <a href="<%= grant_badge_badges_path %>">
+              <button type="button" class="btn btn-green">
+                Grant Badge <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
+              </button>
+            </a>
             <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
               Create Badge <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
             </button>
@@ -64,26 +69,16 @@
                   <div class="modal-body">
                     <h3>Tambah Badge</h3>
                     <%= form_tag(badges_path, method: :post, multipart: true) do %>
-                    <div class="form-wrap">
-                      <label>Upload Image</label>
-                      <div class="form-group">
-                        <div class="upload-image">
-                          <div class="custom-button">
-                            <label class="upload-img" for="file-input">
-                              <img src="<%= asset_pack_path("views/assets/images/ic_img.svg") %>" alt="add">
-                            </label>
-                            <%= file_field_tag :image, id: 'file-input', accept: 'image/*'  %>
-                          </div>
-                          <span>
-                            <p>Upload PNG/JPG</p>
-                            <p>Maks 512x512</p>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
                     <div class="row">
                       <div class="col-md-6 col-xs-12">
-
+                        <div class="form-wrap">
+                          <label>Image</label>
+                          <div class="form-group">
+                            <div class="form-group">
+                              <%= file_field_tag :image, id: 'file-input', accept: 'image/*'  %>
+                            </div>
+                          </div>
+                        </div>
                         <div class="form-wrap">
                           <label>Nama Badge</label>
                           <div class="form-group">
@@ -100,34 +95,49 @@
                             </div>
                           </div>
                         </div>
-                        <div class="form-wrap">
-                          <label>Code</label>
-                          <div class="form-group">
-                            <div class="form-group">
-                              <%= text_field_tag :code, '', class: 'form-control', placeholder: 'Code', require:'require' %>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-wrap">
-                          <label>Namespace</label>
-                          <div class="form-group">
-                            <div class="form-group">
-                              <%= select_tag(:namespace, options_for_select([
-                                ['badge_janji_politik', 'badge_janji_politik'],
-                                ['badge_tanya', 'badge_tanya'],
-                                ['badge_tanya_interaksi', 'badge_tanya_interaksi'],
-                                ['badge_kuis', 'badge_kuis'],
-                                ['badge_lapor', 'badge_lapor'],
-                                ['badge_profile', 'badge_profile'],
-                                ['badge_relawan', 'badge_relawan'],
-                                ['badge_pantau_bersama', 'badge_pantau_bersama'],
-                                ])) %>
-                            </div>
-                          </div>
-                        </div>
-
                       </div>
                       <div class="col-md-6 col-xs-12">
+                        <div class="form-wrap">
+                          <label>Image Gray</label>
+                          <div class="form-group">
+                            <div class="form-group">
+                              <%= file_field_tag :image_gray, id: 'file-input', accept: 'image/*'  %>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-wrap">
+                          <label>Position</label>
+                          <div class="form-group">
+                            <div class="form-group">
+                              <%= text_field_tag :position,'', class: 'form-control', placeholder: 'Position', require: 'require' %>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-wrap">
+                            <label>Code</label>
+                            <div class="form-group">
+                              <div class="form-group">
+                                <%= text_field_tag :code, '', class: 'form-control', placeholder: 'Code', require:'require' %>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-wrap">
+                            <label>Namespace</label>
+                            <div class="form-group">
+                              <div class="form-group">
+                                <%= select_tag(:namespace, options_for_select([
+                                  ['badge_pantau_bersama', 'badge_pantau_bersama'],
+                                  ['badge_janji_politik', 'badge_janji_politik'],
+                                  ['badge_tanya', 'badge_tanya'],
+                                  ['badge_tanya_interaksi', 'badge_tanya_interaksi'],
+                                  ['badge_kuis', 'badge_kuis'],
+                                  ['badge_lapor', 'badge_lapor'],
+                                  ['badge_profile', 'badge_profile'],
+                                  ['badge_relawan', 'badge_relawan'],
+                                  ])) %>
+                              </div>
+                            </div>
+                          </div>
                       </div>
 
                     </div>
@@ -160,8 +170,7 @@
                   <th>No</th>
                   <th>Nama</th>
                   <th>Deskripsi</th>
-                  <th>Oleh</th>
-                  <th>Create At</th>
+                  <th>Position</th>
                   <th></th>
                 </tr>
               </thead>
@@ -178,8 +187,7 @@
                     <% end %>
                   </td>
                   <td> <%= badge['description'] %> </td>
-                  <td>Nurlela Ahmad</td>
-                  <td>21/10/23</td>
+                  <td><%= badge['position'] %></td>
                   <td>
                     <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
                       aria-expanded="false">

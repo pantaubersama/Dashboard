@@ -40,6 +40,13 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    request = @question_api.find(params[:id])
+    if request.code == 404
+      flash[:warning] = "Not Found"
+      redirect_to questions_path
+    elsif request.code == 200
+      @question = request['data']['question']
+    end
   end
 
   def create

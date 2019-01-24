@@ -83,7 +83,7 @@
                     <td class="number bold">
                       <%= ((params[:page].present? ? params[:page].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %>
                     </td>
-                    <td class="name bold"><a href="edit_pertanyaan">
+                    <td class="name bold"><a href="<%= question_path(question['id']) %>">
                     <%= image_tag question['user']['avatar']['thumbnail_square']['url'] if question['user']['avatar']['thumbnail_square']['url'].present?  %>
                     <%= question['user']['full_name'] %>
                       </a></td>
@@ -103,7 +103,7 @@
                         <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
                       </button>
                       <div class="dropdown-menu" aria-labelledby="action">
-                        <a class="dropdown-item" href="edit_pertanyaan">Lihat</a>
+                        <a class="dropdown-item" href="<%= question_path(question['id']) %>">Lihat</a>
                         <a class="dropdown-item" href="edit_pertanyaan">Edit</a>
                         <a class="dropdown-item" href="#">Hapus</a>
                       </div>

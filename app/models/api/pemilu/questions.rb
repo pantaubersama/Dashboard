@@ -1,7 +1,7 @@
 class Api::Pemilu::Questions < InitApiPemilu
   def all(page=1, per_page=30, q="*", o="and", m="word_start", order_by="created_at", direction="desc", filter_by="")
     options = {
-      headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
+      headers: {Authorization: "#{RequestStore.store[:my_api_token]}"},
       query: {
         page: page,
         per_page: per_page,
@@ -15,4 +15,12 @@ class Api::Pemilu::Questions < InitApiPemilu
     }
     self.class.get("/pendidikan_politik/v1/questions", options)
   end
+
+  def find id
+    options = {
+      headers: {Authorization: "#{RequestStore.store[:my_api_token]}"}
+    }
+    self.class.get("/pendidikan_politik/v1/questions/#{id}", options)
+  end
+
 end

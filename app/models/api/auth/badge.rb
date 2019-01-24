@@ -4,7 +4,7 @@ class Api::Auth::Badge < InitApiAuth
         order_by: orderby,
         direction: direction,
         page: page,
-        per_page: perpage
+        per_page: perpage,
       }
     }
     self.class.get('/v1/badges', options)
@@ -16,8 +16,8 @@ class Api::Auth::Badge < InitApiAuth
       body: {
         name: name,
         description: description,
-        image: File.new(image.path),
-        image_gray: File.new(image_gray.path),
+        image: (File.new(image.path) if image.present?),
+        image_gray: (File.new(image_gray.path) if image_gray.present?),
         position: position,
         code: code,
         namespace: namespace
@@ -27,7 +27,10 @@ class Api::Auth::Badge < InitApiAuth
   end
 
   def find id
-    self.class.get("/v1/badges/#{id}")
+    options = {
+      headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}
+    }
+    self.class.get("/v1/badges/#{id}", options)
   end
 
   def update(id, name, description, image, image_gray, position, code, namespace)
@@ -36,8 +39,8 @@ class Api::Auth::Badge < InitApiAuth
       body: {
         name: name,
         description: description,
-        image: image,
-        image_gray: image_gray,
+        image: (File.new(image.path) if image.present?),
+        image_gray: (File.new(image_gray.path) if image_gray.present?),
         position: position,
         code: code,
         namespace: namespace
@@ -52,6 +55,17 @@ class Api::Auth::Badge < InitApiAuth
     }
     self.class.delete("/dashboard/v1/badges/#{id}", options)
   end
+
+  def grant_badge_user(badge_id, user_id)
+    options = {
+      headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
+      body: {
+        user_id: user_id
+      }
+    }
+    self.class.post("/dashboard/v1/badges/#{badge_id}/grant", options)
+  end
+
 
 
 

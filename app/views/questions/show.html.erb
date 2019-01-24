@@ -1,0 +1,65 @@
+<div class="d-flex main-wrapper">
+  <%= render("components/sidebar") %>
+  <div class="main-wrapper">
+    <main class="main col-md-10 offset-md-2" role="main">
+      <%= render("components/header") %>
+      <div class="main-content janji-politik">
+        <div class="top">
+          <div class="btn-back">
+            <a href="#">
+              <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+            </a>
+          </div>
+        </div>
+        <div class="content">
+          <div class="bg-white detail-profile">
+            <div class="card">
+              <span class="profile-image">
+                <img src="<%= @question['user']['avatar']['thumbnail_square']['url'] if @question['user']['avatar']['thumbnail_square']['url'].present?  %>">
+              </span>
+              <div class="right-desc">
+                <p>Created at : <%= @question['created_at'] %></p>
+                <button class="btn btn-solid-green">EDIT</button>
+              </div>
+            </div>
+
+            <div class="card-form">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Nama</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" value="<%= @question['user']['full_name'] %>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Pertanyaan</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <textarea type="text" class="form-control"><%= @question['body'] %></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Status</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" value="<%= @question['user']['verified'] ? 'VERIFIKASI' : 'BELUM VERIFIED'  %>">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<%= render("components/footer") %>

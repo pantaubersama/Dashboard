@@ -37,7 +37,7 @@ class BadgesController < ApplicationController
       name = params[:name],
       description = params[:description].present? ? params[:description] : '',
       image = params[:image].present? ? params[:image] : '',
-      image_gray = params[:image].present? ? params[:image] : '',
+      image_gray = params[:image_gray].present? ? params[:image_gray] : '',
       position = params[:position].present? ? params[:position] : '',
       code = params[:code].present? ? params[:code] : '',
       namespace = params[:namespace].present? ? params[:namespace] : ''
@@ -61,7 +61,7 @@ class BadgesController < ApplicationController
                                 name = params[:name],
                                 description = params[:description].present? ? params[:description] : '',
                                 image = params[:image].present? ? params[:image] : '',
-                                image_gray = params[:image].present? ? params[:image] : '',
+                                image_gray = params[:image_gray].present? ? params[:image_gray] : '',
                                 position = params[:position].present? ? params[:position] : '',
                                 code = params[:code].present? ? params[:code] : '',
                                 namespace = params[:namespace].present? ? params[:namespace] : ''
@@ -94,6 +94,33 @@ class BadgesController < ApplicationController
       redirect_to badges_path
     end
   end
+
+  def grant_badge
+    request = @badge_api.all(
+      orderby="position",
+      direction="asc",
+    )
+    @badges = request["data"]["badges"]
+  end
+
+  def grant_badge_user
+    user = UserPantauAuth.where(email: params[:email]).first
+    if user.present?
+      request = @badge_api.grant_badge_user(params[:badge_id], user.id)
+      if request.code == 200 || request.code == 201
+        flash[:success] = "Grant Sucessful"
+        redirect_to badges_path
+      else
+        flash[:warning] = "Something wrong #{request}"
+        redirect_to badges_path
+      end
+    else
+      flash[:warning] = "User Not Found"
+      redirect_to grant_badge_badges_path
+    end
+  end
+
+
 
   private
     def set_badge_api

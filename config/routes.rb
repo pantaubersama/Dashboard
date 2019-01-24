@@ -37,16 +37,20 @@ Rails.application.routes.draw do
   end
 
   scope '/pendidikan_politik' do
-    get 'edit_pertanyaan', to: 'pendidikan_politik#edit_pertanyaan', as: 'pendidikan_politik_edit_pertanyaan'
     get 'edit_quiz', to: 'pendidikan_politik#edit_quiz', as: 'pendidikan_politik_edit_quiz'
-    get 'list_pertanyaan', to: 'pendidikan_politik#list_pertanyaan', as: 'pendidikan_politik_list_pertanyaan'
     get 'list_quiz', to: 'pendidikan_politik#list_quiz', as: 'pendidikan_politik_list_quiz'
   end
 
   resources :banner, only: [:edit, :update, :show, :index]
   resources :political_party
-  resources :badges
+  resources :badges do
+    collection do
+      get 'grant', to: 'badges#grant_badge', as: 'grant_badge'
+      post 'grant', to: 'badges#grant_badge_user'
+    end
+  end
   resources :questions
+  resources :quiz
 
   # admins
   get '/admins', to: 'admins#index', as: 'users_list_admin'
