@@ -111,7 +111,7 @@
                     <%= index + 1 %>
                   </td>
                   <td class="name bold">
-                    <%= image_tag admin.avatar_url unless admin.avatar_url.nil? %>
+                    <%= image_tag admin.avatar.thumbnail_square.url unless admin.avatar.thumbnail_square.url.nil? %>
                     <%= admin.full_name %>
                   </td>
                   <td>

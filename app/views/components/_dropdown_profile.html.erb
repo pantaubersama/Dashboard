@@ -1,21 +1,21 @@
 <div class="dropdown profile">
-  <button class="dropdown-toggle" type="button" id="profile" data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false">
-    <%= image_tag session[:avatar_admin] %>
+  <button class="dropdown-toggle" type="button" id="profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <%= image_tag session[:avatar_admin] unless session[:avatar_admin].nil?  %>
     <div class="desc">
-      <h5><%= current_user.name %></h5>
+      <h5>
+        <%= current_user.name %>
+      </h5>
       <p>Admin</p>
     </div>
     <span class="icon">
-                                    <img src="<%= asset_pack_path("views/assets/images/ic_expand.svg") %>">
-                                </span>
+      <img src="<%= asset_pack_path("views/assets/images/ic_expand.svg") %>">
+    </span>
   </button>
   <div class="dropdown-menu" aria-labelledby="profile">
     <a class="dropdown-item" href="#">Profile</a>
     <a class="dropdown-item" href="#">Setting</a>
     <% if user_signed_in? %>
-     <%= link_to 'Logout', destroy_user_session_path, {class: 'dropdown-item'} %>
+    <%= link_to 'Logout', destroy_user_session_path, {class: 'dropdown-item'} %>
     <% end %>
   </div>
 </div>
