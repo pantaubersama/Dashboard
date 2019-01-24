@@ -74,9 +74,9 @@
                     <div class="dropdown-menu" aria-labelledby="action">
                       <a id="testing2" class="dropdown-item" href="<%= politic_path(item["id"]) %>">Lihat</a>
                       <!-- <a class="dropdown-item" href="<%#= edit_politic_path(item["id"]) %>">Edit</a> -->
-                      <a class="dropdown-item" data-toggle="modal" data-target="#edit_politics_<%=item["id"]%>">Edit</a>
+                      <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal<%=item["id"]%>">Edit</a>
                       <%= link_to "Delete", politic_path(item["id"]), method: :delete, class: "dropdown-item" %>
-                      <div class="modal fade" id="edit_politics_<%=item["id"]%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal fade" id="exampleModal<%=item["id"]%>" tabindex="-1" role="dialog" aria-labelledby="exampleModal<%=item["id"]%>Label" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -89,7 +89,7 @@
                               <h3>Edit Janji Politik</h3>
                               <div class="row">
                                 <div class="sub-profile">
-                                  <span class="profile-image"><img src="assets/img/profile.jpg"></span>
+                                  <span class="profile-image"><img src="<%= asset_pack_path("views/assets/images/profile.jpg") %>></span>
                                   <span class="name">
                                     <h5>Nama   :  Aniah Muanjani</h5>
                                     <p>Cluster :  Partai Kuning Ceria</p>
@@ -110,18 +110,18 @@
                                       <textarea type="Email" class="form-control with-toolbar" placeholder="adellapratitas7@gmail.com"></textarea>
                                       <div class="toolbar-text full">
                                         <ul>
-                                          <li><span class="icon"><img src="assets/img/ic_bold.svg"></span></li>
-                                          <li><span class="icon"><img src="assets/img/ic_italic.svg"></span></li>
-                                          <li><span class="icon"><img src="assets/img/ic_underline.svg"></span></li>
-                                          <li><span class="icon"><img src="assets/img/ic_align-left.svg"></span></li>
-                                          <li><span class="icon"><img src="assets/img/ic_align-center.svg"></span></li>
-                                          <li><span class="icon"><img src="assets/img/ic_align-right.svg"></span></li>
-                                          <li><span class="icon"><img src="assets/img/ic_justify.svg"></span></li>
-                                          <li><span class="icon"><img src="assets/img/ic_bulet.svg"></span></li>
-                                          <li><span class="icon"><img src="assets/img/ic_numbering.svg"></span></li>
-                                          <li><span class="icon"><img src="assets/img/ic_left.svg"></span></li>
-                                          <li><span class="icon"><img src="assets/img/ic_right.svg"></span></li>
-                                          <li><span class="icon"><img src="assets/img/ic_link-t.svg"></span></li>
+                                          <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bold.svg") %>"></span></li>
+                                          <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_italic.svg") %>"></span></li>
+                                          <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_underline.svg") %>"></span></li>
+                                          <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-left.svg") %>"></span></li>
+                                          <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-center.svg") %>"></span></li>
+                                          <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-right.svg") %>"></span></li>
+                                          <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_justify.svg") %>"></span></li>
+                                          <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bulet.svg") %>"></span></li>
+                                          <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_numbering.svg") %>"></span></li>
+                                          <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_left.svg") %>"></span></li>
+                                          <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_right.svg") %>"></span></li>
+                                          <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_link-t.svg") %>"></span></li>
                                         </ul>
                                       </div>
                                     </div>
