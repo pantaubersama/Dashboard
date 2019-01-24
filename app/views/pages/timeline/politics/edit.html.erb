@@ -1,8 +1,74 @@
-<h1>Edit</h1>
+<div class="d-flex main-wrapper">
+  <%= render("components/sidebar") %>
+  <div class="main-wrapper">
+    <main class="main col-md-10 offset-md-2" role="main">
+      <%= render("components/header") %>
+      <div class="main-content janji-politik">
+        <%= form_tag(politic_path(@politic["id"]), method: :put, multipart: true) do %>
+          <div class="top">
+            <div class="btn-back">
+              <a href="<%= politics_path %>">
+                <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+              </a>
+            </div>
+          </div>
+          <div class="content">
+                          <span class="display-desc">
+                            <p>
+                                <!-- Displaying Content 1 - 30 of 500 in total -->
+                            </p>
+                          </span>
+            <div class="bg-white detail-profile">
+              <div class="card">
+                <div class="sub-profile">
+                  <span class="profile-image"><img src="<%= @politic["image"]["url"] %>"></span>
+                  <span class="name">
+                                      <h5>Nama   :  <%= @politic["creator"]["full_name"] %></h5>
+                                      <p>Cluster :  <%= @politic["creator"]["cluster"].present? ? @politic["creator"]["cluster"]["name"] : "Belum Ada" %></p>
 
-<%= form_tag(politic_path(@politic["id"]), method: :put, multipart: true) do %>
-  <%= text_field_tag(:title, @politic["title"]) %><br>
-  <%= text_field_tag(:body, @politic["body"]) %><br>
-  <%= file_field_tag(:image, @politic["image"]) %>
-  <%= submit_tag %>
-<% end %>
+                                  </span>
+                                  <%= file_field_tag(:image, @politic["image"]) %>
+
+                </div>
+                <div class="right-desc">
+                  <p>Created at : <%= @politic["created_at_in_word"]["id"] %></p>
+                  <%= button_to "EDIT", edit_politic_path(@politic), method: :get, class: "btn btn-solid-green" %>
+                  <%#= submit_tag %>
+                </div>
+              </div>
+
+              <div class="card-form">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-wrap">
+                      <label>Judul</label>
+                      <div class="form-group">
+                        <div class="form-group">
+                          <!-- <textarea type="Email" class="form-control" hresize placeholder="@Yudho"><%= @politic["title"] %></textarea> -->
+                          <%= text_field_tag(:title, @politic["title"]) %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-wrap">
+                      <label>Deskripsi</label>
+                      <div class="form-group">
+                        <div class="form-group">
+                            <!-- <textarea type="Email" class="form-control" hresize placeholder="Yogyakarta"><%= @politic["body"] %></textarea> -->
+                            <%= text_field_tag(:body, @politic["body"]) %><br>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </main>
+  </div>
+</div>
+<%= render("components/footer") %>
+
