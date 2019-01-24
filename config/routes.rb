@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     end
   end
   resources :questions
+  resources :quiz
 
   # admins
   get '/admins', to: 'admins#index', as: 'users_list_admin'
