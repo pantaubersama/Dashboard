@@ -2,14 +2,9 @@ class Api::Pemilu::JanjiPolitik < InitApiPemilu
   include ActiveModel::Model
   attr_accessor :id, :filter, :q, :cluster_id, :title, :body, :image
 
-  def get_politics
-    @options = { headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
-    self.class.get("/linimasa/v1/janji_politiks", @options)
-  end
-
-  def filter_politics(filter, q, cluster_id)
-    @options = { query: {filter_by: filter, q: q, cluster_id: cluster_id}, 
-                 headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
+  def get_politics(page, per_page, filter, q, cluster_id)
+    @options = { query: {page: page, per_page: per_page, filter_by: filter, q: q, cluster_id: cluster_id},
+                 headers: {Accept: "Application/json", Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
     self.class.get("/linimasa/v1/janji_politiks", @options)
   end
 
@@ -18,8 +13,9 @@ class Api::Pemilu::JanjiPolitik < InitApiPemilu
     self.class.get("/linimasa/v1/janji_politiks/#{id}", @options)
   end
 
-  def get_trashes
-    @options = { headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
+  def get_trashes(page, per_page)
+    @options = {query: {page: page, per_page: per_page}, 
+                headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
     self.class.get("/linimasa/v1/janji_politiks/trashes", @options)
   end
 

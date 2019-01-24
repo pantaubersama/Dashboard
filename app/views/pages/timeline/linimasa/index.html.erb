@@ -103,7 +103,7 @@
                     <div class="content">
                         <span class="display-desc">
                           <p>
-                              Displaying Content 1 - 100 of <%= @total_linimasa %> in total
+                              Displaying Content 1 - 30 of <%= @total_tweets %> in total
                           </p>
                         </span>
                         <div class="table">
@@ -120,7 +120,7 @@
                                 <tbody>
                                 <% @item_tweets.each_with_index do |item, index| %>
                                     <tr>
-                                        <td class="number bold"><%= (@number1.to_i - 1) * 30 + index+1 %></td>
+                                        <td class="number bold"><%= ((params[:page_tweet].present? ? params[:page_tweet].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %></td>
                                         <td class="name bold"><a href="<%= linimasa_path(item["id"]) %>"><%= item["team"]["title"] %></a></td>
                                         <td><%= item["account"]["username"] %></td>
                                         <td><%= item["source"]["text"].truncate(60) %></td>
@@ -131,7 +131,7 @@
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="action">
                                                 <a class="dropdown-item" href="<%= linimasa_path(item["id"]) %>">Lihat</a>
-                                                <a class="dropdown-item" href="#">Delete</a>
+                                                <%= link_to "Delete", linimasa_path(item["id"]), method: :delete, class: "dropdown-item" %>
                                             </div>
                                         </td>
                                     <tr>
@@ -139,54 +139,52 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="filter">
-                            <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
-                               aria-controls="collapseExample">
-                                <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
-                                <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
-                            </a>
-                            <div class="collapse filter-form">
-                                <div class="card card-body">
-                                    <h4>Filter</h4>
-                                    <div class="form-wrap">
-                                        <label>Status</label>
-                                        <div class="form-group">
-                                            <select class="form-control">
-                                                <option>Terverifikasi</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-wrap">
-                                        <label>User</label>
-                                        <div class="form-group">
+
+                        <%= form_tag(linimasa_index_path, method: :get) do %>
+                            <div class="filter">
+                                <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
+                                   aria-controls="collapseExample">
+                                    <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
+                                    <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
+                                </a>
+                                <div id="filter" class="collapse filter-form">
+                                    <div class="card card-body">
+                                        <h4>Filter</h4>
+                                        <div class="form-wrap">
+                                            <label>Team</label>
                                             <div class="form-group">
-                                                <input type="nama" class="form-control" placeholder="Nama">
+                                                <select id="selected_filter" class="form-control" name="filter">
+                                                    <option value="team_all">Team All</option>
+                                                    <option value="team_id_1">Jokowi - Makruf</option>
+                                                    <option value="team_id_2">Prabowo - Sandi</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-wrap">
+                                            <label>Username</label>
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <input name="username" value="<%= params[:username] %>" type="nama" class="form-control" placeholder="Nama">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-wrap">
-                                    <label>Email</label>
-                                    <div class="form-group">
+                                    <div class="form-wrap">
+                                        <label>Isi</label>
                                         <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="luna@gmail.com">
+                                            <div class="form-group">
+                                                <textarea name="isi" class="form-control" rows="5" placeholder="Isi Tweet"><%= params[:isi] %></textarea>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-wrap">
-                                    <label>Cluster</label>
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            <input type="cluster" class="form-control" placeholder="Nama Cluster">
-                                        </div>
+                                    <div class="button-wrapper">
+                                      <button id="send" type="submit" class="btn btn-solid-green" data-dismiss="modal">Done</button>
+                                      <button id="reset" type="submit" class="btn btn-transparent">Reset</button>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        <% end %>
+
                     </div>
                 </div>
 
@@ -281,7 +279,7 @@
                                 <tbody>
                                 <% @item_trash.each_with_index do |item, index| %>
                                 <tr>
-                                    <td class="number bold"><%= (@number2.to_i - 1) * 30 + index+1 %></td>
+                                    <td class="number bold"><%= ((params[:page_trash].present? ? params[:page_trash].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %></td>
                                     <td class="name bold"><a href="detail-user.html"><%= item["team"]["title"] %></a></td>
                                     <td><%= item["account"]["username"] %></td>
                                     <td><%= item["source"]["text"] %></td>
@@ -422,7 +420,7 @@
                     <div class="content">
                                 <span class="display-desc">
                                   <p>
-                                      Displaying Content 1 - 100 of <%= @total_user %> in total
+                                      Displaying Content 1 - 30 of <%= @total_user %> in total
                                   </p>
                                 </span>
                         <div class="table">
@@ -440,7 +438,7 @@
                                 <tbody>
                                 <% @item_users.each_with_index do |item, index| %>
                                 <tr>
-                                    <td class="number bold"><%= (@number3.to_i - 1) * 30 + index+1 %></td>
+                                    <td class="number bold"><%= ((params[:page_user].present? ? params[:page_user].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %></td>
                                     <td class="name bold"><a href="detail-user.html"><%= item["team"]["title"] %></a></td>
                                     <td><%= item["keywords"] %></td>
                                     <td>100</td>
@@ -452,6 +450,7 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="action">
                                             <a class="dropdown-item" href="<%= detail_user_path(item["id"]) %>">Lihat</a>
+                                            <%= link_to "Delete", delete_user_path(item["id"]), method: :delete, class: "dropdown-item" %>
                                         </div>
                                     </td>
                                 <% end %>

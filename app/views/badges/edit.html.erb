@@ -1,0 +1,53 @@
+<div class="d-flex main-wrapper">
+  <%= render("components/sidebar") %>
+  <div class="main-wrapper">
+    <main class="main col-md-10 offset-md-2" role="main">
+      <header class="header" role="banner">
+        <%= render("components/dropdown_profile") %>
+      </header>
+      <div class="main-content">
+        <div class="top">
+          <div class="btn-back">
+            <%= link_to request.referer do %>
+            <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+            <% end %>
+          </div>
+        </div>
+        <div class="content">
+          <span class="display-desc">
+            <p>
+            </p>
+          </span>
+          <%= render("components/flash_message") %>
+          <div class="bg-white detail-profile">
+            <div class="card">
+              <span class="profile-image">
+              </span>
+              <div class="right-desc">
+              </div>
+            </div>
+            <%= form_tag(badge_path(@badge['id']), method: :put) do %>
+            <div class="card-form">
+              <div class="row">
+                <div class="form-wrap">
+                  <label for="">Nama</label>
+                  <%= text_field_tag :name, @badge['name'], class: 'form-control', placeholder: 'Nama Partai' %>
+                </div>
+                <div class="form-wrap">
+                  <label for="">Deskripsi</label>
+                  <%= text_area_tag :description, @badge['description'], class: 'form-control', placeholder: 'Deskripsi' %>
+                </div>
+                <div class="form-wrap">
+                  <label>Image</label>
+                  <%= file_field_tag :image  %>
+                </div>
+                <button class="btn btn-solid-green" type="submit"> Update</button>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+    </main>
+  </div>
+</div>
+<%= render("components/footer") %>

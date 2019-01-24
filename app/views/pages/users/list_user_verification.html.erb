@@ -68,7 +68,6 @@
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <!-- <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5> -->
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -81,7 +80,7 @@
                             <label>Email</label>
                             <div class="form-group">
                               <div class="form-group">
-                                <input type="Email" class="form-control" placeholder="Folder A">
+                                <input type="Email" class="form-control" placeholder="Email">
                               </div>
                             </div>
                           </div>
@@ -128,7 +127,7 @@
                             <label>No. KTP</label>
                             <div class="form-group">
                               <div class="form-group">
-                                <input type="Email" class="form-control" placeholder="Folder A">
+                                <input type="Email" class="form-control" placeholder="No KTP">
                               </div>
                             </div>
                           </div>
@@ -175,6 +174,13 @@
               <p>
               </p>
             </span>
+            <div class="col-md-12">
+              <% flash.each do |key, value| %>
+              <div class="alert alert-<%= key %>">
+                <%= value %>
+              </div>
+              <% end %>
+            </div>
             <div class="table">
               <table>
                 <thead>
@@ -192,7 +198,7 @@
                   <% @users_requested.each_with_index do |user, index| %>
                   <tr>
                     <td class="number bold">
-                      <%= index+1 %>
+                      <%= ((params[:page_user_requested].present? ? params[:page_user_requested].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %>
                     </td>
                     <td class="name bold">
                       <%= link_to  show_user_verification_path(user['id']) do %>
@@ -204,7 +210,7 @@
                       <%= user['email'] %>
                     </td>
                     <td>
-                      <%= user['sent_at_verification'] %>
+                      <%= user['sent_at_verification'].nil? ? '' : Date.parse(user['sent_at_verification']) %>
                     </td>
                     <td class="image">
                       <% if user['verified'] %>
@@ -240,7 +246,7 @@
                       <label>User</label>
                       <div class="form-group">
                         <div class="form-group">
-                          <%= text_field_tag :nama_ditunda, "", class: 'form-control', placeholder: 'Nama' %>
+                          <%= text_field_tag :nama_ditunda, params[:nama_ditunda].present? ? params[:nama_ditunda] : '', class: 'form-control', placeholder: 'Nama' %>
                         </div>
                       </div>
                     </div>
@@ -249,7 +255,7 @@
                     <label>Email</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <%= text_field_tag :email_ditunda, "", class: 'form-control', placeholder: 'yusuf@extrainteger.com' %>
+                        <%= text_field_tag :email_ditunda, params[:email_ditunda].present? ? params[:email_ditunda] : '', class: 'form-control', placeholder: '' %>
                       </div>
                     </div>
                   </div>
@@ -307,12 +313,12 @@
         </ul>
       </div>
       <div class="modal-wrap">
-        <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="btn btn-green" data-toggle="modal" data-target="#modalAddUserVerification">
           Tambah User Verification <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>"
           alt="add">
         </button>
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="modalAddUserVerification" tabindex="-1" role="dialog" aria-labelledby="modalAddUserVerificationLabel"
           aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -364,7 +370,7 @@
             <% @users_accepted.each_with_index do |user, index| %>
             <tr>
               <td class="number bold">
-                <%= index+1 %>
+                <%= ((params[:page_user_accepted].present? ? params[:page_user_accepted].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %>
               </td>
               <td class="name bold">
                 <%= link_to  show_user_verification_path(user['id']) do %>
@@ -376,7 +382,7 @@
                 <%= user['email'] %>
               </td>
               <td>
-                <%= user['sent_at_verification'] %>
+                <%= user['sent_at_verification'].nil? ? '' : Date.parse(user['sent_at_verification']) %>
               </td>
               <td>
                 <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -410,7 +416,7 @@
               <label>User</label>
               <div class="form-group">
                 <div class="form-group">
-                  <%= text_field_tag :nama_diterima, "", class: 'form-control', placeholder: 'Nama' %>
+                  <%= text_field_tag :nama_diterima, params[:nama_diterima].present? ? params[:nama_diterima] : '', class: 'form-control', placeholder: 'Nama' %>
                 </div>
               </div>
             </div>
@@ -419,7 +425,7 @@
             <label>Email</label>
             <div class="form-group">
               <div class="form-group">
-                <%= text_field_tag :email_diterima, "", class: 'form-control', placeholder: 'yusuf@extrainteger.com' %>
+                <%= text_field_tag :email_diterima, params[:email_diterima].present? ? params[:email_diterima] : '', class: 'form-control', placeholder: '' %>
               </div>
             </div>
           </div>
@@ -531,7 +537,7 @@
             <% @users_rejected.each_with_index do |user, index| %>
             <tr>
               <td class="number bold">
-                <%= index+1 %>
+                <%= ((params[:page_user_rejected].present? ? params[:page_user_rejected].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %>
               </td>
               <td class="name bold">
                 <%= link_to  show_user_verification_path(user['id']) do %>
@@ -543,7 +549,7 @@
                 <%= user['email'] %>
               </td>
               <td>
-                <%= user['sent_at_verification'] %>
+                <%= user['sent_at_verification'].nil? ? '' : Date.parse(user['sent_at_verification']) %>
               </td>
               <td>
                 <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -576,7 +582,7 @@
               <label>User</label>
               <div class="form-group">
                 <div class="form-group">
-                  <%= text_field_tag :nama_ditolak, "", class: 'form-control', placeholder: 'Nama' %>
+                  <%= text_field_tag :nama_ditolak, params[:nama_ditolak].present? ? params[:nama_ditolak] : '', class: 'form-control', placeholder: 'Nama' %>
                 </div>
               </div>
             </div>
@@ -585,7 +591,7 @@
             <label>Email</label>
             <div class="form-group">
               <div class="form-group">
-                <%= text_field_tag :email_ditolak, "", class: 'form-control', placeholder: 'yusuf@extrainteger.com' %>
+                <%= text_field_tag :email_ditolak, params[:email_ditolak].present? ? params[:email_ditolak] : '', class: 'form-control', placeholder: '' %>
               </div>
             </div>
           </div>

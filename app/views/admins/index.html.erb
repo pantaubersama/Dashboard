@@ -9,33 +9,42 @@
         <div class="top">
           <% link = pagy_link_proc(@pagy_admins) %>
           <div class="pagination-wrap">
-              <ul class="pagination">
-                  <% if @pagy_admins.prev %>
-                      <li class="page-item">
-                          <%== link.call(@pagy_admins.prev, pagy_t('pagy.nav.prev')) %>
-                      </li>
-                  <% else  %>
-                      <li class="page-item disabled">
-                          <%== link.call(@pagy_admins.prev, pagy_t('pagy.nav.prev')) %>
-                      </li>
-                  <% end %>
+            <ul class="pagination">
+              <% if @pagy_admins.prev %>
+              <li class="page-item">
+                <%== link.call(@pagy_admins.prev, pagy_t('pagy.nav.prev')) %>
+              </li>
+              <% else  %>
+              <li class="page-item disabled">
+                <%== link.call(@pagy_admins.prev, pagy_t('pagy.nav.prev')) %>
+              </li>
+              <% end %>
 
-                  <% @pagy_admins.series.each do |item| %>
-                      <% if item.is_a?(Integer) %>
-                          <li id="testtest" class="page-item"><%== link.call(item) %></li>
-                      <% elsif item.is_a?(String) %>
-                          <li class="page-item active" aria-current="page"><%== link.call(item) %></li>
-                      <% elsif item == :gap %>
-                          <li class="page-item disabled gap"><a href="#" class="page-link"><%== pagy_t('pagy.nav.gap') %></a></li>
-                      <% end %>
-                  <% end %>
+              <% @pagy_admins.series.each do |item| %>
+              <% if item.is_a?(Integer) %>
+              <li id="testtest" class="page-item">
+                <%== link.call(item) %>
+              </li>
+              <% elsif item.is_a?(String) %>
+              <li class="page-item active" aria-current="page">
+                <%== link.call(item) %>
+              </li>
+              <% elsif item == :gap %>
+              <li class="page-item disabled gap"><a href="#" class="page-link">
+                  <%== pagy_t('pagy.nav.gap') %></a></li>
+              <% end %>
+              <% end %>
 
-                  <% if @pagy_admins.next %>
-                      <li class="page-item"><%== link.call(@pagy_admins.next, pagy_t('pagy.nav.next')) %></li>
-                  <% else %>
-                      <li class="page-item disabled"><%== link.call(@pagy_admins.next, pagy_t('pagy.nav.next')) %></li>
-                  <% end %>
-              </ul>
+              <% if @pagy_admins.next %>
+              <li class="page-item">
+                <%== link.call(@pagy_admins.next, pagy_t('pagy.nav.next')) %>
+              </li>
+              <% else %>
+              <li class="page-item disabled">
+                <%== link.call(@pagy_admins.next, pagy_t('pagy.nav.next')) %>
+              </li>
+              <% end %>
+            </ul>
           </div>
           <div class="modal-wrap">
             <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
@@ -43,13 +52,11 @@
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                 aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <!-- <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5> -->
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -61,70 +68,76 @@
                       <label>User</label>
                       <div class="form-group">
                         <div class="form-group">
-                          <input type="email" class="form-control"
-                                 placeholder="adellapratitas7@gmail.com" name="email">
+                          <input type="email" class="form-control" placeholder="adellapratitas7@gmail.com" name="email">
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="modal-footer">
-                    <button type="submit" class="btn btn-solid-green" >Tambah
+                    <button type="submit" class="btn btn-solid-green">Tambah
                     </button>
                     <button type="button" class="btn btn-transparent" data-dismiss="modal">Cancel</button>
                   </div>
-                    <% end %>
+                  <% end %>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="content">
-                        <span class="display-desc">
-                          <p>
-                              Displaying Content 1 - <%= @item_admins.count %> of <%= @admins.count %> in total
-                          </p>
-                        </span>
+          <span class="display-desc">
+            <p>
+              Displaying Content 1 -
+              <%= @item_admins.count %> of
+              <%= @admins.count %> in total
+            </p>
+          </span>
           <div class="table">
             <table>
               <thead>
-              <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>Email</th>
-                <th>Create At</th>
-                <th></th>
-              </tr>
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Email</th>
+                  <th>Create At</th>
+                  <th></th>
+                </tr>
               </thead>
               <tbody>
 
-              <% @admins.each_with_index do |admin, index| %>
-              <tr>
-                <td class="number bold"><%= index + 1 %></td>
-                <td class="name bold">
-                <%= image_tag admin.avatar_url unless admin.avatar_url.nil? %>
-                <%= admin.full_name %>
-                </td>
-                <td><%= admin.email %></td>
-                <td><%= admin.created_at %></td>
-                <td>
-                  <button class="dropdown-toggle" type="button" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false">
-                    <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="action">
-                    <%= link_to 'Delete', delete_admin_path(admin), class: 'dropdown-item' %>
-                  </div>
-                </td>
-              </tr>
-              <% end %>
+                <% @admins.each_with_index do |admin, index| %>
+                <tr>
+                  <td class="number bold">
+                    <%= index + 1 %>
+                  </td>
+                  <td class="name bold">
+                    <%= image_tag admin.avatar.thumbnail_square.url unless admin.avatar.thumbnail_square.url.nil? %>
+                    <%= admin.full_name %>
+                  </td>
+                  <td>
+                    <%= admin.email %>
+                  </td>
+                  <td>
+                    <%= admin.created_at.strftime("%d-%m-%Y %H:%M:%S") %>
+                  </td>
+                  <td>
+                    <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                      aria-expanded="false">
+                      <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="action">
+                      <%= link_to 'Delete', delete_admin_path(admin), class: 'dropdown-item' %>
+                    </div>
+                  </td>
+                </tr>
+                <% end %>
 
 
               </tbody>
             </table>
           </div>
           <div class="filter">
-            <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
-               aria-controls="collapseExample">
+            <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample">
               <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
               <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
             </a>
@@ -132,11 +145,11 @@
               <div class="card card-body">
                 <h4>Filter</h4>
                 <div class="form-wrap">
-                <%= form_tag(users_list_admin_path, method: :get) do %>
-                  <label>User</label>
+                  <%= form_tag(users_list_admin_path, method: :get) do %>
+                  <label>Nama Admin</label>
                   <div class="form-group">
                     <div class="form-group">
-                      <%= text_field_tag :nama, "", class: 'form-control', placeholder: 'Nama' %>
+                      <%= text_field_tag :nama, params[:nama].present? ? params[:nama] : '', class: 'form-control', placeholder: 'Nama' %>
                     </div>
                   </div>
                 </div>
@@ -145,12 +158,13 @@
                 <label>Email</label>
                 <div class="form-group">
                   <div class="form-group">
-                    <%= text_field_tag :email, "", class: 'form-control', placeholder: 'yusuf@extrainteger.com' %>
+                    <%= text_field_tag :email, params[:email].present? ? params[:email] : '', class: 'form-control', placeholder: 'yusuf@extrainteger.com' %>
                   </div>
                 </div>
               </div>
               <button> Done</button>
-              <button data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample"> Cancel</button>
+              <button data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Cancel</button>
               <% end %>
 
             </div>
@@ -161,4 +175,3 @@
   </div>
 </div>
 <%= render("components/footer") %>
-
