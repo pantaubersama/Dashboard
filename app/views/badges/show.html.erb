@@ -1,0 +1,70 @@
+<div class="d-flex main-wrapper">
+  <%= render("components/sidebar") %>
+  <div class="main-wrapper">
+    <main class="main col-md-10 offset-md-2" role="main">
+      <header class="header" role="banner">
+        <%= render("components/dropdown_profile") %>
+      </header>
+      <div class="main-content">
+        <div class="top">
+          <div class="btn-back">
+            <%= link_to request.referer do %>
+              <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+            <% end %>
+          </div>
+        </div>
+        <div class="content">
+          <span class="display-desc">
+            <p>
+              <!-- Displaying Content 1 - 30 of 500 in total -->
+            </p>
+          </span>
+          <div class="bg-white detail-profile">
+            <div class="card">
+              <span class="profile-image">
+                <label>Badge</label>
+                <%= image_tag @badge['image']['thumbnail']['url'] unless @badge['image']['thumbnail']['url'].nil?  %>
+              </span>
+              <div class="right-desc">
+                <%= link_to edit_badge_path(@badge['id']) do %>
+                  <button class="btn btn-solid-green">EDIT</button>
+                <% end %>
+                <%= link_to badge_path(@badge['id']), method: :delete do %>
+                  <button class="btn btn-solid-green" style="background-color:red">Delete</button>
+                <% end %>
+
+              </div>
+            </div>
+
+            <div class="card-form">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Nama Badge</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <input type="Email" class="form-control" placeholder="Nama Badge" value="<%= @badge['name']%>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Deskripsi</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <Textarea class="form-control"><%= @badge['description'] %></Textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </main>
+</div>
+</div>
+<%= render("components/footer") %>

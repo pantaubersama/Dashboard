@@ -1,13 +1,9 @@
 class Api::Pemilu::Linimasa < InitApiPemilu
   attr_accessor :keywords, :team, :id, :filter, :q
 
-  def list_tweet
-    @options = { headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
-    self.class.get("/linimasa/v1/feeds/pilpres", @options)
-  end
-
-  def filter_tweet(filter, q)
-    @options = { query: {filter_by: filter, q: q}, headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
+  def list_tweet(page, per_page, filter, q)
+    @options = { query: {page: page, per_page: per_page, filter_by: filter, q: q},
+                 headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
     self.class.get("/linimasa/v1/feeds/pilpres", @options)
   end
 
@@ -24,8 +20,9 @@ class Api::Pemilu::Linimasa < InitApiPemilu
       })
   end
 
-  def get_user_list
-    @options = { headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
+  def get_user_list(page, per_page)
+    @options = { query: {page: page, per_page: per_page},
+                 headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
     self.class.get("/dashboard/v1/linimasa/crowling", @options)
   end
 
@@ -44,8 +41,9 @@ class Api::Pemilu::Linimasa < InitApiPemilu
     self.class.delete("/linimasa/v1/feeds", @options)
   end
 
-  def get_trash
-    @options = { headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
+  def get_trash(page, per_page)
+    @options = { query: {page: page, per_page: per_page},
+                 headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
     self.class.get("/linimasa/v1/feeds/trashes", @options)
   end
 

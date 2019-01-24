@@ -17,7 +17,7 @@
         <div class="main-content">
           <div class="top">
             <div class="btn-back">
-              <a href="">
+              <a href="<%= clusters_path %>">
                 <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
               </a>
             </div>
@@ -25,18 +25,17 @@
           <div class="content">
             <span class="display-desc">
               <p>
-                  <!-- Displaying Content 1 - 30 of 500 in total -->
               </p>
             </span>
             <div class="bg-white detail-profile">
               <div class="card">
                 <span class="profile-image">
                   <label>Gambar Cluster</label>
-                  <img src="<%= asset_pack_path("views/assets/images/profile.jpg") %>">
+                  <img src="<%= @cluster_detail.image %>">
                 </span>
                 <div class="right-desc">
                   <p>Created at : 21/10/2023</p>
-                  <button class="btn btn-solid-green">EDIT</button>
+                  <%= button_to "EDIT", edit_cluster_path(@cluster_detail), method: :get, class: "btn btn-solid-green" %>
                 </div>
               </div>
 
@@ -48,7 +47,7 @@
                       <label>Nama Cluster</label>
                       <div class="form-group">
                         <div class="form-group">
-                          <input type="Email" class="form-control" placeholder="UNIVERSITAS GADJAH MADA">
+                          <input type="Email" class="form-control" value="<%= @cluster_detail.name %>" placeholder="">
                         </div>
                       </div>
                     </div>
@@ -57,7 +56,7 @@
                       <label>Deskripsi</label>
                       <div class="form-group">
                         <div class="form-group">
-                          <Textarea type="Deskripsi" class="form-control" placeholder="andry@pantaubersama.co.id">Merupakan cluster yang berserk pada bidang pembelajaran tingkat lanjut. Lokasi di Yogyakarta</Textarea>
+                          <Textarea type="Deskripsi" class="form-control" placeholder="andry@pantaubersama.co.id"><%= @cluster_detail.description %></Textarea>
                         </div>
                       </div>
                     </div>
@@ -80,7 +79,7 @@
                           <label>Kategori</label>
                           <div class="form-group">
                               <div class="form-group">
-                                  <input type="Kategori" class="form-control" placeholder="Pendidikan">
+                                  <input type="Kategori" class="form-control" placeholder="" value="<%= @cluster_detail.category.name %>">
                                 </div>
                             </div>
                       </div>
@@ -88,7 +87,7 @@
                           <label>Admin</label>
                           <div class="form-group">
                               <div class="form-group">
-                                  <input type="Email" class="form-control" placeholder="Adella Prats">
+                                  <input type="Email" class="form-control" placeholder="" value="<%= @cluster_detail.requester.try(:full_name) %>">
                                 </div>
                             </div>
                       </div>

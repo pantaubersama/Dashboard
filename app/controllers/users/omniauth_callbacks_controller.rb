@@ -9,6 +9,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         :access_token => data_from_pantau_auth['credential']['access_token'],
         :refresh_token => data_from_pantau_auth['credential']['refresh_token']
       )
+      session[:avatar_admin] = data_from_pantau_auth['info']['avatar']['medium_square']['url']
       sign_in @user, event: :authentication
       set_flash_message(:notice, :success, kind: "Identitas") if is_navigational_format?
       redirect_to root_path

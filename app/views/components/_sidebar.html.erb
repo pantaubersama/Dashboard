@@ -22,8 +22,8 @@
             <%= link_to 'List Admin', users_list_admin_path, class: "sub-nav-item nav-link" %>
             <%= link_to 'List User', users_list_user_path, class: "sub-nav-item nav-link" %>
             <%= link_to 'List User Cluster',
-                        users_list_user_cluster_path,
-                        class: "sub-nav-item nav-link list_user_cluster #{action_name == 'list_user_cluster' ? 'active' : ''}" %>
+                        user_clusters_path,
+                        class: "sub-nav-item nav-link user_clusters_path #{controller_name == 'user_clusters' ? 'active' : ''}" %>
             <%= link_to 'List Cluster',
                         clusters_path,
                         class: "sub-nav-item nav-link #{controller_name == 'clusters' ? 'active' : ''}" %>
@@ -31,6 +31,12 @@
                         users_list_verification_path,
                         class: "sub-nav-item nav-link #{action_name == 'verification_list' ? 'active' : ''}" %>
             <a class="sub-nav-item nav-link" href="#">Promotor</a>
+            <%= link_to 'Banner',banner_index_path,
+              class: "sub-nav-item nav-link #{action_name == 'banner' ? 'active' : ''}" %>
+              <%= link_to 'Political Party',political_party_index_path,
+              class: "sub-nav-item nav-link " %>
+              <%= link_to 'Badge', badges_path,
+              class: "sub-nav-item nav-link " %>
           </div>
         </li>
         <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse" href="#collapseTimeline" role="button"
@@ -43,7 +49,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <a href="<%= pendidikan_politik_list_pertanyaan_path %>">
+          <a href="<%= questions_path %>">
             <img src="<%= asset_pack_path("views/assets/images/ic_book-black.svg") %>"> Pendidikan
           </a>
         </li>

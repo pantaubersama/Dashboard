@@ -92,6 +92,54 @@ class Api::Auth::User < InitApiAuth
   end
 
 
+  def update_detail(id, full_name, username, about, location, education, occupation)
+    option = {
+      headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
+      body: {
+        id: id,
+        full_name: full_name,
+        username: username,
+        about: about,
+        location: location,
+        education: education,
+        occupation: occupation
+      }
+    }
+    self.class.put('/dashboard/v1/users/update_detail', option)
+  end
+
+  def update_informant(id, identity_number, pob, dob, gender, occupation, nationality, address, phone_number)
+    option = {
+      headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
+      body: {
+        id: id,
+        identity_number: identity_number,
+        pob: pob,
+        dob: dob,
+        gender: gender,
+        occupation: occupation,
+        nationality: nationality,
+        address: address,
+        phone_number: phone_number,
+      }
+    }
+    self.class.put('/dashboard/v1/users/update_informant', option)
+  end
+
+  def update_avatar(id, avatar)
+    option = {
+      headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
+      body: {
+        id: id,
+        avatar: File.new(avatar.path)
+      }
+    }
+    self.class.put('/dashboard/v1/users/avatar', option)
+  end
+
+
+
+
 
 
 end

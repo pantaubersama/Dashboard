@@ -12,16 +12,13 @@
           </div>
         </div>
         <div class="content">
-                        <span class="display-desc">
-                          <p>
-                              <!-- Displaying Content 1 - 30 of 500 in total -->
-                          </p>
-                        </span>
           <div class="bg-white detail-profile">
             <div class="card">
-              <span class="profile-image"><img src="<%= asset_pack_path("views/assets/images/profile.jpg") %>"></span>
+              <span class="profile-image">
+                <img src="<%= @question['user']['avatar']['thumbnail_square']['url'] if @question['user']['avatar']['thumbnail_square']['url'].present?  %>">
+              </span>
               <div class="right-desc">
-                <p>Created at : 21/10/2023</p>
+                <p>Created at : <%= @question['created_at'] %></p>
                 <button class="btn btn-solid-green">EDIT</button>
               </div>
             </div>
@@ -33,10 +30,7 @@
                     <label>Nama</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input type="Email" class="form-control" hresize
-                               placeholder="LILIAN CHU">
-
-                        </input>
+                        <input type="Email" class="form-control" value="<%= @question['user']['full_name'] %>">
                       </div>
                     </div>
                   </div>
@@ -44,10 +38,7 @@
                     <label>Pertanyaan</label>
                     <div class="form-group">
                       <div class="form-group">
-                                                    <textarea type="Email" class="form-control" hresize
-                                                              placeholder="TERVERIFIKASI">
-                                                            LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT?  LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT?  LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT? 
-                                                    </textarea>
+                        <textarea type="text" class="form-control"><%= @question['body'] %></textarea>
                       </div>
                     </div>
                   </div>
@@ -57,8 +48,7 @@
                     <label>Status</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input type="Email" class="form-control" hresize
-                               placeholder="TERVERIFIKASI">
+                        <input type="Email" class="form-control" value="<%= @question['user']['verified'] ? 'VERIFIKASI' : 'BELUM VERIFIED'  %>">
                       </div>
                     </div>
                   </div>
@@ -73,4 +63,3 @@
   </div>
 </div>
 <%= render("components/footer") %>
-

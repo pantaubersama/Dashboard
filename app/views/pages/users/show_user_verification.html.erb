@@ -24,8 +24,15 @@
                 </span>
                 <div class="right-desc">
                     <%# <p>Created at : 21/10/2023</p> %>
-                    <button class="btn btn-green">DITOLAK</button>
-                    <button class="btn btn-solid-green">DITERIMA</button>
+                    <% if @verification['status'] == 'verified' %>
+                       <%= link_to reject_verification_path(@verification['user']['id'])  do %>
+                       <button class="btn btn-green">DITOLAK</button>
+                       <% end %>
+                    <% else %>
+                      <%= link_to approve_verification_path(@verification['user']['id']) do  %>
+                      <button class="btn btn-solid-green">DITERIMA</button>
+                      <% end %>
+                    <% end %>
                 </div>
             </div>
 
@@ -44,7 +51,7 @@
                         <div class="form-wrap">
                             <label>Foto Wajah Beserta KTP</label>
                             <div class="form-group">
-                                <%= image_tag @verification['ktp_selfie']['thumbnail']['url'] %>
+                                <%= image_tag @verification['ktp_selfie']['thumbnail']['url'] unless @verification['ktp_selfie']['thumbnail']['url'].nil? %>
                             </div>
                         </div>
 
@@ -54,7 +61,7 @@
                                     <label>KTP</label>
                                     <div class="modal-wrap">
                                       <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
-                                        <%= image_tag @verification['ktp_photo']['thumbnail']['url'] %>
+                                        <%= image_tag @verification['ktp_photo']['thumbnail']['url'] unless @verification['ktp_photo']['thumbnail']['url'].nil? %>
                                         </button>
 
                                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -67,7 +74,7 @@
                                                 </button>
                                               </div>
                                               <div class="modal-body">
-                                                    <%= image_tag @verification['ktp_photo']['thumbnail']['url'] %>
+                                                    <%= image_tag @verification['ktp_photo']['thumbnail']['url'] unless @verification['ktp_photo']['thumbnail']['url'].nil? %>
                                               </div>
                                             </div>
                                           </div>
@@ -81,7 +88,7 @@
                                     <div class="form-wrap">
                                         <label>Tanda Tangan</label>
                                         <div class="form-group">
-                                            <%= image_tag @verification['signature']['thumbnail']['url'] %>
+                                            <%= image_tag @verification['signature']['thumbnail']['url'] unless @verification['signature']['thumbnail']['url'].nil?  %>
                                         </div>
                                     </div>
                             </div>

@@ -23,7 +23,7 @@
                 <span class="profile-image"><img src="<%= @detail_politic_trash["image"]["url"] %>"></span>
                 <span class="name">
                                     <h5>Nama   :  <%= @detail_politic_trash["creator"]["full_name"] %></h5>
-                                    <p>Cluster :  <%= @detail_politic_trash["creator"]["cluster"]["name"] %></p>
+                                    <p>Cluster :  <%= @detail_politic_trash["creator"]["cluster"].present? ? @detail_politic_trash["creator"]["cluster"]["name"] : "Belum Ada" %></p>
 
                                 </span>
 

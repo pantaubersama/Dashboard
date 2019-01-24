@@ -81,27 +81,14 @@ class UserVerificationsController < ApplicationController
     render "pages/users/show_user_verification"
   end
 
-
-  def approve
-    render "pages/users/approve_verification"
-  end
-
-
   def approve_verification
-
-    user = UserPantauAuth.where(email: params[:email]).first
-    if user.present?
-      response = @user_api.approve_verification(user.id)
-      if response.code == 201
-        flash[:success] = "Approve Sucessful"
-        redirect_to users_approve_verification_path
-      else
-        flash[:warning] = "Approve Failed"
-        redirect_to users_approve_verification_path
-      end
+    response = @user_api.approve_verification(params[:id])
+    if response.code == 201
+      flash[:success] = "Approve Sucessful"
+      redirect_to users_list_verification_path
     else
-      flash[:warning] = "Not found!"
-      redirect_to users_approve_verification_path
+      flash[:warning] = "Approve Failed"
+      redirect_to users_list_verification_path
     end
   end
 
@@ -110,13 +97,13 @@ class UserVerificationsController < ApplicationController
     case response.code
       when 200
         flash[:success] = "Reject Sucessful"
-        redirect_to users_list_user_path
+        redirect_to users_list_verification_path
       when 404
         flash[:warning] = "Not found!"
-        redirect_to users_list_user_path
+        redirect_to users_list_verification_path
       when 500...600
-        flash[:error] = "ERROR #{response.code}"
-        redirect_to users_list_user_path
+        flash[:warning] = "ERROR #{response.code}"
+        redirect_to users_list_verification_path
     end
   end
 
