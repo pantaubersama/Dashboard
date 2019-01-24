@@ -26,7 +26,7 @@
               <div class="right-desc">
               </div>
             </div>
-            <%= form_tag(badge_path(@badge['id']), method: :put) do %>
+            <%= form_tag(badge_path(@badge['id']), method: :put, multipart: true) do %>
             <div class="card-form">
               <div class="row">
                 <div class="form-wrap">

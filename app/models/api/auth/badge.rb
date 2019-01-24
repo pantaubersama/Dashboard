@@ -17,8 +17,8 @@ class Api::Auth::Badge < InitApiAuth
       body: {
         name: name,
         description: description,
-        image: File.new(image.path),
-        image_gray: File.new(image_gray.path),
+        image: (File.new(image.path) if image.present?),
+        image_gray: (File.new(image_gray.path) if image_gray.present?),
         position: position,
         code: code,
         namespace: namespace
@@ -40,8 +40,8 @@ class Api::Auth::Badge < InitApiAuth
       body: {
         name: name,
         description: description,
-        image: File.new(image.path),
-        image_gray: File.new(image_gray.path),
+        image: (File.new(image.path) if image.present?),
+        image_gray: (File.new(image_gray.path) if image_gray.present?),
         position: position,
         code: code,
         namespace: namespace
