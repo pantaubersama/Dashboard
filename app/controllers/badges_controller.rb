@@ -37,7 +37,7 @@ class BadgesController < ApplicationController
       name = params[:name],
       description = params[:description].present? ? params[:description] : '',
       image = params[:image].present? ? params[:image] : '',
-      image_gray = params[:image].present? ? params[:image] : '',
+      image_gray = params[:image_gray].present? ? params[:image_gray] : '',
       position = params[:position].present? ? params[:position] : '',
       code = params[:code].present? ? params[:code] : '',
       namespace = params[:namespace].present? ? params[:namespace] : ''
@@ -61,7 +61,7 @@ class BadgesController < ApplicationController
                                 name = params[:name],
                                 description = params[:description].present? ? params[:description] : '',
                                 image = params[:image].present? ? params[:image] : '',
-                                image_gray = params[:image].present? ? params[:image] : '',
+                                image_gray = params[:image_gray].present? ? params[:image_gray] : '',
                                 position = params[:position].present? ? params[:position] : '',
                                 code = params[:code].present? ? params[:code] : '',
                                 namespace = params[:namespace].present? ? params[:namespace] : ''
