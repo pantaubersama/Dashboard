@@ -24,6 +24,7 @@
               <span class="profile-image">
                 <label>Badge</label>
                 <%= image_tag @badge['image']['thumbnail']['url'] unless @badge['image']['thumbnail']['url'].nil?  %>
+                <%= image_tag @badge['image_gray']['thumbnail']['url'] unless @badge['image_gray']['thumbnail']['url'].nil?  %>
               </span>
               <div class="right-desc">
                 <%= link_to edit_badge_path(@badge['id']) do %>
