@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   resources :banner, only: [:edit, :update, :show, :index]
   resources :political_party
   resources :badges
+  resources :questions
 
   # admins
   get '/admins', to: 'admins#index', as: 'users_list_admin'
