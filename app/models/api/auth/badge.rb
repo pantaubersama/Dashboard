@@ -4,8 +4,9 @@ class Api::Auth::Badge < InitApiAuth
         order_by: orderby,
         direction: direction,
         page: page,
-        per_page: perpage
-      }
+        per_page: perpage,
+      },
+      headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}
     }
     self.class.get('/v1/badges', options)
   end
@@ -27,7 +28,10 @@ class Api::Auth::Badge < InitApiAuth
   end
 
   def find id
-    self.class.get("/v1/badges/#{id}")
+    options = {
+      headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}
+    }
+    self.class.get("/v1/badges/#{id}", options)
   end
 
   def update(id, name, description, image, image_gray, position, code, namespace)
