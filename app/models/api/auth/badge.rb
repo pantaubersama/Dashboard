@@ -5,8 +5,7 @@ class Api::Auth::Badge < InitApiAuth
         direction: direction,
         page: page,
         per_page: perpage,
-      },
-      headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}
+      }
     }
     self.class.get('/v1/badges', options)
   end
