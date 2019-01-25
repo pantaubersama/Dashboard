@@ -167,21 +167,24 @@
               </table>
             </div>
             <div class="filter">
-              <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample">
+              <a class="btn " data-toggle="collapse" href="#filter_quiz_all" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
                 <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
               </a>
-              <div class="collapse filter-form">
+              <div id="filter_quiz_all" class="collapse filter-form">
                 <div class="card card-body">
                   <h4>Filter</h4>
+                  <%= form_tag(quiz_index_path, method: :get) do %>
                   <div class="form-wrap">
                     <label>Judul Quiz</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input type="nama" class="form-control" placeholder="Judul">
+                        <input type="nama" name="title" value="<%= params[:title].present? ? params[:title] : nil%>" class="form-control" placeholder="Judul">
                       </div>
                     </div>
                   </div>
+                  <button type="submit">Done</button>
+                  <% end %>
                 </div>
               </div>
             </div>

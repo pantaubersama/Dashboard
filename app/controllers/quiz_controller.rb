@@ -5,7 +5,7 @@ class QuizController < ApplicationController
     request = @quiz_api.all(
                               page=params[:page].present? ? params[:page] : 1,
                               per_page=Pagy::VARS[:items],
-                              q="*",
+                              q=params[:title].present? ? params[:title] : "*",
                               o="and",
                               m="word_start"
                             )
@@ -26,7 +26,7 @@ class QuizController < ApplicationController
     last_page = @quiz_api.all(
       page=@totalPage,
       per_page=Pagy::VARS[:items],
-      q="*",
+      q=params[:title].present? ? params[:title] : "*",
       o="and",
       m="word_start"
     )["data"]["quizzes"].size
