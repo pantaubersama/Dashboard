@@ -37,11 +37,6 @@ Rails.application.routes.draw do
     get '/show_trash_politic/:id', to: 'politics#detail_trash', as: 'detail_politic_trash'
   end
 
-  scope '/pendidikan_politik' do
-    get 'edit_quiz', to: 'pendidikan_politik#edit_quiz', as: 'pendidikan_politik_edit_quiz'
-    get 'list_quiz', to: 'pendidikan_politik#list_quiz', as: 'pendidikan_politik_list_quiz'
-  end
-
   resources :banner, only: [:edit, :update, :show, :index]
   resources :political_party
   resources :badges do

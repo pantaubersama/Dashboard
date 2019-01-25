@@ -351,7 +351,7 @@
                               <label>Kategori Cluster</label>
                               <div class="form-group">
                                 <div class="form-group">
-                                  <input type="Cluster" name="name" class="form-control" placeholder="Nama Cluster">
+                                  <input type="Cluster" name="name" class="form-control" placeholder="Tuliskan kategori cluster, contoh : Universitas Gajah Mada">
                                 </div>
                               </div>
                             </div>
@@ -359,33 +359,19 @@
                               <label>Deskripsi</label>
                               <div class="form-group">
                                 <div class="form-group">
-                                  <textarea type="text" name="description" class="form-control" placeholder="adellapratitas7@gmail.com"></textarea>
+                                  <textarea type="Email" name="description" class="form-control with-toolbar" placeholder="adellapratitas7@gmail.com"></textarea>
                                   <div class="toolbar-text full">
                                     <ul>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bold.svg")
-                                            %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_italic.svg")
-                                            %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg")
-                                            %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg")
-                                            %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg")
-                                            %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg")
-                                            %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg")
-                                            %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg")
-                                            %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg")
-                                            %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg")
-                                            %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg")
-                                            %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg")
-                                            %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_underline.svg" %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-left.svg" %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-center.svg" %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-right.svg" %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_justify.svg" %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bulet.svg" %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_numbering.svg" %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_left.svg" %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_right.svg" %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_link-t.svg" %>"></span></li>
                                     </ul>
                                   </div>
                                 </div>
@@ -444,9 +430,59 @@
                         <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
                       </button>
                       <div class="dropdown-menu" aria-labelledby="action">
-                        <a class="dropdown-item" href="<%= detail_category_clusters_path(item["id"]) %>">Lihat</a>
-                        <a class="dropdown-item" href="<%= edit_category_clusters_path(item["id"]) %>">Edit</a>
+                        <!-- <a class="dropdown-item" href="<%= detail_category_clusters_path(item["id"]) %>">Lihat</a> -->
+                        <!-- <a class="dropdown-item" href="<%= edit_category_clusters_path(item["id"]) %>">Edit</a> -->
+                        <a class="dropdown-item" data-toggle="modal" data-target="#edit_cluster_<%= item["id"] %>">Lihat</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#edit_cluster_<%= item["id"] %>">Edit</a>
                         <a class="dropdown-item" href="#">Hapus</a>
+
+                        <div class="modal fade" id="#edit_cluster_<%= item["id"] %>" tabindex="-1" role="dialog" aria-labelledby="#edit_cluster_<%= item["id"] %>Label" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <!-- <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5> -->
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <h3>Edit Kategori Cluster</h3>
+                                <div class="row">
+                                  <div class="col-md-6 col-xs-12">
+                                    <div class="form-wrap">
+                                      <label>Deskripsi</label>
+                                      <div class="form-group"> 
+                                          <div class="form-group">
+                                              <textarea type="Email" class="form-control with-toolbar" placeholder="adellapratitas7@gmail.com"></textarea>
+                                              <div class="toolbar-text full">
+                                                <ul>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bold.svg" %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_italic.svg" %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_underline.svg" %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-left.svg" %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-center.svg" %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-right.svg" %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_justify.svg" %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bulet.svg" %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_numbering.svg" %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_left.svg" %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_right.svg" %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_link-t.svg" %>"></span></li>
+                                                </ul>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-solid-green" data-dismiss="modal">Tambah</button>
+                                <button type="button" class="btn btn-transparent">Cancel</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </td>
                   </tr>
