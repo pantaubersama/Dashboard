@@ -296,7 +296,7 @@
                   <%== link.call(@pagy_categories.prev, pagy_t('pagy.nav.prev')) %>
                 </li>
                 <% end %>
-
+        
                 <% @pagy_categories.series.each do |item| %>
                 <% if item.is_a?(Integer) %>
                 <li id="testtest" class="page-item">
@@ -311,7 +311,7 @@
                     <%== pagy_t('pagy.nav.gap') %></a></li>
                 <% end %>
                 <% end %>
-
+        
                 <% if @pagy_categories.next %>
                 <li class="page-item">
                   <%== link.call(@pagy_categories.next, pagy_t('pagy.nav.next')) %>
@@ -329,7 +329,7 @@
                 Create Kategori Cluster <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>"
                 alt="add">
               </button>
-
+        
               <div class="modal fade" id="categoryClusterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -340,13 +340,13 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-
+        
                     <%= form_tag(create_category_clusters_path, method: :post, id: "new_category") do %>
                       <div class="modal-body">
                         <h3>Tambah Kategori Cluster</h3>
                         <div class="row">
                           <div class="col-md-6 col-xs-12">
-
+        
                             <div class="form-wrap">
                               <label>Kategori Cluster</label>
                               <div class="form-group">
@@ -362,37 +362,38 @@
                                   <textarea type="Email" name="description" class="form-control with-toolbar" placeholder="adellapratitas7@gmail.com"></textarea>
                                   <div class="toolbar-text full">
                                     <ul>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_underline.svg" %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-left.svg" %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-center.svg" %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-right.svg" %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_justify.svg" %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bulet.svg" %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_numbering.svg" %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_left.svg" %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_right.svg" %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_link-t.svg" %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_underline.svg") %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-left.svg") %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-center.svg") %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-right.svg") %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_justify.svg") %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bulet.svg") %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_numbering.svg") %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_left.svg") %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_right.svg") %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_link-t.svg") %>"></span></li>
                                     </ul>
                                   </div>
                                 </div>
                               </div>
                             </div>
-
+        
                           </div>
-
+        
                         </div>
-
+        
                       </div>
                       <div class="modal-footer">
                         <button type="button" onclick="document.getElementById('new_category').submit()" class="btn btn-solid-green" data-dismiss="modal">Tambah</button>
                         <button type="button" class="btn btn-transparent" data-dismiss="modal">Cancel</button>
                       </div>
                     <% end %>
-
+        
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
 
           <div class="content">
@@ -435,7 +436,7 @@
                         <a class="dropdown-item" data-toggle="modal" data-target="#edit_cluster_<%= item["id"] %>">Lihat</a>
                         <a class="dropdown-item" data-toggle="modal" data-target="#edit_cluster_<%= item["id"] %>">Edit</a>
                         <a class="dropdown-item" href="#">Hapus</a>
-
+        
                         <div class="modal fade" id="#edit_cluster_<%= item["id"] %>" tabindex="-1" role="dialog" aria-labelledby="#edit_cluster_<%= item["id"] %>Label" aria-hidden="true">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -456,18 +457,18 @@
                                               <textarea type="Email" class="form-control with-toolbar" placeholder="adellapratitas7@gmail.com"></textarea>
                                               <div class="toolbar-text full">
                                                 <ul>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bold.svg" %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_italic.svg" %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_underline.svg" %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-left.svg" %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-center.svg" %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-right.svg" %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_justify.svg" %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bulet.svg" %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_numbering.svg" %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_left.svg" %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_right.svg" %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_link-t.svg" %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bold.svg") %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_italic.svg") %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_underline.svg") %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-left.svg") %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-center.svg") %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-right.svg") %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_justify.svg") %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bulet.svg") %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_numbering.svg") %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_left.svg") %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_right.svg") %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_link-t.svg") %>"></span></li>
                                                 </ul>
                                               </div>
                                             </div>
@@ -516,6 +517,7 @@
               </div>
             </div>
           </div>
+
         </div>
 
         <div class="main-content tab-pane" id="trash">
