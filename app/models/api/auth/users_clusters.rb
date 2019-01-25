@@ -17,4 +17,17 @@ class Api::Auth::UsersClusters < InitApiAuth
     }
 		self.class.post("/v1/clusters/invite", @options)
 	end
+
+	def remove_member(id, user_id)
+		@options = {
+      query: {
+        id: id, user_id: user_id
+      },
+      headers: {
+        Authorization: "Bearer e10e623493e0ac78b36c0284bba2efe28a9f41d0741924ea85569795b23eb1ed"
+      }
+    }
+    self.class.delete("/dashboard/v1/clusters/remove_members/#{id}", @options)
+	end
+
 end

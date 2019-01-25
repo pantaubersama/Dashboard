@@ -13,7 +13,8 @@ Rails.application.routes.draw do
     get '/list_user_cluster', to: 'users#list_user_cluster', as: 'users_list_user_cluster'
     get '/detail_user_cluster', to: 'users#detail_user_cluster', as: 'users_detail_user_cluster'
     get '/user/:id', to: 'users#show', as: 'user_show'
-    resources :user_clusters
+    resources :user_clusters, except: :destroy
+    delete '/user_clusters/:id/remove_user/:user_id', to:'user_clusters#destroy', as: 'remove_user'
     resources :clusters do
       collection do
         get '/detail_category/:id', to: 'clusters#detail_category', as: 'detail_category'
