@@ -152,7 +152,6 @@
                 <tbody>
                   <% @users_clusters.each_with_index do |item, index| %>
                     <tr>
-                      <td><%= item["cluster"]["id"] %></td>
                       <td class="number bold">
                         <%= ((params[:page_user].present? ? params[:page_user].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %>
                       </td>
