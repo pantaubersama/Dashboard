@@ -37,6 +37,23 @@ class QuizController < ApplicationController
   end
 
   def show
+    request = @quiz_api.find(params[:id])
+    request_questions = @quiz_api.get_question(params[:id])
+    if request.code == 200
+      @quiz = request['data']['quiz']
+      if request_questions.code == 200
+        @questions = request_questions['data']['questions']
+      elsif request_questions.code == 404
+        flash[:warning] = "Not Found"
+        redirect_to quiz_index_path
+      else
+        flash[:warning] = "Ooops something wrong #{request_questions}"
+        redirect_to quiz_index_path
+      end
+    elsif request_questions.code == 404
+      flash[:warning] = "Not Found"
+      redirect_to quiz_index_path
+    end
   end
 
   def create

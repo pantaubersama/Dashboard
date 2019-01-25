@@ -130,6 +130,7 @@
                 <%= show_count_table(params[:page], @total_row_per_page, @total_quiz) %>
               </p>
             </span>
+            <%= render('components/flash_message')%>
             <div class="table">
               <table>
                 <thead>
@@ -147,7 +148,7 @@
                     <td class="number bold">
                       <%= ((params[:page].present? ? params[:page].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %>
                     </td>
-                    <td class="name bold"><a href="edit_quiz"><%=  truncate(quiz['title'], :length => 80) %></a></td>
+                    <td class="name bold"><a href="<%= quiz_path(quiz['id']) %>"><%=  truncate(quiz['title'], :length => 80) %></a></td>
                     <td><%= quiz['quiz_questions_count'] %></td>
                     <td><%= Date.parse(quiz['created_at']) if quiz['created_at'].present? %></td>
                     <td>
