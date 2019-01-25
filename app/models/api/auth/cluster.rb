@@ -7,14 +7,14 @@ class Api::Auth::Cluster < InitApiAuth
       query: {page: page, per_page: per_page, q: q, 
               filter_by: filter_by, filter_value: 
               filter_value, status: status}, 
-      headers: {Authorization: "Bearer e10e623493e0ac78b36c0284bba2efe28a9f41d0741924ea85569795b23eb1ed"}
+      headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}
     }
     self.class.get("/dashboard/v1/clusters", @options)
   end
 
   def create_cluster(name, category_id, description, requester_id, image, status)
     @options = {
-      headers:  { Authorization: "Bearer e10e623493e0ac78b36c0284bba2efe28a9f41d0741924ea85569795b23eb1ed"},
+      headers:  { Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
       body:     {name: name, category_id: category_id, description: description, 
                 requester_id: requester_id, image: File.open(image), status: status},
     }
@@ -25,7 +25,7 @@ class Api::Auth::Cluster < InitApiAuth
     @options = { 
       body:     {id: id, name: name, category_id: category_id, description: description, 
                  requester_id: requester_id, image: File.open(image), status: status},
-      headers:  { Authorization: "Bearer e10e623493e0ac78b36c0284bba2efe28a9f41d0741924ea85569795b23eb1ed"}
+      headers:  { Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}
     }
     self.class.put("/dashboard/v1/clusters/#{id}", @options)
   end
@@ -33,7 +33,7 @@ class Api::Auth::Cluster < InitApiAuth
   def delete_cluster(id)
     @options = { 
       query: {id: id}, 
-      headers: { Authorization: "Bearer e10e623493e0ac78b36c0284bba2efe28a9f41d0741924ea85569795b23eb1ed"}
+      headers: { Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}
     }
     self.class.delete("/dashboard/v1/clusters/#{id}", @options)
   end
@@ -45,7 +45,7 @@ class Api::Auth::Cluster < InitApiAuth
 
   def add_category(name, description)
     @options = {
-      headers:  {Authorization: "Bearer e10e623493e0ac78b36c0284bba2efe28a9f41d0741924ea85569795b23eb1ed"},
+      headers:  {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
       body:     {name: name, description: description}
     }
     self.class.post("/v1/categories", @options)
@@ -57,7 +57,7 @@ class Api::Auth::Cluster < InitApiAuth
 
   def update_kategori(id, name, description)
     @options = {
-      headers:  {Authorization: "Bearer e10e623493e0ac78b36c0284bba2efe28a9f41d0741924ea85569795b23eb1ed"},
+      headers:  {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
       body:     {id: id, name: name, description: description}
     }
     self.class.put("/dashboard/v1/categories/#{id}", @options)
@@ -65,7 +65,7 @@ class Api::Auth::Cluster < InitApiAuth
 
   def list_trash(page, per_page)
     @options = {
-      headers: { Authorization: "Bearer e10e623493e0ac78b36c0284bba2efe28a9f41d0741924ea85569795b23eb1ed"},
+      headers: { Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
       query: { page: page, per_page: per_page}
     }
     self.class.get("/dashboard/v1/clusters/trash", @options)
@@ -73,7 +73,7 @@ class Api::Auth::Cluster < InitApiAuth
 
   def show_trash(id)
     @options = {
-      headers:  { Authorization: "Bearer e10e623493e0ac78b36c0284bba2efe28a9f41d0741924ea85569795b23eb1ed"},
+      headers:  { Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
       query:    {id: id}
     }
     self.class.get("/dashboard/v1/clusters/trash/#{id}", @options)

@@ -36,6 +36,12 @@ class UserClustersController < ApplicationController
     end
   end
 
+  def destroy
+    if @user_cluster.remove_member(params[:id], params[:user_id])
+      redirect_to user_clusters_path
+    end
+  end
+
   private
     def set_api
       @user_api = Api::Auth::User.new
