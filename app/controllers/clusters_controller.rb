@@ -39,8 +39,8 @@ class ClustersController < ApplicationController
   end
 
   def search_categories
-    @categories = @cluster.get_categories["data"]["categories"]
-    render json: @categories
+    # @categories = @cluster.get_categories["data"]["categories"]
+    # render json: @categories
   end
 
   def show

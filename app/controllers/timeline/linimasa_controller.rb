@@ -4,11 +4,11 @@ class Timeline::LinimasaController < ApplicationController
 
   def index
     # ============================= Tweets =============================
-    @tweets = @linimasa.list_tweet(params[:page_tweet] || 1, 
-                                   Pagy::VARS[:items], params[:filter] || "", 
+    @tweets = @linimasa.list_tweet(params[:page_tweet].present? ? params[:page_tweet] : 1, 
+                                   Pagy::VARS[:items], params[:filter] || "",
                                    params[:username] || "" )
 
-    n1 = @tweets["data"]["meta"]["pages"]["total"]    
+    n1 = @tweets["data"]["meta"]["pages"]["total"]
     @records = (n1*Pagy::VARS[:items])
     total_pages = (1..@records).to_a
     @pagy_tweets = Pagy.new(count: total_pages.count, page: params[:page_tweet].present? ? params[:page_tweet] : 1,

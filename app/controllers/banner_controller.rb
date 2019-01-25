@@ -20,11 +20,11 @@ class BannerController < ApplicationController
 
   def update
     response = @banner_api.update(
-      params[:banner_info][:title],
-      params[:banner_info][:body],
+      params[:title].present? ? params[:title] : '' ,
+      params[:body].present? ? params[:body] : '',
       params[:page_name],
-      params[:banner_info][:header_image].tempfile,
-      params[:banner_info][:image].tempfile
+      params[:header_image].present? ? params[:header_image].tempfile : '',
+      params[:image].present? ? params[:image].tempfile : ''
     )
     if response.code == 200
       redirect_to banner_path, notice: "Banner was sucessfuly updated"

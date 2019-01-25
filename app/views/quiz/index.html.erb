@@ -6,30 +6,14 @@
       <div class="tab-content clearfix">
         <div class="main-content quiz tab-pane active" id="all">
           <div class="top ">
-            <div class="pagination-wrap">
-              <ul class="pagination">
-                <li class="page-item">
-                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><img
-                    src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" alt="Previous"></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active" aria-current="page">
-                  <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#"><img src="<%= asset_pack_path("views/assets/images/ic_arrow_right.svg") %>"
-                                                     alt="Next"></a>
-                </li>
-              </ul>
-            </div>
+            <%= render("components/pagination", pagy: @pagy) %>
             <div class="modal-wrap">
               <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
                 Buat Quiz <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
               </button>
 
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                   aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -46,9 +30,9 @@
                           <div class="upload-image">
                             <input type="file" name="pic" accept="image/*">
                             <span>
-                                                        <p>Upload PNG/JPG</p>
-                                                        <p>Maks 512x512</p>
-                                                </span>
+                              <p>Upload PNG/JPG</p>
+                              <p>Maks 512x512</p>
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -65,8 +49,7 @@
                         <label>Deskripsi</label>
                         <div class="form-group">
                           <div class="form-group">
-                              <textarea type="Email" class="form-control"
-                                        placeholder="Lorem ipsum dolor sit amet"></textarea>
+                            <textarea type="Email" class="form-control" placeholder="Lorem ipsum dolor sit amet"></textarea>
                           </div>
                         </div>
                       </div>
@@ -76,8 +59,7 @@
                           <label>Pertanyaan</label>
                           <div class="form-group">
                             <div class="form-group">
-                                <textarea type="Email" class="form-control"
-                                          placeholder="Lorem ipsum dolor sit amet"></textarea>
+                              <textarea type="Email" class="form-control" placeholder="Lorem ipsum dolor sit amet"></textarea>
                             </div>
                           </div>
                         </div>
@@ -85,8 +67,7 @@
                           <label>Jawaban 1</label>
                           <div class="form-group">
                             <div class="form-group">
-                                <textarea type="Email" class="form-control"
-                                          placeholder="Lorem ipsum dolor sit amet"></textarea>
+                              <textarea type="Email" class="form-control" placeholder="Lorem ipsum dolor sit amet"></textarea>
                             </div>
                           </div>
                         </div>
@@ -94,8 +75,7 @@
                           <label>Jawaban 2</label>
                           <div class="form-group">
                             <div class="form-group">
-                                <textarea type="Email" class="form-control"
-                                          placeholder="Lorem ipsum dolor sit amet"></textarea>
+                              <textarea type="Email" class="form-control" placeholder="Lorem ipsum dolor sit amet"></textarea>
                             </div>
                           </div>
                         </div>
@@ -106,8 +86,7 @@
                           <label>Pertanyaan</label>
                           <div class="form-group">
                             <div class="form-group">
-                                <textarea type="Email" class="form-control"
-                                          placeholder="Lorem ipsum dolor sit amet"></textarea>
+                              <textarea type="Email" class="form-control" placeholder="Lorem ipsum dolor sit amet"></textarea>
                             </div>
                           </div>
                         </div>
@@ -115,8 +94,7 @@
                           <label>Jawaban 1</label>
                           <div class="form-group">
                             <div class="form-group">
-                                <textarea type="Email" class="form-control"
-                                          placeholder="Lorem ipsum dolor sit amet"></textarea>
+                              <textarea type="Email" class="form-control" placeholder="Lorem ipsum dolor sit amet"></textarea>
                             </div>
                           </div>
                         </div>
@@ -124,15 +102,13 @@
                           <label>Jawaban 2</label>
                           <div class="form-group">
                             <div class="form-group">
-                                <textarea type="Email" class="form-control"
-                                          placeholder="Lorem ipsum dolor sit amet"></textarea>
+                              <textarea type="Email" class="form-control" placeholder="Lorem ipsum dolor sit amet"></textarea>
                             </div>
                           </div>
                         </div>
                       </div>
 
-                      <button type="button" class="btn btn-green" data-toggle="modal"
-                              data-target="#exampleModal">
+                      <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
                         Tambah Pertanyaan
                         <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
                       </button>
@@ -149,61 +125,67 @@
             </div>
           </div>
           <div class="content">
-                        <span class="display-desc">
-                          <p>
-                              Displaying Content 1 - 30 of 500 in total
-                          </p>
-                        </span>
+            <span class="display-desc">
+              <p>
+                <%= show_count_table(params[:page], @total_row_per_page, @total_quiz) %>
+              </p>
+            </span>
+            <%= render('components/flash_message')%>
             <div class="table">
               <table>
                 <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Judul Quiz</th>
-                  <th>Jumlah Pertanyaan</th>
-                  <th>Create At</th>
-                  <th></th>
-                </tr>
+                  <tr>
+                    <th>No</th>
+                    <th>Judul Quiz</th>
+                    <th>Jumlah Pertanyaan</th>
+                    <th>Create At</th>
+                    <th></th>
+                  </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td class="number bold">1</td>
-                  <td class="name bold"><a href="edit_quiz">Quiz A </a></td>
-                  <td>100</td>
-                  <td>21/10/2023</td>
-
-                  <td>
-                    <button class="dropdown-toggle" type="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                      <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="action">
-                      <a class="dropdown-item" href="edit_quiz">Lihat</a>
-                      <a class="dropdown-item" href="#">Edit</a>
-                      <a class="dropdown-item" href="#">Hapus</a>
-                    </div>
-                  </td>
-
+                  <% @quiz.each_with_index do |quiz, index| %>
+                  <tr>
+                    <td class="number bold">
+                      <%= ((params[:page].present? ? params[:page].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %>
+                    </td>
+                    <td class="name bold"><a href="<%= quiz_path(quiz['id']) %>"><%=  truncate(quiz['title'], :length => 80) %></a></td>
+                    <td><%= quiz['quiz_questions_count'] %></td>
+                    <td><%= Date.parse(quiz['created_at']) if quiz['created_at'].present? %></td>
+                    <td>
+                      <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="action">
+                        <a class="dropdown-item" href="edit_quiz">Lihat</a>
+                        <a class="dropdown-item" href="#">Edit</a>
+                        <a class="dropdown-item" href="#">Hapus</a>
+                      </div>
+                    </td>
+                  </tr>
+                  <% end %>
                 </tbody>
               </table>
             </div>
             <div class="filter">
-              <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
-                 aria-controls="collapseExample">
+              <a class="btn " data-toggle="collapse" href="#filter_quiz_all" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
                 <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
               </a>
-              <div class="collapse filter-form">
+              <div id="filter_quiz_all" class="collapse filter-form">
                 <div class="card card-body">
                   <h4>Filter</h4>
+                  <%= form_tag(quiz_index_path, method: :get) do %>
                   <div class="form-wrap">
                     <label>Judul Quiz</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input type="nama" class="form-control" placeholder="Judul">
+                        <input type="nama" name="title" value="<%= params[:title].present? ? params[:title] : nil%>" class="form-control" placeholder="Judul">
                       </div>
                     </div>
                   </div>
+                  <button type="submit">Done</button>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -215,8 +197,7 @@
             <div class="pagination-wrap">
               <ul class="pagination">
                 <li class="page-item">
-                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><img
-                    src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" alt="Previous"></a>
+                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" alt="Previous"></a>
                 </li>
                 <li class="page-item"><a class="page-link" href="#">1</a></li>
                 <li class="page-item active" aria-current="page">
@@ -224,8 +205,9 @@
                 </li>
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                 <li class="page-item">
-                  <a class="page-link" href="#"><img src="<%= asset_pack_path("views/assets/images/ic_arrow_right.svg") %>"
-                                                     alt="Next"></a>
+                  <a class="page-link" href="#"><img src="<%= asset_pack_path("views/assets/images/ic_arrow_right.svg")
+                      %>"
+                    alt="Next"></a>
                 </li>
               </ul>
             </div>
@@ -234,8 +216,8 @@
                 Buat Quiz <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
               </button>
 
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                   aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -250,8 +232,7 @@
                         <label>User</label>
                         <div class="form-group">
                           <div class="form-group">
-                            <input type="Email" class="form-control"
-                                   placeholder="adellapratitas7@gmail.com">
+                            <input type="Email" class="form-control" placeholder="adellapratitas7@gmail.com">
                           </div>
                         </div>
                       </div>
@@ -268,47 +249,46 @@
             </div>
           </div>
           <div class="content">
-                                <span class="display-desc">
-                                  <p>
-                                      Displaying Content 1 - 30 of 500 in total
-                                  </p>
-                                </span>
+            <span class="display-desc">
+              <p>
+                Displaying Content 1 - 30 of 500 in total
+              </p>
+            </span>
             <div class="table">
               <table>
                 <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Judul Quiz</th>
-                  <th>Jumlah Pertanyaan</th>
-                  <th>Delete At</th>
-                  <th></th>
-                </tr>
+                  <tr>
+                    <th>No</th>
+                    <th>Judul Quiz</th>
+                    <th>Jumlah Pertanyaan</th>
+                    <th>Delete At</th>
+                    <th></th>
+                  </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td class="number bold">1</td>
-                  <td class="name bold"><a href="detail-pertanyaan.html">Quiz A </a></td>
-                  <td>100</td>
-                  <td>21/10/2023</td>
+                  <tr>
+                    <td class="number bold">1</td>
+                    <td class="name bold"><a href="detail-pertanyaan.html">Quiz A </a></td>
+                    <td>100</td>
+                    <td>21/10/2023</td>
 
-                  <td>
-                    <button class="dropdown-toggle" type="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                      <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="action">
-                      <a class="dropdown-item" href="detail-pertanyaan.html">Lihat</a>
-                      <a class="dropdown-item" href="#">Edit</a>
-                      <a class="dropdown-item" href="#">Hapus</a>
-                    </div>
-                  </td>
+                    <td>
+                      <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="action">
+                        <a class="dropdown-item" href="detail-pertanyaan.html">Lihat</a>
+                        <a class="dropdown-item" href="#">Edit</a>
+                        <a class="dropdown-item" href="#">Hapus</a>
+                      </div>
+                    </td>
 
                 </tbody>
               </table>
             </div>
             <div class="filter">
-              <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
-                 aria-controls="collapseExample">
+              <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
                 <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
               </a>
@@ -333,4 +313,3 @@
   </div>
 </div>
 <%= render("components/footer") %>
-

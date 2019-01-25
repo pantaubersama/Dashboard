@@ -1,0 +1,78 @@
+<div class="d-flex main-wrapper">
+  <%= render("components/sidebar") %>
+  <div class="main-wrapper">
+    <main class="main col-md-10 offset-md-2" role="main">
+      <%= render("components/header") %>
+      <div class="main-content quiz">
+        <div class="top">
+          <div class="btn-back">
+            <a href="list-quiz.html">
+              <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+            </a>
+          </div>
+        </div>
+        <div class="content">
+          <div class="bg-white detail-profile">
+            <div class="card">
+              <span class="content-image">
+                <img src="<%= @quiz['image']['thumbnail']['url'] if @quiz['image']['thumbnail']['url'].present?  %>">
+              </span>
+              <div class="right-desc">
+                <p>Created at : <%= @quiz['created_at'] %></p>
+                <button class="btn btn-solid-green">EDIT</button>
+              </div>
+            </div>
+            <div class="card-form">
+              <div class="form-wrap">
+                <label>Judul</label>
+                <div class="form-group">
+                  <div class="form-group">
+                    <input type="Email" class="form-control" value="<%= @quiz['title']%>">
+                  </div>
+                </div>
+              </div>
+              <div class="form-wrap">
+                <label>Deskripsi</label>
+                <div class="form-group">
+                  <div class="form-group">
+                    <textarea class="form-control"><%= @quiz['description'] %></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% @questions.each_with_index do |question, index| %>
+              <div class="card-form">
+                <h3>Pertanyaan <%= index+1 %></h3>
+                <div class="form-wrap">
+                  <label>Pertanyaan</label>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <textarea class="form-control"><%= question['content'] %></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <% question['answers'].each_with_index do |answer, index| %>
+                  <div class="col-md-6 col-sm-12">
+                    <div class="form-wrap">
+                      <label>Jawaban <%= index + 1 %></label>
+                      <div class="form-group">
+                        <div class="form-group">
+                          <textarea class="form-control"><%= answer['content'] %></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+
+
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<%= render("components/footer") %>

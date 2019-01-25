@@ -13,7 +13,8 @@ Rails.application.routes.draw do
     get '/list_user_cluster', to: 'users#list_user_cluster', as: 'users_list_user_cluster'
     get '/detail_user_cluster', to: 'users#detail_user_cluster', as: 'users_detail_user_cluster'
     get '/user/:id', to: 'users#show', as: 'user_show'
-    resources :user_clusters
+    resources :user_clusters, except: :destroy
+    delete '/user_clusters/:id/remove_user/:user_id', to:'user_clusters#destroy', as: 'remove_user'
     resources :clusters do
       collection do
         get '/detail_category/:id', to: 'clusters#detail_category', as: 'detail_category'
@@ -36,15 +37,16 @@ Rails.application.routes.draw do
     get '/show_trash_politic/:id', to: 'politics#detail_trash', as: 'detail_politic_trash'
   end
 
-  scope '/pendidikan_politik' do
-    get 'edit_quiz', to: 'pendidikan_politik#edit_quiz', as: 'pendidikan_politik_edit_quiz'
-    get 'list_quiz', to: 'pendidikan_politik#list_quiz', as: 'pendidikan_politik_list_quiz'
-  end
-
   resources :banner, only: [:edit, :update, :show, :index]
   resources :political_party
-  resources :badges
+  resources :badges do
+    collection do
+      get 'grant', to: 'badges#grant_badge', as: 'grant_badge'
+      post 'grant', to: 'badges#grant_badge_user'
+    end
+  end
   resources :questions
+  resources :quiz
 
   # admins
   get '/admins', to: 'admins#index', as: 'users_list_admin'

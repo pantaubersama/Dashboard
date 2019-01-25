@@ -189,6 +189,154 @@
                 }
             }
         }
+
+        .modal-dialog {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            border-radius: 0;
+            .modal-content {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                padding-bottom: 15%;
+                .modal-header {
+                    border: 0;
+                    .close {
+                        opacity: 1;
+                        margin: 0;
+                        font-size: inherit;
+                        span {
+                            background: #7c7c7c;
+                            padding: 0 5px;
+                            font-size: 20px;
+                            color: #fff;
+                            margin: 0;
+                            height: auto;
+                            line-height: 0;
+                        }
+                    }
+                }
+                .modal-body{
+                    width: 60%;
+                    margin: 0 auto;
+                    h3 {
+                        text-align: center;
+                        font-weight: bold;
+                        padding: 30px 0;
+                    }
+                    .form-wrap {
+                        label {
+                            font-size: 14px;
+                            padding-bottom: 5px;
+                        }
+                        .form-group{
+                            position: relative;
+                            input {
+                                height: 51px;
+                                border-color: #6ccfc0;
+                            }
+                            textarea {
+                                height: 110px;
+                                border-color: #6ccfc0;
+                            }
+                            .with-toolbar{
+                                padding-top: 40px;
+                                min-height: 200px;
+                            }
+                            select {
+                                height: 51px;
+                                border-color: #6ccfc0;
+                            }
+
+                            .upload-image {
+                                width: 20%;
+                                border: 1px dashed #eaeaea;
+                                text-align: center;
+                                padding: 20px 10px;
+                                label {
+                                    cursor: pointer;
+                                    margin: 0;
+                                }
+                                input{
+                                    display: none;
+                                }
+                                p {
+                                    margin: 0;
+                                    color: #cbcbcb;
+                                    font-size: 12px;
+                                } 
+                            }
+                            ul {
+                                padding-left: 0;
+                                margin: 0;
+                                li{
+                                    list-style-type: none;
+                                }
+                            }
+                            .toolbar-text {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                padding: 5px;
+                                border-bottom: 1px solid #cbcbcb;
+                                width: 100%;
+                                ul{
+                                    li {
+                                        display: inline-block;
+                                        padding: 4px;
+                                        span {
+                                            width: 20px;
+                                            height: 20px;
+                                            text-align: center;
+                                            display: flex;
+                                            justify-content: center;
+                                            cursor: pointer;
+                                            img {
+                                                width: 100%;
+                                            }
+                                        }
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .checklist {
+                        padding: 20px 0;
+                        .form-check {
+                            padding: 5px 0;
+                            label {
+                                font-weight: normal;
+                                padding-left: 30px;
+                            }
+                        }
+                    }
+                }
+
+                .modal-footer {
+                    position: absolute;
+                    bottom: 0;
+                    width: 100%;
+                    text-align: center;
+                    border-top: 0;
+                    padding: 50px;
+                    .btn {
+                        text-transform: lowercase;
+                        font-size: 18px;
+                        background: transparent;
+                        padding: 5px 35px;
+                    }
+                    .btn-solid-green {
+                        background: #3ed1c0;
+                        text-transform: uppercase;
+                        color: #fff;
+                        padding: 10px 30px;
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
     }
 
 
@@ -251,6 +399,10 @@
                                 height: 110px;
                                 border-color: #6ccfc0;
                             }
+                            .with-toolbar{
+                                padding-top: 40px;
+                                min-height: 200px;
+                            }
                             select {
                                 height: 51px;
                                 border-color: #6ccfc0;
@@ -291,6 +443,7 @@
                                 ul{
                                     li {
                                         display: inline-block;
+                                        padding: 4px;
                                         span {
                                             width: 20px;
                                             height: 20px;
@@ -298,7 +451,6 @@
                                             display: flex;
                                             justify-content: center;
                                             cursor: pointer;
-                                            padding: 2px;
                                             img {
                                                 width: 100%;
                                             }
@@ -483,6 +635,124 @@
                         width: 42px;
                     }
                 }
+                
+            }
+        }
+
+        h3.main-title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #111;
+        }
+
+        .graphic{
+            .card {
+                background: #fff;
+                padding: 20px;
+
+                .card-body {
+                    position: relative;
+                    width: 100%;
+
+                    .button-wrapper {
+                        position: relative;
+                        width:50%;
+                        .btn {
+                            width: 100px;
+                            border: 0;
+                            margin: 0 10px;
+                        }
+                    }
+                }
+                .head-title {
+                    display: flex;
+                    align-items: center;
+                    padding: 20px 0 20px 0;
+                    h3 {
+                        display: inline-block;
+                        margin: 0;
+                    }
+                    p {
+                        display: inline-block;
+                        position: absolute;
+                        text-align: center;
+                        width: 100%;
+                        left: 0;
+                    }
+                }
+                .filter {
+                    width: 100%;
+                    position: relative;
+                    margin-bottom: 40px;
+                    & > .btn {
+                        position: absolute;
+                        top: 100%;
+                        padding: 10px;
+                    }
+                    .filter-form {
+                        padding: 0;
+                        position: relative;
+                        z-index: 9;;
+                        .card-body {
+                            padding: 10px 0;
+                            background: #f9f9f9;
+                            border-top: 1px solid #ececec;
+                            border-bottom: 1px solid #ececec;
+                            h4 {
+                                padding: 0 10px;
+                            }
+                            .filter-wrap {
+                                display: flex;
+                                padding: 0;
+                                .form-wrap {
+                                    display: flex;
+                                    align-items: center;
+                                    label {
+                                        padding: 0 10px;
+                                    }
+                                    .form-group {
+                                        margin: 0;
+                                        .form-control{
+                                            width: 150px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .btn {
+                    height: auto;
+                    width: 100%;
+                    left: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    padding-left: 20px;
+                    img{
+                        position: absolute;
+                        &:last-child{
+                            margin-right: auto;
+                            position: relative;
+
+                        }
+
+                        &:first-child{
+                            transform: rotate(-90deg);
+                        }
+                    }
+                }
+                .collapsed{
+                    img{
+                        &:first-child{
+                            transform: rotate(90deg);
+                        }
+                    }
+                }
+
+                
             }
         }
         .filter {
@@ -492,10 +762,10 @@
             height: 100%;
             .button-wrapper {
                 text-align: center;
-                position: relative;
+                position: absolute;
                 bottom: 0;
                 width: 100%;
-                // bottom: 10%;
+                bottom: 10%;
                 display: -ms-flexbox;
                 display: flex;
                 left: 0;
@@ -727,7 +997,7 @@
             
             .modal-body {
                 .form-wrap.example img {
-                    height: 133px;
+                    height: 133px; 
                 }
             }
         }
@@ -1037,6 +1307,24 @@
 
 } 
 
+.janji {
+    .table {
+        .modal-dialog {
+            .modal-content {
+                .modal-body {
+                    width: 40%;
+                    .sub-profile {
+                        padding-bottom: 70px;
+                        img {
+                            border-radius: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
 
 // Radio Button
 

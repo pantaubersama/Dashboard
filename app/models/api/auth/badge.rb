@@ -56,6 +56,17 @@ class Api::Auth::Badge < InitApiAuth
     self.class.delete("/dashboard/v1/badges/#{id}", options)
   end
 
+  def grant_badge_user(badge_id, user_id)
+    options = {
+      headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
+      body: {
+        user_id: user_id
+      }
+    }
+    self.class.post("/dashboard/v1/badges/#{badge_id}/grant", options)
+  end
+
+
 
 
 

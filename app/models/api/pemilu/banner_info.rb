@@ -12,8 +12,8 @@ class Api::Pemilu::BannerInfo < InitApiPemilu
         title: title,
         body: body,
         page_name: page_name,
-        header_image: File.open(header_image),
-        image: File.open(image),
+        header_image: header_image.present? ? File.open(header_image) : '',
+        image: image.present? ? File.open(image) : '',
       }
     }
     self.class.put('/dashboard/v1/banner_infos', options)
