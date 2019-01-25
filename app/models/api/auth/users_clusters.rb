@@ -3,7 +3,7 @@ class Api::Auth::UsersClusters < InitApiAuth
     options = { 
 			query: { page: page, per_page: per_page, q: q, o: o, m: m, filter_by: filter_by }
     }
-    self.class.get("/v1/users_clusters", options)
+    self.class.get("/dashboard/v1/users_clusters", options)
 	end
 	
 	def invite_user(emails, cluster_id)
