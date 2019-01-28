@@ -3,10 +3,10 @@ class Api::Auth::Cluster < InitApiAuth
   attr_accessor :id, :name, :category_id, :description, :requester_id, :image, :status
 
   def clusters(page, per_page, q, filter_by, filter_value, status)
-    @options = { 
-      query: {page: page, per_page: per_page, q: q, 
-              filter_by: filter_by, filter_value: 
-              filter_value, status: status}, 
+    @options = {
+      query: {page: page, per_page: per_page, q: q,
+              filter_by: filter_by, filter_value:
+              filter_value, status: status},
       headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}
     }
     self.class.get("/dashboard/v1/clusters", @options)
@@ -15,7 +15,7 @@ class Api::Auth::Cluster < InitApiAuth
   def create_cluster(name, category_id, description, requester_id, image, status)
     @options = {
       headers:  { Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
-      body:     {name: name, category_id: category_id, description: description, 
+      body:     {name: name, category_id: category_id, description: description,
                 requester_id: requester_id, image: File.open(image), status: status},
     }
     self.class.post("/dashboard/v1/clusters", @options)
@@ -30,8 +30,8 @@ class Api::Auth::Cluster < InitApiAuth
   end
 
   def update_cluster(id, name, category_id, description, requester_id, image, status)
-    @options = { 
-      body:     {id: id, name: name, category_id: category_id, description: description, 
+    @options = {
+      body:     {id: id, name: name, category_id: category_id, description: description,
                  requester_id: requester_id, image: File.open(image), status: status},
       headers:  { Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}
     }
@@ -39,8 +39,8 @@ class Api::Auth::Cluster < InitApiAuth
   end
 
   def delete_cluster(id)
-    @options = { 
-      query: {id: id}, 
+    @options = {
+      query: {id: id},
       headers: { Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}
     }
     self.class.delete("/dashboard/v1/clusters/#{id}", @options)
