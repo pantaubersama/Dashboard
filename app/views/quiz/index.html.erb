@@ -194,23 +194,7 @@
 
         <div class="main-content quiz tab-pane" id="trash">
           <div class="top ">
-            <div class="pagination-wrap">
-              <ul class="pagination">
-                <li class="page-item">
-                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" alt="Previous"></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active" aria-current="page">
-                  <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#"><img src="<%= asset_pack_path("views/assets/images/ic_arrow_right.svg")
-                      %>"
-                    alt="Next"></a>
-                </li>
-              </ul>
-            </div>
+            <%= render("components/pagination", pagy: @pagy_trash) %>
             <div class="modal-wrap">
               <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
                 Buat Quiz <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
@@ -251,7 +235,7 @@
           <div class="content">
             <span class="display-desc">
               <p>
-                Displaying Content 1 - 30 of 500 in total
+                <%= show_count_table(params[:page_trash], @total_row_per_page_trash, @total_quiz_trash) %>
               </p>
             </span>
             <div class="table">
@@ -262,27 +246,19 @@
                     <th>Judul Quiz</th>
                     <th>Jumlah Pertanyaan</th>
                     <th>Delete At</th>
-                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
+                  <% @quiz_trash.each_with_index do |quiz, index| %>
                   <tr>
-                    <td class="number bold">1</td>
-                    <td class="name bold"><a href="detail-pertanyaan.html">Quiz A </a></td>
-                    <td>100</td>
-                    <td>21/10/2023</td>
-
-                    <td>
-                      <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="action">
-                        <a class="dropdown-item" href="detail-pertanyaan.html">Lihat</a>
-                        <a class="dropdown-item" href="#">Edit</a>
-                        <a class="dropdown-item" href="#">Hapus</a>
-                      </div>
+                    <td class="number bold">
+                      <%= ((params[:page].present? ? params[:page].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %>
                     </td>
+                    <td class="name bold"><a href="<%= quiz_path(quiz['id']) %>"><%=  truncate(quiz['title'], :length => 80) %></a></td>
+                    <td><%= quiz['quiz_questions_count'] %></td>
+                    <td><%= Date.parse(quiz['created_at']) if quiz['created_at'].present? %></td>
+                  </tr>
+                  <% end %>
 
                 </tbody>
               </table>

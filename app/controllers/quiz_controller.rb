@@ -1,7 +1,6 @@
 class QuizController < ApplicationController
   before_action :set_api
   def index
-    Pagy::VARS[:items]
     request = @quiz_api.all(
                               page=params[:page].present? ? params[:page] : 1,
                               per_page=Pagy::VARS[:items],
@@ -22,7 +21,6 @@ class QuizController < ApplicationController
 
     @quiz = request["data"]["quizzes"]
 
-
     last_page = @quiz_api.all(
       page=@totalPage,
       per_page=Pagy::VARS[:items],
@@ -33,6 +31,27 @@ class QuizController < ApplicationController
     @total_quiz = (@totalData - Pagy::VARS[:items]) + last_page
     @total_row_per_page = request["data"]["quizzes"].size
 
+    ########## trash ############
+    request_trash = @quiz_api.trash(
+      page=params[:page_trash].present? ? params[:page_trash] : 1,
+      per_page=Pagy::VARS[:items],
+    )
+    @totalPageTrash = request['data']['meta']['pages']['total']
+    @totalDataTrash = (@totalPage*Pagy::VARS[:items])
+    total_array_trash = (1..@totalDataTrash).to_a
+
+    @pagy_trash = Pagy.new(
+                      count: total_array_trash.count,
+                      page: params[:page_trash].present? ? params[:page_trash] : 1 ,
+                      page_param: :page
+                    )
+    @quiz_trash = request_trash["data"]["quizzes"]
+    last_page_trash = @quiz_api.trash(
+      page=@totalPageTrash,
+      per_page=Pagy::VARS[:items]
+    )["data"]["quizzes"].size
+    @total_quiz_trash = (@totalDataTrash - Pagy::VARS[:items]) + last_page_trash
+    @total_row_per_page_trash = request["data"]["quizzes"].size
 
   end
 
