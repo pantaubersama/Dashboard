@@ -63,7 +63,7 @@
                 <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
                   Buat Cluster <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>"  alt="add">
                 </button>
-  
+
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -74,7 +74,7 @@
                         </button>
                       </div>
 
-                      <%= simple_form_for(@cluster, url: clusters_path, method: :post, html: { multipart: true }) do |f| %>  
+                      <%= simple_form_for(@cluster, url: clusters_path, method: :post, html: { multipart: true }) do |f| %>
                         <div class="modal-body">
                           <h3>Tambah Cluster</h3>
                           <div class="form-wrap">
@@ -112,7 +112,7 @@
                                   </div>
                                 </div>
                               </div>
-    
+
                               <div class="form-wrap">
                                 <label>Akses Dashboard</label>
                                 <div class="form-group">
@@ -136,7 +136,7 @@
                                   </ul>
                                 </div>
                               </div>
-    
+
                             </div>
                               <div class="col-md-6 col-xs-12">
                                 <div class="form-wrap">
@@ -151,7 +151,7 @@
                                     </div>
                                   </div>
                                 </div>
-    
+
                                 <div class="form-wrap">
                                   <label>Admin</label>
                                   <div class="form-group">
@@ -161,10 +161,10 @@
                                   </div>
                                 </div>
                                 <input type="hidden" name="status" value="requested">
-                                
+
                               </div>
                             </div>
-      
+
                           </div>
                         <div class="modal-footer">
                           <button type="button" onclick="document.getElementById('new_api_auth_cluster').submit()" class="btn btn-solid-green" data-dismiss="modal">Tambah</button>
@@ -203,7 +203,7 @@
                       <%= ((params[:page_cluster].present? ? params[:page_cluster].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %>
                     </td>
                     <td class="name bold"><a href="<%= cluster_path(item["id"]) %>">
-                        <img src="<%= item["image"].present? ? item["image"]["thumbnail"]["url"] : "" %>">
+                        <img src="<%= item["image"].present? ? item["image"]["thumbnail_square"]["url"] : "" %>">
                         <%= item["name"] %></a></td>
                     <td class="name bold">
                       <%= item["requester"]["full_name"] %>
@@ -296,7 +296,7 @@
                   <%== link.call(@pagy_categories.prev, pagy_t('pagy.nav.prev')) %>
                 </li>
                 <% end %>
-        
+
                 <% @pagy_categories.series.each do |item| %>
                 <% if item.is_a?(Integer) %>
                 <li id="testtest" class="page-item">
@@ -311,7 +311,7 @@
                     <%== pagy_t('pagy.nav.gap') %></a></li>
                 <% end %>
                 <% end %>
-        
+
                 <% if @pagy_categories.next %>
                 <li class="page-item">
                   <%== link.call(@pagy_categories.next, pagy_t('pagy.nav.next')) %>
@@ -329,7 +329,7 @@
                 Create Kategori Cluster <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>"
                 alt="add">
               </button>
-        
+
               <div class="modal fade" id="categoryClusterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -340,13 +340,13 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-        
+
                     <%= form_tag(create_category_clusters_path, method: :post, id: "new_category") do %>
                       <div class="modal-body">
                         <h3>Tambah Kategori Cluster</h3>
                         <div class="row">
                           <div class="col-md-6 col-xs-12">
-        
+
                             <div class="form-wrap">
                               <label>Kategori Cluster</label>
                               <div class="form-group">
@@ -377,18 +377,18 @@
                                 </div>
                               </div>
                             </div>
-        
+
                           </div>
-        
+
                         </div>
-        
+
                       </div>
                       <div class="modal-footer">
                         <button type="button" onclick="document.getElementById('new_category').submit()" class="btn btn-solid-green" data-dismiss="modal">Tambah</button>
                         <button type="button" class="btn btn-transparent" data-dismiss="modal">Cancel</button>
                       </div>
                     <% end %>
-        
+
                   </div>
                 </div>
               </div>
@@ -436,7 +436,7 @@
                         <a class="dropdown-item" data-toggle="modal" data-target="#edit_cluster_<%= item["id"] %>">Lihat</a>
                         <a class="dropdown-item" data-toggle="modal" data-target="#edit_cluster_<%= item["id"] %>">Edit</a>
                         <a class="dropdown-item" href="#">Hapus</a>
-        
+
                         <div class="modal fade" id="#edit_cluster_<%= item["id"] %>" tabindex="-1" role="dialog" aria-labelledby="#edit_cluster_<%= item["id"] %>Label" aria-hidden="true">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -452,7 +452,7 @@
                                   <div class="col-md-6 col-xs-12">
                                     <div class="form-wrap">
                                       <label>Deskripsi</label>
-                                      <div class="form-group"> 
+                                      <div class="form-group">
                                           <div class="form-group">
                                               <textarea type="Email" class="form-control with-toolbar" placeholder="adellapratitas7@gmail.com"></textarea>
                                               <div class="toolbar-text full">
@@ -522,7 +522,7 @@
 
         <div class="main-content tab-pane" id="trash">
           <div class="top ">
-            
+
               <% link = pagy_link_proc(@pagy_trash) %>
               <div class="pagination-wrap">
                 <ul class="pagination">
@@ -535,7 +535,7 @@
                     <%== link.call(@pagy_trash.prev, pagy_t('pagy.nav.prev')) %>
                   </li>
                   <% end %>
-  
+
                   <% @pagy_trash.series.each do |item| %>
                   <% if item.is_a?(Integer) %>
                   <li id="testtest" class="page-item">
@@ -550,7 +550,7 @@
                       <%== pagy_t('pagy.nav.gap') %></a></li>
                   <% end %>
                   <% end %>
-  
+
                   <% if @pagy_trash.next %>
                   <li class="page-item">
                     <%== link.call(@pagy_trash.next, pagy_t('pagy.nav.next')) %>
