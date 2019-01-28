@@ -12,6 +12,14 @@ class Api::Auth::Cluster < InitApiAuth
     self.class.get("/dashboard/v1/clusters", @options)
   end
 
+  def detail_cluster(id)
+    @options = { 
+      query: {id: id},
+      headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}
+    }
+    self.class.get("/dashboard/v1/clusters/#{id}", @options)
+  end
+
   def create_cluster(name, category_id, description, requester_id, image, status)
     @options = {
       headers:  { Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
@@ -23,7 +31,7 @@ class Api::Auth::Cluster < InitApiAuth
 
   def approve_cluster(id)
     @options = {
-      headers: { Authorization: "Bearer #{RequestStore.store[:my_api_token]}" },
+      headers: { Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
       query: { id: id }
     }
     self.class.post("/v1/clusters/approve/#{id}", @options)
