@@ -5,8 +5,16 @@ class AdminsController < ApplicationController
 
   def make_admin
     user = UserPantauAuth.where(email: params[:email]).first
-    response = @user_api.make_admin(user.id)
-    if response.code == 201
+    if user.present?
+      response = @user_api.make_admin(user.id)
+      if response.code == 201
+        redirect_to users_list_admin_path
+      else
+        flash[:warning] = "Oop something wrong"
+        redirect_to users_list_admin_path
+      end
+    else
+      flash[:warning] = "User Not Found"
       redirect_to users_list_admin_path
     end
   end
