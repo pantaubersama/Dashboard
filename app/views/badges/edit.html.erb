@@ -8,7 +8,7 @@
       <div class="main-content">
         <div class="top">
           <div class="btn-back">
-            <%= link_to request.referer do %>
+            <%= link_to badge_path(@badge['id']) do %>
             <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
             <% end %>
           </div>
@@ -69,7 +69,7 @@
                 <div class="form-wrap">
                   <br>
                   <button class="btn btn-solid-green" type="submit">Update</button>
-                </div> 
+                </div>
               </div>
             </div>
             <% end %>

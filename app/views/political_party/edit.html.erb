@@ -8,7 +8,7 @@
       <div class="main-content">
         <div class="top">
           <div class="btn-back">
-            <%= link_to request.referer do %>
+            <%= link_to political_party_path(@party['id']) do %>
             <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
             <% end %>
           </div>
