@@ -21,6 +21,14 @@ class Api::Auth::Cluster < InitApiAuth
     self.class.post("/dashboard/v1/clusters", @options)
   end
 
+  def approve_cluster(id)
+    @options = {
+      headers: { Authorization: "Bearer #{RequestStore.store[:my_api_token]}" },
+      query: { id: id }
+    }
+    self.class.post("/v1/clusters/approve/#{id}", @options)
+  end
+
   def update_cluster(id, name, category_id, description, requester_id, image, status)
     @options = { 
       body:     {id: id, name: name, category_id: category_id, description: description, 
