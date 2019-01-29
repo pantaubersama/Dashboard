@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 
     resources :politics
     get '/show_trash_politic/:id', to: 'politics#detail_trash', as: 'detail_politic_trash'
+    get '/search_clusters/', to: 'politics#search_clusters', as: 'search_clusters'
   end
 
   resources :banner, only: [:edit, :update, :show, :index]

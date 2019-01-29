@@ -14,12 +14,21 @@ $(document).ready(function(){
 			data: function (params) {
 				return {
 					q: params.term,
+					cluster_id: params.term,
 					page: params.page || 1
 				};
 			},
 			processResults: function(data) {
-				var result = $.map(data.categories, function (item) { return { id: item.id, text: item.name }});
-				console.log(result)
+				var root = ""
+				var root_name = Object.keys(data)[0]
+				switch (root_name) {
+					case "categories":
+						root = "categories"
+						break;
+					case "clusters":
+						root = "clusters"
+				}
+				var result = $.map(data[root], function (item) { return { id: item.id, text: item.name }});
 				return { results: result };
 			}
 		}

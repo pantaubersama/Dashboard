@@ -166,10 +166,11 @@
                     <div class="form-wrap">
                       <label>Status</label>
                       <div class="form-group">
-                        <select class="form-control" name="filter">
-                          <option value="user_verified_all">Semua Verifikasi</option>
-                          <option value="user_verified_true">Terverifikasi</option>
-                          <option value="user_verified_false">Belum Terverifikasi</option>
+                        <select class="form-control stat" name="filter">
+                          <option></option>
+                          <% @verifications.each do |a| %>
+                            <option value="<%= a["id"] %>" <%= selected a["id"], params[:filter] %> > <%= a["name"] %> </option>
+                          <% end %>
                         </select>
                       </div>
                     </div>
@@ -177,16 +178,8 @@
                       <label>User</label>
                       <div class="form-group">
                         <div class="form-group">
-                          <input name="q" value="<%= params[:q] %>" type="nama" class="form-control" placeholder="Nama">
+                          <input name="q" value="<%= params[:q] %>" type="nama" class="form-control q" placeholder="Nama">
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-wrap">
-                    <label>Email</label>
-                    <div class="form-group">
-                      <div class="form-group">
-                        <input type="email" class="form-control" placeholder="luna@gmail.com">
                       </div>
                     </div>
                   </div>
@@ -194,13 +187,20 @@
                     <label>Cluster</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input name="cluster_id" value="<%= params[:cluster_id] %>" type="cluster" class="form-control" placeholder="Nama Cluster">
+                        <select class="form-control remote-select" name="cluster_id" data-url="<%= request.base_url + search_clusters_path %>">
+                          <option></option>
+                          <% @clusters.each do |c| %>
+                            <option value="<%= c["id"] %>" <%= selected c["id"], params[:cluster_id] %> >
+                              <%= c["name"] %>
+                            </option>
+                          <% end %>
+                        </select>
                       </div>
                     </div>
                   </div>
                   <div class="button-wrapper">
                     <button id="send" type="submit" class="btn btn-solid-green" data-dismiss="modal">Done</button>
-                    <button id="reset" type="submit" class="btn btn-transparent">Reset</button>
+                    <button type="button" class="btn btn-transparent reset">Reset</button>
                   </div>
                 </div>
               </div>
