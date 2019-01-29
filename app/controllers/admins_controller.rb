@@ -29,7 +29,7 @@ class AdminsController < ApplicationController
   def index
     @admins = UserPantauAuth.joins('INNER JOIN "users_roles" ON "users_roles"."user_id" = "users"."id" INNER JOIN "roles" ON "roles"."id" = "users_roles"."role_id"')
     .where("roles.name = 'admin'")
-    .where("users.full_name LIKE ?", "%#{ params[:nama].present? ? params[:nama] : '' }%")
+    .where("LOWER(users.full_name) LIKE ?", "%#{ params[:nama].present? ? params[:nama] : '' }%")
     .where("users.email LIKE ?", "%#{ params[:email].present? ? params[:email] : '' }%")
     .where('users.deleted_at IS NULL')
 

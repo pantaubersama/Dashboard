@@ -128,9 +128,9 @@
                   <div class="form-group">
                     <%= select_tag(:verified, options_for_select([
                         ['', ''],
-                        ['Verified True', 'verified_true'],
-                        ['Verified False', 'verified_false'],
-                        ['Verified All', 'verified_all']
+                        ['Terverifikasi', 'verified_true'],
+                        ['Belum Terverifikasi', 'verified_false'],
+                        ['Semua', 'verified_all']
                       ], params[:verified]), class: 'form-control') %>
                   </div>
                 </div>
@@ -160,8 +160,12 @@
                 </div>
               </div>
 
-              <button> Done</button>
-              <button data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample"> Cancel</button>
+              <div class="button-wrapper">
+                <button type="submit" class="btn btn-solid-green" data-dismiss="modal">Done</button>
+                <%= link_to users_list_user_path do %>
+                <button type="button" class="btn btn-transparent reset">Reset</button>
+                <% end %>
+              </div>
               <% end %>
 
             </div>

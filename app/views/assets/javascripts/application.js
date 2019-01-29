@@ -11,10 +11,17 @@ console.log('Hello Dashboard');
 import '../stylesheets/application.scss'
 import 'jquery'
 import 'bootstrap'
+import './select_ajax'
 // import './modernizr'
 import '@fortawesome/fontawesome-free/js/all.js'
 import Rails from 'rails-ujs'
 import './select2-4.0.5/dist/js/select2'
 import './script'
+
+// Select2
+require("select2/dist/css/select2")
+require("select2-bootstrap-theme/dist/select2-bootstrap")
+import Select2 from "select2"
+$.fn.select2.defaults.set("theme", "bootstrap")
 
 Rails.start();

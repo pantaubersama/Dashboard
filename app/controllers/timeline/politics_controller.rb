@@ -19,6 +19,15 @@ class Timeline::PoliticsController < ApplicationController
 
     @item_politics = @init_index["data"]["janji_politiks"]
 
+    init_verification = [
+      ["user_verified_all", "Semua"],
+      ["user_verified_true", "Terverifikasi"],
+      ["user_verified_false", "Belum Terverifikasi"]
+    ]
+
+    @verifications = []
+    init_verification.each {|record| @verifications << {"id" => record[0], "name" => record[1]} }
+
     # ========================== Trash Janji Politik ========================== 
     @init_trash = @janji.get_trashes(params[:page_politic].present? ? params[:page_politic] : 1,
                                           Pagy::VARS[:items])
@@ -34,6 +43,11 @@ class Timeline::PoliticsController < ApplicationController
 
     @pages = { page: "index" }
     render "pages/timeline/politics/index"
+  end
+
+  def search_clusters
+    @results = @set_cluster.clusters(nil, nil, params[:cluster_id], nil, nil, nil)["data"]
+    render json: @results
   end
 
   def detail_trash
@@ -65,6 +79,8 @@ class Timeline::PoliticsController < ApplicationController
   private
     def set_api
       @janji = Api::Pemilu::JanjiPolitik.new
+      @set_cluster = Api::Auth::Cluster.new
+      @clusters = @set_cluster.clusters(nil, nil, params[:q], nil, nil, nil)["data"]["clusters"]
     end
 
     def get_janji

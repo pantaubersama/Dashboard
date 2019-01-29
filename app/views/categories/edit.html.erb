@@ -1,0 +1,47 @@
+<div class="d-flex main-wrapper">
+  <%= render("components/sidebar") %>
+  <div class="main-wrapper">
+    <main class="main col-md-10 offset-md-2" role="main">
+      <header class="header" role="banner">
+        <%= render("components/dropdown_profile") %>
+      </header>
+      <div class="main-content janji-politik">
+        <div class="top">
+          <div class="btn-back">
+            <a href="<%= category_path(@category['id']) %>">
+              <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+            </a>
+          </div>
+        </div>
+        <div class="content">
+          <div class="bg-white detail-profile">
+            <div class="card-form">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <%= form_tag(category_path(@category["id"]), method: :put) do  %>
+                    <label>Nama Cluster</label>
+                    <div class="form-group">
+                      <input name="name" type="text" value="<%= @category["name"] %>" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Deskripsi</label>
+                    <div class="form-group">
+                      <textarea name="description" type="text" class="form-control"><%= @category["description"] %></textarea>
+                    </div>
+                  </div>
+                  <button class="btn btn-solid-green" type="submit"> UPDATE </button>
+                </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+</main>
+</div>
+</div>
+<%= render("components/footer") %>
