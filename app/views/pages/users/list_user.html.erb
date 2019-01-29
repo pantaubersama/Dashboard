@@ -160,8 +160,12 @@
                 </div>
               </div>
 
-              <button> Done</button>
-              <button data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample"> Cancel</button>
+              <div class="button-wrapper">
+                <button type="submit" class="btn btn-solid-green" data-dismiss="modal">Done</button>
+                <%= link_to users_list_user_path do %>
+                <button type="button" class="btn btn-transparent reset">Reset</button>
+                <% end %>
+              </div>
               <% end %>
 
             </div>

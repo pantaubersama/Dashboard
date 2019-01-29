@@ -1,12 +1,14 @@
 class Api::Auth::User < InitApiAuth
-  def all(page=1, per_page=25, q="*", o="and", m="word_start", filter_by="")
+  def all(page=1, per_page=25, q="*", o="and", m="word_start", filter_by="", email, cluster_name)
     options = { query: {
         page: page,
         per_page: per_page,
         q: q,
         o: o,
         m: m,
-        filter_by: filter_by
+        filter_by: filter_by,
+        email: email,
+        cluster_name: cluster_name
       }
     }
     self.class.get('/v1/users', options)
