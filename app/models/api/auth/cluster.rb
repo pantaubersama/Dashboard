@@ -62,8 +62,8 @@ class Api::Auth::Cluster < InitApiAuth
     self.class.delete("/dashboard/v1/clusters/#{id}", @options)
   end
 
-  def get_categories(page, per_page)
-    @options = {query: {page: page, per_page: per_page}}
+  def get_categories(page, per_page, name)
+    @options = {query: {page: page, per_page: per_page, name: name}}
     self.class.get("/v1/categories", @options)
   end
 
