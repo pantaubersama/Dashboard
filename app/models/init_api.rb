@@ -1,8 +1,8 @@
 class InitApi
   
-  AUTHORIZATION = {
-    Authorization: "Bearer #{RequestStore.store[:my_api_token]}"
-  }.freeze
+  # AUTHORIZATION = {
+  #   Authorization: "Bearer #{RequestStore.store[:my_api_token]}"
+  # }.freeze
 
   def pagination page, per_page
     {

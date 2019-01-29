@@ -1,4 +1,8 @@
 class Api::Pemilu::Quiz < InitApiPemilu
+  AUTHORIZATION = {
+    Authorization: "Bearer #{RequestStore.store[:my_api_token]}"
+  }
+
   def all(page=1, per_page=25, q=nil, o="and", m="word_start")
     options = {
       headers: {}.merge(AUTHORIZATION),
