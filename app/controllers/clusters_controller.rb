@@ -21,14 +21,14 @@ class ClustersController < ApplicationController
     @clusters = @init_cluster["data"]["clusters"]
 
     # ============================= Categories =============================
-    @init_cat = @cluster.get_categories(params[:page_cat] || 1, Pagy::VARS[:items])
+    @init_cat = @cluster.get_categories(params[:page_cat] || 1, Pagy::VARS[:items], nil)
     n2 = @init_cat["data"]["meta"]["pages"]["total"]
     @cat_records = (n2*Pagy::VARS[:items])
     total_page_cat = (1..@cat_records).to_a
     @pagy_categories = Pagy.new(count: total_page_clusters.count, page: params[:page_cat].present? ? params[:page_cat] : 1,
                                 page_param: :page_cat)
 
-    last_page_category = @cluster.get_categories(n1, Pagy::VARS[:items])["data"]["categories"].size
+    last_page_category = @cluster.get_categories(n1, Pagy::VARS[:items], nil)["data"]["categories"].size
     @total_categories = (@cat_records - Pagy::VARS[:items]) + last_page_category
     @list_categories = @init_cat["data"]["categories"]
 
@@ -44,13 +44,15 @@ class ClustersController < ApplicationController
     @total_trash = (@trash_records - Pagy::VARS[:items]) + last_page_trash
     @list_trash = @init_trash["data"]["clusters"]
 
+    @statuses = ["approved", "requested", "rejected"]
+
     @pages = { page: "index" }
     render "pages/clusters/index"
   end
 
   def search_categories
-    # @categories = @cluster.get_categories["data"]["categories"]
-    # render json: @categories
+    @categories = @cluster.get_categories(nil, nil, params[:q])["data"]
+    render json: @categories
   end
 
   def show
@@ -117,7 +119,7 @@ class ClustersController < ApplicationController
   private
     def set_from_api
       @cluster = Api::Auth::Cluster.new
-      @categories = @cluster.get_categories(nil, nil)["data"]["categories"]
+      @categories = @cluster.get_categories(nil, nil, nil)["data"]["categories"]
       @user = UserPantauAuth.all
     end
 

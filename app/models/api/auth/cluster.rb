@@ -37,6 +37,14 @@ class Api::Auth::Cluster < InitApiAuth
     self.class.post("/v1/clusters/approve/#{id}", @options)
   end
 
+  def reject_cluster(id)
+    @options = {
+      headers: { Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
+      query: { id: id }
+    }
+    self.class.post("/v1/clusters/reject/#{id}", @options)
+  end
+
   def update_cluster(id, name, category_id, description, requester_id, image, status)
     @options = {
       body:     {id: id, name: name, category_id: category_id, description: description,
@@ -54,8 +62,8 @@ class Api::Auth::Cluster < InitApiAuth
     self.class.delete("/dashboard/v1/clusters/#{id}", @options)
   end
 
-  def get_categories(page, per_page)
-    @options = {query: {page: page, per_page: per_page}}
+  def get_categories(page, per_page, name)
+    @options = {query: {page: page, per_page: per_page, name: name}}
     self.class.get("/v1/categories", @options)
   end
 

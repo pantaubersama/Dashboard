@@ -241,10 +241,11 @@
                     <div class="form-wrap">
                       <label>Status</label>
                       <div class="form-group">
-                        <select class="form-control" name="status">
-                          <option value="approved">Approved</option>
-                          <option value="requested">Requested</option>
-                          <option value="rejected">Rejected</option>
+                        <select class="form-control stat" name="status">
+                          <option></option>
+                          <% @statuses.each do |stat| %>
+                            <option value="<%= stat %>" <%= selected stat, params[:status] %> > <%= stat %> </option>
+                          <% end %>
                         </select>
                       </div>
                     </div>
@@ -252,18 +253,18 @@
                       <label>Admin</label>
                       <div class="form-group">
                         <div class="form-group">
-                          <input name="q" value="<%= params[:q] %>" type="nama" class="form-control" placeholder="Nama">
+                          <input name="q" value="<%= params[:q] %>" type="nama" class="form-control q" placeholder="Nama">
                         </div>
                       </div>
                     </div>
                     <input type="hidden" name="filter_by" value="category_id">
                     <div class="form-group">
                       <label>Category</label>
-                      <select id="select-filter" class="form-control" name="filter_value" data-placeholder="Jenjang Organisasi"
+                      <select class="form-control remote-select" name="filter_value" data-placeholder="Category"
                         data-url="<%= request.base_url + search_categories_clusters_path %>">
                         <option></option>
                         <% @categories.each do |c| %>
-                        <option value="<%= c[" id"] %>">
+                        <option value="<%= c["id"] %>" <%= selected c["id"], params[:filter_value] %> >
                           <%= c["name"] %>
                         </option>
                         <% end %>
@@ -273,7 +274,7 @@
                 </div>
                 <div class="button-wrapper">
                   <button type="submit" class="btn btn-solid-green" data-dismiss="modal">Done</button>
-                  <button type="button" class="btn btn-transparent">Reset</button>
+                  <button type="button" class="btn btn-transparent reset">Reset</button>
                 </div>
               </div>
             </div>
@@ -491,6 +492,7 @@
                 </tbody>
               </table>
             </div>
+            
             <div class="filter">
               <a class="btn " data-toggle="collapse" href="#filter2" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
