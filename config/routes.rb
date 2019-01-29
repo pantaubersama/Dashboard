@@ -46,7 +46,15 @@ Rails.application.routes.draw do
     end
   end
   resources :questions
-  resources :quiz
+  resources :quiz do
+    collection do 
+      get 'trash'
+    end
+    member do
+      post 'publish'
+      post 'draft'
+    end
+  end
 
   # admins
   get '/admins', to: 'admins#index', as: 'users_list_admin'

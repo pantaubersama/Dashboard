@@ -10,10 +10,11 @@
 console.log('Hello Dashboard');
 import '../stylesheets/application.scss'
 import 'jquery'
-import 'jquery-ujs'
 import 'bootstrap'
 // import './modernizr'
 import '@fortawesome/fontawesome-free/js/all.js'
 import Rails from 'rails-ujs'
+import './select2-4.0.5/dist/js/select2'
+import './script'
 
 Rails.start();
