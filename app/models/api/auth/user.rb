@@ -14,7 +14,7 @@ class Api::Auth::User < InitApiAuth
     self.class.get('/v1/users', options)
   end
 
-  def all_verification(page=1, per_page=25, q="*", o="and", m="word_start", status="")
+  def all_verification(page=1, per_page=25, q="*", o="and", m="word_start", status="", email)
     options = {
       headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
       query: {
@@ -23,7 +23,8 @@ class Api::Auth::User < InitApiAuth
         q: q,
         o: o,
         m: m,
-        status: status
+        status: status,
+        email: email
       }
     }
     self.class.get('/dashboard/v1/users/verifications', options)

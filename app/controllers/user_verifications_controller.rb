@@ -11,7 +11,8 @@ class UserVerificationsController < ApplicationController
       params[:nama_ditunda].present? ? params[:nama_ditunda] : "*",
       o="and",
       m="word_start",
-      status="requested"
+      status="requested",
+      email=params[:email_ditunda].present? ? params[:email_ditunda] : ""
     )
 
     totalPageUserRequested = request_users_requested['data']['meta']['pages']['total']
@@ -34,7 +35,8 @@ class UserVerificationsController < ApplicationController
       params[:nama_diterima].present? ? params[:nama_diterima] : "*",
       o="and",
       m="word_start",
-      status="verified"
+      status="verified",
+      email=params[:email_diterima].present? ? params[:email_diterima] : ""
     )
 
     totalPage = request_users_accepted['data']['meta']['pages']['total']
@@ -57,7 +59,8 @@ class UserVerificationsController < ApplicationController
       params[:nama_ditolak].present? ? params[:nama_ditolak] : "*",
       o="and",
       m="word_start",
-      filter_by="rejected"
+      filter_by="rejected",
+      email=params[:email_ditolak].present? ? params[:email_ditolak] : ""
     )
 
     totalPage = request_users_rejected['data']['meta']['pages']['total']
