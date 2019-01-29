@@ -10,7 +10,6 @@
 console.log('Hello Dashboard');
 import '../stylesheets/application.scss'
 import 'jquery'
-import 'jquery-ujs'
 import 'bootstrap'
 // import './modernizr'
 import '@fortawesome/fontawesome-free/js/all.js'
