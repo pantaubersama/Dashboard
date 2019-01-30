@@ -1,13 +1,13 @@
-<%= form_tag(cluster_path(@cluster_detail), method: :put, multipart: true) do  %>
-  <%= file_field_tag :image, required: true %>
+<%= form_tag(cluster_path(@detail), method: :put, multipart: true) do  %>
+  <%= file_field_tag :image %>
   <%= label_tag :Name %>
-  <%= text_field_tag :name, @cluster_detail.name %><br>
+  <%= text_field_tag :name, @detail["name"] %><br>
   <%= label_tag :Category %>
-  <%= select_tag "category_id", options_for_select(@categories.map{|aa| [aa["name"], aa["id"]] }, @cluster_detail.category) %><br>
+  <%= select_tag "category_id", options_for_select(@categories.map{|aa| [aa["name"], aa["id"]] }, @detail["category"]) %><br>
   <%= label_tag :Description %>
-  <%= text_field_tag :description, @cluster_detail.description %><br>
+  <%= text_field_tag :description, @detail["description"] %><br>
   <%= label_tag :Admin %>
-  <%= select_tag :requester_id, options_for_select(@user.map{|u| [u.full_name, u.id] }, @cluster_detail.requester) %><br>
+  <%= select_tag :requester_id, options_for_select(@user.map{|u| [u.full_name, u.id] }, @detail["requester"]["full_name"]) %><br>
   <%= hidden_field_tag :status, "requested" %><br>
   <%= submit_tag %>
 <% end %>

@@ -56,8 +56,6 @@ class ClustersController < ApplicationController
   end
 
   def show
-    @detail = @cluster.detail_cluster(params[:id])["data"]["cluster"]
-
     @pages = { page: "show" }
     render "pages/clusters/show"
   end
@@ -124,6 +122,7 @@ class ClustersController < ApplicationController
     end
 
     def get_cluster_id
-      @cluster_detail = Cluster.find(params[:id])
+      @detail = @cluster.detail_cluster(params[:id])["data"]["cluster"]
+      # @cluster_detail = Cluster.find(params[:id])
     end
 end
