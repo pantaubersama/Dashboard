@@ -1,6 +1,6 @@
 require 'httparty'
 
-class InitApiPemilu
+class InitApiPemilu < InitApi
 
   include HTTParty
   format :json

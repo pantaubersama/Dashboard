@@ -63,7 +63,7 @@
                 <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
                   Buat Cluster <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>"  alt="add">
                 </button>
-  
+
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -74,7 +74,7 @@
                         </button>
                       </div>
 
-                      <%= simple_form_for(@cluster, url: clusters_path, method: :post, html: { multipart: true }) do |f| %>  
+                      <%= simple_form_for(@cluster, url: clusters_path, method: :post, html: { multipart: true }) do |f| %>
                         <div class="modal-body">
                           <h3>Tambah Cluster</h3>
                           <div class="form-wrap">
@@ -112,7 +112,7 @@
                                   </div>
                                 </div>
                               </div>
-    
+
                               <div class="form-wrap">
                                 <label>Akses Dashboard</label>
                                 <div class="form-group">
@@ -136,7 +136,7 @@
                                   </ul>
                                 </div>
                               </div>
-    
+
                             </div>
                               <div class="col-md-6 col-xs-12">
                                 <div class="form-wrap">
@@ -151,7 +151,7 @@
                                     </div>
                                   </div>
                                 </div>
-    
+
                                 <div class="form-wrap">
                                   <label>Admin</label>
                                   <div class="form-group">
@@ -161,10 +161,10 @@
                                   </div>
                                 </div>
                                 <input type="hidden" name="status" value="requested">
-                                
+
                               </div>
                             </div>
-      
+
                           </div>
                         <div class="modal-footer">
                           <button type="button" onclick="document.getElementById('new_api_auth_cluster').submit()" class="btn btn-solid-green" data-dismiss="modal">Tambah</button>
@@ -181,7 +181,7 @@
           <div class="content">
             <span class="display-desc">
               <p>
-                Displaying Content 1 - 30 of 500 in total
+                Displaying Content 1 - 30 of <%= @total_cluster %> in total
               </p>
             </span>
             <div class="table">
@@ -203,7 +203,7 @@
                       <%= ((params[:page_cluster].present? ? params[:page_cluster].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %>
                     </td>
                     <td class="name bold"><a href="<%= cluster_path(item["id"]) %>">
-                        <img src="<%= item["image"].present? ? item["image"]["thumbnail"]["url"] : "" %>">
+                        <img src="<%= item["image"].present? ? item["image"]["thumbnail_square"]["url"] : "" %>">
                         <%= item["name"] %></a></td>
                     <td class="name bold">
                       <%= item["requester"]["full_name"] %>
@@ -241,10 +241,11 @@
                     <div class="form-wrap">
                       <label>Status</label>
                       <div class="form-group">
-                        <select class="form-control" name="status">
-                          <option value="approved">Approved</option>
-                          <option value="requested">Requested</option>
-                          <option value="rejected">Rejected</option>
+                        <select class="form-control stat" name="status">
+                          <option></option>
+                          <% @statuses.each do |stat| %>
+                            <option value="<%= stat %>" <%= selected stat, params[:status] %> > <%= stat %> </option>
+                          <% end %>
                         </select>
                       </div>
                     </div>
@@ -252,18 +253,18 @@
                       <label>Admin</label>
                       <div class="form-group">
                         <div class="form-group">
-                          <input name="q" value="<%= params[:q] %>" type="nama" class="form-control" placeholder="Nama">
+                          <input name="q" value="<%= params[:q] %>" type="nama" class="form-control q" placeholder="Nama">
                         </div>
                       </div>
                     </div>
                     <input type="hidden" name="filter_by" value="category_id">
                     <div class="form-group">
                       <label>Category</label>
-                      <select id="select-filter" class="form-control" name="filter_value" data-placeholder="Jenjang Organisasi"
+                      <select class="form-control remote-select" name="filter_value" data-placeholder="Category"
                         data-url="<%= request.base_url + search_categories_clusters_path %>">
                         <option></option>
                         <% @categories.each do |c| %>
-                        <option value="<%= c[" id"] %>">
+                        <option value="<%= c["id"] %>" <%= selected c["id"], params[:filter_value] %> >
                           <%= c["name"] %>
                         </option>
                         <% end %>
@@ -273,7 +274,7 @@
                 </div>
                 <div class="button-wrapper">
                   <button type="submit" class="btn btn-solid-green" data-dismiss="modal">Done</button>
-                  <button type="button" class="btn btn-transparent">Reset</button>
+                  <button type="button" class="btn btn-transparent reset">Reset</button>
                 </div>
               </div>
             </div>
@@ -362,16 +363,16 @@
                                   <textarea type="Email" name="description" class="form-control with-toolbar" placeholder="adellapratitas7@gmail.com"></textarea>
                                   <div class="toolbar-text full">
                                     <ul>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_underline.svg" %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-left.svg" %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-center.svg" %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-right.svg" %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_justify.svg" %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bulet.svg" %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_numbering.svg" %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_left.svg" %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_right.svg" %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_link-t.svg" %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_underline.svg") %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-left.svg") %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-center.svg") %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-right.svg") %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_justify.svg") %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bulet.svg") %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_numbering.svg") %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_left.svg") %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_right.svg") %>"></span></li>
+                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_link-t.svg") %>"></span></li>
                                     </ul>
                                   </div>
                                 </div>
@@ -393,12 +394,13 @@
                 </div>
               </div>
             </div>
+
           </div>
 
           <div class="content">
             <span class="display-desc">
               <p>
-                Displaying Content 1 - 30 of 500 in total
+                Displaying Content 1 - 30 of <%= @total_categories %> in total
               </p>
             </span>
             <div class="table">
@@ -451,23 +453,23 @@
                                   <div class="col-md-6 col-xs-12">
                                     <div class="form-wrap">
                                       <label>Deskripsi</label>
-                                      <div class="form-group"> 
+                                      <div class="form-group">
                                           <div class="form-group">
                                               <textarea type="Email" class="form-control with-toolbar" placeholder="adellapratitas7@gmail.com"></textarea>
                                               <div class="toolbar-text full">
                                                 <ul>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bold.svg" %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_italic.svg" %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_underline.svg" %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-left.svg" %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-center.svg" %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-right.svg" %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_justify.svg" %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bulet.svg" %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_numbering.svg" %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_left.svg" %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_right.svg" %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_link-t.svg" %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bold.svg") %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_italic.svg") %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_underline.svg") %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-left.svg") %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-center.svg") %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-right.svg") %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_justify.svg") %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bulet.svg") %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_numbering.svg") %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_left.svg") %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_right.svg") %>"></span></li>
+                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_link-t.svg") %>"></span></li>
                                                 </ul>
                                               </div>
                                             </div>
@@ -490,6 +492,7 @@
                 </tbody>
               </table>
             </div>
+            
             <div class="filter">
               <a class="btn " data-toggle="collapse" href="#filter2" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
@@ -516,11 +519,12 @@
               </div>
             </div>
           </div>
+
         </div>
 
         <div class="main-content tab-pane" id="trash">
           <div class="top ">
-            
+
               <% link = pagy_link_proc(@pagy_trash) %>
               <div class="pagination-wrap">
                 <ul class="pagination">
@@ -533,7 +537,7 @@
                     <%== link.call(@pagy_trash.prev, pagy_t('pagy.nav.prev')) %>
                   </li>
                   <% end %>
-  
+
                   <% @pagy_trash.series.each do |item| %>
                   <% if item.is_a?(Integer) %>
                   <li id="testtest" class="page-item">
@@ -548,7 +552,7 @@
                       <%== pagy_t('pagy.nav.gap') %></a></li>
                   <% end %>
                   <% end %>
-  
+
                   <% if @pagy_trash.next %>
                   <li class="page-item">
                     <%== link.call(@pagy_trash.next, pagy_t('pagy.nav.next')) %>
@@ -565,7 +569,7 @@
           <div class="content">
             <span class="display-desc">
               <p>
-                Displaying Content 1 - 10 of 500 in total
+                Displaying Content 1 - 30 of <%= @total_trash %> in total
               </p>
             </span>
             <div class="table">

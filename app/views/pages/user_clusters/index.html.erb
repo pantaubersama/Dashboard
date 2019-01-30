@@ -152,13 +152,13 @@
                 <tbody>
                   <% @users_clusters.each_with_index do |item, index| %>
                     <tr>
-                      <td><%= item["cluster"]["id"] %></td>
                       <td class="number bold">
                         <%= ((params[:page_user].present? ? params[:page_user].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %>
                       </td>
                       <td class="name bold">
                         <a href="<%= user_cluster_path(item["id"]) %>">
-                          <img src="<%= item["avatar"] %>"><%= item["full_name"] %>
+                          <img src="<%= item["avatar"]["url"] %>" >
+                          <%= item["full_name"] %>
                         </a>
                       </td>
                       <td><%= item["cluster"]["name"] %></td>

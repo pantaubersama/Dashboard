@@ -5,8 +5,16 @@ class AdminsController < ApplicationController
 
   def make_admin
     user = UserPantauAuth.where(email: params[:email]).first
-    response = @user_api.make_admin(user.id)
-    if response.code == 201
+    if user.present?
+      response = @user_api.make_admin(user.id)
+      if response.code == 201
+        redirect_to users_list_admin_path
+      else
+        flash[:warning] = "Oop something wrong"
+        redirect_to users_list_admin_path
+      end
+    else
+      flash[:warning] = "User Not Found"
       redirect_to users_list_admin_path
     end
   end
@@ -21,7 +29,7 @@ class AdminsController < ApplicationController
   def index
     @admins = UserPantauAuth.joins('INNER JOIN "users_roles" ON "users_roles"."user_id" = "users"."id" INNER JOIN "roles" ON "roles"."id" = "users_roles"."role_id"')
     .where("roles.name = 'admin'")
-    .where("users.full_name LIKE ?", "%#{ params[:nama].present? ? params[:nama] : '' }%")
+    .where("LOWER(users.full_name) LIKE ?", "%#{ params[:nama].present? ? params[:nama] : '' }%")
     .where("users.email LIKE ?", "%#{ params[:email].present? ? params[:email] : '' }%")
     .where('users.deleted_at IS NULL')
 

@@ -47,6 +47,16 @@ class Timeline::LinimasaController < ApplicationController
 
     @item_users = @username["data"]["crowlings"]
 
+    init_team = [
+      ["team_all", "Team All"], 
+      ["team_id_1", "Jokowi - Makruf"], 
+      ["team_id_2", "Prabowo - Sandi"], 
+      ["team_id_3", "KPU"], 
+      ["team_id_4", "Bawaslu"]
+    ]
+    @teams = []
+    init_team.each { |record| @teams << {'id' => record[0], 'name' => record[1]} }
+
     @pages = { page: "index" }
     render "pages/timeline/linimasa/index"
   end

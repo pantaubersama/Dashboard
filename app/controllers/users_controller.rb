@@ -16,7 +16,9 @@ class UsersController < ApplicationController
                               params[:nama].present? ? params[:nama] : "*",
                               "and",
                               "word_start",
-                              params[:verified].present? ? params[:verified] : ''
+                              params[:verified].present? ? params[:verified] : '',
+                              params[:email].present? ? params[:email] : '',
+                              params[:cluster].present? ? params[:cluster] : '',
                             )
 
     @totalPage = @request['data']['meta']['pages']['total']
@@ -38,7 +40,9 @@ class UsersController < ApplicationController
       params[:nama].present? ? params[:nama] : "*",
       "and",
       "word_start",
-      params[:verified].present? ? params[:verified] : ''
+      params[:verified].present? ? params[:verified] : '',
+      params[:email].present? ? params[:email] : '',
+      params[:cluster].present? ? params[:cluster] : '',
     )['data']['users'].size
     @total_users = (@totalData - Pagy::VARS[:items]) + last_page
     @total_row_per_page = @request["data"]["users"].size

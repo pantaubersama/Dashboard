@@ -2,6 +2,7 @@
   <%= render("components/sidebar") %>
   <div class="main-wrapper">
     <main class="main col-md-10 offset-md-2" role="main">
+      
       <header class="header" role="banner">
         <div class="tabs">  
           <ul  class="nav nav-pills">
@@ -13,6 +14,7 @@
         </div>
         <%= render("components/dropdown_profile") %>
       </header>
+
       <div class="tab-content clearfix">
         <div class="main-content">
           <div class="top">
@@ -31,11 +33,11 @@
               <div class="card">
                 <span class="profile-image">
                   <label>Gambar Cluster</label>
-                  <img src="<%= @cluster_detail.image %>">
+                  <%= image_tag @detail["image"]["url"] %>
                 </span>
                 <div class="right-desc">
                   <p>Created at : 21/10/2023</p>
-                  <%= button_to "EDIT", edit_cluster_path(@cluster_detail), method: :get, class: "btn btn-solid-green" %>
+                  <%= button_to "EDIT", edit_cluster_path(@detail["id"]), method: :get, class: "btn btn-solid-green" %>
                 </div>
               </div>
 
@@ -47,7 +49,7 @@
                       <label>Nama Cluster</label>
                       <div class="form-group">
                         <div class="form-group">
-                          <input type="Email" class="form-control" value="<%= @cluster_detail.name %>" placeholder="">
+                          <input type="Email" class="form-control" value="<%= @detail["name"] %>" placeholder="">
                         </div>
                       </div>
                     </div>
@@ -56,7 +58,7 @@
                       <label>Deskripsi</label>
                       <div class="form-group">
                         <div class="form-group">
-                          <Textarea type="Deskripsi" class="form-control" placeholder="andry@pantaubersama.co.id"><%= @cluster_detail.description %></Textarea>
+                          <Textarea type="Deskripsi" class="form-control" placeholder="andry@pantaubersama.co.id"><%= @detail["description"] %></Textarea>
                         </div>
                       </div>
                     </div>
@@ -79,7 +81,7 @@
                           <label>Kategori</label>
                           <div class="form-group">
                               <div class="form-group">
-                                  <input type="Kategori" class="form-control" placeholder="" value="<%= @cluster_detail.category.name %>">
+                                  <input type="Kategori" class="form-control" placeholder="" value="<%= @detail["category"]["name"] %>">
                                 </div>
                             </div>
                       </div>
@@ -87,7 +89,7 @@
                           <label>Admin</label>
                           <div class="form-group">
                               <div class="form-group">
-                                  <input type="Email" class="form-control" placeholder="" value="<%= @cluster_detail.requester.try(:full_name) %>">
+                                  <input type="Email" class="form-control" placeholder="" value="<%= @detail["requester"]["full_name"] %>">
                                 </div>
                             </div>
                       </div>
@@ -98,6 +100,7 @@
           </div>
         </div>
       </div>
+      
     </main>
   </div>
 </div>

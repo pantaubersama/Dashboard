@@ -5,37 +5,24 @@
       <header class="header" role="banner">
         <%= render("components/dropdown_profile") %>
       </header>
-      <div class="main-content">
-      <div class="top">
-        <div class="btn-back">
-          <%= link_to banner_index_path do %>
-            <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
-          <% end %>
+      <div class="main-content janji-politik">
+        <div class="top">
+          <div class="btn-back">
+            <a href="<%= categories_path %>">
+              <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+            </a>
+          </div>
         </div>
-      </div>
         <div class="content">
           <div class="bg-white detail-profile">
-            <div class="card">
-              <span class="profile-image">
-                <label>Ilustrasi</label>
-                <%= image_tag  @banner.header_image_url unless  @banner.header_image_url.nil?  %>
-              </span>
-              <div class="right-desc">
-                <p>Created at :
-                  <%= @banner.created_at %>
-                </p>
-                <%= button_to 'Edit', edit_banner_path(@banner), method: :get, class: 'btn btn-solid-green' %>
-              </div>
-            </div>
-
             <div class="card-form">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-wrap">
-                    <label>Nama Banner</label>
+                    <label>Nama Cluster</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input type="Email" class="form-control" placeholder="<%= @banner.title %>">
+                        <input type="text" value="<%= @category["name"] %>" class="form-control">
                       </div>
                     </div>
                   </div>
@@ -43,9 +30,15 @@
                     <label>Deskripsi</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <Textarea type="Deskripsi" class="form-control" placeholder=""><%= @banner.body %></Textarea>
+                        <textarea type="text" class="form-control"><%= @category["description"] %></textarea>
                       </div>
                     </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+
+                  <div class="right-desc">
+                    <%= link_to "EDIT", edit_category_path(@category['id']), class: "btn btn-solid-green" %>
                   </div>
                 </div>
               </div>
@@ -53,7 +46,9 @@
           </div>
         </div>
       </div>
-    </main>
   </div>
+</div>
+</main>
+</div>
 </div>
 <%= render("components/footer") %>

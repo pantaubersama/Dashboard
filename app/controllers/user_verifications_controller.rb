@@ -2,16 +2,16 @@ class UserVerificationsController < ApplicationController
   include Pagy::Backend
   before_action :set_api_user
 
-  def verification_list
-
-    # user verification tertunda
-    request_users_requested = @user_api.all_verification(
+  def index
+    ######## tertunda #########
+    request_users_requested = @user_api.all(
       params[:page_user_requested].present? ? params[:page_user_requested] : 1,
       Pagy::VARS[:items],
       params[:nama_ditunda].present? ? params[:nama_ditunda] : "*",
       o="and",
       m="word_start",
-      status="requested"
+      status="requested",
+      email=params[:email_ditunda].present? ? params[:email_ditunda] : ""
     )
 
     totalPageUserRequested = request_users_requested['data']['meta']['pages']['total']
@@ -25,16 +25,16 @@ class UserVerificationsController < ApplicationController
                           )
 
     @users_requested = request_users_requested["data"]["users"]
-    # end user verification ditunda
 
-    # user verification diterima
-    request_users_accepted = @user_api.all_verification(
+    ######## diterima ########
+    request_users_accepted = @user_api.all(
       params[:page_user_accepted].present? ? params[:page_user_accepted] : 1,
       Pagy::VARS[:items],
       params[:nama_diterima].present? ? params[:nama_diterima] : "*",
       o="and",
       m="word_start",
-      status="verified"
+      status="verified",
+      email=params[:email_diterima].present? ? params[:email_diterima] : ""
     )
 
     totalPage = request_users_accepted['data']['meta']['pages']['total']
@@ -48,16 +48,17 @@ class UserVerificationsController < ApplicationController
                           )
 
     @users_accepted = request_users_accepted["data"]["users"]
-    # end user verification diterima
 
-    # user verification ditolak
-    request_users_rejected = @user_api.all_verification(
+
+    ####### ditolak ##########
+    request_users_rejected = @user_api.all(
       params[:page_user_rejected].present? ? params[:page_user_rejected] : 1,
       Pagy::VARS[:items],
       params[:nama_ditolak].present? ? params[:nama_ditolak] : "*",
       o="and",
       m="word_start",
-      filter_by="rejected"
+      filter_by="rejected",
+      email=params[:email_ditolak].present? ? params[:email_ditolak] : ""
     )
 
     totalPage = request_users_rejected['data']['meta']['pages']['total']
@@ -71,46 +72,64 @@ class UserVerificationsController < ApplicationController
                           )
 
     @users_rejected = request_users_rejected["data"]["users"]
-    # user verification ditolak
 
     render "pages/users/list_user_verification"
   end
 
-  def show_user_verification
-    @verification = @user_api.show_user_verification(params[:id])['data'][0]
+  def show
+    @verification = @user_api.show(params[:id])['data'][0]
     render "pages/users/show_user_verification"
   end
 
-  def approve_verification
-    response = @user_api.approve_verification(params[:id])
+  def approve
+    response = @user_api.approve(params[:id])
     if response.code == 201
       flash[:success] = "Approve Sucessful"
-      redirect_to users_list_verification_path
+      redirect_to user_verifications_path
     else
       flash[:warning] = "Approve Failed"
-      redirect_to users_list_verification_path
+      redirect_to user_verifications_path
     end
   end
 
-  def reject_verification
-    response = @user_api.reject_verification(params[:id])
+  def reject
+    response = @user_api.reject(params[:id])
     case response.code
       when 200
         flash[:success] = "Reject Sucessful"
-        redirect_to users_list_verification_path
+        redirect_to user_verifications_path
       when 404
         flash[:warning] = "Not found!"
-        redirect_to users_list_verification_path
+        redirect_to user_verifications_path
       when 500...600
         flash[:warning] = "ERROR #{response.code}"
-        redirect_to users_list_verification_path
+        redirect_to user_verifications_path
     end
   end
+
+  def create
+    request = @user_api.create(
+        email = params[:email],
+        ktp_number = params[:ktp_number].present? ? params[:ktp_number].tempfile : '',
+        ktp_selfie = params[:ktp_selfie].present? ? params[:ktp_selfie].tempfile : '',
+        ktp_photo = params[:ktp_photo].present? ? params[:ktp_photo].tempfile : '',
+        signature = params[:signature].present? ? params[:signature].tempfile : ''
+      )
+    case request.code
+      when 201
+        flash[:success] = "Add user verification success"
+        redirect_to user_verifications_path
+      else
+        flash[:warning] = "#{request['error']['errors']}"
+        redirect_to user_verifications_path
+    end
+  end
+
 
 
   private
     def set_api_user
-      @user_api = Api::Auth::User.new
+      @user_api = Api::Auth::UserVerification.new
     end
 
 
