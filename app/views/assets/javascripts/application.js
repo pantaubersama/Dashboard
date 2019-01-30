@@ -10,7 +10,6 @@
 console.log('Hello Dashboard');
 import '../stylesheets/application.scss'
 import 'jquery'
-import 'jquery-ujs'
 import 'bootstrap'
 import './select_ajax'
 // import './modernizr'

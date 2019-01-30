@@ -47,7 +47,15 @@ Rails.application.routes.draw do
     end
   end
   resources :questions
-  resources :quiz
+  resources :quiz do
+    collection do 
+      get 'trash'
+    end
+    member do
+      post 'publish'
+      post 'draft'
+    end
+  end
   resources :categories
 
   # admins
@@ -61,10 +69,11 @@ Rails.application.routes.draw do
   put '/user/:id/informant', to: 'users#update_informant', as: 'user_update_informant'
   put '/user/:id/avatar', to: 'users#update_avatar', as: 'user_update_avatar'
 
-  # user verifications
-  get '/list_user_verification', to: 'user_verifications#verification_list', as: 'users_list_verification'
-  get '/user_verification/:id', to: 'user_verifications#show_user_verification', as: 'show_user_verification'
-  get '/approve_verification/:id', to: 'user_verifications#approve_verification', as: 'approve_verification'
-  get '/reject_verification/:id', to: 'user_verifications#reject_verification', as: 'reject_verification'
+  resources :user_verifications, only: [:index, :show, :create] do
+    collection do
+      get 'approve/:id', to: 'user_verifications#approve', as: 'approve_verification'
+      get 'reject/:id', to: 'user_verifications#reject', as: 'reject_verification'
+    end
+  end
 
 end

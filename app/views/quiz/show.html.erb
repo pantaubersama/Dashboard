@@ -18,6 +18,7 @@
                 <img src="<%= @quiz['image']['thumbnail']['url'] if @quiz['image']['thumbnail']['url'].present?  %>">
               </span>
               <div class="right-desc">
+                <p>ID : <%= @quiz['id'] %></p>
                 <p>Created at : <%= @quiz['created_at'] %></p>
                 <button class="btn btn-solid-green">EDIT</button>
               </div>

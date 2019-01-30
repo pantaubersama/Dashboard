@@ -1,0 +1,30 @@
+<div class="quiz-wrapper">
+  <h3>Pertanyaan {{ index + 1 }}</h3>
+  <div class="form-wrap">
+    <label>Pertanyaan</label>
+    <div class="form-group">
+      <div class="form-group">
+        <textarea class="form-control" placeholder="Tulis pertanyaan" v-model="question.content"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="form-wrap">
+    <label>Jawaban 1</label>
+    <div class="form-group">
+      <div class="form-group">
+        <vue-editor v-model="quiz.answers[index].team_1_answer" :editor-toolbar="CustomToolbar"></vue-editor>
+      </div>
+    </div>
+  </div>
+  <div class="form-wrap">
+    <label>Jawaban 2</label>
+    <div class="form-group">
+      <div class="form-group">
+        <vue-editor v-model="quiz.answers[index].team_2_answer" :editor-toolbar="CustomToolbar"></vue-editor>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-green" @click="removeQuestion(index)" v-if="counter > 1">
+    Hapus Pertanyaan
+  </button>
+</div>
