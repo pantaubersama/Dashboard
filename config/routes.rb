@@ -62,6 +62,7 @@ Rails.application.routes.draw do
   get '/admins', to: 'admins#index', as: 'users_list_admin'
   post '/admins/make_admin',to: 'admins#make_admin', as: 'make_admin'
   get '/admins/delete_admin/:id',to: 'admins#delete_admin', as: 'delete_admin'
+  get '/admins/search_users_for_admin', to: 'admins#search_users', as: 'search_users_for_admin'
 
   # users
   get '/user/:id/edit', to: 'users#edit', as: 'user_edit'
