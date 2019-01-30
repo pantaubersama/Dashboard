@@ -46,7 +46,7 @@ class Timeline::PoliticsController < ApplicationController
   end
 
   def search_clusters
-    @results = @set_cluster.clusters(nil, nil, params[:cluster_id], nil, nil, nil)["data"]
+    @results = @set_cluster.search_approved_cluster(nil, nil, params[:cluster], nil, nil)["data"]
     render json: @results
   end
 

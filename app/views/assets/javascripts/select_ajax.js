@@ -16,7 +16,7 @@ $(document).ready(function(){
 			data: function (params) {
 				return {
 					q: params.term,
-					cluster_id: params.term,
+					cluster: params.term,
 					page: params.page || 1
 				};
 			},

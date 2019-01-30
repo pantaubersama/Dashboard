@@ -228,9 +228,12 @@
                         <label>Cluster</label>
                         <div class="form-group">
                           <div class="form-group">
-                            <select class="form-control" name="cluster">
-                              <%= @cluster.each do |c| %>
-                                <option value="<%= c.id %>"><%= c.name %></option>
+                            <select class="form-control remote-select" name="cluster_id" data-url="<%= request.base_url + search_clusters_path %>">
+                              <option></option>
+                              <% @cluster.each do |c| %>
+                                <option value="<%= c["id"] %>" <%= selected c["id"], params[:cluster_id] %> >
+                                  <%= c["name"] %>
+                                </option>
                               <% end %>
                             </select>
                             <!-- <input type="cluster" class="form-control" placeholder="Nama Cluster"> -->

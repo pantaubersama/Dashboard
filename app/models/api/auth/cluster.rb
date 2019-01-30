@@ -13,6 +13,18 @@ class Api::Auth::Cluster < InitApiAuth
     self.class.get("/dashboard/v1/clusters", @options)
   end
 
+  def search_approved_cluster(page, per_page, q, filter_by, filter_value)
+    @options = {
+      query: {
+        page: page, 
+        per_page: per_page, 
+        q: q, 
+        filter_by: filter_by, 
+        filter_value: filter_value}
+    }
+    self.class.get("/v1/clusters", @options)
+  end
+
   def detail_cluster(id)
     @options = { 
       query: {id: id},
