@@ -82,7 +82,9 @@
                 <tr>
                   <td><%= ((params[:page].present? ? params[:page].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %></td>
                   <td><%= party['name'] %></td>
-                  <td><%= link_to 'Logo', party['image']['url'] %></td>
+                  <td>
+                    <img src="<%= party['image']['thumbnail_square']['url'] %>" height="40" alt="">
+                  </td>
                   <td>
                     <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
                       aria-expanded="false">
