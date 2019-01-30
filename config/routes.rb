@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   end
   resources :questions
   resources :quiz do
-    collection do 
+    collection do
       get 'trash'
     end
     member do
@@ -72,6 +72,8 @@ Rails.application.routes.draw do
 
   resources :user_verifications, only: [:index, :show, :create] do
     collection do
+      get 'accepted', to: 'user_verifications#accepted', as: 'accepted'
+      get 'rejected', to: 'user_verifications#rejected', as: 'rejected'
       get 'approve/:id', to: 'user_verifications#approve', as: 'approve_verification'
       get 'reject/:id', to: 'user_verifications#reject', as: 'reject_verification'
     end

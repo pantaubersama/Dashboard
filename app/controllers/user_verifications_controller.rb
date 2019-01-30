@@ -7,11 +7,11 @@ class UserVerificationsController < ApplicationController
     request_users_requested = @user_api.all(
       params[:page_user_requested].present? ? params[:page_user_requested] : 1,
       Pagy::VARS[:items],
-      params[:nama_ditunda].present? ? params[:nama_ditunda] : "*",
+      params[:nama].present? ? params[:nama] : "*",
       o="and",
       m="word_start",
       status="requested",
-      email=params[:email_ditunda].present? ? params[:email_ditunda] : ""
+      email=params[:email].present? ? params[:email] : ""
     )
 
     totalPageUserRequested = request_users_requested['data']['meta']['pages']['total']
@@ -26,15 +26,19 @@ class UserVerificationsController < ApplicationController
 
     @users_requested = request_users_requested["data"]["users"]
 
+    render "pages/users/list_user_verification"
+  end
+
+  def accepted
     ######## diterima ########
     request_users_accepted = @user_api.all(
       params[:page_user_accepted].present? ? params[:page_user_accepted] : 1,
       Pagy::VARS[:items],
-      params[:nama_diterima].present? ? params[:nama_diterima] : "*",
+      params[:nama].present? ? params[:nama] : "*",
       o="and",
       m="word_start",
       status="verified",
-      email=params[:email_diterima].present? ? params[:email_diterima] : ""
+      email=params[:email].present? ? params[:email] : ""
     )
 
     totalPage = request_users_accepted['data']['meta']['pages']['total']
@@ -48,33 +52,36 @@ class UserVerificationsController < ApplicationController
                           )
 
     @users_accepted = request_users_accepted["data"]["users"]
+    render "pages/users/verifications/accepted"
+  end
 
 
+  def rejected
     ####### ditolak ##########
     request_users_rejected = @user_api.all(
       params[:page_user_rejected].present? ? params[:page_user_rejected] : 1,
       Pagy::VARS[:items],
-      params[:nama_ditolak].present? ? params[:nama_ditolak] : "*",
+      params[:nama].present? ? params[:nama] : "*",
       o="and",
       m="word_start",
       filter_by="rejected",
-      email=params[:email_ditolak].present? ? params[:email_ditolak] : ""
-    )
+      email=params[:email].present? ? params[:email] : ""
+      )
 
-    totalPage = request_users_rejected['data']['meta']['pages']['total']
-    totalData = (totalPage*Pagy::VARS[:items])
-    total_array = (1..totalData).to_a
+      totalPage = request_users_rejected['data']['meta']['pages']['total']
+      totalData = (totalPage*Pagy::VARS[:items])
+      total_array = (1..totalData).to_a
 
-    @pagy_users_rejected = Pagy.new(
-                            count: total_array.count,
-                            page: params[:page_user_rejected].present? ? params[:page_user_rejected] : 1 ,
-                            page_param: :page_user_rejected
-                          )
-
+      @pagy_users_rejected = Pagy.new(
+        count: total_array.count,
+        page: params[:page_user_rejected].present? ? params[:page_user_rejected] : 1 ,
+        page_param: :page_user_rejected
+        )
     @users_rejected = request_users_rejected["data"]["users"]
-
-    render "pages/users/list_user_verification"
+    render "pages/users/verifications/rejected"
   end
+
+
 
   def show
     @verification = @user_api.show(params[:id])['data'][0]
