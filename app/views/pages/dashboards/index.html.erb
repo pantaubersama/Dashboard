@@ -48,44 +48,21 @@
                 <div class="card">
                   <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
                   <p>Total Pengguna</p>
-                  <h2><%= @total_users %></h2>
+                  <h2><%= @statistic['users'].present? ? @statistic['users'] : ''  %></h2>
                 </div>
               </div>
               <div class="col-sm-4 col-xs-12">
                 <div class="card">
                   <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total Pengguna</p>
-                  <h2>10.000 ribu</h2>
+                  <p>Total Post Linimasa</p>
+                  <h2><%= @statistic_pemilu['feeds'].present? ? @statistic_pemilu['feeds'] : '' %></h2>
                 </div>
               </div>
               <div class="col-sm-4 col-xs-12">
                 <div class="card">
                   <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total Pengguna</p>
-                  <h2>10.000 ribu</h2>
-                </div>
-              </div>
-            </div>
-            <div class="row total-data">
-              <div class="col-sm-4 col-xs-12">
-                <div class="card">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total Pengguna</p>
-                  <h2>10.000 ribu</h2>
-                </div>
-              </div>
-              <div class="col-sm-4 col-xs-12">
-                <div class="card">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total Pengguna</p>
-                  <h2>10.000 ribu</h2>
-                </div>
-              </div>
-              <div class="col-sm-4 col-xs-12">
-                <div class="card">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total Pengguna</p>
-                  <h2>10.000 ribu</h2>
+                  <p>Total Post Janji Politik</p>
+                  <h2><%= @statistic_pemilu['janji_politiks'].present? ? @statistic_pemilu['janji_politiks'] : ''  %></h2>
                 </div>
               </div>
             </div>
@@ -93,22 +70,22 @@
               <div class="col-sm-4 col-xs-12">
                 <div class="card">
                   <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total Pengguna</p>
-                  <h2>10.000 ribu</h2>
+                  <p>Total Post Pertanyaan</p>
+                  <h2><%= @statistic_pemilu['questions'].present? ? @statistic_pemilu['questions'] : ''  %></h2>
                 </div>
               </div>
               <div class="col-sm-4 col-xs-12">
                 <div class="card">
                   <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total Pengguna</p>
-                  <h2>10.000 ribu</h2>
+                  <p>Total News</p>
+                  <h2>-</h2>
                 </div>
               </div>
               <div class="col-sm-4 col-xs-12">
                 <div class="card">
                   <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total Pengguna</p>
-                  <h2>10.000 ribu</h2>
+                  <p>Total Debate</p>
+                  <h2>-</h2>
                 </div>
               </div>
             </div>
@@ -116,22 +93,45 @@
               <div class="col-sm-4 col-xs-12">
                 <div class="card">
                   <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total Pengguna</p>
-                  <h2>10.000 ribu</h2>
+                  <p>Total Lapor</p>
+                  <h2><%= @statistic_pemilu['report'].present? ? @statistic_pemilu['report'] : '' %></h2>
                 </div>
               </div>
               <div class="col-sm-4 col-xs-12">
                 <div class="card">
                   <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total Pengguna</p>
-                  <h2>10.000 ribu</h2>
+                  <p>Total Perhitungan</p>
+                  <h2>-</h2>
                 </div>
               </div>
               <div class="col-sm-4 col-xs-12">
                 <div class="card">
                   <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total Pengguna</p>
-                  <h2>10.000 ribu</h2>
+                  <p>Total Cluster</p>
+                  <h2><%= @statistic['clusters'].present? ? @statistic['clusters'] : ''  %></h2>
+                </div>
+              </div>
+            </div>
+            <div class="row total-data">
+              <div class="col-sm-4 col-xs-12">
+                <div class="card">
+                  <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
+                  <p>Total Side Note</p>
+                  <h2>-</h2>
+                </div>
+              </div>
+              <div class="col-sm-4 col-xs-12">
+                <div class="card">
+                  <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
+                  <p>Total Upvote Pertanyaan</p>
+                  <h2><%= @statistic_pemilu['question_upvotes'].present? ? @statistic_pemilu['question_upvotes'] : '' %></h2>
+                </div>
+              </div>
+              <div class="col-sm-4 col-xs-12">
+                <div class="card">
+                  <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
+                  <p>Total Apresiasi Debate</p>
+                  <h2>-</h2>
                 </div>
               </div>
             </div>
