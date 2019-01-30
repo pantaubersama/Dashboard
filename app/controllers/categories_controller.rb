@@ -61,7 +61,7 @@ class CategoriesController < ApplicationController
       name = params[:name].present? ? params[:name] : '',
       description = params[:description].present? ? params[:description] : ''
     )
-    if request.code == 201
+    if request.code == 201 || request.code == 200
       flash[:success] = "Update success"
       redirect_to categories_path
     else

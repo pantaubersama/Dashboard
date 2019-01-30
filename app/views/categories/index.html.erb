@@ -84,8 +84,8 @@
                     <td class="number bold"><%= ((params[:page].present? ? params[:page].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %></td>
                     <td class="name bold"><a href="<%= category_path(category['id']) %>"><%= category['name'] %></a></td>
                     <td><%= category['description'] %></td>
-                    <td>Nurlela Ahmad</td>
-                    <td>21/10/23</td>
+                    <td><%= category['creator']['full_name'] %></td>
+                    <td><%= category['created_at'] %></td>
                     <td>
                       <button class="dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
