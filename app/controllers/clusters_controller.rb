@@ -66,8 +66,6 @@ class ClustersController < ApplicationController
   end
 
   def create
-
-    params[:requester_id] = "e76b1aea-c642-4fdc-a672-bb7f551a9a29"
     if @cluster.create_cluster(params[:name], params[:category_id], params[:description],
                             params[:requester_id], params[:image], params[:status])
       redirect_to clusters_path
