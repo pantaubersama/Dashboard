@@ -37,9 +37,11 @@
                 </span>
                 <div class="right-desc">
                   <% if @detail["status"] != "approved" %>
-                    <%= link_to "APPROVE", approve_cluster_cluster_path(@detail["id"]), method: :post, 
-                        class: "btn btn-solid-green", style: "background-color:red" %>
+                    <%= link_to "APPROVE", approve_cluster_cluster_path(@detail["id"]), method: :post, class: "btn btn-solid-green", style: "background-color:#3ed1c0" %>
+                    <%= link_to "REJECT", reject_cluster_cluster_path(@detail["id"]), method: :post, class: "btn btn-solid-green", style: "background-color:red" %>
                   <% end %>
+                </div>
+                <div class="right-desc">
                   <%= link_to "EDIT", edit_cluster_path(@detail["id"]), method: :get, class: "btn btn-solid-green" %>
                 </div>
               </div>

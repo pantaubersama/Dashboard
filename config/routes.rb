@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       end
       member do
         post :approve_cluster        
+        post :reject_cluster        
       end
     end
   end

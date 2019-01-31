@@ -56,6 +56,12 @@ class ClustersController < ApplicationController
     end
   end
 
+  def reject_cluster
+    if @cluster.reject_cluster(params[:id])
+      redirect_to clusters_path
+    end
+  end
+
   def search_categories
     @categories = @cluster.get_categories(nil, nil, params[:q])["data"]
     render json: @categories
