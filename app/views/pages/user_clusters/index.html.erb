@@ -201,10 +201,11 @@
                       <div class="form-wrap">
                         <label>Status</label>
                         <div class="form-group">
-                          <select class="form-control" name="verified">
-                            <option value="verified_all">Semua</option>
-                            <option value="verified_true">Terverifikasi</option>
-                            <option value="verified_false">Belum Terverifikasi</option>
+                          <select class="form-control stat" name="verified">
+                            <option></option>
+                            <% @verifications.each do |a| %>
+                              <option value="<%= a["id"] %>" <%= selected a["id"], params[:verified] %> > <%= a["name"] %> </option>
+                            <% end %>
                           </select>
                         </div>
                       </div>
@@ -212,7 +213,7 @@
                         <label>User</label>
                         <div class="form-group">
                           <div class="form-group">
-                            <input type="nama" name="nama" value="<%= params[:nama] %>" class="form-control" placeholder="Nama">
+                            <input type="nama" name="nama" value="<%= params[:nama] %>" class="form-control q" placeholder="Nama">
                           </div>
                         </div>
                       </div>
@@ -220,7 +221,7 @@
                         <label>Email</label>
                         <div class="form-group">
                           <div class="form-group">
-                            <input type="email" name="email" value="<%= params[:email] %>" class="form-control" placeholder="luna@gmail.com">
+                            <input type="email" name="email" value="<%= params[:email] %>" class="form-control q" placeholder="luna@gmail.com">
                           </div>
                         </div>
                       </div>
@@ -246,7 +247,7 @@
 
                   <div class="button-wrapper">
                     <button type="submit" class="btn btn-solid-green" data-dismiss="modal">Done</button>
-                    <button type="button" class="btn btn-transparent">Reset</button>
+                    <button type="button" class="btn btn-transparent reset">Reset</button>
                   </div>
                 </div>
               </div>
