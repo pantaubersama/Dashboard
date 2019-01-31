@@ -13,7 +13,7 @@ class Api::Auth::Cluster < InitApiAuth
   end
 
   def detail_cluster(id)
-    @options = { 
+    @options = {
       query: {id: id},
       headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}
     }
@@ -24,7 +24,7 @@ class Api::Auth::Cluster < InitApiAuth
     @options = {
       headers:  { Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
       body:     {name: name, category_id: category_id, description: description,
-                requester_id: requester_id, image: File.open(image), status: status},
+                requester_id: requester_id, image: (File.new(image.path) if image.present?), status: status},
     }
     self.class.post("/dashboard/v1/clusters", @options)
   end
