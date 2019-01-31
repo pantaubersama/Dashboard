@@ -7,8 +7,10 @@
           <ul class="nav nav-pills">
             <li class="active"><a href="#all" data-toggle="tab">Semua</a>
             </li>
-            <li><a href="#category" data-toggle="tab">Kategori Cluster</a>
-            </li>
+            <!--
+              <li><a href="#category" data-toggle="tab">Kategori Cluster</a>
+              </li>
+            -->
             <li><a href="#trash" data-toggle="tab">Sampah</a>
             </li>
           </ul>
@@ -143,10 +145,9 @@
                                   <label>Kategori</label>
                                   <div class="form-group">
                                     <div class="form-group">
-                                      <select class="form-control" name="category_id" >
-                                        <%= @categories.each do |c| %>
-                                          <option value="<%= c["id"] %>"><%= c["name"] %></option>
-                                        <% end %>
+                                      <select class="form-control remote-select" name="category_id" data-placeholder="Category"
+                                        data-url="<%= request.base_url + search_categories_clusters_path %>">
+                                        <option></option>
                                       </select>
                                     </div>
                                   </div>
@@ -156,7 +157,11 @@
                                   <label>Admin</label>
                                   <div class="form-group">
                                     <div class="form-group">
-                                      <input type="text" name="requester_id" class="form-control" placeholder="adellapratitas7@gmail.com">
+                                      <select class="form-control remote-select" name="requester_id" 
+                                              data-url="<%= request.base_url + search_users_for_admin_path %>">
+                                        <option></option>
+                                      </select>
+                                      <!-- <input type="text" name="requester_id" class="form-control" placeholder="adellapratitas7@gmail.com"> -->
                                     </div>
                                   </div>
                                 </div>

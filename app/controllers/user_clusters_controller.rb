@@ -20,6 +20,15 @@ class UserClustersController < ApplicationController
     last_page = @user_cluster.all(n, Pagy::VARS[:items], nil, nil, nil, nil)['data']['users'].size
     @total_users_clusters = (@total_records - Pagy::VARS[:items]) + last_page
 
+    init_verification = [
+      ["verified_all", "Semua"],
+      ["verified_true", "Terverifikasi"],
+      ["verified_false", "Belum Terverifikasi"]
+    ]
+
+    @verifications = []
+    init_verification.each {|record| @verifications << {"id" => record[0], "name" => record[1]} }
+
     @pages = { page: "index" }
     render "pages/user_clusters/index"
   end
