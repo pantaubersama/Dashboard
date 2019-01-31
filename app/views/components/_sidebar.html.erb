@@ -19,27 +19,27 @@
             <img src="<%= asset_pack_path("views/assets/images/ic_user-black.svg") %>"> User
           <% end %>
           <div class="collapse in sub-nav" id="collapseUser">
-            <%= link_to 'List Admin', users_list_admin_path, class: "sub-nav-item nav-link #{current_class?(users_list_admin_path)}" %>
-            <%= link_to 'List User', users_list_user_path, class: "sub-nav-item nav-link #{current_class?(users_list_user_path)}" %>
+            <%= link_to 'List Admin', users_list_admin_path, class: "sub-nav-item nav-link #{active_class('admins')}" %>
+            <%= link_to 'List User', users_list_user_path, class: "sub-nav-item nav-link #{active_class('users')}" %>
             <%= link_to 'List User Cluster',
                         user_clusters_path,
-                        class: "sub-nav-item nav-link user_clusters_path #{current_class?(user_clusters_path)}" %>
+                        class: "sub-nav-item nav-link user_clusters_path #{active_class('user_clusters')}" %>
             <%= link_to 'List Cluster',
                         clusters_path,
-                        class: "sub-nav-item nav-link #{current_class?(clusters_path)}" %>
+                        class: "sub-nav-item nav-link #{active_class('clusters')}" %>
             <%= link_to 'User Verification',
                         user_verifications_path,
-                        class: "sub-nav-item nav-link #{current_class?(user_verifications_path)}" %>
+                        class: "sub-nav-item nav-link #{active_class('user_verifications')}" %>
             <%= link_to 'Banner',banner_index_path,
-              class: "sub-nav-item nav-link #{current_class?(banner_index_path)}" %>
+              class: "sub-nav-item nav-link #{active_class('banner')}" %>
               <%= link_to 'Political Party',political_party_index_path,
-              class: "sub-nav-item nav-link #{current_class?(political_party_index_path)}" %>
+              class: "sub-nav-item nav-link #{active_class('political_party')}" %>
               <%= link_to 'Badge', badges_path,
-              class: "sub-nav-item nav-link #{current_class?(badges_path)}" %>
+              class: "sub-nav-item nav-link #{active_class('badges')}" %>
               <%= link_to 'Quiz', quiz_index_path,
-              class: "sub-nav-item nav-link #{current_class?(quiz_index_path)}" %>
+              class: "sub-nav-item nav-link #{active_class('quiz')}" %>
               <%= link_to 'Categories', categories_path,
-              class: "sub-nav-item nav-link #{current_class?(categories_path)}" %>
+              class: "sub-nav-item nav-link #{active_class('categories')}" %>
           </div>
         </li>
         <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse" href="#collapseTimeline" role="button"
@@ -47,8 +47,8 @@
             aria-controls="collapseTimeline">
           <a href="#"><img src="<%= asset_pack_path("views/assets/images/ic_timeline-black.svg") %>"> Timeline</a>
           <div class="collapse in sub-nav" id="collapseTimeline">
-            <%= link_to 'Linimasa', linimasa_index_path, class: "sub-nav-item nav-link #{current_class?(linimasa_index_path)}" %>
-            <%= link_to 'Janji Politik', politics_path, class: "sub-nav-item nav-link #{current_class?(politics_path)}" %>
+            <%= link_to 'Linimasa', linimasa_index_path, class: "sub-nav-item nav-link #{active_class('linimasa_index_path')}" %>
+            <%= link_to 'Janji Politik', politics_path, class: "sub-nav-item nav-link #{active_class('politics_path')}" %>
           </div>
         </li>
         <li class="nav-item">

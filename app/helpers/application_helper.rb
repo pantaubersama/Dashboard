@@ -9,8 +9,9 @@ module ApplicationHelper
     "selected" if x.to_s == y.to_s
   end
 
-  def current_class?(test_path)
-      request.path == test_path ? 'active' : ''
+  def active_class controllers
+    controllers.split(",").any? { |c| controller.controller_name == c.strip } ? "active" : ""
   end
+
 
 end
