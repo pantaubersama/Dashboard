@@ -24,6 +24,9 @@ Rails.application.routes.draw do
         get :search_categories
         post :create_category
       end
+      member do
+        post :approve_cluster        
+      end
     end
   end
 
