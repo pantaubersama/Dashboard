@@ -39,7 +39,7 @@ class ClustersController < ApplicationController
     total_page_trash = (1..@trash_records).to_a
     @pagy_trash = Pagy.new(count: total_page_trash.count, page: params[:page_trash].present? ? params[:page_trash] : 1,
                                 page_param: :page_trash)
-    
+
     last_page_trash = @cluster.list_trash(n3, Pagy::VARS[:items])["data"]["clusters"].size
     @total_trash = (@trash_records - Pagy::VARS[:items]) + last_page_trash
     @list_trash = @init_trash["data"]["clusters"]
@@ -79,14 +79,14 @@ class ClustersController < ApplicationController
 
   def create
     if @cluster.create_cluster(params[:name], params[:category_id], params[:description],
-                            params[:requester_id], params[:image].tempfile, params[:status])
+                            params[:requester_id], params[:image], params[:status])
       redirect_to clusters_path
     end
   end
 
   def update
     if @cluster.update_cluster(params[:id], params[:name], params[:category_id], params[:description],
-      params[:requester_id], params[:image].tempfile, params[:status])
+      params[:requester_id], params[:image].present? ? params[:image] : nil, params[:status])
       redirect_to clusters_path
     end
   end

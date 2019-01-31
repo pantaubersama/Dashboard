@@ -80,20 +80,8 @@
                         <div class="modal-body">
                           <h3>Tambah Cluster</h3>
                           <div class="form-wrap">
-                            <label>Upload Image</label>
                             <div class="form-group">
-                              <div class="upload-image">
-                                <div class="custom-button">
-                                  <label class="upload-img" for="file-input">
-                                    <img src="<%= asset_pack_path("views/assets/images/ic_img.svg") %>" alt="add">
-                                  </label>
-                                  <%= f.input :image, as: :file, input_html: { name: 'image', id: 'file-input' } %>
-                                </div>
-                                  <span>
-                                    <p>Upload PNG/JPG</p>
-                                    <p>Maks 512x512</p>
-                                  </span>
-                                </div>
+                              <%= f.input :image, as: :file, input_html: { name: 'image', id: 'file-input' } %>
                             </div>
                           </div>
                           <div class="row">
@@ -114,31 +102,6 @@
                                   </div>
                                 </div>
                               </div>
-
-                              <div class="form-wrap">
-                                <label>Akses Dashboard</label>
-                                <div class="form-group">
-                                  <ul>
-                                    <li>
-                                      <input class="styled-checkbox" id="styled-checkbox-1" type="checkbox" value="value1">
-                                      <label for="styled-checkbox-1">User Anggota</label>
-                                    </li>
-                                    <li>
-                                      <input class="styled-checkbox" id="styled-checkbox-2" type="checkbox" value="value1">
-                                      <label for="styled-checkbox-2">Janji Politik</label>
-                                    </li>
-                                    <li>
-                                      <input class="styled-checkbox" id="styled-checkbox-3" type="checkbox" value="value1">
-                                      <label for="styled-checkbox-3">Lapor</label>
-                                    </li>
-                                    <li>
-                                      <input class="styled-checkbox" id="styled-checkbox-4" type="checkbox" value="value1">
-                                      <label for="styled-checkbox-4">Perhitungan</label>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-
                             </div>
                               <div class="col-md-6 col-xs-12">
                                 <div class="form-wrap">
@@ -157,7 +120,7 @@
                                   <label>Admin</label>
                                   <div class="form-group">
                                     <div class="form-group">
-                                      <select class="form-control remote-select" name="requester_id" 
+                                      <select class="form-control remote-select" name="requester_id"
                                               data-url="<%= request.base_url + search_users_for_admin_path %>">
                                         <option></option>
                                       </select>
@@ -501,7 +464,7 @@
                 </tbody>
               </table>
             </div>
-            
+
             <div class="filter">
               <a class="btn " data-toggle="collapse" href="#filter2" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
