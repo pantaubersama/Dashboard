@@ -74,7 +74,7 @@ class ClustersController < ApplicationController
 
   def update
     if @cluster.update_cluster(params[:id], params[:name], params[:category_id], params[:description],
-      params[:requester_id], params[:image].tempfile, params[:status])
+      params[:requester_id], params[:image].present? ? params[:image] : nil, params[:status])
       redirect_to clusters_path
     end
   end
