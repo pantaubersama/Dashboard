@@ -57,7 +57,7 @@
                       <label>Kategori</label>
                       <div class="form-group">
                         <div class="form-group">
-                          <%= select_tag "category_id", options_for_select(@categories.map{|aa| [aa["name"], aa["id"]] }, @detail["category"]) %><br>
+                          <%= select_tag "category_id", options_for_select(@categories.map{|aa| [aa["name"], aa["id"]] }, @detail["category"]['id']) %><br>
                         </div>
                       </div>
                     </div>
@@ -66,8 +66,7 @@
                       <div class="form-group">
                         <div class="form-group">
                           <select class="form-control remote-select" name="requester_id"
-                                  data-url="<%= request.base_url + search_users_for_admin_path %>">
-                            <option></option>
+                                  data-url="<%= request.base_url + search_users_for_admin_path %>" required>
                           </select>
                         </div>
                       </div>

@@ -85,7 +85,7 @@ class UserVerificationsController < ApplicationController
 
   def show
     @verification = @user_api.show(params[:id])['data'][0]
-    render "pages/users/show_user_verification"
+    render "pages/users/verifications/show"
   end
 
   def approve
