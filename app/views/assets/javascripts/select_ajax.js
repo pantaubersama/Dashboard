@@ -1,7 +1,5 @@
-// Select Categories
 $(document).ready(function(){
 	$.fn.modal.Constructor.prototype.enforceFocus = function() {};
-
 	// Init Select2
 	$('select.remote-select').select2({
 		placeholder: "Search...",

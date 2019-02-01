@@ -68,20 +68,16 @@
 
                       <%= form_tag(user_clusters_path, method: :post, id: "invite_user_by_email") do %>
                         <div class="modal-body">
+                        
                           <h3>Tambah User Cluster</h3>
-                          <div class="form-wrap">
                             <label>Cluster</label>
-                            <div class="form-group">
                               <div class="form-group">
-                                <select name="cluster_id">
-                                  <% @cluster.each do |cc| %>
-                                    <option value="<%= cc.id %>"><%= cc.name %></option>
-                                  <% end %>
-                                </select>
-                                <!-- <input type="text" name="cluster_id" value="params[:cluster_id]" class="form-control" placeholder="Tuliskan nama cluster, contoh : Universitas Gajah Mada"> -->
+                                <div class="form-group">
+                                  <select class="form-control remote-select" name="cluster_id" data-url="<%= request.base_url + search_clusters_path %>" >
+                                    <option></option>
+                                  </select>
+                                </div>
                               </div>
-                            </div>
-                          </div>
 
                           <div class="card">
                             <div class="form-wrap">
@@ -100,7 +96,6 @@
                                 <li>Anda dapat mematikan link undangan sewaktu waktu</li>
                               </ul>
                             </div>
-                            <% end %>
 
                             <div class="form-wrap">
                               <label>Bagikan Undangan Lewat Link</label>
@@ -125,6 +120,7 @@
                           <button type="button" class="btn btn-solid-green" data-dismiss="modal">undang</button>
                           <button type="button" class="btn btn-transparent" data-dismiss="modal">Cancel</button>
                         </div>
+                      <% end %>
                   </div>
                 </div>
               </div>
