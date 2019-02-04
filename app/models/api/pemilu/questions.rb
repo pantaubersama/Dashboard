@@ -23,4 +23,17 @@ class Api::Pemilu::Questions < InitApiPemilu
     self.class.get("/pendidikan_politik/v1/questions/#{id}", options)
   end
 
+  def update_question(id, body)
+    options = {
+      headers: {
+        Authorization: "#{RequestStore.store[:my_api_token]}"
+      },
+      query: {
+        id: id, 
+        body: body
+      }
+    }
+    self.class.put("/dashboard/v1/question_actions/#{id}", options)
+  end
+
 end

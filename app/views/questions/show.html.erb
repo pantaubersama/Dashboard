@@ -19,7 +19,8 @@
               </span>
               <div class="right-desc">
                 <p>Created at : <%= @question['created_at'] %></p>
-                <button class="btn btn-solid-green">EDIT</button>
+                <%= link_to 'EDIT', edit_question_path, class: "btn btn-solid-green" %>
+                <%= link_to 'DELETE', '#', {class: "btn btn-solid-green", style: "background-color:red"} %>
               </div>
             </div>
 

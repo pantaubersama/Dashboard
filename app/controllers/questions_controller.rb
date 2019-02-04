@@ -53,9 +53,18 @@ class QuestionsController < ApplicationController
   end
 
   def update
+    request = @question_api.update_question(params[:id], params[:body])
+    if request.code == 200
+      flash[:success] = "Update Sucessful"
+      redirect_to questions_path
+    else
+      flash[:warning] = "Oops Update Failed"
+      redirect_to questions_path
+    end
   end
 
   def edit
+    @question = @question_api.find(params[:id])['data']['question']
   end
 
   def destroy
