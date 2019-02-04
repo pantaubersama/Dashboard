@@ -7,8 +7,6 @@
           <ul class="nav nav-pills">
             <li class="active"><a href="#list-pertanyaan" data-toggle="tab">List Pertanyaan</a>
             </li>
-            <li><a href="#terpilih" data-toggle="tab">Terpilih</a>
-            </li>
             <li><a href="#trash" data-toggle="tab">Trash</a>
             </li>
           </ul>
@@ -104,8 +102,8 @@
                       </button>
                       <div class="dropdown-menu" aria-labelledby="action">
                         <a class="dropdown-item" href="<%= question_path(question['id']) %>">Lihat</a>
-                        <a class="dropdown-item" href="edit_pertanyaan">Edit</a>
-                        <a class="dropdown-item" href="#">Hapus</a>
+                        <a class="dropdown-item" href="<%= edit_question_path(question['id']) %>">Edit</a>
+                        <a class="dropdown-item" href="<%= question_path(question['id']) %>" data-method="delete" data-confirm="Are You Sure?">Hapus</a>
                       </div>
                     </td>
                   </tr>

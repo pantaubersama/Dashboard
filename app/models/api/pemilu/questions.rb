@@ -36,4 +36,16 @@ class Api::Pemilu::Questions < InitApiPemilu
     self.class.put("/dashboard/v1/question_actions/#{id}", options)
   end
 
+  def destroy(id)
+    options = {
+      headers: {
+        Authorization: "#{RequestStore.store[:my_api_token]}"
+      },
+      query: {
+        id: id 
+      }
+    }
+    self.class.delete("/dashboard/v1/question_actions", options)
+  end
+
 end

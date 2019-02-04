@@ -6,9 +6,9 @@
       <div class="main-content janji-politik">
         <div class="top">
           <div class="btn-back">
-            <a href="#">
-              <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
-            </a>
+            <%= link_to questions_path do %>
+            	<img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+            <% end %>
           </div>
         </div>
         <div class="content">
@@ -19,8 +19,8 @@
               </span>
               <div class="right-desc">
                 <p>Created at : <%= @question['created_at'] %></p>
-                <%= link_to 'EDIT', edit_question_path, class: "btn btn-solid-green" %>
-                <%= link_to 'DELETE', '#', {class: "btn btn-solid-green", style: "background-color:red"} %>
+                <%= link_to 'EDIT', edit_question_path(@question["id"]), class: "btn btn-solid-green" %>
+                <%= link_to 'DELETE', question_path(@question["id"]), {class: "btn btn-solid-green", method: :delete, data: {confirm: "Are you sure?"}, style: "background-color:red"} %>
               </div>
             </div>
 

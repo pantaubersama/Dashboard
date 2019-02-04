@@ -68,6 +68,14 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
+    request = @question_api.destroy(params[:id])
+    if request.code == 204 || request.code == 200
+      flash[:success] = "Delete Sucessful"
+      redirect_to questions_path
+    else
+      flash[:success] = "Oops Delete Failed"
+      redirect_to questions_path
+    end
   end
 
   private
