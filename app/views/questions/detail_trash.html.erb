@@ -3,6 +3,7 @@
   <div class="main-wrapper">
     <main class="main col-md-10 offset-md-2" role="main">
       <%= render "components/question/header", active: "all" %>
+
       <div class="main-content janji-politik">
         <div class="top">
           <div class="btn-back">
@@ -17,11 +18,6 @@
               <span class="profile-image">
                 <img src="<%= @question['user']['avatar']['thumbnail_square']['url'] if @question['user']['avatar']['thumbnail_square']['url'].present?  %>">
               </span>
-              <div class="right-desc">
-                <p>Created at : <%= @question['created_at'] %></p>
-                <%= link_to 'EDIT', edit_question_path(@question["id"]), class: "btn btn-solid-green" %>
-                <%= link_to 'DELETE', question_path(@question["id"]), {class: "btn btn-solid-green", method: :delete, data: {confirm: "Are you sure?"}, style: "background-color:red"} %>
-              </div>
             </div>
 
             <div class="card-form">

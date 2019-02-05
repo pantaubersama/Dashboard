@@ -1,13 +1,87 @@
-<%= form_tag(cluster_path(@detail), method: :put, multipart: true) do  %>
-  <%= file_field_tag :image %>
-  <%= label_tag :Name %>
-  <%= text_field_tag :name, @detail["name"] %><br>
-  <%= label_tag :Category %>
-  <%= select_tag "category_id", options_for_select(@categories.map{|aa| [aa["name"], aa["id"]] }, @detail["category"]) %><br>
-  <%= label_tag :Description %>
-  <%= text_field_tag :description, @detail["description"] %><br>
-  <%= label_tag :Admin %>
-  <%= select_tag :requester_id, options_for_select(@user.map{|u| [u.full_name, u.id] }, @detail["requester"]["full_name"]) %><br>
-  <%= hidden_field_tag :status, "requested" %><br>
-  <%= submit_tag %>
-<% end %>
+<div class="d-flex main-wrapper">
+  <%= render("components/sidebar") %>
+  <div class="main-wrapper">
+    <main class="main col-md-10 offset-md-2" role="main">
+      <header class="header" role="banner">
+        <%= render("components/dropdown_profile") %>
+      </header>
+      <%= form_tag(cluster_path(@detail['id']), method: :put, multipart: true) do  %>
+      <div class="tab-content clearfix">
+        <div class="main-content">
+          <div class="top">
+            <div class="btn-back">
+              <a href="<%= clusters_path %>">
+                <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+              </a>
+            </div>
+          </div>
+          <div class="content">
+            <span class="display-desc">
+              <p>
+              </p>
+            </span>
+            <div class="bg-white detail-profile">
+              <div class="card">
+                <span class="profile-image">
+                  <label>Gambar Cluster</label>
+                  <%= file_field_tag :image %>
+                </span>
+              </div>
+
+              <div class="card-form">
+                <div class="row">
+                  <div class="col-md-6">
+
+                    <div class="form-wrap">
+                      <label>Nama Cluster</label>
+                      <div class="form-group">
+                        <div class="form-group">
+                          <input type="text" name="name" class="form-control" value="<%= @detail["name"] %>"
+                          placeholder="">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-wrap">
+                      <label>Deskripsi</label>
+                      <div class="form-group">
+                        <div class="form-group">
+                          <Textarea type="text" name="description" class="form-control"><%= @detail["description"] %></Textarea>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-wrap">
+                      <label>Kategori</label>
+                      <div class="form-group">
+                        <div class="form-group">
+                          <%= select_tag "category_id", options_for_select(@categories.map{|aa| [aa["name"], aa["id"]] }, @detail["category"]['id']) %><br>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-wrap">
+                      <label>Admin</label>
+                      <div class="form-group">
+                        <div class="form-group">
+                          <select class="form-control remote-select" name="requester_id"
+                                  data-url="<%= request.base_url + search_users_for_admin_path %>" required>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <%= hidden_field_tag :status, "requested" %><br>
+                  </div>
+                </div>
+                <button class="btn btn-solid-green" type="submit">Update</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </main>
+  </div>
+</div>
+<%= render("components/footer") %>

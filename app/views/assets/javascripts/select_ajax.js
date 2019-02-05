@@ -1,5 +1,5 @@
-// Select Categories
 $(document).ready(function(){
+	$.fn.modal.Constructor.prototype.enforceFocus = function() {};
 	// Init Select2
 	$('select.remote-select').select2({
 		placeholder: "Search...",
@@ -14,7 +14,7 @@ $(document).ready(function(){
 			data: function (params) {
 				return {
 					q: params.term,
-					cluster_id: params.term,
+					cluster: params.term,
 					page: params.page || 1
 				};
 			},
@@ -25,10 +25,13 @@ $(document).ready(function(){
 					case "categories":
 						root = "categories"
 						break;
+					case "users":
+						root = "users"
+						break;
 					case "clusters":
 						root = "clusters"
 				}
-				var result = $.map(data[root], function (item) { return { id: item.id, text: item.name }});
+				var result = $.map(data[root], function (item) { return { id: item.id, text: item.name || item.email }});
 				return { results: result };
 			}
 		}
