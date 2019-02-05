@@ -2,13 +2,10 @@
   <div class="tabs">
     <ul class="nav nav-pills">
       <li class="<%= 'active' if active == 'all'%>">
-        <a href="<%= questions_path %>">List Pertanyaan</a>
-      </li>
-      <li class="<%= 'active' if active == 'terpilih'%>">
-        <a href="#">Terpilih</a>
+        <a href="<%= clusters_path %>">Semua</a>
       </li>
       <li class="<%= 'active' if active == 'trash'%>">
-        <a href="<%= trash_questions_path %>">Trash</a>
+        <a href="<%= trash_clusters_path %>">Trash</a>
       </li>
     </ul>
   </div>
