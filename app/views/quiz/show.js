@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         imagePreview: "",
         questions: [],
-        deleted_questions: [],
+        deleted_questions: [""],
         new_questions: []
       }
     },
