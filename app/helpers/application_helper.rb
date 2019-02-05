@@ -17,9 +17,9 @@ module ApplicationHelper
     controller_name == active_link ? 'active' : ''
   end
   
-  def active_class controllers
-    controllers.split(",").any? { |c| controller.controller_name == c.strip } ? "active" : ""
+  def active_menu_parent controllers
+    controller_name.in?(controllers) ? 'in' : 'out'
   end
-
+  
 
 end

@@ -13,10 +13,10 @@
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to '#', class: 'sub-nav-item' do %>
+          <%= link_to '#', class: 'sub-nav-item', data: {toggle: "collapse", target: "#collapseUser"} do %>
             <img src="<%= asset_pack_path("views/assets/images/ic_user-black.svg") %>"> User
           <% end %>
-          <div class="collapse in sub-nav">
+          <div class="collapse <%= active_menu_parent ["admins", "users", "user_verifications", "badges"] %> sub-nav" id="collapseUser">
             <%= link_to 'List Admin', users_list_admin_path, class: "sub-nav-item nav-link #{active_menu 'admins'}" %>
             <%= link_to 'List User', users_list_user_path, class: "sub-nav-item nav-link #{active_menu 'users'}" %>
             <%= link_to 'User Verification',
@@ -27,13 +27,13 @@
           </div>
         </li>
         <li class="nav-item">
-          <%= link_to '#', class: 'sub-nav-item' do %>
+          <%= link_to '#', class: 'sub-nav-item', data: {toggle: "collapse", target: "#collapseCluster"} do %>
             <img src="<%= asset_pack_path("views/assets/images/ic_user-black.svg") %>"> Cluster
           <% end %>
-          <div class="collapse in sub-nav" id="collapseUser">
+          <div class="collapse <%= active_menu_parent ["user_clusters", "clusters", "categories"] %> sub-nav" id="collapseCluster">
             <%= link_to 'List User Cluster',
                         user_clusters_path,
-                        class: "sub-nav-item nav-link user_clusters_path #{active_class('user_clusters')}" %>
+                        class: "sub-nav-item nav-link user_clusters_path #{active_menu('user_clusters')}" %>
             <%= link_to 'List Cluster',
                         clusters_path,
                         class: "sub-nav-item nav-link #{controller_name == 'clusters' ? 'active' : ''}" %>
@@ -42,17 +42,19 @@
           </div>
         </li>
         <li class="nav-item">
-          <a href="#"><img src="<%= asset_pack_path("views/assets/images/ic_timeline-black.svg") %>"> Menyerap</a>
-          <div class="collapse in sub-nav">
+          <a href="#" data-toggle="collapse" data-target="#collapseMenyerap">
+            <img src="<%= asset_pack_path("views/assets/images/ic_timeline-black.svg") %>"> Menyerap
+          </a>
+          <div class="collapse <%= active_menu_parent ["linimasa", "politics"] %> sub-nav" id="collapseMenyerap">
             <%= link_to 'Linimasa', linimasa_index_path, class: "sub-nav-item nav-link #{active_menu 'linimasa'}" %>
             <%= link_to 'Janji Politik', politics_path, class: "sub-nav-item nav-link #{active_menu 'politics'}" %>
           </div>
         </li>
         <li class="nav-item">
-          <a href="#">
+          <a href="#" data-toggle="collapse" data-target="#collapseMenggali">
             <img src="<%= asset_pack_path("views/assets/images/ic_book-black.svg") %>"> Menggali
           </a>
-          <div class="collapse in sub-nav">
+          <div class="collapse <%= active_menu_parent ["questions", "quiz"] %> sub-nav" id="collapseMenggali">
             <%= link_to 'Tanya Kandidat', questions_path, class: "sub-nav-item nav-link #{active_menu 'questions'}" %>
             <%= link_to 'Quiz', quiz_index_path, class: "sub-nav-item nav-link #{active_menu 'quiz'} " %>
           </div>
@@ -67,10 +69,10 @@
           <a href="#"><img src="<%= asset_pack_path("views/assets/images/ic_calc-black.svg") %>"> Merayakan</a>
         </li>
         <li class="nav-item">
-          <a href="#">
+          <a href="#" data-toggle="collapse" data-target="#collapseCommon">
             <img src="<%= asset_pack_path("views/assets/images/ic_book-black.svg") %>"> Common
           </a>
-          <div class="collapse in sub-nav">
+          <div class="collapse <%= active_menu_parent ["banner", "political_party"] %> sub-nav" id="collapseCommon">
             <%= link_to 'Banner',banner_index_path,
               class: "sub-nav-item nav-link #{active_menu 'banner'}" %>
             <%= link_to 'Political Party',political_party_index_path,
