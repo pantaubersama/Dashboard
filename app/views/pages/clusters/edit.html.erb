@@ -74,6 +74,11 @@
                         <div class="form-group">
                           <select class="form-control remote-select" name="requester_id"
                             data-url="<%= request.base_url + search_users_for_admin_path %>">
+                            <% @user.each do |c| %>
+                              <option value="<%= c["id"] %>" <%= selected c["id"], @detail["requester"]["id"] %> >
+                                <%= c["full_name"] %>
+                              </option>
+                            <% end %>
                           </select>
                         </div>
                       </div>
