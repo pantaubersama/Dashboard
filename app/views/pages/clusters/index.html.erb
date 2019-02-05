@@ -176,6 +176,7 @@
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdown-active">
                         <a class="dropdown-item" href="<%= cluster_path(item["id"]) %>">Lihat</a>
+                        <a class="dropdown-item" href="<%= edit_cluster_path(item["id"]) %>">Edit</a>
                         <%= link_to "Hapus", cluster_path(item["id"]), method: :delete, class: "dropdown-item" %>
                       </div>
                     </td>
