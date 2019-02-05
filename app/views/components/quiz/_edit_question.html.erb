@@ -1,0 +1,38 @@
+<div class="card-form">
+  <h3>Pertanyaan {{ index + 1 }}</h3>
+  <div class="form-wrap">
+    <label>Pertanyaan</label>
+    <div class="form-group">
+      <div class="form-group">
+        <textarea class="form-control" placeholder="Tulis pertanyaan" v-model="question.content"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+      <div class="form-wrap">
+        <label>Jawaban {{ question.answers[0].team }} </label>
+        <div class="form-group">
+          <div class="form-group">
+            <vue-editor v-model="question.answers[0].content" :editor-toolbar="CustomToolbar"></vue-editor>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <div class="form-wrap">
+        <label>Jawaban {{ question.answers[1].team }}</label>
+        <div class="form-group">
+          <div class="form-group">
+            <vue-editor v-model="question.answers[1].content" :editor-toolbar="CustomToolbar"></vue-editor>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <button type="button" class="btn btn-green" @click="removeQuestion(index)" v-if="counter + counter_for_new > 1">
+        Hapus Pertanyaan
+      </button>
+    </div>
+  </div>
+</div>
