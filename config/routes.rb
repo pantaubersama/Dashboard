@@ -50,7 +50,14 @@ Rails.application.routes.draw do
       post 'grant', to: 'badges#grant_badge_user'
     end
   end
-  resources :questions
+  resources :questions do
+    collection do
+      get 'trash'
+    end
+    member do
+      get 'detail_trash'
+    end
+  end
   resources :quiz do
     collection do
       get 'trash'

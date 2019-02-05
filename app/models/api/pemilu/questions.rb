@@ -16,11 +16,30 @@ class Api::Pemilu::Questions < InitApiPemilu
     self.class.get("/pendidikan_politik/v1/questions", options)
   end
 
+  def trash(page, per_page)
+    options = {
+      headers: {
+        Authorization: "#{RequestStore.store[:my_api_token]}"
+      },
+      query: {
+        page: page, per_page: per_page
+      }
+    }
+    self.class.get("/dashboard/v1/question_actions/trash", options)
+  end
+
   def find id
     options = {
       headers: {Authorization: "#{RequestStore.store[:my_api_token]}"}
     }
     self.class.get("/pendidikan_politik/v1/questions/#{id}", options)
+  end
+
+  def find_trash id
+    options = {
+      headers: {Authorization: "#{RequestStore.store[:my_api_token]}"}
+    }
+    self.class.get("/dashboard/v1/question_actions/trash/#{id}", options)
   end
 
   def update_question(id, body)

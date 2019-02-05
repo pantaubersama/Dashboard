@@ -2,18 +2,8 @@
   <%= render("components/sidebar") %>
   <div class="main-wrapper">
     <main class="main col-md-10 offset-md-2" role="main">
-      <header class="header" role="banner">
-        <div class="tabs">
-          <ul class="nav nav-pills">
-            <li class="active"><a href="#list-pertanyaan" data-toggle="tab">List Pertanyaan</a>
-            </li>
-            <li><a href="#trash" data-toggle="tab">Trash</a>
-            </li>
-          </ul>
-        </div>
-
-        <%= render("components/dropdown_profile") %>
-      </header>
+      <%= render "components/question/header", active: "all" %>
+      
       <div class="tab-content clearfix">
         <div class="main-content tab-pane active" id="list-pertanyaan">
           <div class="top ">
