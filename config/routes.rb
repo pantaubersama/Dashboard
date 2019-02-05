@@ -17,12 +17,14 @@ Rails.application.routes.draw do
     delete '/user_clusters/:id/remove_user/:user_id', to:'user_clusters#destroy', as: 'remove_user'
     resources :clusters do
       collection do
-        get '/detail_category/:id', to: 'clusters#detail_category', as: 'detail_category'
-        put '/update_category/:id', to: 'clusters#update_category', as: 'update_category'
-        get '/edit_category/:id', to: 'clusters#edit_category', as: 'edit_category'
-        get '/detail_trash/:id', to: 'clusters#detail_trash', as: 'detail_trash'
+        get 'trash'
         get :search_categories
         post :create_category
+      end
+      member do
+        get :detail_trash
+        post :approve_cluster        
+        post :reject_cluster        
       end
     end
   end
@@ -46,9 +48,16 @@ Rails.application.routes.draw do
       post 'grant', to: 'badges#grant_badge_user'
     end
   end
-  resources :questions
+  resources :questions do
+    collection do
+      get 'trash'
+    end
+    member do
+      get 'detail_trash'
+    end
+  end
   resources :quiz do
-    collection do 
+    collection do
       get 'trash'
     end
     member do
@@ -62,6 +71,7 @@ Rails.application.routes.draw do
   get '/admins', to: 'admins#index', as: 'users_list_admin'
   post '/admins/make_admin',to: 'admins#make_admin', as: 'make_admin'
   get '/admins/delete_admin/:id',to: 'admins#delete_admin', as: 'delete_admin'
+  get '/admins/search_users_for_admin', to: 'admins#search_users', as: 'search_users_for_admin'
 
   # users
   get '/user/:id/edit', to: 'users#edit', as: 'user_edit'
@@ -71,6 +81,8 @@ Rails.application.routes.draw do
 
   resources :user_verifications, only: [:index, :show, :create] do
     collection do
+      get 'accepted', to: 'user_verifications#accepted', as: 'accepted'
+      get 'rejected', to: 'user_verifications#rejected', as: 'rejected'
       get 'approve/:id', to: 'user_verifications#approve', as: 'approve_verification'
       get 'reject/:id', to: 'user_verifications#reject', as: 'reject_verification'
     end

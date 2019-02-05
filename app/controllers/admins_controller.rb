@@ -1,10 +1,9 @@
 class AdminsController < ApplicationController
-  before_action :set_api_user, only: [:make_admin, :delete_admin]
+  before_action :set_api_user, only: [:make_admin, :delete_admin, :search_users]
   include Pagy::Backend
 
-
   def make_admin
-    user = UserPantauAuth.where(email: params[:email]).first
+    user = UserPantauAuth.find(params[:id])
     if user.present?
       response = @user_api.make_admin(user.id)
       if response.code == 201
@@ -17,6 +16,11 @@ class AdminsController < ApplicationController
       flash[:warning] = "User Not Found"
       redirect_to users_list_admin_path
     end
+  end
+
+  def search_users
+    @all_users = @user_api.all(nil, nil, params[:q], nil, nil, nil, nil, nil)["data"]
+    render json: @all_users
   end
 
   def delete_admin
@@ -35,8 +39,6 @@ class AdminsController < ApplicationController
 
     @pagy_admins, @item_admins = pagy_array(@admins, page_param: :page_user)
   end
-
-
 
   private
     def set_api_user

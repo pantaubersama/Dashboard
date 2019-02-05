@@ -17,37 +17,45 @@ class ClustersController < ApplicationController
 
     last_page_cluster = @cluster.clusters(n1, Pagy::VARS[:items], nil, nil, nil, nil)["data"]["clusters"].size
     @total_cluster = (@cluster_records - Pagy::VARS[:items]) + last_page_cluster
+    @total_row_per_page = @init_cluster['data']['clusters'].size
 
     @clusters = @init_cluster["data"]["clusters"]
-
-    # ============================= Categories =============================
-    @init_cat = @cluster.get_categories(params[:page_cat] || 1, Pagy::VARS[:items], nil)
-    n2 = @init_cat["data"]["meta"]["pages"]["total"]
-    @cat_records = (n2*Pagy::VARS[:items])
-    total_page_cat = (1..@cat_records).to_a
-    @pagy_categories = Pagy.new(count: total_page_clusters.count, page: params[:page_cat].present? ? params[:page_cat] : 1,
-                                page_param: :page_cat)
-
-    last_page_category = @cluster.get_categories(n1, Pagy::VARS[:items], nil)["data"]["categories"].size
-    @total_categories = (@cat_records - Pagy::VARS[:items]) + last_page_category
-    @list_categories = @init_cat["data"]["categories"]
-
-    # ============================= Trash =============================
-    @init_trash = @cluster.list_trash(params[:page_trash] || 1, Pagy::VARS[:items])
-    n3 = @init_trash["data"]["meta"]["pages"]["total"]
-    @trash_records = (n3*Pagy::VARS[:items])
-    total_page_trash = (1..@trash_records).to_a
-    @pagy_trash = Pagy.new(count: total_page_trash.count, page: params[:page_trash].present? ? params[:page_trash] : 1,
-                                page_param: :page_trash)
-    
-    last_page_trash = @cluster.list_trash(n3, Pagy::VARS[:items])["data"]["clusters"].size
-    @total_trash = (@trash_records - Pagy::VARS[:items]) + last_page_trash
-    @list_trash = @init_trash["data"]["clusters"]
-
     @statuses = ["approved", "requested", "rejected"]
 
     @pages = { page: "index" }
     render "pages/clusters/index"
+  end
+
+  def trash
+    @init_cluster = @cluster.list_trash(params[:page_cluster] || 1, Pagy::VARS[:items])
+    n1 = @init_cluster["data"]["meta"]["pages"]["total"]
+    @cluster_records = (n1*Pagy::VARS[:items])
+    total_page_clusters = (1..@cluster_records).to_a
+    @pagy_cluster = Pagy.new(count: total_page_clusters.count,
+                                   page: params[:page_cluster].present? ? params[:page_cluster] : 1,
+                                   page_param: :page_cluster)
+
+    last_page_cluster = @cluster.list_trash(n1, Pagy::VARS[:items])["data"]["clusters"].size
+    @total_cluster = (@cluster_records - Pagy::VARS[:items]) + last_page_cluster
+    @total_row_per_page = @init_cluster['data']['clusters'].size
+
+    @clusters = @init_cluster["data"]["clusters"]
+    @statuses = ["approved", "requested", "rejected"]
+    
+    @pages = { page: "trash" }
+    render "pages/clusters/trash"
+  end
+
+  def approve_cluster
+    if @cluster.approve_cluster(params[:id])
+      redirect_to clusters_path
+    end
+  end
+
+  def reject_cluster
+    if @cluster.reject_cluster(params[:id])
+      redirect_to clusters_path
+    end
   end
 
   def search_categories
@@ -67,43 +75,20 @@ class ClustersController < ApplicationController
 
   def create
     if @cluster.create_cluster(params[:name], params[:category_id], params[:description],
-                            params[:requester_id], params[:image].tempfile, params[:status])
+                            params[:requester_id], params[:image], params[:status])
       redirect_to clusters_path
     end
   end
 
   def update
     if @cluster.update_cluster(params[:id], params[:name], params[:category_id], params[:description],
-      params[:requester_id], params[:image].tempfile, params[:status])
+      params[:requester_id], params[:image].present? ? params[:image] : nil, params[:status])
       redirect_to clusters_path
     end
   end
 
   def destroy
     if @cluster.delete_cluster(params[:id])
-      redirect_to clusters_path
-    end
-  end
-
-  def detail_category
-    @detail_category = @cluster.show_category(params[:id])["data"]["category"]
-    render "pages/clusters/detail_category"
-  end
-
-  def create_category
-    if @cluster.add_category(params[:name], params[:description])
-      redirect_to clusters_path
-    end
-  end
-
-  def edit_category
-    @detail_category = @cluster.show_category(params[:id])["data"]["category"]
-    @pages = { page: "edit_category" }
-    render "pages/clusters/edit_category"
-  end
-
-  def update_category
-    if @cluster.update_kategori(params[:id], params[:name], params[:description])
       redirect_to clusters_path
     end
   end
@@ -123,6 +108,5 @@ class ClustersController < ApplicationController
 
     def get_cluster_id
       @detail = @cluster.detail_cluster(params[:id])["data"]["cluster"]
-      # @cluster_detail = Cluster.find(params[:id])
     end
 end

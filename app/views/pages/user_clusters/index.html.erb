@@ -7,10 +7,6 @@
           <ul class="nav nav-pills">
             <li class="active"><a href="#diterima" data-toggle="tab">Diterima</a>
             </li>
-            <li><a href="#ditunda" data-toggle="tab">Ditunda</a>
-            </li>
-            <li><a href="#ditolak" data-toggle="tab">Ditolak</a>
-            </li>
           </ul>
         </div>
         <%= render("components/dropdown_profile") %>
@@ -68,20 +64,16 @@
 
                       <%= form_tag(user_clusters_path, method: :post, id: "invite_user_by_email") do %>
                         <div class="modal-body">
+                        
                           <h3>Tambah User Cluster</h3>
-                          <div class="form-wrap">
                             <label>Cluster</label>
-                            <div class="form-group">
                               <div class="form-group">
-                                <select name="cluster_id">
-                                  <% @cluster.each do |cc| %>
-                                    <option value="<%= cc.id %>"><%= cc.name %></option>
-                                  <% end %>
-                                </select>
-                                <!-- <input type="text" name="cluster_id" value="params[:cluster_id]" class="form-control" placeholder="Tuliskan nama cluster, contoh : Universitas Gajah Mada"> -->
+                                <div class="form-group">
+                                  <select class="form-control remote-select" name="cluster_id" data-url="<%= request.base_url + search_clusters_path %>" >
+                                    <option></option>
+                                  </select>
+                                </div>
                               </div>
-                            </div>
-                          </div>
 
                           <div class="card">
                             <div class="form-wrap">
@@ -100,7 +92,6 @@
                                 <li>Anda dapat mematikan link undangan sewaktu waktu</li>
                               </ul>
                             </div>
-                            <% end %>
 
                             <div class="form-wrap">
                               <label>Bagikan Undangan Lewat Link</label>
@@ -125,6 +116,7 @@
                           <button type="button" class="btn btn-solid-green" data-dismiss="modal">undang</button>
                           <button type="button" class="btn btn-transparent" data-dismiss="modal">Cancel</button>
                         </div>
+                      <% end %>
                   </div>
                 </div>
               </div>
@@ -201,10 +193,11 @@
                       <div class="form-wrap">
                         <label>Status</label>
                         <div class="form-group">
-                          <select class="form-control" name="verified">
-                            <option value="verified_all">Semua</option>
-                            <option value="verified_true">Terverifikasi</option>
-                            <option value="verified_false">Belum Terverifikasi</option>
+                          <select class="form-control stat" name="verified">
+                            <option></option>
+                            <% @verifications.each do |a| %>
+                              <option value="<%= a["id"] %>" <%= selected a["id"], params[:verified] %> > <%= a["name"] %> </option>
+                            <% end %>
                           </select>
                         </div>
                       </div>
@@ -212,7 +205,7 @@
                         <label>User</label>
                         <div class="form-group">
                           <div class="form-group">
-                            <input type="nama" name="nama" value="<%= params[:nama] %>" class="form-control" placeholder="Nama">
+                            <input type="nama" name="nama" value="<%= params[:nama] %>" class="form-control q" placeholder="Nama">
                           </div>
                         </div>
                       </div>
@@ -220,7 +213,7 @@
                         <label>Email</label>
                         <div class="form-group">
                           <div class="form-group">
-                            <input type="email" name="email" value="<%= params[:email] %>" class="form-control" placeholder="luna@gmail.com">
+                            <input type="email" name="email" value="<%= params[:email] %>" class="form-control q" placeholder="luna@gmail.com">
                           </div>
                         </div>
                       </div>
@@ -228,9 +221,12 @@
                         <label>Cluster</label>
                         <div class="form-group">
                           <div class="form-group">
-                            <select class="form-control" name="cluster">
-                              <%= @cluster.each do |c| %>
-                                <option value="<%= c.id %>"><%= c.name %></option>
+                            <select class="form-control remote-select" name="cluster_id" data-url="<%= request.base_url + search_clusters_path %>">
+                              <option></option>
+                              <% @cluster.each do |c| %>
+                                <option value="<%= c["id"] %>" <%= selected c["id"], params[:cluster_id] %> >
+                                  <%= c["name"] %>
+                                </option>
                               <% end %>
                             </select>
                             <!-- <input type="cluster" class="form-control" placeholder="Nama Cluster"> -->
@@ -240,10 +236,9 @@
                     </div>
                   </div>
 
-
                   <div class="button-wrapper">
                     <button type="submit" class="btn btn-solid-green" data-dismiss="modal">Done</button>
-                    <button type="button" class="btn btn-transparent">Reset</button>
+                    <button type="button" class="btn btn-transparent reset">Reset</button>
                   </div>
                 </div>
               </div>

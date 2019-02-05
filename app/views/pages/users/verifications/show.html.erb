@@ -23,14 +23,13 @@
               <span class="profile-image">
               </span>
               <div class="right-desc">
-                <% if @verification['status'] == 'verified' %>
-                <%= link_to reject_verification_user_verifications_path(@verification['user']['id'])  do %>
-                <button class="btn btn-green">DITOLAK</button>
-                <% end %>
-                <% else %>
-                <%= link_to approve_verification_user_verifications_path(@verification['user']['id']) do  %>
-                <button class="btn btn-solid-green">DITERIMA</button>
-                <% end %>
+                <% if @verification['status'] == 'requested' %>
+                  <%= link_to reject_verification_user_verifications_path(@verification['user']['id'])  do %>
+                  <button class="btn btn-solid-green" style="background-color:red">DITOLAK</button>
+                  <% end %>
+                  <%= link_to approve_verification_user_verifications_path(@verification['user']['id']) do  %>
+                  <button class="btn btn-solid-green">DITERIMA</button>
+                  <% end %>
                 <% end %>
               </div>
             </div>

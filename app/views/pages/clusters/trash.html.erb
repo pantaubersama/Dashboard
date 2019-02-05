@@ -1,0 +1,112 @@
+<div class="d-flex main-wrapper">
+  <%= render("components/sidebar") %>
+  <div class="main-wrapper">
+    <main class="main col-md-10 offset-md-2" role="main">
+      <%= render('components/cluster/header', active: 'trash') %>
+      <div class="tab-content clearfix">
+        <div class="main-content tab-pane active" id="all">
+          <div class="top ">
+
+            <% link = pagy_link_proc(@pagy_cluster) %>
+            <div class="pagination-wrap">
+              <ul class="pagination">
+                <% if @pagy_cluster.prev %>
+                <li class="page-item">
+                  <%== link.call(@pagy_cluster.prev, pagy_t('pagy.nav.prev')) %>
+                </li>
+                <% else  %>
+                <li class="page-item disabled">
+                  <%== link.call(@pagy_cluster.prev, pagy_t('pagy.nav.prev')) %>
+                </li>
+                <% end %>
+
+                <% @pagy_cluster.series.each do |item| %>
+                <% if item.is_a?(Integer) %>
+                <li id="testtest" class="page-item">
+                  <%== link.call(item) %>
+                </li>
+                <% elsif item.is_a?(String) %>
+                <li class="page-item active" aria-current="page">
+                  <%== link.call(item) %>
+                </li>
+                <% elsif item == :gap %>
+                <li class="page-item disabled gap"><a href="#" class="page-link">
+                    <%== pagy_t('pagy.nav.gap') %></a></li>
+                <% end %>
+                <% end %>
+
+                <% if @pagy_cluster.next %>
+                <li class="page-item">
+                  <%== link.call(@pagy_cluster.next, pagy_t('pagy.nav.next')) %>
+                </li>
+                <% else %>
+                <li class="page-item disabled">
+                  <%== link.call(@pagy_cluster.next, pagy_t('pagy.nav.next')) %>
+                </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+
+          <div class="content">
+            <span class="display-desc">
+              <p>
+                <%= show_count_table(params[:page], @total_row_per_page, @total_cluster) %>
+              </p>
+            </span>
+            <div class="table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Admin</th>
+                    <th>Kategori</th>
+                    <th>Status</th>
+                    <th>Create At</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @clusters.each_with_index do |item, index| %>
+                  <tr>
+                    <td class="number bold">
+                      <%= ((params[:page_cluster].present? ? params[:page_cluster].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %>
+                    </td>
+                    <td class="name bold"><a href="<%= detail_trash_cluster_path(item["id"]) %>">
+                        <img src="<%= item["image"].present? ? item["image"]["thumbnail_square"]["url"] : "" %>">
+                        <%= item["name"] %></a></td>
+                    <td class="name bold">
+                      <%= item["requester"]["full_name"] %>
+                    </td>
+                    <td>
+                      <%= item["category"]["name"] %>
+                    </td>
+                    <td class="<%= 'number bold' if item["status"] == "approved" %>">
+                      <%= item["status"] %>
+                    </td>
+                    <td>21/10/2023</td>
+                    <td>
+                      <button class="dropdown-toggle" type="button" id="dropdown-active" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdown-active">
+                        <a class="dropdown-item" href="<%= detail_trash_cluster_path(item["id"]) %>">Lihat</a>
+                      </div>
+                    </td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+</main>
+</div>
+</div>
+<%= render("components/footer") %>

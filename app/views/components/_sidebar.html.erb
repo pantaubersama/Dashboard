@@ -33,7 +33,7 @@
           <div class="collapse in sub-nav" id="collapseUser">
             <%= link_to 'List User Cluster',
                         user_clusters_path,
-                        class: "sub-nav-item nav-link user_clusters_path #{controller_name == 'user_clusters' ? 'active' : ''}" %>
+                        class: "sub-nav-item nav-link user_clusters_path #{active_class('user_clusters')}" %>
             <%= link_to 'List Cluster',
                         clusters_path,
                         class: "sub-nav-item nav-link #{controller_name == 'clusters' ? 'active' : ''}" %>
