@@ -32,10 +32,10 @@
                   <%= image_tag @detail["image"].present? ? @detail['image']['url'] : "" %>
                 </span>
                 <div class="right-desc">
-                  <% if @detail["status"] != "approved" %>
+                  <% if @detail["status"] == "requested" %>
                     <%= link_to "APPROVE", approve_cluster_cluster_path(@detail["id"]), method: :post, class: "btn btn-solid-green", style: "background-color:#3ed1c0" %>
-                    <%#= link_to "REJECT", reject_cluster_cluster_path(@detail["id"]), method: :post, class: "btn btn-solid-green", style: "background-color:red" %>
-                    <%= link_to "REJECT", '#', class: "btn btn-solid-green", style: "background-color:red" %>
+                    <%= link_to "REJECT", reject_cluster_cluster_path(@detail["id"]), method: :post, class: "btn btn-solid-green", style: "background-color:red" %>
+                    <%#= link_to "REJECT", '#', class: "btn btn-solid-green", style: "background-color:red" %>
                   <% end %>
                 </div>
                 <div class="right-desc">

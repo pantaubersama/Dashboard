@@ -5,15 +5,15 @@ class ClustersController < ApplicationController
 
   def index
     # ============================= Clusters =============================
-    @init_cluster = @cluster.clusters(params[:page_cluster] || 1, Pagy::VARS[:items],
+    @init_cluster = @cluster.clusters(params[:page] || 1, Pagy::VARS[:items],
                                       params[:q] || "", params[:filter_by] || "", params[:filter_value] || "",
                                       params[:status] || "")
     n1 = @init_cluster["data"]["meta"]["pages"]["total"]
     @cluster_records = (n1*Pagy::VARS[:items])
     total_page_clusters = (1..@cluster_records).to_a
-    @pagy_cluster = Pagy.new(count: total_page_clusters.count,
-                                   page: params[:page_cluster].present? ? params[:page_cluster] : 1,
-                                   page_param: :page_cluster)
+    @pagy = Pagy.new(count: total_page_clusters.count,
+                                   page: params[:page].present? ? params[:page] : 1,
+                                   page_param: :page)
 
     last_page_cluster = @cluster.clusters(n1, Pagy::VARS[:items], nil, nil, nil, nil)["data"]["clusters"].size
     @total_cluster = (@cluster_records - Pagy::VARS[:items]) + last_page_cluster
@@ -27,13 +27,13 @@ class ClustersController < ApplicationController
   end
 
   def trash
-    @init_cluster = @cluster.list_trash(params[:page_cluster] || 1, Pagy::VARS[:items])
+    @init_cluster = @cluster.list_trash(params[:page] || 1, Pagy::VARS[:items])
     n1 = @init_cluster["data"]["meta"]["pages"]["total"]
     @cluster_records = (n1*Pagy::VARS[:items])
     total_page_clusters = (1..@cluster_records).to_a
-    @pagy_cluster = Pagy.new(count: total_page_clusters.count,
-                                   page: params[:page_cluster].present? ? params[:page_cluster] : 1,
-                                   page_param: :page_cluster)
+    @pagy = Pagy.new(count: total_page_clusters.count,
+                                   page: params[:page].present? ? params[:page] : 1,
+                                   page_param: :page)
 
     last_page_cluster = @cluster.list_trash(n1, Pagy::VARS[:items])["data"]["clusters"].size
     @total_cluster = (@cluster_records - Pagy::VARS[:items]) + last_page_cluster

@@ -26,7 +26,9 @@
                 <%= form_tag(grant_badge_badges_path, method: :post) do %>
                   <div class="form-wrap">
                     <label for="">Email</label>
-                    <%= email_field :email, '', class: 'form-control', placeholder: 'Email User' %>
+                      <select class="form-control remote-select" name="id" data-url="<%= request.base_url + search_users_for_admin_path %>">
+                        <option></option>
+                      </select>
                   </div>
                   <div class="form-wrap">
                     <label for="">Badge</label>

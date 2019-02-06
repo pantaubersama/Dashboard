@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :dashboards, only: [:index]
-  resources :broadcasts, only: [:index, :show]
+  resources :broadcasts
 
   root 'dashboards#index'
 
@@ -23,19 +23,28 @@ Rails.application.routes.draw do
       end
       member do
         get :detail_trash
-        post :approve_cluster        
-        post :reject_cluster        
+        post :approve_cluster
+        post :reject_cluster
       end
     end
   end
 
   scope '/timeline', module: 'timeline' do
-    resources :linimasa
+    resources :linimasa do
+      collection do
+        get :trash
+        get :list_username
+      end
+    end
     get '/show_trash_linimasa/:id', to: 'linimasa#detail_trash', as: 'detail_linimasa_trash'
     get '/show_user/:id', to: 'linimasa#show_user', as: 'detail_user'
     delete '/delete_user/:id', to:'linimasa#delete_user', as: 'delete_user'
 
-    resources :politics
+    resources :politics do
+      collection do
+        get :trash
+      end
+    end
     get '/show_trash_politic/:id', to: 'politics#detail_trash', as: 'detail_politic_trash'
     get '/search_clusters/', to: 'politics#search_clusters', as: 'search_clusters'
   end

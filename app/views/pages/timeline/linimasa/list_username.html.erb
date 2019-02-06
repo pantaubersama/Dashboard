@@ -1,0 +1,61 @@
+<div class="d-flex main-wrapper">
+  <%= render("components/sidebar") %>
+    <div class="main-wrapper">
+			<main class="main col-md-10 offset-md-2" role="main">
+				<%= render("components/linimasa/header", active: "user") %>
+					<div class="tab-content clearfix">
+						<div class="main-content tab-pane active" id="all">
+
+						<div class="top">
+							<%= render("components/pagination", pagy: @pagy) %>
+						</div>
+
+						<div class="content">
+							<span class="display-desc">
+								<p>
+		              <%= show_count_table(params[:page], @total_row_per_page, @total_user) %>
+								</p>
+							</span>
+							<div class="table">
+								<table>
+									<thead>
+									<tr>
+										<th>No</th>
+										<th>Team</th>
+										<th>Username Twitter</th>
+										<th>Jumlah Tweet</th>
+										<th>Created at</th>
+										<th></th>
+									</tr>
+									</thead>
+									<tbody>
+									<% @item_users.each_with_index do |item, index| %>
+									<tr>
+										<td class="number bold"><%= ((params[:page_user].present? ? params[:page_user].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %></td>
+										<td class="name bold"><a href="<%= detail_user_path(item["id"]) %>"><%= item["team"]["title"] %></a></td>
+										<td><%= item["keywords"] %></td>
+										<td>100</td>
+										<td><%= item["created_at_in_word"]["id"] %></td>
+										<td>
+											<button class="dropdown-toggle" type="button" data-toggle="dropdown"
+															aria-haspopup="true" aria-expanded="false">
+												<img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+											</button>
+											<div class="dropdown-menu" aria-labelledby="action">
+												<a class="dropdown-item" href="<%= detail_user_path(item["id"]) %>">Lihat</a>
+												<%= link_to "Delete", delete_user_path(item["id"]), method: :delete, class: "dropdown-item" %>
+											</div>
+										</td>
+									<% end %>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+						</div>
+
+					</div>
+			</main>
+    </div>
+</div>
+<%= render("components/footer") %>

@@ -104,7 +104,7 @@ class BadgesController < ApplicationController
   end
 
   def grant_badge_user
-    user = UserPantauAuth.where(email: params[:email]).first
+    user = UserPantauAuth.find(params[:id])
     if user.present?
       request = @badge_api.grant_badge_user(params[:badge_id], user.id)
       if request.code == 200 || request.code == 201
@@ -120,16 +120,13 @@ class BadgesController < ApplicationController
     end
   end
 
-
-
   private
     def set_badge_api
       @badge_api = Api::Auth::Badge.new
     end
+    
     def set_badge
       @request = @badge_api.find(params[:id])
     end
-
-
 
 end
