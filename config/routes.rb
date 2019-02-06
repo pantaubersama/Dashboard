@@ -60,6 +60,7 @@ Rails.application.routes.draw do
   resources :questions do
     collection do
       get 'trash'
+      get 'folders'
     end
     member do
       get 'detail_trash'

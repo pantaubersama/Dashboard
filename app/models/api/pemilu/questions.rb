@@ -28,6 +28,21 @@ class Api::Pemilu::Questions < InitApiPemilu
     self.class.get("/dashboard/v1/question_actions/trash", options)
   end
 
+  def folders(page, per_page, name = nil)
+    options = {
+      headers: {
+        Authorization: "#{RequestStore.store[:my_api_token]}"
+      },
+      query: {
+        page: page, 
+        per_page: per_page,
+        name: name
+      }
+    }
+    self.class.get("/dashboard/v1/question_folders", options)
+  end
+  
+
   def find id
     options = {
       headers: {Authorization: "#{RequestStore.store[:my_api_token]}"}

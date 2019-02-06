@@ -62,6 +62,31 @@ class QuestionsController < ApplicationController
     @total_row_per_page = request['data']['questions'].size
   end
 
+  def folders
+    request = @question_api.folders(
+      params[:page].present? ? params[:page] : 1,
+      Pagy::VARS[:items],
+      params[:nama]
+    )
+    @totalPage = request['data']['meta']['pages']['total']
+    @totalData = (@totalPage*Pagy::VARS[:items])
+    total_array = (1..@totalData).to_a
+
+    @pagy = Pagy.new(
+                      count: total_array.count,
+                      page: params[:page].present? ? params[:page] : 1 ,
+                      page_param: :page
+                    )
+    @folders = request["data"]["question_folders"]
+    last_page = @question_api.folders(
+      @totalPage,
+      Pagy::VARS[:items],
+      params[:nama]
+    )["data"]["question_folders"].size
+    @total_folders = (@totalData - Pagy::VARS[:items]) + last_page
+    @total_row_per_page = request["data"]["question_folders"].size
+  end
+
   def show
     request = @question_api.find(params[:id])
     if request.code == 404
