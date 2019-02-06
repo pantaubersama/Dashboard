@@ -68,7 +68,9 @@
                       <label>User</label>
                       <div class="form-group">
                         <div class="form-group">
-                          <input type="email" class="form-control" placeholder="adellapratitas7@gmail.com" name="email">
+                          <select class="form-control remote-select" name="id" data-url="<%= request.base_url + search_users_for_admin_path %>">
+                            <option></option>
+                          </select>
                         </div>
                       </div>
                     </div>

@@ -4,17 +4,29 @@ class Api::Auth::Cluster < InitApiAuth
 
   def clusters(page, per_page, q, filter_by, filter_value, status)
     @options = {
-      query: {page: page, per_page: per_page, 
-              q: q, filter_by: filter_by, 
-              filter_value: filter_value, 
+      query: {page: page, per_page: per_page,
+              q: q, filter_by: filter_by,
+              filter_value: filter_value,
               status: status},
       headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}
     }
     self.class.get("/dashboard/v1/clusters", @options)
   end
 
+  def search_approved_cluster(page, per_page, q, filter_by, filter_value)
+    @options = {
+      query: {
+        page: page,
+        per_page: per_page,
+        q: q,
+        filter_by: filter_by,
+        filter_value: filter_value}
+    }
+    self.class.get("/v1/clusters", @options)
+  end
+
   def detail_cluster(id)
-    @options = { 
+    @options = {
       query: {id: id},
       headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}
     }
@@ -23,12 +35,9 @@ class Api::Auth::Cluster < InitApiAuth
 
   def create_cluster(name, category_id, description, requester_id, image, status)
     @options = {
-      body:     { name: name, category_id: category_id, 
-                  description: description, requester_id: requester_id, 
-                  image: File.open(image), status: status},
-      headers:  { 
-                  Authorization: "Bearer #{RequestStore.store[:my_api_token]}"
-      }
+      headers:  { Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
+      body:     {name: name, category_id: category_id, description: description,
+                requester_id: requester_id, image: (File.new(image.path) if image.present?), status: status},
     }
     self.class.post("/dashboard/v1/clusters", @options)
   end
@@ -38,7 +47,7 @@ class Api::Auth::Cluster < InitApiAuth
       query: { id: id },
       headers: { Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}
     }
-    self.class.post("/v1/clusters/approve/#{id}", @options)
+    self.class.post("/dashboard/v1/clusters/approve/#{id}", @options)
   end
 
   def reject_cluster(id)
@@ -46,17 +55,17 @@ class Api::Auth::Cluster < InitApiAuth
       query: { id: id },
       headers: { Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}
     }
-    self.class.post("/v1/clusters/reject/#{id}", @options)
+    self.class.post("/dashboard/v1/clusters/reject/#{id}", @options)
   end
 
   def update_cluster(id, name, category_id, description, requester_id, image, status)
     @options = {
-      body:     { 
-                  id: id, name: name, 
-                  category_id: category_id, 
+      body:     {
+                  id: id, name: name,
+                  category_id: category_id,
                   description: description,
-                  requester_id: requester_id, 
-                  image: (File.new(image.path) if image.present?), 
+                  requester_id: requester_id,
+                  image: (File.new(image.path) if image.present?),
                   status: status
                 },
       headers:  { Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}

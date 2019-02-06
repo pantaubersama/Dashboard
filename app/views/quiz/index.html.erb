@@ -76,7 +76,7 @@
                       </button>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-solid-green" @click="createQuiz">
+                      <button type="button" class="btn btn-solid-green" @click="createQuiz" id='btn-create'>
                         Create
                       </button>
                       <button type="button" class="btn btn-transparent">Cancel</button>
@@ -102,7 +102,7 @@
                     <th>Judul Quiz</th>
                     <th>Jumlah Pertanyaan</th>
                     <th>Status</th>
-                    <th>Create At</th>
+                    <th>Created At</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -118,7 +118,9 @@
                       <%= quiz['quiz_questions_count'] %>
                     </td>
                     <td>
-                      <%= link_to(quiz['status'], (quiz['status'] == "published" ? draft_quiz_path(quiz['id']) : publish_quiz_path(quiz['id'])), data: { confirm: "Do you want to make quiz to #{publish_or_draft(quiz['status'])}?" }, method: :post ) %>
+                      <%= link_to(quiz['status'], (quiz['status'] == "published" ? draft_quiz_path(quiz['id']) : publish_quiz_path(quiz['id'])), 
+                        data: { confirm: "Do you want to make quiz to #{publish_or_draft(quiz['status'])}?" }, method: :post,
+                        class: "label label-"+label_publish_or_draft(quiz['status'])) %>
                     </td>
                     <td>
                       <%= Date.parse(quiz['created_at']) if quiz['created_at'].present? %>
@@ -130,7 +132,6 @@
                       </button>
                       <div class="dropdown-menu" aria-labelledby="action">
                         <%= link_to "Lihat", quiz_path(quiz['id']), class: "dropdown-item" %>
-                        <%= link_to "Edit", edit_quiz_path(quiz['id']), class: "dropdown-item" %>
                         <%= link_to "Hapus", quiz_path(quiz['id']), data: {confirm: "Are you sure you want to delete quiz : " + quiz['title']}, class: "dropdown-item", method: :delete %>
                       </div>
                     </td>

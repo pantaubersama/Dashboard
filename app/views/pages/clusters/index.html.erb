@@ -2,19 +2,7 @@
   <%= render("components/sidebar") %>
   <div class="main-wrapper">
     <main class="main col-md-10 offset-md-2" role="main">
-      <header class="header" role="banner">
-        <div class="tabs">
-          <ul class="nav nav-pills">
-            <li class="active"><a href="#all" data-toggle="tab">Semua</a>
-            </li>
-            <li><a href="#category" data-toggle="tab">Kategori Cluster</a>
-            </li>
-            <li><a href="#trash" data-toggle="tab">Sampah</a>
-            </li>
-          </ul>
-        </div>
-        <%= render("components/dropdown_profile") %>
-      </header>
+      <%= render("components/cluster/header", active: 'all') %>
       <div class="tab-content clearfix">
         <div class="main-content tab-pane active" id="all">
           <div class="top ">
@@ -78,20 +66,8 @@
                         <div class="modal-body">
                           <h3>Tambah Cluster</h3>
                           <div class="form-wrap">
-                            <label>Upload Image</label>
                             <div class="form-group">
-                              <div class="upload-image">
-                                <div class="custom-button">
-                                  <label class="upload-img" for="file-input">
-                                    <img src="<%= asset_pack_path("views/assets/images/ic_img.svg") %>" alt="add">
-                                  </label>
-                                  <%= f.input :image, as: :file, input_html: { name: 'image', id: 'file-input' } %>
-                                </div>
-                                  <span>
-                                    <p>Upload PNG/JPG</p>
-                                    <p>Maks 512x512</p>
-                                  </span>
-                                </div>
+                              <%= f.input :image, as: :file, input_html: { name: 'image', id: 'file-input' } %>
                             </div>
                           </div>
                           <div class="row">
@@ -112,41 +88,15 @@
                                   </div>
                                 </div>
                               </div>
-
-                              <div class="form-wrap">
-                                <label>Akses Dashboard</label>
-                                <div class="form-group">
-                                  <ul>
-                                    <li>
-                                      <input class="styled-checkbox" id="styled-checkbox-1" type="checkbox" value="value1">
-                                      <label for="styled-checkbox-1">User Anggota</label>
-                                    </li>
-                                    <li>
-                                      <input class="styled-checkbox" id="styled-checkbox-2" type="checkbox" value="value1">
-                                      <label for="styled-checkbox-2">Janji Politik</label>
-                                    </li>
-                                    <li>
-                                      <input class="styled-checkbox" id="styled-checkbox-3" type="checkbox" value="value1">
-                                      <label for="styled-checkbox-3">Lapor</label>
-                                    </li>
-                                    <li>
-                                      <input class="styled-checkbox" id="styled-checkbox-4" type="checkbox" value="value1">
-                                      <label for="styled-checkbox-4">Perhitungan</label>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-
                             </div>
                               <div class="col-md-6 col-xs-12">
                                 <div class="form-wrap">
                                   <label>Kategori</label>
                                   <div class="form-group">
                                     <div class="form-group">
-                                      <select class="form-control" name="category_id" >
-                                        <%= @categories.each do |c| %>
-                                          <option value="<%= c["id"] %>"><%= c["name"] %></option>
-                                        <% end %>
+                                      <select class="form-control remote-select" name="category_id" data-placeholder="Category"
+                                        data-url="<%= request.base_url + search_categories_clusters_path %>">
+                                        <option></option>
                                       </select>
                                     </div>
                                   </div>
@@ -156,7 +106,10 @@
                                   <label>Admin</label>
                                   <div class="form-group">
                                     <div class="form-group">
-                                      <input type="text" name="requester_id" class="form-control" placeholder="adellapratitas7@gmail.com">
+                                      <select class="form-control remote-select" name="requester_id"
+                                              data-url="<%= request.base_url + search_users_for_admin_path %>">
+                                        <option></option>
+                                      </select>
                                     </div>
                                   </div>
                                 </div>
@@ -181,7 +134,7 @@
           <div class="content">
             <span class="display-desc">
               <p>
-                Displaying Content 1 - 30 of <%= @total_cluster %> in total
+                <%= show_count_table(params[:page], @total_row_per_page, @total_cluster) %>
               </p>
             </span>
             <div class="table">
@@ -192,6 +145,7 @@
                     <th>Nama</th>
                     <th>Admin</th>
                     <th>Kategori</th>
+                    <th>Status</th>
                     <th>Create At</th>
                     <th></th>
                   </tr>
@@ -211,6 +165,9 @@
                     <td>
                       <%= item["category"]["name"] %>
                     </td>
+                    <td class="<%= 'number bold' if item["status"] == "approved" %>">
+                      <%= item["status"] %>
+                    </td>
                     <td>21/10/2023</td>
                     <td>
                       <button class="dropdown-toggle" type="button" id="dropdown-active" data-toggle="dropdown"
@@ -219,7 +176,8 @@
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdown-active">
                         <a class="dropdown-item" href="<%= cluster_path(item["id"]) %>">Lihat</a>
-                        <%= link_to "Hapus", cluster_path(item["id"]), method: :delete, class: "dropdown-item" %>
+                        <a class="dropdown-item" href="<%= edit_cluster_path(item["id"]) %>">Edit</a>
+                        <%= link_to "Hapus", cluster_path(item["id"]), {class: "dropdown-item", method: :delete, data: {confirm: "Apakah Anda Yakin?"}} %>
                       </div>
                     </td>
                   </tr>
@@ -280,381 +238,6 @@
             </div>
             <% end %>
 
-          </div>
-        </div>
-
-        <div class="main-content tab-pane" id="category">
-          <div class="top">
-            <% link = pagy_link_proc(@pagy_categories) %>
-            <div class="pagination-wrap">
-              <ul class="pagination">
-                <% if @pagy_categories.prev %>
-                <li class="page-item">
-                  <%== link.call(@pagy_categories.prev, pagy_t('pagy.nav.prev')) %>
-                </li>
-                <% else  %>
-                <li class="page-item disabled">
-                  <%== link.call(@pagy_categories.prev, pagy_t('pagy.nav.prev')) %>
-                </li>
-                <% end %>
-
-                <% @pagy_categories.series.each do |item| %>
-                <% if item.is_a?(Integer) %>
-                <li id="testtest" class="page-item">
-                  <%== link.call(item) %>
-                </li>
-                <% elsif item.is_a?(String) %>
-                <li class="page-item active" aria-current="page">
-                  <%== link.call(item) %>
-                </li>
-                <% elsif item == :gap %>
-                <li class="page-item disabled gap"><a href="#" class="page-link">
-                    <%== pagy_t('pagy.nav.gap') %></a></li>
-                <% end %>
-                <% end %>
-
-                <% if @pagy_categories.next %>
-                <li class="page-item">
-                  <%== link.call(@pagy_categories.next, pagy_t('pagy.nav.next')) %>
-                </li>
-                <% else %>
-                <li class="page-item disabled">
-                  <%== link.call(@pagy_categories.next, pagy_t('pagy.nav.next')) %>
-                </li>
-                <% end %>
-              </ul>
-            </div>
-
-            <div class="modal-wrap">
-              <button type="button" class="btn btn-green" data-toggle="modal" data-target="#categoryClusterModal">
-                Create Kategori Cluster <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>"
-                alt="add">
-              </button>
-
-              <div class="modal fade" id="categoryClusterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <!-- <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5> -->
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-
-                    <%= form_tag(create_category_clusters_path, method: :post, id: "new_category") do %>
-                      <div class="modal-body">
-                        <h3>Tambah Kategori Cluster</h3>
-                        <div class="row">
-                          <div class="col-md-6 col-xs-12">
-
-                            <div class="form-wrap">
-                              <label>Kategori Cluster</label>
-                              <div class="form-group">
-                                <div class="form-group">
-                                  <input type="Cluster" name="name" class="form-control" placeholder="Tuliskan kategori cluster, contoh : Universitas Gajah Mada">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="form-wrap">
-                              <label>Deskripsi</label>
-                              <div class="form-group">
-                                <div class="form-group">
-                                  <textarea type="Email" name="description" class="form-control with-toolbar" placeholder="adellapratitas7@gmail.com"></textarea>
-                                  <div class="toolbar-text full">
-                                    <ul>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_underline.svg") %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-left.svg") %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-center.svg") %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-right.svg") %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_justify.svg") %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bulet.svg") %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_numbering.svg") %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_left.svg") %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_right.svg") %>"></span></li>
-                                      <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_link-t.svg") %>"></span></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                          </div>
-
-                        </div>
-
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" onclick="document.getElementById('new_category').submit()" class="btn btn-solid-green" data-dismiss="modal">Tambah</button>
-                        <button type="button" class="btn btn-transparent" data-dismiss="modal">Cancel</button>
-                      </div>
-                    <% end %>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="content">
-            <span class="display-desc">
-              <p>
-                Displaying Content 1 - 30 of <%= @total_categories %> in total
-              </p>
-            </span>
-            <div class="table">
-              <table>
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Deskripsi</th>
-                    <th>Oleh</th>
-                    <th>Create At</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @list_categories.each_with_index do |item, index| %>
-                  <tr>
-                    <td class="number bold">
-                      <%= ((params[:page_cat].present? ? params[:page_cat].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %>
-                    </td>
-                    <td class="name bold"><a href="<%= detail_category_clusters_path(item["id"]) %>">
-                        <%= item["name"] %></a></td>
-                    <td>Anak-anak muda dari dunia industri kreatif di Banda Aceh.</td>
-                    <td>Nurlela Ahmad</td>
-                    <td>21/10/23</td>
-                    <td>
-                      <button class="dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="action">
-                        <!-- <a class="dropdown-item" href="<%= detail_category_clusters_path(item["id"]) %>">Lihat</a> -->
-                        <!-- <a class="dropdown-item" href="<%= edit_category_clusters_path(item["id"]) %>">Edit</a> -->
-                        <a class="dropdown-item" data-toggle="modal" data-target="#edit_cluster_<%= item["id"] %>">Lihat</a>
-                        <a class="dropdown-item" data-toggle="modal" data-target="#edit_cluster_<%= item["id"] %>">Edit</a>
-                        <a class="dropdown-item" href="#">Hapus</a>
-
-                        <div class="modal fade" id="#edit_cluster_<%= item["id"] %>" tabindex="-1" role="dialog" aria-labelledby="#edit_cluster_<%= item["id"] %>Label" aria-hidden="true">
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <!-- <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5> -->
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                <h3>Edit Kategori Cluster</h3>
-                                <div class="row">
-                                  <div class="col-md-6 col-xs-12">
-                                    <div class="form-wrap">
-                                      <label>Deskripsi</label>
-                                      <div class="form-group">
-                                          <div class="form-group">
-                                              <textarea type="Email" class="form-control with-toolbar" placeholder="adellapratitas7@gmail.com"></textarea>
-                                              <div class="toolbar-text full">
-                                                <ul>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bold.svg") %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_italic.svg") %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_underline.svg") %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-left.svg") %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-center.svg") %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-right.svg") %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_justify.svg") %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bulet.svg") %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_numbering.svg") %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_left.svg") %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_right.svg") %>"></span></li>
-                                                  <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_link-t.svg") %>"></span></li>
-                                                </ul>
-                                              </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-solid-green" data-dismiss="modal">Tambah</button>
-                                <button type="button" class="btn btn-transparent">Cancel</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <% end %>
-                </tbody>
-              </table>
-            </div>
-            
-            <div class="filter">
-              <a class="btn " data-toggle="collapse" href="#filter2" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
-                <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
-              </a>
-              <div class="collapse filter-form" id="filter2">
-                <div class="card card-body">
-                  <h4>Filter</h4>
-                  <div class="filter-wrap">
-                    <div class="form-wrap">
-                      <label>Nama Cluster</label>
-                      <div class="form-group">
-                        <div class="form-group">
-                          <input type="nama" class="form-control" placeholder="UGM">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="button-wrapper">
-                  <button type="button" class="btn btn-solid-green" data-dismiss="modal">Done</button>
-                  <button type="button" class="btn btn-transparent">Reset</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="main-content tab-pane" id="trash">
-          <div class="top ">
-
-              <% link = pagy_link_proc(@pagy_trash) %>
-              <div class="pagination-wrap">
-                <ul class="pagination">
-                  <% if @pagy_trash.prev %>
-                  <li class="page-item">
-                    <%== link.call(@pagy_trash.prev, pagy_t('pagy.nav.prev')) %>
-                  </li>
-                  <% else  %>
-                  <li class="page-item disabled">
-                    <%== link.call(@pagy_trash.prev, pagy_t('pagy.nav.prev')) %>
-                  </li>
-                  <% end %>
-
-                  <% @pagy_trash.series.each do |item| %>
-                  <% if item.is_a?(Integer) %>
-                  <li id="testtest" class="page-item">
-                    <%== link.call(item) %>
-                  </li>
-                  <% elsif item.is_a?(String) %>
-                  <li class="page-item active" aria-current="page">
-                    <%== link.call(item) %>
-                  </li>
-                  <% elsif item == :gap %>
-                  <li class="page-item disabled gap"><a href="#" class="page-link">
-                      <%== pagy_t('pagy.nav.gap') %></a></li>
-                  <% end %>
-                  <% end %>
-
-                  <% if @pagy_trash.next %>
-                  <li class="page-item">
-                    <%== link.call(@pagy_trash.next, pagy_t('pagy.nav.next')) %>
-                  </li>
-                  <% else %>
-                  <li class="page-item disabled">
-                    <%== link.call(@pagy_trash.next, pagy_t('pagy.nav.next')) %>
-                  </li>
-                  <% end %>
-                </ul>
-              </div>
-
-          </div>
-          <div class="content">
-            <span class="display-desc">
-              <p>
-                Displaying Content 1 - 30 of <%= @total_trash %> in total
-              </p>
-            </span>
-            <div class="table">
-              <table>
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Admin</th>
-                    <th>Kategori</th>
-                    <th>Create At</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @list_trash.each_with_index do |item, index| %>
-                    <tr>
-                      <td class="number bold">
-                        <%= ((params[:page_trash].present? ? params[:page_trash].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %>
-                      </td>
-                      <td class="name bold"><a href="<%= detail_trash_clusters_path(item["id"]) %>"> <img src="<%= item["image"] %>"><%= item["name"] %></a></td>
-                      <td class="name bold"><%= item["requester"]["full_name"] %></td>
-                      <td><%= item["category"]["name"] %></td>
-                      <td>21/10/2023</td>
-                      <td>
-                        <button class="dropdown-toggle" type="button" id="dropdown-active" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false">
-                          <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdown-active">
-                          <a class="dropdown-item" href="<%= detail_trash_clusters_path(item["id"]) %>">Lihat</a>
-                        </div>
-                      </td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
-            </div>
-            <div class="filter">
-              <a class="btn " data-toggle="collapse" href="#filter3" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" >
-                <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
-              </a>
-              <div class="collapse filter-form" id="filter3">
-                <div class="card card-body">
-                  <h4>Filter</h4>
-                  <div class="form-wrap">
-                    <label>Status</label>
-                    <div class="form-group">
-                      <select class="form-control">
-                        <option>Terverifikasi</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="form-wrap">
-                    <label>User</label>
-                    <div class="form-group">
-                      <div class="form-group">
-                        <input type="nama" class="form-control" placeholder="Nama">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-wrap">
-                  <label>Email</label>
-                  <div class="form-group">
-                    <div class="form-group">
-                      <input type="email" class="form-control" placeholder="luna@gmail.com">
-                    </div>
-                  </div>
-                </div>
-                <div class="form-wrap">
-                  <label>Cluster</label>
-                  <div class="form-group">
-                    <div class="form-group">
-                      <input type="cluster" class="form-control" placeholder="Nama Cluster">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

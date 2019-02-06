@@ -5,7 +5,8 @@ class UserClustersController < ApplicationController
   def index
     @init_user_cluster = @user_cluster.all(params[:page_user].present? ? params[:page_user] : 1,
                           Pagy::VARS[:items], params[:nama].present? ? params[:nama] : "*",
-                          "and", "word_start", params[:verified].present? ? params[:verified] : '')
+                          "and", "word_start", params[:verified].present? ? params[:verified] : '',
+                          params[:cluster_id].present? ? params[:cluster_id] : "" )
 
     n = @init_user_cluster['data']['meta']['pages']['total']
     @total_records = (n*Pagy::VARS[:items])
@@ -17,8 +18,17 @@ class UserClustersController < ApplicationController
 
     @users_clusters = @init_user_cluster["data"]["users"]
 
-    last_page = @user_cluster.all(n, Pagy::VARS[:items], nil, nil, nil, nil)['data']['users'].size
+    last_page = @user_cluster.all(n, Pagy::VARS[:items], nil, nil, nil, nil, nil)['data']['users'].size
     @total_users_clusters = (@total_records - Pagy::VARS[:items]) + last_page
+
+    init_verification = [
+      ["verified_all", "Semua"],
+      ["verified_true", "Terverifikasi"],
+      ["verified_false", "Belum Terverifikasi"]
+    ]
+
+    @verifications = []
+    init_verification.each {|record| @verifications << {"id" => record[0], "name" => record[1]} }
 
     @pages = { page: "index" }
     render "pages/user_clusters/index"

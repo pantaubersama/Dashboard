@@ -59,23 +59,6 @@ class QuizController < ApplicationController
   end
 
   def show
-    request = @quiz_api.find(params[:id])
-    request_questions = @quiz_api.get_question(params[:id])
-    if request.code == 200
-      @quiz = request['data']['quiz']
-      if request_questions.code == 200
-        @questions = request_questions['data']['questions']
-      elsif request_questions.code == 404
-        flash[:warning] = "Not Found"
-        redirect_to quiz_index_path
-      else
-        flash[:warning] = "Ooops something wrong #{request_questions}"
-        redirect_to quiz_index_path
-      end
-    elsif request_questions.code == 404
-      flash[:warning] = "Not Found"
-      redirect_to quiz_index_path
-    end
   end
 
   def create
@@ -89,9 +72,31 @@ class QuizController < ApplicationController
   end
 
   def update
+    response = @quiz_api.update quiz_update_params, question_update_params, deleted_question_params, new_question_params
+    if response.code == 200
+      flash[:notice] = "Your quiz have been updated"
+      render json: {notice: "Your quiz have been updated", status: 201, redirect_to: quiz_index_path}, status: 201
+    else
+      render json: {error: build_error_messages(response), status: 422}, status: 422
+    end
   end
 
   def edit
+    request = @quiz_api.find(params[:id])
+    request_questions = @quiz_api.get_question(params[:id])
+    if request.code == 200
+      @quiz = request['data']['quiz']
+      if request_questions.code == 200
+        @questions = request_questions['data']['questions']
+      elsif request_questions.code == 404
+        @questions = "Not Found"
+      else
+        @questions = "Ooops something wrong #{request_questions}"
+      end
+    elsif request_questions.code == 404
+      @questions = "Not Found"
+    end
+    render json: { quiz: @quiz, questions: @questions }
   end
 
   def destroy
@@ -136,6 +141,22 @@ class QuizController < ApplicationController
 
     def quiz_params
       params.require(:quiz).permit!
+    end
+
+    def quiz_update_params
+      params.require(:quiz).permit!
+    end
+
+    def question_update_params
+      params.require(:existing_question).permit!
+    end
+
+    def deleted_question_params
+      params.require(:deleted_questions).permit!
+    end
+
+    def new_question_params
+      params.require(:new_questions).permit!
     end
     
 
