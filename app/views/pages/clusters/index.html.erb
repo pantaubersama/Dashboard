@@ -125,8 +125,10 @@
                     <td>
                       <%= item["category"]["name"] %>
                     </td>
-                    <td class="<%= 'number bold' if item["status"] == "approved" %>">
-                      <%= item["status"] %>
+                    <td>
+                      <a class="<%= 'label label-'+status_cluster(item["status"]) %>" style="cursor:default" >
+                        <%= item["status"] %>
+                      </a>
                     </td>
                     <td>21/10/2023</td>
                     <td>
