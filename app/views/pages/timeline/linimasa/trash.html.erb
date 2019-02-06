@@ -7,36 +7,7 @@
 						<div class="main-content tab-pane active" id="all">
 
 						<div class="top ">
-							<% link = pagy_link_proc(@pagy_trash) %>
-							<div class="pagination-wrap">
-								<ul class="pagination">
-									<% if @pagy_trash.prev %>
-										<li class="page-item">
-												<%== link.call(@pagy_trash.prev, pagy_t('pagy.nav.prev')) %>
-										</li>
-									<% else  %>
-										<li class="page-item disabled">
-												<%== link.call(@pagy_trash.prev, pagy_t('pagy.nav.prev')) %>
-										</li>
-									<% end %>
-
-									<% @pagy_trash.series.each do |item| %>
-										<% if item.is_a?(Integer) %>
-												<li id="testtest" class="page-item"><%== link.call(item) %></li>
-										<% elsif item.is_a?(String) %>
-												<li class="page-item active" aria-current="page"><%== link.call(item) %></li>
-										<% elsif item == :gap %>
-												<li class="page-item disabled gap"><a href="#" class="page-link"><%== pagy_t('pagy.nav.gap') %></a></li>
-										<% end %>
-									<% end %>
-
-									<% if @pagy_trash.next %>
-										<li class="page-item"><%== link.call(@pagy_trash.next, pagy_t('pagy.nav.next')) %></li>
-									<% else %>
-										<li class="page-item disabled"><%== link.call(@pagy_trash.next, pagy_t('pagy.nav.next')) %></li>
-									<% end %>
-								</ul>
-							</div>
+							<%= render("components/pagination", pagy: @pagy) %>							
 						</div>
 
 						<div class="content">
