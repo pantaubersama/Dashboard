@@ -1,0 +1,60 @@
+<div class="d-flex main-wrapper">
+  <%= render("components/sidebar") %>
+  <div class="main-wrapper">
+    <main class="main col-md-10 offset-md-2" role="main">
+      
+      <%= render("components/politic/header", active: "trash") %>
+
+      <div class="tab-content clearfix">
+        <div class="main-content quiz tab-pane active" id="trash">
+          <div class="top">
+            <%= render("components/pagination", pagy: @pagy) %>
+          </div>
+          <div class="content">
+            <span class="display-desc">
+              <p>
+                <%= show_count_table(params[:page], @total_row_per_page, @total_trash) %>
+              </p>
+            </span>
+            <%= render('components/flash_message')%>
+            <div class="table">
+              <table>
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Judul</th>
+                  <th>Cluster</th>
+                  <th>Create At</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                  <% @item_trash.each_with_index do |item, index| %>
+                    <tr>
+                      <td class="number bold"><%= ((params[:page_trash].present? ? params[:page_trash].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %></td>
+                      <td class="name bold"><a href="<%= detail_politic_trash_path(item["id"]) %>"> <img src="<%= item["creator"]["avatar"]["thumbnail"]["url"] %>"><%= item["creator"]["full_name"] %></a>
+                      </td>
+                      <td><%= item["title"].truncate(30) %></td>
+                      <td><%= item["creator"]["cluster"].present? ? item["creator"]["cluster"]["name"] : "Belum Ada" %></td>
+                      <td><%= item["created_at_in_word"]["id"] %></td>
+                      <td>
+                        <button class="dropdown-toggle" type="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                          <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="action">
+                          <a id="testing2" class="dropdown-item" href="<%= detail_politic_trash_path(item["id"]) %>">Lihat</a>
+                        </div>
+                      </td>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<%= render("components/footer") %>

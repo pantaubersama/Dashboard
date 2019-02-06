@@ -40,7 +40,11 @@ Rails.application.routes.draw do
     get '/show_user/:id', to: 'linimasa#show_user', as: 'detail_user'
     delete '/delete_user/:id', to:'linimasa#delete_user', as: 'delete_user'
 
-    resources :politics
+    resources :politics do
+      collection do
+        get :trash
+      end
+    end
     get '/show_trash_politic/:id', to: 'politics#detail_trash', as: 'detail_politic_trash'
     get '/search_clusters/', to: 'politics#search_clusters', as: 'search_clusters'
   end

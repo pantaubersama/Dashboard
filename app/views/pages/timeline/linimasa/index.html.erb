@@ -7,36 +7,7 @@
 						<div class="main-content tab-pane active" id="all">
 
 							<div class="top ">
-								<% link = pagy_link_proc(@pagy_tweets) %>
-								<div class="pagination-wrap">
-									<ul class="pagination">
-										<% if @pagy_tweets.prev %>
-											<li class="page-item">
-												<%== link.call(@pagy_tweets.prev, pagy_t('pagy.nav.prev')) %>
-											</li>
-										<% else  %>
-											<li class="page-item disabled">
-												<%== link.call(@pagy_tweets.prev, pagy_t('pagy.nav.prev')) %>
-											</li>
-										<% end %>
-
-										<% @pagy_tweets.series.each do |item| %>
-											<% if item.is_a?(Integer) %>
-												<li id="testtest" class="page-item"><%== link.call(item) %></li>
-											<% elsif item.is_a?(String) %>
-												<li class="page-item active" aria-current="page"><%== link.call(item) %></li>
-											<% elsif item == :gap %>
-												<li class="page-item disabled gap"><a href="#" class="page-link"><%== pagy_t('pagy.nav.gap') %></a></li>
-											<% end %>
-										<% end %>
-
-										<% if @pagy_tweets.next %>
-											<li class="page-item"><%== link.call(@pagy_tweets.next, pagy_t('pagy.nav.next')) %></li>
-										<% else %>
-											<li class="page-item disabled"><%== link.call(@pagy_tweets.next, pagy_t('pagy.nav.next')) %></li>
-										<% end %>
-									</ul>
-								</div>
+								<%= render("components/pagination", pagy: @pagy) %>
 
 								<div class="modal-wrap">
 									<button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
@@ -118,7 +89,7 @@
 										<tbody>
 										<% @item_tweets.each_with_index do |item, index| %>
 											<tr>
-												<td class="number bold"><%= ((params[:page_tweet].present? ? params[:page_tweet].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %></td>
+												<td class="number bold"><%= ((params[:page].present? ? params[:page].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %></td>
 												<td class="name bold"><a href="<%= linimasa_path(item["id"]) %>"><%= item["team"]["title"] %></a></td>
 												<td><%= item["account"]["username"] %></td>
 												<td><%= item["source"]["text"].truncate(60) %></td>
