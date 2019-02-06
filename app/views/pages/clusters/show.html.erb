@@ -6,10 +6,6 @@
       <header class="header" role="banner">
         <div class="tabs">  
           <ul  class="nav nav-pills">
-            <li class="active"><a  href="#all" data-toggle="tab">Semua</a>
-            </li>
-            <li><a href="#trash" data-toggle="tab">Sampah</a>
-            </li>
           </ul>
         </div>
         <%= render("components/dropdown_profile") %>
@@ -33,7 +29,7 @@
               <div class="card">
                 <span class="profile-image">
                   <label>Gambar Cluster</label>
-                  <%= image_tag @detail["image"]["url"] %>
+                  <%= image_tag @detail["image"].present? ? @detail['image']['url'] : "" %>
                 </span>
                 <div class="right-desc">
                   <% if @detail["status"] != "approved" %>
@@ -97,7 +93,7 @@
                       <label>Admin</label>
                       <div class="form-group">
                         <div class="form-group">
-                            <input type="Email" class="form-control" placeholder="" value="<%= @detail["requester"]["full_name"] %>">
+                            <input type="Email" class="form-control" placeholder="" value="<%= @detail["requester"].present? ? @detail['requester']['full_name'] : '' %>">
                           </div>
                       </div>
                     </div>

@@ -17,14 +17,12 @@ Rails.application.routes.draw do
     delete '/user_clusters/:id/remove_user/:user_id', to:'user_clusters#destroy', as: 'remove_user'
     resources :clusters do
       collection do
-        get '/detail_category/:id', to: 'clusters#detail_category', as: 'detail_category'
-        put '/update_category/:id', to: 'clusters#update_category', as: 'update_category'
-        get '/edit_category/:id', to: 'clusters#edit_category', as: 'edit_category'
-        get '/detail_trash/:id', to: 'clusters#detail_trash', as: 'detail_trash'
+        get 'trash'
         get :search_categories
         post :create_category
       end
       member do
+        get :detail_trash
         post :approve_cluster
         post :reject_cluster
       end
@@ -50,7 +48,14 @@ Rails.application.routes.draw do
       post 'grant', to: 'badges#grant_badge_user'
     end
   end
-  resources :questions
+  resources :questions do
+    collection do
+      get 'trash'
+    end
+    member do
+      get 'detail_trash'
+    end
+  end
   resources :quiz do
     collection do
       get 'trash'

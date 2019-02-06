@@ -57,6 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
         this.quiz.image = files[0]
       },
       createQuiz: function (e) {
+        document.getElementById('btn-create').setAttribute('disabled', 'disabled')
+
         var formdata = new FormData()
         formdata.append('quiz[title]', this.quiz.title)
         formdata.append('quiz[description]', this.quiz.description)
