@@ -1,0 +1,17 @@
+<header class="header" role="banner">
+  <div class="tabs">
+    <ul class="nav nav-pills">
+      <li class="<%= 'active' if active == 'all'%>">
+        <a href="<%= linimasa_index_path %>">Semua</a>
+      </li>
+      <li class="<%= 'active' if active == 'trash'%>">
+        <a href="<%= trash_linimasa_index_path %>">Trash</a>
+      </li>
+			<li class="<%= 'active' if active == 'user'%>">
+        <a href="<%= list_username_linimasa_index_path %>">Daftar Username</a>
+      </li>
+    </ul>
+  </div>
+
+  <%= render("components/dropdown_profile") %>
+</header>
