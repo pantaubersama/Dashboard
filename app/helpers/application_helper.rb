@@ -31,6 +31,15 @@ module ApplicationHelper
   def active_menu_parent controllers
     controller_name.in?(controllers) ? 'in' : 'out'
   end
+
+  def collapse_in_if q
+    result = 'out'
+    q.each do |p|
+      result = params[p.to_s].present? ? 'in' : 'out'
+    end
+    result
+  end
+  
   
 
 end

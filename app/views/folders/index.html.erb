@@ -84,6 +84,11 @@
                         <div class="dropdown-menu" aria-labelledby="action">
                           <a class="dropdown-item" href="#">Lihat</a>
                           <a class="dropdown-item" href="#">Edit</a>
+                          <% if folder['questions_count'] == 0 %>
+                            <a class="dropdown-item" href="<%= folder_path(folder['id']) %>" data-method="delete" data-confirm="Are you sure?">Hapus</a>
+                          <% else %>
+                            <a class="dropdown-item" href="javascript:alert('Cannot delete folder. You have archived question in this folder.')">Hapus</a>
+                          <% end %>
                         </div>
                       </td>
                     </tr>
@@ -96,10 +101,10 @@
                 <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
                 <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
               </a>
-              <div id="filter_folders" class="collapse filter-form">
+              <div id="filter_folders" class="collapse <%= collapse_in_if ["nama"]%> filter-form">
                 <div class="card card-body">
                   <h4>Filter</h4>
-                  <%= form_tag(folders_questions_path, method: :get) do %>
+                  <%= form_tag(folders_path, method: :get) do %>
                   <div class="form-wrap">
                     <label>Nama</label>
                     <div class="form-group">
