@@ -139,7 +139,7 @@
                         <div class="dropdown-menu" aria-labelledby="action">
                           <a class="dropdown-item" href="<%= user_cluster_path(item["id"]) %>">Lihat</a>
                           <% if item["cluster"]["id"].present? %>
-                            <%= link_to "Keluarkan", remove_user_path(item["cluster"]["id"], item["id"]), method: :delete %>
+                            <%= link_to "Keluarkan", remove_user_path(item["cluster"]["id"], item["id"]), {method: :delete, data: {confirm: "Apakah Anda Yakin"}} %>
                           <% end %>
                         </div>
                       </td>
