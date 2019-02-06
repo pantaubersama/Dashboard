@@ -6,47 +6,7 @@
       <div class="tab-content clearfix">
         <div class="main-content tab-pane active" id="all">
           <div class="top ">
-
-            <% link = pagy_link_proc(@pagy_cluster) %>
-            <div class="pagination-wrap">
-              <ul class="pagination">
-                <% if @pagy_cluster.prev %>
-                <li class="page-item">
-                  <%== link.call(@pagy_cluster.prev, pagy_t('pagy.nav.prev')) %>
-                </li>
-                <% else  %>
-                <li class="page-item disabled">
-                  <%== link.call(@pagy_cluster.prev, pagy_t('pagy.nav.prev')) %>
-                </li>
-                <% end %>
-
-                <% @pagy_cluster.series.each do |item| %>
-                <% if item.is_a?(Integer) %>
-                <li id="testtest" class="page-item">
-                  <%== link.call(item) %>
-                </li>
-                <% elsif item.is_a?(String) %>
-                <li class="page-item active" aria-current="page">
-                  <%== link.call(item) %>
-                </li>
-                <% elsif item == :gap %>
-                <li class="page-item disabled gap"><a href="#" class="page-link">
-                    <%== pagy_t('pagy.nav.gap') %></a></li>
-                <% end %>
-                <% end %>
-
-                <% if @pagy_cluster.next %>
-                <li class="page-item">
-                  <%== link.call(@pagy_cluster.next, pagy_t('pagy.nav.next')) %>
-                </li>
-                <% else %>
-                <li class="page-item disabled">
-                  <%== link.call(@pagy_cluster.next, pagy_t('pagy.nav.next')) %>
-                </li>
-                <% end %>
-              </ul>
-            </div>
-
+            <%= render("components/pagination", pagy: @pagy) %>      
             <div class="modal-wrap">
                 <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
                   Buat Cluster <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>"  alt="add">
@@ -154,7 +114,7 @@
                   <% @clusters.each_with_index do |item, index| %>
                   <tr>
                     <td class="number bold">
-                      <%= ((params[:page_cluster].present? ? params[:page_cluster].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %>
+                      <%= ((params[:page].present? ? params[:page].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %>
                     </td>
                     <td class="name bold"><a href="<%= cluster_path(item["id"]) %>">
                         <img src="<%= item["image"].present? ? item["image"]["thumbnail_square"]["url"] : "" %>">
@@ -165,8 +125,10 @@
                     <td>
                       <%= item["category"]["name"] %>
                     </td>
-                    <td class="<%= 'number bold' if item["status"] == "approved" %>">
-                      <%= item["status"] %>
+                    <td>
+                      <a class="<%= 'label label-'+status_cluster(item["status"]) %>" style="cursor:default" >
+                        <%= item["status"] %>
+                      </a>
                     </td>
                     <td>21/10/2023</td>
                     <td>

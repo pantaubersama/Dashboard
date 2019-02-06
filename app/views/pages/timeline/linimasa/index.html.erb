@@ -1,516 +1,165 @@
 <div class="d-flex main-wrapper">
   <%= render("components/sidebar") %>
     <div class="main-wrapper">
-        <main class="main col-md-10 offset-md-2" role="main">
-          <%= render("components/header") %>
-            <div class="tab-content clearfix">
-                <div class="main-content tab-pane active" id="all">
+			<main class="main col-md-10 offset-md-2" role="main">
+				<%= render("components/linimasa/header", active: "all") %>
+					<div class="tab-content clearfix">
+						<div class="main-content tab-pane active" id="all">
 
-                    <div class="top ">
-                        <% link = pagy_link_proc(@pagy_tweets) %>
-                        <div class="pagination-wrap">
-                            <ul class="pagination">
-                                <% if @pagy_tweets.prev %>
-                                    <li class="page-item">
-                                        <%== link.call(@pagy_tweets.prev, pagy_t('pagy.nav.prev')) %>
-                                    </li>
-                                <% else  %>
-                                    <li class="page-item disabled">
-                                        <%== link.call(@pagy_tweets.prev, pagy_t('pagy.nav.prev')) %>
-                                    </li>
-                                <% end %>
+							<div class="top ">
+								<%= render("components/pagination", pagy: @pagy) %>
 
-                                <% @pagy_tweets.series.each do |item| %>
-                                    <% if item.is_a?(Integer) %>
-                                        <li id="testtest" class="page-item"><%== link.call(item) %></li>
-                                    <% elsif item.is_a?(String) %>
-                                        <li class="page-item active" aria-current="page"><%== link.call(item) %></li>
-                                    <% elsif item == :gap %>
-                                        <li class="page-item disabled gap"><a href="#" class="page-link"><%== pagy_t('pagy.nav.gap') %></a></li>
-                                    <% end %>
-                                <% end %>
+								<div class="modal-wrap">
+									<button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
+											Tambah Username <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
+									</button>
+									<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+												aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
 
-                                <% if @pagy_tweets.next %>
-                                    <li class="page-item"><%== link.call(@pagy_tweets.next, pagy_t('pagy.nav.next')) %></li>
-                                <% else %>
-                                    <li class="page-item disabled"><%== link.call(@pagy_tweets.next, pagy_t('pagy.nav.next')) %></li>
-                                <% end %>
-                            </ul>
-                        </div>
+												<form id="new_user" accept-charset="UTF-8" action="<%= linimasa_index_path %>" method="post">
+													<input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+													<div class="modal-body">
+													<h3>Tambah Username</h3>
+														<div class="form-wrap">
+															<label>Username Twitter</label>
+															<div class="form-group">
+																<div class="form-group">
+																	<input type="text" class="form-control" name="keywords" value="<%= params[:keywords] %>"
+																						placeholder="adellapratitas7@gmail.com"></textarea>
+																</div>
+															</div>
+														</div>
+														<div class="checklist">
+															<label>Kubu Tim Sukses</label>
+															<div class="form-check">
+																<input class="form-check-input" type="radio" name="team"
+																				id="exampleRadios1"
+																				value="1" checked>
+																<label class="form-check-label" for="exampleRadios1">
+																		Jokowi - Ma'ruf
+																</label>
+															</div>
+															<div class="form-check">
+																<input class="form-check-input" type="radio" name="team"
+																				id="exampleRadios2"
+																				value="2">
+																<label class="form-check-label" for="exampleRadios2">
+																		Prabowo - Sandi
+																</label>
+															</div>
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-solid-green" onclick="document.getElementById('new_user').submit()" data-dismiss="modal">
+																Tambah
+														</button>
+														<button type="button" class="btn btn-transparent" data-dismiss="modal">Cancel</button>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 
-                        <div class="modal-wrap">
-                            <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
-                                Tambah Username <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
-                            </button>
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <!-- <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5> -->
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
+							<div class="content">
+								<span class="display-desc">
+									<p>
+		                <%= show_count_table(params[:page], @total_row_per_page, @total_tweets) %>
+									</p>
+								</span>
+								<div class="table">
+									<table>
+										<thead>
+										<tr>
+											<th>No</th>
+											<th>Team</th>
+											<th>Username Twitter</th>
+											<th>Isi</th>
+											<th></th>
+										</tr>
+										</thead>
+										<tbody>
+										<% @item_tweets.each_with_index do |item, index| %>
+											<tr>
+												<td class="number bold"><%= ((params[:page].present? ? params[:page].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %></td>
+												<td class="name bold"><a href="<%= linimasa_path(item["id"]) %>"><%= item["team"]["title"] %></a></td>
+												<td><%= item["account"]["username"] %></td>
+												<td><%= item["source"]["text"].truncate(60) %></td>
+												<td>
+														<button class="dropdown-toggle" type="button" data-toggle="dropdown"
+																		aria-haspopup="true" aria-expanded="false">
+																<img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+														</button>
+														<div class="dropdown-menu" aria-labelledby="action">
+																<a class="dropdown-item" href="<%= linimasa_path(item["id"]) %>">Lihat</a>
+																<%= link_to "Delete", linimasa_path(item["id"]), {method: :delete, data: {confirm: "Apakah Anda Yakin?"}, class: "dropdown-item"} %>
+														</div>
+												</td>
+											<tr>
+										<% end %>
+										</tbody>
+									</table>
+								</div>
 
-                                        <form id="new_user" accept-charset="UTF-8" action="<%= linimasa_index_path %>" method="post">
-                                            <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
-                                            <div class="modal-body">
-                                            <h3>Tambah Username</h3>
-                                                <div class="form-wrap">
-                                                    <label>Username Twitter</label>
-                                                    <div class="form-group">
-                                                        <div class="form-group">
-                                                            <input type="text" class="form-control" name="keywords" value="<%= params[:keywords] %>"
-                                                                   placeholder="adellapratitas7@gmail.com"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="checklist">
-                                                    <label>Kubu Tim Sukses</label>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="team"
-                                                               id="exampleRadios1"
-                                                               value="1" checked>
-                                                        <label class="form-check-label" for="exampleRadios1">
-                                                            Jokowi - Ma'ruf
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="team"
-                                                               id="exampleRadios2"
-                                                               value="2">
-                                                        <label class="form-check-label" for="exampleRadios2">
-                                                            Prabowo - Sandi
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-solid-green" onclick="document.getElementById('new_user').submit()" data-dismiss="modal">
-                                                    Tambah
-                                                </button>
-                                                <button type="button" class="btn btn-transparent" data-dismiss="modal">Cancel</button>
-                                            </div>
-                                        </form>
+								<%= form_tag(linimasa_index_path, method: :get) do %>
+									<div class="filter">
+										<a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
+												aria-controls="collapseExample">
+												<img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
+												<img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
+										</a>
+										<div id="filter" class="collapse filter-form">
+											<div class="card card-body">
+													<h4>Filter</h4>
+													<div class="form-wrap">
+														<label>Team</label>
+														<div class="form-group">
+															<select id="selected_filter" class="form-control stat" name="filter">
+																<option></option>
+																<% @teams.each do |t| %>
+																	<option value="<%= t["id"] %>" <%= selected t["id"], params[:filter] %> > <%= t["name"] %> </option>
+																<% end %>
+															</select>
+														</div>
+													</div>
+													<div class="form-wrap">
+														<label>Username</label>
+														<div class="form-group">
+																<div class="form-group">
+																	<input name="username" value="<%= params[:username] %>" type="nama" class="form-control q" placeholder="Nama">
+																</div>
+														</div>
+													</div>
+											</div>
+											<div class="form-wrap">
+												<label>Isi</label>
+												<div class="form-group">
+														<div class="form-group">
+															<textarea name="isi" class="form-control" rows="5" placeholder="Isi Tweet"><%= params[:isi] %></textarea>
+														</div>
+												</div>
+											</div>
+											<div class="button-wrapper">
+												<button id="send" type="submit" class="btn btn-solid-green" data-dismiss="modal">Done</button>
+												<button type="button" class="btn btn-transparent reset">Reset</button>
+											</div>
+										</div>
+									</div>
+								<% end %>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+							</div>
+						</div>
 
-                    <div class="content">
-                        <span class="display-desc">
-                          <p>
-                              Displaying Content 1 - 30 of <%= @total_tweets %> in total
-                          </p>
-                        </span>
-                        <div class="table">
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Team</th>
-                                    <th>Username Twitter</th>
-                                    <th>Isi</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <% @item_tweets.each_with_index do |item, index| %>
-                                    <tr>
-                                        <td class="number bold"><%= ((params[:page_tweet].present? ? params[:page_tweet].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %></td>
-                                        <td class="name bold"><a href="<%= linimasa_path(item["id"]) %>"><%= item["team"]["title"] %></a></td>
-                                        <td><%= item["account"]["username"] %></td>
-                                        <td><%= item["source"]["text"].truncate(60) %></td>
-                                        <td>
-                                            <button class="dropdown-toggle" type="button" data-toggle="dropdown"
-                                                    aria-haspopup="true" aria-expanded="false">
-                                                <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="action">
-                                                <a class="dropdown-item" href="<%= linimasa_path(item["id"]) %>">Lihat</a>
-                                                <%= link_to "Delete", linimasa_path(item["id"]), method: :delete, class: "dropdown-item" %>
-                                            </div>
-                                        </td>
-                                    <tr>
-                                <% end %>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <%= form_tag(linimasa_index_path, method: :get) do %>
-                            <div class="filter">
-                                <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
-                                   aria-controls="collapseExample">
-                                    <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
-                                    <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
-                                </a>
-                                <div id="filter" class="collapse filter-form">
-                                    <div class="card card-body">
-                                        <h4>Filter</h4>
-                                        <div class="form-wrap">
-                                            <label>Team</label>
-                                            <div class="form-group">
-                                                <select id="selected_filter" class="form-control stat" name="filter">
-                                                  <option></option>
-																									<% @teams.each do |t| %>
-																										<option value="<%= t["id"] %>" <%= selected t["id"], params[:filter] %> > <%= t["name"] %> </option>
-																									<% end %>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-wrap">
-                                            <label>Username</label>
-                                            <div class="form-group">
-                                                <div class="form-group">
-                                                    <input name="username" value="<%= params[:username] %>" type="nama" class="form-control q" placeholder="Nama">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-wrap">
-                                        <label>Isi</label>
-                                        <div class="form-group">
-                                            <div class="form-group">
-                                                <textarea name="isi" class="form-control" rows="5" placeholder="Isi Tweet"><%= params[:isi] %></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="button-wrapper">
-                                      <button id="send" type="submit" class="btn btn-solid-green" data-dismiss="modal">Done</button>
-                                      <button type="button" class="btn btn-transparent reset">Reset</button>
-                                    </div>
-                                </div>
-                            </div>
-                        <% end %>
-
-                    </div>
-                </div>
-
-                <div class="main-content tab-pane" id="trash">
-                    <div class="top ">
-                        <% link = pagy_link_proc(@pagy_trash) %>
-                        <div class="pagination-wrap">
-                            <ul class="pagination">
-                                <% if @pagy_trash.prev %>
-                                    <li class="page-item">
-                                        <%== link.call(@pagy_trash.prev, pagy_t('pagy.nav.prev')) %>
-                                    </li>
-                                <% else  %>
-                                    <li class="page-item disabled">
-                                        <%== link.call(@pagy_trash.prev, pagy_t('pagy.nav.prev')) %>
-                                    </li>
-                                <% end %>
-
-                                <% @pagy_trash.series.each do |item| %>
-                                    <% if item.is_a?(Integer) %>
-                                        <li id="testtest" class="page-item"><%== link.call(item) %></li>
-                                    <% elsif item.is_a?(String) %>
-                                        <li class="page-item active" aria-current="page"><%== link.call(item) %></li>
-                                    <% elsif item == :gap %>
-                                        <li class="page-item disabled gap"><a href="#" class="page-link"><%== pagy_t('pagy.nav.gap') %></a></li>
-                                    <% end %>
-                                <% end %>
-
-                                <% if @pagy_trash.next %>
-                                    <li class="page-item"><%== link.call(@pagy_trash.next, pagy_t('pagy.nav.next')) %></li>
-                                <% else %>
-                                    <li class="page-item disabled"><%== link.call(@pagy_trash.next, pagy_t('pagy.nav.next')) %></li>
-                                <% end %>
-                            </ul>
-                        </div>
-
-                        <div class="modal-wrap">
-                            <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
-                                Create Username <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
-                            </button>
-
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <!-- <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5> -->
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <h3>Tambah Admin</h3>
-                                            <div class="form-wrap">
-                                                <label>User</label>
-                                                <div class="form-group">
-                                                    <div class="form-group">
-                                                        <input type="Email" class="form-control"
-                                                               placeholder="adellapratitas7@gmail.com">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-solid-green" data-dismiss="modal">
-                                                Tambah
-                                            </button>
-                                            <button type="button" class="btn btn-transparent">Cancel</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content">
-                                <span class="display-desc">
-                                  <p>
-                                      Displaying Content 1 - 100 of <%= @total_trash %> in total
-                                  </p>
-                                </span>
-                        <div class="table">
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Team</th>
-                                    <th>Username Twitter</th>
-                                    <th>Isi</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <% @item_trash.each_with_index do |item, index| %>
-                                <tr>
-                                    <td class="number bold"><%= ((params[:page_trash].present? ? params[:page_trash].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %></td>
-                                    <td class="name bold"><a href="<%= detail_linimasa_trash_path(item["id"]) %>"><%= item["team"]["title"] %></a></td>
-                                    <td><%= item["account"]["username"] %></td>
-                                    <td><%= item["source"]["text"] %></td>
-                                    <td>
-                                        <button class="dropdown-toggle" type="button" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false">
-                                            <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="action">
-                                            <a class="dropdown-item" href="<%= detail_linimasa_trash_path(item["id"]) %>">Lihat</a>
-                                        </div>
-                                    </td>
-                                <% end %>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="filter">
-                            <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
-                               aria-controls="collapseExample">
-                                <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
-                                <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
-                            </a>
-                            <div class="collapse filter-form">
-                                <div class="card card-body">
-                                    <h4>Filter</h4>
-                                    <div class="form-wrap">
-                                        <label>Status</label>
-                                        <div class="form-group">
-                                            <select class="form-control">
-                                                <option>Terverifikasi</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-wrap">
-                                        <label>User</label>
-                                        <div class="form-group">
-                                            <div class="form-group">
-                                                <input type="name" class="form-control" placeholder="Nama">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-wrap">
-                                    <label>Email</label>
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="luna@gmail.com">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-wrap">
-                                    <label>Cluster</label>
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            <input type="cluster" class="form-control" placeholder="Nama Cluster">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="main-content tab-pane" id="3a">
-                    <div class="top ">
-                        <% link = pagy_link_proc(@pagy_users) %>
-                        <div class="pagination-wrap">
-                            <ul class="pagination">
-                                <% if @pagy_users.prev %>
-                                    <li class="page-item">
-                                        <%== link.call(@pagy_users.prev, pagy_t('pagy.nav.prev')) %>
-                                    </li>
-                                <% else  %>
-                                    <li class="page-item disabled">
-                                        <%== link.call(@pagy_users.prev, pagy_t('pagy.nav.prev')) %>
-                                    </li>
-                                <% end %>
-
-                                <% @pagy_users.series.each do |item| %>
-                                    <% if item.is_a?(Integer) %>
-                                        <li id="testtest" class="page-item"><%== link.call(item) %></li>
-                                    <% elsif item.is_a?(String) %>
-                                        <li class="page-item active" aria-current="page"><%== link.call(item) %></li>
-                                    <% elsif item == :gap %>
-                                        <li class="page-item disabled gap"><a href="#" class="page-link"><%== pagy_t('pagy.nav.gap') %></a></li>
-                                    <% end %>
-                                <% end %>
-
-                                <% if @pagy_users.next %>
-                                    <li class="page-item"><%== link.call(@pagy_users.next, pagy_t('pagy.nav.next')) %></li>
-                                <% else %>
-                                    <li class="page-item disabled"><%== link.call(@pagy_users.next, pagy_t('pagy.nav.next')) %></li>
-                                <% end %>
-                            </ul>
-                        </div>
-                        <div class="modal-wrap">
-                            <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
-                                Create Username <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
-                            </button>
-
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <!-- <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5> -->
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <h3>Tambah Admin</h3>
-                                            <div class="form-wrap">
-                                                <label>User</label>
-                                                <div class="form-group">
-                                                    <div class="form-group">
-                                                        <input type="Email" class="form-control"
-                                                               placeholder="adellapratitas7@gmail.com">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-solid-green" data-dismiss="modal">
-                                                Tambah
-                                            </button>
-                                            <button type="button" class="btn btn-transparent">Cancel</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content">
-                                <span class="display-desc">
-                                  <p>
-                                      Displaying Content 1 - 30 of <%= @total_user %> in total
-                                  </p>
-                                </span>
-                        <div class="table">
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Team</th>
-                                    <th>Username Twitter</th>
-                                    <th>Jumlah Tweet</th>
-                                    <th>Created at</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <% @item_users.each_with_index do |item, index| %>
-                                <tr>
-                                    <td class="number bold"><%= ((params[:page_user].present? ? params[:page_user].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %></td>
-                                    <td class="name bold"><a href="<%= detail_user_path(item["id"]) %>"><%= item["team"]["title"] %></a></td>
-                                    <td><%= item["keywords"] %></td>
-                                    <td>100</td>
-                                    <td><%= item["created_at_in_word"]["id"] %></td>
-                                    <td>
-                                        <button class="dropdown-toggle" type="button" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false">
-                                            <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="action">
-                                            <a class="dropdown-item" href="<%= detail_user_path(item["id"]) %>">Lihat</a>
-                                            <%= link_to "Delete", delete_user_path(item["id"]), method: :delete, class: "dropdown-item" %>
-                                        </div>
-                                    </td>
-                                <% end %>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="filter">
-                            <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
-                               aria-controls="collapseExample">
-                                <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
-                                <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
-                            </a>
-                            <div class="collapse filter-form">
-                                <div class="card card-body">
-                                    <h4>Filter</h4>
-                                    <div class="form-wrap">
-                                        <label>Status</label>
-                                        <div class="form-group">
-                                            <select class="form-control">
-                                                <option>Terverifikasi</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-wrap">
-                                        <label>User</label>
-                                        <div class="form-group">
-                                            <div class="form-group">
-                                                <input type="name" class="form-control" placeholder="Nama">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-wrap">
-                                    <label>Email</label>
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="luna@gmail.com">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-wrap">
-                                    <label>Cluster</label>
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            <input type="cluster" class="form-control" placeholder="Nama Cluster">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </main>
+					</div>
+			</main>
     </div>
 </div>
 <%= render("components/footer") %>

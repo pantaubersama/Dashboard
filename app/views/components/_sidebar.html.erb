@@ -79,6 +79,11 @@
               class: "sub-nav-item nav-link #{active_menu 'political_party'}" %>
           </div>
         </li>
+        <li class="nav-item">
+          <%= link_to broadcasts_path  do %>
+            <img src="<%= asset_pack_path("views/assets/images/ic_calc-black.svg") %>"> Broadcast
+          <% end %>
+        </li>
       </ul>
     </nav>
   </aside>

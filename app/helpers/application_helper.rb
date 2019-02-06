@@ -8,6 +8,17 @@ module ApplicationHelper
   def label_publish_or_draft p
     p == "published" ? "success" : "default"
   end
+
+  def status_cluster s
+    case s
+    when "approved"
+      "success"
+    when "requested"
+      "default"
+    when "rejected"
+      "danger"
+    end
+  end
   
   def selected x, y
     "selected" if x.to_s == y.to_s
