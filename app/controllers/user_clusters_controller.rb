@@ -3,23 +3,28 @@ class UserClustersController < ApplicationController
   before_action :set_api
   
   def index
-    @init_user_cluster = @user_cluster.all(params[:page_user].present? ? params[:page_user] : 1,
+    @init_user_cluster = @user_cluster.all(
+                          params[:page].present? ? params[:page] : 1,
                           Pagy::VARS[:items], params[:nama].present? ? params[:nama] : "*",
                           "and", "word_start", params[:verified].present? ? params[:verified] : '',
-                          params[:cluster_id].present? ? params[:cluster_id] : "" )
+                          params[:cluster_id].present? ? params[:cluster_id] : "" 
+                        )
 
     n = @init_user_cluster['data']['meta']['pages']['total']
     @total_records = (n*Pagy::VARS[:items])
     total_page = (1..@total_records).to_a
 
-    @pagy_users_clusters = Pagy.new( count: total_page.count, 
-                                     page: params[:page_user].present? ? params[:page_user] : 1 ,
-                                     page_param: :page_user)
+    @pagy = Pagy.new(
+              count: total_page.count, 
+              page: params[:page].present? ? params[:page] : 1 ,
+              page_param: :page
+            )
 
     @users_clusters = @init_user_cluster["data"]["users"]
 
     last_page = @user_cluster.all(n, Pagy::VARS[:items], nil, nil, nil, nil, nil)['data']['users'].size
     @total_users_clusters = (@total_records - Pagy::VARS[:items]) + last_page
+    @total_row_per_page = @init_user_cluster["data"]["users"].size
 
     init_verification = [
       ["verified_all", "Semua"],
