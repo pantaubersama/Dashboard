@@ -26,12 +26,11 @@
             <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
                 Create Broadcast <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
               </button>
-              
+
               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <!-- <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5> -->
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -39,46 +38,45 @@
                     <div class="modal-body">
                       <h3>Tambah Broadcast</h3>
                       <div class="row">
+                        <%= form_tag(broadcasts_path, method: :post) do %>
                         <div class="col-md-6 col-xs-12">
                           <div class="form-wrap">
                             <label>Judul</label>
-                            <div class="form-group"> 
                               <div class="form-group">
-                                <input type="Cluster" class="form-control" placeholder="Tuliskan judul broadcast">
+                                <input type="text" name="title" class="form-control" placeholder="Tuliskan judul broadcast" required>
                               </div>
-                            </div>
-                          </div>            
+                          </div>
                           <div class="form-wrap">
                             <label>Deskripsi</label>
-                            <div class="form-group"> 
-                              <div class="form-group">
-                                <textarea type="Email" class="form-control with-toolbar" placeholder="adellapratitas7@gmail.com"></textarea>
-                                <div class="toolbar-text full">
-                                  <ul>
-                                    <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bold.svg") %>"></span></li>
-                                    <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_italic.svg") %>"></span></li>
-                                    <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_underline.svg") %>"></span></li>
-                                    <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-left.svg") %>"></span></li>
-                                    <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-center.svg") %>"></span></li>
-                                    <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_align-right.svg") %>"></span></li>
-                                    <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_justify.svg") %>"></span></li>
-                                    <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_bulet.svg") %>"></span></li>
-                                    <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_numbering.svg") %>"></span></li>
-                                    <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_left.svg") %>"></span></li>
-                                    <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_right.svg") %>"></span></li>
-                                    <li><span class="icon"><img src="<%= asset_pack_path("views/assets/images/ic_link-t.svg") %>"></span></li>
-                                  </ul>
-                                </div>
-                              </div>
+                            <div class="form-group">
+                              <textarea class="form-control" name="description" placeholder="Deskripsi" required></textarea>
                             </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-wrap">
+                            <label>Link</label>
+                              <div class="form-group">
+                                <input type="text" class="form-control" name="link" placeholder="Link" required>
+                              </div>
+                          </div>
+                          <div class="form-wrap">
+                            <label>Event Type</label>
+                              <div class="form-group">
+                                <select name="event_type" class="form-control" id="">
+                                  <option value="info">Info</option>
+                                  <option value="event">Event</option>
+                                </select>
+                              </div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-solid-green" data-dismiss="modal">Tambah</button>
-                      <button type="button" class="btn btn-transparent">Cancel</button>
+                      <button type="submit" class="btn btn-solid-green">Tambah</button>
+                      <button type="button" class="btn btn-transparent" data-dismiss="modal">Cancel</button>
                     </div>
+                    <% end %>
                   </div>
                 </div>
               </div>
@@ -90,6 +88,7 @@
                   Displaying Content 1 - 30 of 500 in total
               </p>
             </span>
+            <%= render("components/flash_message") %>
           <div class="table">
               <table>
                 <thead>
@@ -109,7 +108,7 @@
                       <td>Anak-anak muda dari dunia industri kreatif di Banda Aceh.</td>
                       <td>Nurlela Ahmad</td>
                       <td>21/10/23</td>
-                      <td>      
+                      <td>
                         <button class="dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
                         </button>
@@ -126,7 +125,7 @@
                       <td>Anak-anak muda dari dunia industri kreatif di Banda Aceh.</td>
                       <td>Nurlela Ahmad</td>
                       <td>21/10/23</td>
-                      <td>      
+                      <td>
                         <button class="dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
                         </button>
@@ -143,7 +142,7 @@
                       <td>Anak-anak muda dari dunia industri kreatif di Banda Aceh.</td>
                       <td>Nurlela Ahmad</td>
                       <td>21/10/23</td>
-                      <td>      
+                      <td>
                         <button class="dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
                         </button>
@@ -160,7 +159,7 @@
                       <td>Anak-anak muda dari dunia industri kreatif di Banda Aceh.</td>
                       <td>Nurlela Ahmad</td>
                       <td>21/10/23</td>
-                      <td>      
+                      <td>
                         <button class="dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
                         </button>

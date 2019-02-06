@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :dashboards, only: [:index]
-  resources :broadcasts, only: [:index, :show]
+  resources :broadcasts
 
   root 'dashboards#index'
 
@@ -25,8 +25,8 @@ Rails.application.routes.draw do
         post :create_category
       end
       member do
-        post :approve_cluster        
-        post :reject_cluster        
+        post :approve_cluster
+        post :reject_cluster
       end
     end
   end
