@@ -70,6 +70,8 @@ class FoldersController < ApplicationController
     response = @folders_api.show params[:id]
     if response.code == 200
       @folder = response['data']['question_folder']
+      resp = @folders_api.list_of_questions params[:id]
+      @questions = resp['data']['questions']
     else
       redirect_to folders_path, warning: "Something went wrong"
     end

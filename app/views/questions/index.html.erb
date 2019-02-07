@@ -53,6 +53,7 @@
                 <%= show_count_table(params[:page], @total_row_per_page, @total_questions) %>
               </p>
             </span>
+            <%= render('components/flash_message')%>
             <div class="table">
               <table>
                 <thead>
@@ -61,6 +62,8 @@
                     <th>Nama</th>
                     <th>Pertanyaan</th>
                     <th>Status</th>
+                    <th>Jumlah Like</th>
+                    <th>Jumlah Report</th>
                     <th>Create At</th>
                     <th></th>
                   </tr>
@@ -83,6 +86,8 @@
                       <img src="<%= asset_pack_path("views/assets/images/ic_status_nonactive.png") %>"/>
                       <% end %>
                     </td>
+                    <td><%= question['like_count'] %></td>
+                    <td><%= question['report_count'] %></td>
                     <td><%= Date.parse(question['created_at']) if question['created_at'].present? %></td>
 
                     <td>

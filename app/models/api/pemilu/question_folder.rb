@@ -45,6 +45,14 @@ class Api::Pemilu::QuestionFolder < InitApiPemilu
     }
     self.class.get("/dashboard/v1/question_folders/" + id, options)
   end
+
+  def list_of_questions id
+    options = {
+      headers: {}.merge({Authorization: "Bearer #{RequestStore.store[:my_api_token]}"})
+    }
+    self.class.get("/dashboard/v1/question_folders/" + id + "/questions", options)
+  end
+  
   
   
 

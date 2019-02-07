@@ -24,11 +24,12 @@
               
               <div class="row">
                 <div class="col-md-12 right-desc">
+                  <%= link_to 'MASUKKAN PERTANYAAN', questions_path, class: "btn btn-solid-green" %>
                   <a href="#" class="btn btn-solid-green" data-toggle="modal" data-target="#editFolderModal" >EDIT</a>
                   <% if @folder['questions_count'] == 0 %>
-                    <a class="btn btn-danger" href="<%= folder_path(@folder) %>" data-method="delete" data-confirm="Are you sure?">HAPUS</a>
+                    <a class="btn btn-solid-green" style="background-color:red" href="<%= folder_path(@folder) %>" data-method="delete" data-confirm="Are you sure?">HAPUS</a>
                   <% else %>
-                    <a class="btn btn-danger" href="javascript:alert('Cannot delete folder. You have archived question in this folder.')">HAPUS</a>
+                    <a class="btn btn-solid-green" style="background-color:red" href="javascript:alert('Cannot delete folder. You have archived question in this folder.')">HAPUS</a>
                   <% end %>
                 </div>
               </div>
@@ -43,6 +44,57 @@
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="table">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Pertanyaan</th>
+                        <th>Status</th>
+                        <th>Create At</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <% @questions.each_with_index do |question, index| %>
+                      <tr>
+                        <td class="number bold">
+                          <%= index + 1 %>
+                        </td>
+                        <td class="name bold"><a href="<%= question_path(question['id']) %>">
+                        <%= image_tag question['user']['avatar']['thumbnail_square']['url'] if question['user']['avatar']['thumbnail_square']['url'].present?  %>
+                        <%= question['user']['full_name'] %>
+                          </a></td>
+                        <td><%= truncate(question['body'], :length => 80) %></td>
+                        <td class="image">
+                          <% if question['user']['verified'] %>
+                          <img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>"/>
+                          <% else %>
+                          <img src="<%= asset_pack_path("views/assets/images/ic_status_nonactive.png") %>"/>
+                          <% end %>
+                        </td>
+                        <td><%= Date.parse(question['created_at']) if question['created_at'].present? %></td>
+
+                        <td>
+                          <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="action">
+                            <a class="dropdown-item" href="<%= question_path(question['id']) %>">Lihat</a>
+                            <a class="dropdown-item" href="<%= edit_question_path(question['id']) %>">Edit</a>
+                            <a class="dropdown-item" href="#">Buang</a>
+                          </div>
+                        </td>
+                      </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
                 </div>
               </div>
 
