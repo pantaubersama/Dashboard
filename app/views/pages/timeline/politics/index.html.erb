@@ -34,7 +34,7 @@
                   </td>
                   <td><%= item["title"].truncate(30) %></td>
                   <td><%= item["creator"]["cluster"].present? ? item["creator"]["cluster"]["name"] : "Belum Ada" %></td>
-                  <td><%= item["created_at_in_word"]["id"] %></td>
+                  <td> <%= Date.parse(item["created_at"]) %> </td>
                   <td>
                     <button class="dropdown-toggle" type="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
