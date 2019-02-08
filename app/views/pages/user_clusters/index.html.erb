@@ -131,7 +131,7 @@
                           <img src="<%= asset_pack_path("views/assets/images/ic_status_nonactive.png") %>"/>
                         <% end %>
                       </td>
-                      <td> 	21/10/2023 </td>
+                      <td><%= Date.parse(item["created_at"]) %></td>
                       <td>
                         <button class="dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true"
                           aria-expanded="false">
