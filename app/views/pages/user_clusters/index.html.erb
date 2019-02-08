@@ -116,7 +116,7 @@
                       <td class="number bold">
                         <%= ((params[:page].present? ? params[:page].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %>
                       </td>
-                      <td class="name bold">
+                      <td class="name bold image">
                         <a href="<%= user_cluster_path(item["id"]) %>">
                           <img src="<%= item["avatar"]["url"] %>" >
                           <%= item["full_name"] %>
@@ -131,6 +131,7 @@
                           <img src="<%= asset_pack_path("views/assets/images/ic_status_nonactive.png") %>"/>
                         <% end %>
                       </td>
+                      <td> 	21/10/2023 </td>
                       <td>
                         <button class="dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true"
                           aria-expanded="false">
