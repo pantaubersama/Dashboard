@@ -1,191 +1,190 @@
-<div class="d-flex main-wrapper">
+<div class="pb-wrapper">
   <%= render("components/sidebar") %>
-  <div class="main-wrapper">
-    <main class="main col-md-10 offset-md-2" role="main">
-      <header class="header" role="banner">
-        <%= render("components/dropdown_profile") %>
-      </header>
-      <div class="main-content">
-        <div class="top">
-          <div class="btn-back">
-            <%= link_to request.referer do %>
-              <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
-            <% end %>
-          </div>
+  <main class="main" role="main">
+    <header class="header" role="banner">
+      <%= render("components/dropdown_profile") %>
+    </header>
+    <div class="main-content">
+      <div class="top">
+        <div class="btn-back">
+          <%= link_to request.referer do %>
+            <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+          <% end %>
         </div>
-        <div class="content">
-          <span class="display-desc">
-            <p>
-            </p>
-          </span>
-          <%= render("components/flash_message") %>
-          <div class="bg-white detail-profile">
-            <div class="card">
-              <span class="profile-image">
-                <%= image_tag @user['avatar']['medium_square']['url'] unless  @user['avatar']['medium_square']['url'].nil? %>
-              </span>
-              <%= form_tag(user_update_avatar_path(@user['id']), method: :put, multipart: true) do %>
+      </div>
+      <div class="content">
+        <span class="display-desc">
+          <p>
+          </p>
+        </span>
+        <%= render("components/flash_message") %>
+        <div class="bg-white detail-profile">
+          <div class="card">
+            <span class="profile-image">
+              <%= image_tag @user['avatar']['medium_square']['url'] unless  @user['avatar']['medium_square']['url'].nil? %>
+            </span>
+            <%= form_tag(user_update_avatar_path(@user['id']), method: :put, multipart: true) do %>
+              <div class="form-wrap">
+                <label>Avatar</label>
+                <%= file_field_tag :avatar  %>
+              </div>
+              <button class="btn btn-solid-green" type="submit"> Update</button>
+            <% end %>
+            <div class="right-desc">
+              <!--<p>Created at : 21/10/2023</p> -->
+            </div>
+          </div>
+          <%= form_tag(user_update_path(@user['id']), method: :put) do %>
+          <%= hidden_field_tag(:id, @user['id']) %>
+          <div class="card-form">
+            <div class="row">
+              <div class="col-md-6">
                 <div class="form-wrap">
-                  <label>Avatar</label>
-                  <%= file_field_tag :avatar  %>
-                </div>
-                <button class="btn btn-solid-green" type="submit"> Update</button>
-              <% end %>
-              <div class="right-desc">
-                <!--<p>Created at : 21/10/2023</p> -->
-              </div>
-            </div>
-            <%= form_tag(user_update_path(@user['id']), method: :put) do %>
-            <%= hidden_field_tag(:id, @user['id']) %>
-            <div class="card-form">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-wrap">
-                    <label>Nama</label>
+                  <label>Nama</label>
+                  <div class="form-group">
                     <div class="form-group">
-                      <div class="form-group">
-                        <%= text_field_tag :full_name, @user['full_name'], class: 'form-control', placeholder: 'Nama' %>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-wrap">
-                    <label>Email</label>
-                    <div class="form-group">
-                      <div class="form-group">
-                        <%= text_field_tag :email, @user['email'], class: 'form-control', placeholder: 'Email' %>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-wrap">
-                    <label>Pekerjaan</label>
-                    <div class="form-group">
-                      <div class="form-group">
-                        <%= text_field_tag :occupation, @user['occupation'], class: 'form-control', placeholder: 'occupation' %>
-                      </div>
+                      <%= text_field_tag :full_name, @user['full_name'], class: 'form-control', placeholder: 'Nama' %>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-wrap">
-                    <label>Username</label>
+                <div class="form-wrap">
+                  <label>Email</label>
+                  <div class="form-group">
                     <div class="form-group">
-                      <div class="form-group">
-                        <%= text_field_tag :username, @user['username'], class: 'form-control', placeholder: 'Username' %>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-wrap">
-                    <label>About</label>
-                    <div class="form-group">
-                      <div class="form-group">
-                        <%= text_field_tag :about, @user['about'], class: 'form-control', placeholder: 'Tentang' %>
-                      </div>
+                      <%= text_field_tag :email, @user['email'], class: 'form-control', placeholder: 'Email' %>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-wrap">
-                    <label>Location</label>
+                <div class="form-wrap">
+                  <label>Pekerjaan</label>
+                  <div class="form-group">
                     <div class="form-group">
-                      <div class="form-group">
-                        <%= text_field_tag :location, @user['location'], class: 'form-control', placeholder: 'location' %>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-wrap">
-                    <label>Education</label>
-                    <div class="form-group">
-                      <div class="form-group">
-                        <%= text_field_tag :education, @user['education'], class: 'form-control', placeholder: 'Education' %>
-                      </div>
+                      <%= text_field_tag :occupation, @user['occupation'], class: 'form-control', placeholder: 'occupation' %>
                     </div>
                   </div>
                 </div>
               </div>
-            <button class="btn btn-solid-green" type="submit"> Update</button>
-            </div>
-            <% end %>
-
-
-            <%= form_tag(user_update_informant_path(@user['id']), method: :put) do %>
-            <%= hidden_field_tag(:id, @user['id']) %>
-            <div class="card-form">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-wrap">
-                    <label>Tempat Lahir</label>
+              <div class="col-md-6">
+                <div class="form-wrap">
+                  <label>Username</label>
+                  <div class="form-group">
                     <div class="form-group">
-                      <div class="form-group">
-                        <%= text_field_tag :pob, @user['informant']['pob'], class: 'form-control', placeholder: 'Tempat Lahir' %>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-wrap">
-                    <label>Jenis Kelamin</label>
-                    <div class="form-group">
-                      <div class="form-group">
-                        <%= select_tag(:gender, options_for_select([['Laki - Laki', 1], ['Perempuan', 0]],@user['informant']['gender'])) %>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-wrap">
-                    <label>Kewarganegaraan</label>
-                    <div class="form-group">
-                      <div class="form-group">
-                        <%= text_field_tag :nationality, @user['informant']['nationality'], class: 'form-control', placeholder: 'Kewarganegaraan' %>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-wrap">
-                    <label>No KTP</label>
-                    <div class="form-group">
-                      <div class="form-group">
-                        <%= text_field_tag :identity_number, @user['informant']['identity_number'], class: 'form-control', placeholder: 'No KTP' %>
-                      </div>
+                      <%= text_field_tag :username, @user['username'], class: 'form-control', placeholder: 'Username' %>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-wrap">
-                    <label>Tanggal Lahir</label>
+                <div class="form-wrap">
+                  <label>About</label>
+                  <div class="form-group">
                     <div class="form-group">
-                      <div class="form-group">
-                        <%= date_field :dob, @user['informant']['dob'], class: 'form-control', placeholder: 'Tanggal Lahir' %>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-wrap">
-                    <label>Pekerjaan Pelapor</label>
-                    <div class="form-group">
-                      <div class="form-group">
-                        <%= text_field_tag :occupation, @user['informant']['occupation'], class: 'form-control', placeholder: 'Pekerjaan Pelapor' %>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-wrap">
-                    <label>No Telepon</label>
-                    <div class="form-group">
-                      <div class="form-group">
-                        <%= text_field_tag :phone_number, @user['informant']['phone_number'], class: 'form-control', placeholder: 'No Telepon' %>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-wrap">
-                    <label>Alamat Lengkap</label>
-                    <div class="form-group">
-                      <div class="form-group">
-                        <%= text_area_tag :address, @user['informant']['address'], class: 'form-control', placeholder: 'Alamat Lengkap' %>
-                      </div>
+                      <%= text_field_tag :about, @user['about'], class: 'form-control', placeholder: 'Tentang' %>
                     </div>
                   </div>
                 </div>
               </div>
-            <button class="btn btn-solid-green" type="submit"> Update</button>
+              <div class="col-md-6">
+                <div class="form-wrap">
+                  <label>Location</label>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <%= text_field_tag :location, @user['location'], class: 'form-control', placeholder: 'location' %>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-wrap">
+                  <label>Education</label>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <%= text_field_tag :education, @user['education'], class: 'form-control', placeholder: 'Education' %>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <% end %>
+          <button class="btn btn-solid-green" type="submit"> Update</button>
           </div>
+          <% end %>
+
+
+          <%= form_tag(user_update_informant_path(@user['id']), method: :put) do %>
+          <%= hidden_field_tag(:id, @user['id']) %>
+          <div class="card-form">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-wrap">
+                  <label>Tempat Lahir</label>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <%= text_field_tag :pob, @user['informant']['pob'], class: 'form-control', placeholder: 'Tempat Lahir' %>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-wrap">
+                  <label>Jenis Kelamin</label>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <%= select_tag(:gender, options_for_select([['Laki - Laki', 1], ['Perempuan', 0]],@user['informant']['gender'])) %>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-wrap">
+                  <label>Kewarganegaraan</label>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <%= text_field_tag :nationality, @user['informant']['nationality'], class: 'form-control', placeholder: 'Kewarganegaraan' %>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-wrap">
+                  <label>No KTP</label>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <%= text_field_tag :identity_number, @user['informant']['identity_number'], class: 'form-control', placeholder: 'No KTP' %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-wrap">
+                  <label>Tanggal Lahir</label>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <%= date_field :dob, @user['informant']['dob'], class: 'form-control', placeholder: 'Tanggal Lahir' %>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-wrap">
+                  <label>Pekerjaan Pelapor</label>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <%= text_field_tag :occupation, @user['informant']['occupation'], class: 'form-control', placeholder: 'Pekerjaan Pelapor' %>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-wrap">
+                  <label>No Telepon</label>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <%= text_field_tag :phone_number, @user['informant']['phone_number'], class: 'form-control', placeholder: 'No Telepon' %>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-wrap">
+                  <label>Alamat Lengkap</label>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <%= text_area_tag :address, @user['informant']['address'], class: 'form-control', placeholder: 'Alamat Lengkap' %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <button class="btn btn-solid-green" type="submit"> Update</button>
+          </div>
+          <% end %>
         </div>
-    </main>
-  </div>
+      </div>
+    </div>
+  </main>
 </div>
 <%= render("components/footer") %>

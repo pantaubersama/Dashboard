@@ -26,9 +26,16 @@
         .active{
           background: #bd1c1c;
           color: #fff;
+          padding-left: 59px;
           border-left: 5px solid #67010d;
         }
       }
+    }
+    li.nav-item > .active {
+      background: #bd1c1c;
+      color: #fff;
+      padding-left: 25px;
+      border-left: 5px solid #67010d;
     }
   }
 }

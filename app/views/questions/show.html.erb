@@ -1,74 +1,76 @@
-<div class="d-flex main-wrapper">
+<div class="pb-wrapper">
   <%= render("components/sidebar") %>
-  <div class="main-wrapper">
-    <main class="main col-md-10 offset-md-2" role="main">
-      <%= render "components/question/header", active: "all" %>
-      <div class="main-content janji-politik">
-        <div class="top">
-          <div class="btn-back">
-            <%= link_to questions_path do %>
-            	<img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
-            <% end %>
-          </div>
+  <main class="main" role="main">
+    <%= render "components/question/header", active: "all" %>
+    <div class="main-content janji-politik">
+      <div class="top">
+        <div class="btn-back">
+          <%= link_to questions_path do %>
+          	<img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+          <% end %>
         </div>
-        <div class="content">
-          <div class="bg-white detail-profile">
-            <div class="card">
-              <span class="profile-image">
-                <img src="<%= @question['user']['avatar']['thumbnail_square']['url'] if @question['user']['avatar']['thumbnail_square']['url'].present?  %>">
-              </span>
-              <div class="right-desc">
-                <p>Created at : <%= @question['created_at'] %></p>
-                <%= link_to 'EDIT', edit_question_path(@question["id"]), class: "btn btn-solid-green" %>
-                <%= link_to 'DELETE', question_path(@question["id"]), {class: "btn btn-solid-green", method: :delete, data: {confirm: "Are you sure?"}, style: "background-color:red"} %>
-              </div>
+      </div>
+      <div class="content">
+        <span class="display-desc">
+          <p>
+              <!-- Displaying Content 1 - 30 of 500 in total -->
+          </p>
+        </span>
+        <div class="bg-white detail-profile">
+          <div class="card">
+            <span class="profile-image">
+              <img src="<%= @question['user']['avatar']['thumbnail_square']['url'] if @question['user']['avatar']['thumbnail_square']['url'].present?  %>">
+            </span>
+            <div class="right-desc">
+              <p>Created at : <%= @question['created_at'] %></p>
+              <%= link_to 'EDIT', edit_question_path(@question["id"]), class: "btn btn-solid-green" %>
+              <%= link_to 'DELETE', question_path(@question["id"]), {class: "btn btn-solid-green", method: :delete, data: {confirm: "Are you sure?"}, style: "background-color:red"} %>
             </div>
+          </div>
 
-            <div class="card-form">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-wrap">
-                    <label>Nama</label>
+          <div class="card-form">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-wrap">
+                  <label>Nama</label>
+                  <div class="form-group">
                     <div class="form-group">
-                      <div class="form-group">
-                        <input type="Email" class="form-control" value="<%= @question['user']['full_name'] %>">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-wrap">
-                    <label>Pertanyaan</label>
-                    <div class="form-group">
-                      <div class="form-group">
-                        <textarea type="text" class="form-control"><%= @question['body'] %></textarea>
-                      </div>
+                      <input type="Email" class="form-control" value="<%= @question['user']['full_name'] %>">
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-wrap">
-                    <label>Status</label>
+                <div class="form-wrap">
+                  <label>Pertanyaan</label>
+                  <div class="form-group">
                     <div class="form-group">
-                      <div class="form-group">
-                        <input type="text" class="form-control" value="<%= @question['status']  %>">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-wrap">
-                    <label>Folder</label>
-                    <div class="form-group">
-                      <div class="form-group">
-                        <input type="text" class="form-control" value="<%= @question['question_folder']['name'] if @question['question_folder_id'].present?  %>">
-                      </div>
+                      <textarea type="text" class="form-control"><%= @question['body'] %></textarea>
                     </div>
                   </div>
                 </div>
               </div>
-
+              <div class="col-md-6">
+                <div class="form-wrap">
+                  <label>Status</label>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <input type="text" class="form-control" value="<%= @question['status']  %>">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-wrap">
+                  <label>Folder</label>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <input type="text" class="form-control" value="<%= @question['question_folder']['name'] if @question['question_folder_id'].present?  %>">
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </main>
-  </div>
+    </div>
+  </main>
 </div>
 <%= render("components/footer") %>

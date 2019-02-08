@@ -1,75 +1,73 @@
-<div class="d-flex main-wrapper">
+<div class="pb-wrapper">
   <%= render("components/sidebar") %>
-  <div class="main-wrapper">
-    <main class="main col-md-10 offset-md-2" role="main">
-      
-      <%= render("components/question/header", active: "trash") %>
+  <main class="main" role="main">
+    
+    <%= render("components/question/header", active: "trash") %>
 
-      <div class="tab-content clearfix">
-        <div class="main-content quiz tab-pane active" id="trash">
-          <div class="top">
-            <%= render("components/pagination", pagy: @pagy) %>
-          </div>
-          <div class="content">
-            <span class="display-desc">
-              <p>
-                <%= show_count_table(params[:page], @total_row_per_page, @total_trash) %>
-              </p>
-            </span>
-            <%= render('components/flash_message')%>
-            <div class="table">
-              <table>
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Pertanyaan</th>
-                    <th>Status</th>
-                    <th>Jumlah Like</th>
-                    <th>Jumlah Report</th>
-                    <th>Create At</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                <% @trash.each_with_index do |question, index| %>
-                  <tr>
-                    <td class="number bold">
-                      <%= ((params[:page].present? ? params[:page].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %>
-                    </td>
-                    <td class="name bold"><a href="<%= detail_trash_question_path(question['id']) %>">
-                    <%= image_tag question['user']['avatar']['thumbnail_square']['url'] if question['user']['avatar']['thumbnail_square']['url'].present?  %>
-                    <%= question['user']['full_name'] %>
-                      </a></td>
-                    <td><%= truncate(question['body'], :length => 80) %></td>
-                    <td class="image">
-                      <% if question['user']['verified'] %>
-                      <img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>"/>
-                      <% else %>
-                      <img src="<%= asset_pack_path("views/assets/images/ic_status_nonactive.png") %>"/>
-                      <% end %>
-                    </td>
-                    <td><%= question['like_count'] %></td>
-                    <td><%= question['report_count'] %></td>
-                    <td><%= Date.parse(question['created_at']) if question['created_at'].present? %></td>
-                    <td>
-                      <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="action">
-                        <a class="dropdown-item" href="<%= detail_trash_question_path(question['id']) %>">Lihat</a>
-                      </div>
-                    </td>
-                  </tr>
-                  <% end %>
-                </tbody>
-              </table>
-            </div>
+    <div class="tab-content clearfix">
+      <div class="main-content quiz tab-pane active" id="trash">
+        <div class="top">
+          <%= render("components/pagination", pagy: @pagy) %>
+        </div>
+        <div class="content">
+          <span class="display-desc">
+            <p>
+              <%= show_count_table(params[:page], @total_row_per_page, @total_trash) %>
+            </p>
+          </span>
+          <%= render('components/flash_message')%>
+          <div class="table">
+            <table>
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Pertanyaan</th>
+                  <th>Status</th>
+                  <th>Jumlah Like</th>
+                  <th>Jumlah Report</th>
+                  <th>Create At</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+              <% @trash.each_with_index do |question, index| %>
+                <tr>
+                  <td class="number bold">
+                    <%= ((params[:page].present? ? params[:page].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %>
+                  </td>
+                  <td class="name bold"><a href="<%= detail_trash_question_path(question['id']) %>">
+                  <%= image_tag question['user']['avatar']['thumbnail_square']['url'] if question['user']['avatar']['thumbnail_square']['url'].present?  %>
+                  <%= question['user']['full_name'] %>
+                    </a></td>
+                  <td><%= truncate(question['body'], :length => 80) %></td>
+                  <td class="image">
+                    <% if question['user']['verified'] %>
+                    <img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>"/>
+                    <% else %>
+                    <img src="<%= asset_pack_path("views/assets/images/ic_status_nonactive.png") %>"/>
+                    <% end %>
+                  </td>
+                  <td><%= question['like_count'] %></td>
+                  <td><%= question['report_count'] %></td>
+                  <td><%= Date.parse(question['created_at']) if question['created_at'].present? %></td>
+                  <td>
+                    <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                      aria-expanded="false">
+                      <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="action">
+                      <a class="dropdown-item" href="<%= detail_trash_question_path(question['id']) %>">Lihat</a>
+                    </div>
+                  </td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
-    </main>
-  </div>
+    </div>
+  </main>
 </div>
 <%= render("components/footer") %>
