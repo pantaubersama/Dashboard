@@ -1,32 +1,31 @@
-<div class="d-flex main-wrapper">
+<div class="pb-wrapper">
   <%= render("components/sidebar") %>
-  <div class="main-wrapper">
-    <main class="main col-md-10 offset-md-2 janji" role="main">
-      <%= render("components/politic/header", active: "all") %>
-      <div class="tab-content clearfix">
-        <div class="main-content quiz tab-pane active" id="all">
-          <div class="top">
-            <%= render("components/pagination", pagy: @pagy) %>
-          </div>
-          <div class="content">
-            <span class="display-desc">
-              <p>
-		            <%= show_count_table(params[:page], @total_row_per_page, @total_politics) %>
-              </p>
-            </span>
-            <div class="table">
-              <table>
-                <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Nama</th>
-                  <th>Judul</th>
-                  <th>Cluster</th>
-                  <th>Create At</th>
-                  <th></th>
-                </tr>
-                </thead>
-                <tbody>
+  <main class="main janji" role="main">
+    <%= render("components/politic/header", active: "all") %>
+    <div class="tab-content clearfix">
+      <div class="main-content quiz tab-pane active" id="all">
+        <div class="top">
+          <%= render("components/pagination", pagy: @pagy) %>
+        </div>
+        <div class="content">
+          <span class="display-desc">
+            <p>
+	            <%= show_count_table(params[:page], @total_row_per_page, @total_politics) %>
+            </p>
+          </span>
+          <div class="table">
+            <table>
+              <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Judul</th>
+                <th>Cluster</th>
+                <th>Create At</th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
                 <% @item_politics.each_with_index do |item, index| %>
                 <tr>
                   <td class="number bold"><%= ((params[:page].present? ? params[:page].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %></td>
@@ -107,68 +106,67 @@
                       </div>
                     </div>
                   </td>
-                  <% end %>
-                </tbody>
-              </table>
-            </div>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
 
-            <%= form_tag(politics_path, method: :get) do %>
-              <div class="filter">
-                <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
-                   aria-controls="collapseExample">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
-                </a>
-                <div id="filter" class="collapse filter-form">
-                  <div class="card card-body">
-                    <h4>Filter</h4>
-                    <div class="form-wrap">
-                      <label>Status</label>
-                      <div class="form-group">
-                        <select class="form-control stat" name="filter">
-                          <option></option>
-                          <% @verifications.each do |a| %>
-                            <option value="<%= a["id"] %>" <%= selected a["id"], params[:filter] %> > <%= a["name"] %> </option>
-                          <% end %>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-wrap">
-                      <label>User</label>
-                      <div class="form-group">
-                        <div class="form-group">
-                          <input name="q" value="<%= params[:q] %>" type="nama" class="form-control q" placeholder="Nama">
-                        </div>
-                      </div>
+          <%= form_tag(politics_path, method: :get) do %>
+            <div class="filter">
+              <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
+                 aria-controls="collapseExample">
+                <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
+                <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
+              </a>
+              <div id="filter" class="collapse filter-form">
+                <div class="card card-body">
+                  <h4>Filter</h4>
+                  <div class="form-wrap">
+                    <label>Status</label>
+                    <div class="form-group">
+                      <select class="form-control stat" name="filter">
+                        <option></option>
+                        <% @verifications.each do |a| %>
+                          <option value="<%= a["id"] %>" <%= selected a["id"], params[:filter] %> > <%= a["name"] %> </option>
+                        <% end %>
+                      </select>
                     </div>
                   </div>
                   <div class="form-wrap">
-                    <label>Cluster</label>
+                    <label>User</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <select class="form-control remote-select" name="cluster_id" data-url="<%= request.base_url + search_clusters_path %>">
-                          <option></option>
-                          <% @clusters.each do |c| %>
-                            <option value="<%= c["id"] %>" <%= selected c["id"], params[:cluster_id] %> >
-                              <%= c["name"] %>
-                            </option>
-                          <% end %>
-                        </select>
+                        <input name="q" value="<%= params[:q] %>" type="nama" class="form-control q" placeholder="Nama">
                       </div>
                     </div>
                   </div>
-                  <div class="button-wrapper">
-                    <button id="send" type="submit" class="btn btn-solid-green" data-dismiss="modal">Done</button>
-                    <button type="button" class="btn btn-transparent reset">Reset</button>
+                </div>
+                <div class="form-wrap">
+                  <label>Cluster</label>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <select class="form-control remote-select" name="cluster_id" data-url="<%= request.base_url + search_clusters_path %>">
+                        <option></option>
+                        <% @clusters.each do |c| %>
+                          <option value="<%= c["id"] %>" <%= selected c["id"], params[:cluster_id] %> >
+                            <%= c["name"] %>
+                          </option>
+                        <% end %>
+                      </select>
+                    </div>
                   </div>
                 </div>
+                <div class="button-wrapper">
+                  <button id="send" type="submit" class="btn btn-solid-green" data-dismiss="modal">Done</button>
+                  <button type="button" class="btn btn-transparent reset">Reset</button>
+                </div>
               </div>
-            <% end %>
-
-          </div>
+            </div>
+          <% end %>
         </div>
       </div>
-    </main>
-  </div>
+    </div>
+  </main>
 </div>
 <%= render("components/footer") %>

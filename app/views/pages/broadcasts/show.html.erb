@@ -1,72 +1,57 @@
-<div class="d-flex main-wrapper">
+<div class="pb-wrapper">
   <%= render("components/sidebar") %>
-  <div class="main-wrapper">
-    <main class="main col-md-10 offset-md-2" role="main">
-
-      <header class="header" role="banner">
-        <div class="tabs">
-          <ul  class="nav nav-pills">
-          </ul>
-        </div>
-        <%= render("components/dropdown_profile") %>
-      </header>
-
-      <div class="tab-content clearfix">
-        <div class="main-content">
-          <div class="top">
-            <div class="btn-back">
-              <a href="<%= broadcasts_path %>">
-                <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
-              </a>
-            </div>
+  <main class="main" role="main">
+    <header class="header" role="banner">
+      <div class="tabs">
+        <ul  class="nav nav-pills">
+        </ul>
+      </div>
+      <%= render("components/dropdown_profile") %>
+    </header>
+    <div class="tab-content clearfix">
+      <div class="main-content">
+        <div class="top">
+          <div class="btn-back">
+            <a href="<%= broadcasts_path %>">
+              <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+            </a>
           </div>
-          <div class="content">
-            <span class="display-desc">
-              <p>
-              </p>
-            </span>
-            <div class="bg-white detail-profile">
-              <div class="card">
-                <span class="profile-image">
-                </span>
-                <div class="right-desc">
-                  ID: <%= @notification['id'] %> <br>
-                  Created at: <%= Date.parse(@notification['created_at']) if @notification['created_at'].present? %>
-                </div>
+        </div>
+        <div class="content">
+          <span class="display-desc">
+            <p>
+            </p>
+          </span>
+          <div class="bg-white detail-profile">
+            <div class="card">
+              <span class="profile-image">
+              </span>
+              <div class="right-desc">
+                ID: <%= @notification['id'] %> <br>
+                Created at: <%= Date.parse(@notification['created_at']) if @notification['created_at'].present? %>
               </div>
+            </div>
 
-              <div class="card-form">
-                <div class="row">
-                  <div class="col-md-6">
-
-                    <div class="form-wrap">
-                      <label>Title</label>
-                      <div class="form-group">
-                        <div class="form-group">
-                          <input type="text" class="form-control" value="<%= @notification['title']%>" placeholder="">
-                        </div>
-                      </div>
+            <div class="card-form">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Title</label>
+                    <div class="form-group">
+                      <input type="text" class="form-control" value="<%= @notification['title']%>" placeholder="">
                     </div>
-
-                    <div class="form-wrap">
-                      <label>Deskripsi</label>
-                      <div class="form-group">
-                        <div class="form-group">
-                          <Textarea class="form-control"><%= @notification['description']%>
-                          </Textarea>
-                        </div>
-                      </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Deskripsi</label>
+                    <div class="form-group">
+                      <Textarea class="form-control"><%= @notification['description']%></Textarea>
                     </div>
-
-                    <div class="form-wrap">
-                      <label>Event Type</label>
-                      <div class="form-group">
-                        <div class="form-group">
-                          <input type="text" class="form-control" value="<%= @notification['event_type']%>" placeholder="">
-                        </div>
-                      </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Event Type</label>
+                    <div class="form-group">
+                      <input type="text" class="form-control" value="<%= @notification['event_type']%>" placeholder="">
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -74,8 +59,7 @@
           </div>
         </div>
       </div>
-
-    </main>
-  </div>
+    </div>
+  </main>
 </div>
 <%= render("components/footer") %>

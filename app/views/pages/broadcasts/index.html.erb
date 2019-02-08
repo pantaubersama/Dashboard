@@ -1,155 +1,146 @@
-<div class="d-flex main-wrapper">
+<div class="pb-wrapper">
   <%= render("components/sidebar") %>
-  <div class="main-wrapper">
-    <main class="main col-md-10 offset-md-2" role="main">
-      <header class="header" role="banner">
-        <%= render("components/dropdown_profile") %>
-      </header>
-      <div class="main-content">
-        <div class="top">
-          <%= render("components/pagination", pagy: @pagy) %>
-          <div class="modal-wrap">
-            <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
-              Create Broadcast <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
-            </button>
-
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <h3>Tambah Broadcast</h3>
-                    <div class="row">
-                      <%= form_tag(broadcasts_path, method: :post) do %>
-                      <div class="col-md-6 col-xs-12">
-                        <div class="form-wrap">
-                          <label>Judul</label>
-                          <div class="form-group">
-                            <input type="text" name="title" class="form-control" placeholder="Tuliskan judul broadcast"
-                              required>
-                          </div>
-                        </div>
-                        <div class="form-wrap">
-                          <label>Deskripsi</label>
-                          <div class="form-group">
-                            <textarea class="form-control" name="description" placeholder="Deskripsi" required></textarea>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-wrap">
-                          <label>Link</label>
-                          <div class="form-group">
-                            <input type="text" class="form-control" name="link" placeholder="Link" required>
-                          </div>
-                        </div>
-                        <div class="form-wrap">
-                          <label>Event Type</label>
-                          <div class="form-group">
-                            <select name="event_type" class="form-control" id="">
-                              <option value="info">Info</option>
-                              <option value="event">Event</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-solid-green">Tambah</button>
-                    <button type="button" class="btn btn-transparent" data-dismiss="modal">Cancel</button>
-                  </div>
-                  <% end %>
+  <main class="main" role="main">
+    <header class="header" role="banner">
+      <%= render("components/dropdown_profile") %>
+    </header>
+    <div class="main-content">
+      <div class="top">
+        <%= render("components/pagination", pagy: @pagy) %>
+        <div class="modal-wrap">
+          <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
+            Create Broadcast <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
+          </button>
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="content">
-          <span class="display-desc">
-            <p>
-              <%= show_count_table(params[:page], @total_row_per_page, @total_broadcast) %>
-            </p>
-          </span>
-          <%= render("components/flash_message") %>
-          <div class="table">
-            <table>
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Judul</th>
-                  <th>Deskripsi</th>
-                  <th>Create At</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @broadcasts.each_with_index do |broadcast, index| %>
-                <tr>
-                  <td class="number bold"><%= ((params[:page].present? ? params[:page].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %></td>
-                  <td class="name bold">
-                    <a href="<%= broadcast_path(broadcast['id']) %>">
-                      <%= broadcast['title'] %>
-                    </a>
-                  </td>
-                  <td><%= broadcast['description']  %></td>
-                  <td><%= Date.parse(broadcast['created_at']) if broadcast['created_at'].present?  %></td>
-                  <td>
-                    <button class="dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true"
-                      aria-expanded="false">
-                      <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="action">
-                      <a class="dropdown-item" href="#">Lihat</a>
-                      <a class="dropdown-item" href="#">Edit</a>
-                      <a class="dropdown-item" href="#">Hapus</a>
+                <div class="modal-body">
+                  <h3>Tambah Broadcast</h3>
+                  <div class="row">
+                    <%= form_tag(broadcasts_path, method: :post) do %>
+                    <div class="col-md-6 col-xs-12">
+                      <div class="form-wrap">
+                        <label>Judul</label>
+                        <div class="form-group">
+                          <input type="text" name="title" class="form-control" placeholder="Tuliskan judul broadcast"
+                            required>
+                        </div>
+                      </div>
+                      <div class="form-wrap">
+                        <label>Deskripsi</label>
+                        <div class="form-group">
+                          <textarea class="form-control" name="description" placeholder="Deskripsi" required></textarea>
+                        </div>
+                      </div>
                     </div>
-                  </td>
-                </tr>
+                    <div class="col-md-6">
+                      <div class="form-wrap">
+                        <label>Link</label>
+                        <div class="form-group">
+                          <input type="text" class="form-control" name="link" placeholder="Link" required>
+                        </div>
+                      </div>
+                      <div class="form-wrap">
+                        <label>Event Type</label>
+                        <div class="form-group">
+                          <select name="event_type" class="form-control" id="">
+                            <option value="info">Info</option>
+                            <option value="event">Event</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-solid-green">Tambah</button>
+                  <button type="button" class="btn btn-transparent" data-dismiss="modal">Cancel</button>
+                </div>
                 <% end %>
-
-
-              </tbody>
-            </table>
-          </div>
-          <div class="filter">
-            <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample">
-              <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
-              <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
-            </a>
-
-            <div class="collapse filter-form" id="filter">
-            <%= form_tag(broadcasts_path, method: :get) do %>
-              <div class="card card-body">
-                <h4>Filter</h4>
-                <div class="filter-wrap">
-                  <div class="form-wrap">
-                    <label>Judul</label>
-                    <div class="form-group">
-                      <div class="form-group">
-                        <input type="nama" name="title" value="<%= params[:title].present? ? params[:title] : nil%>"
-                        class="form-control" placeholder="Judul">
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
-              <div class="button-wrapper">
-                <button type="button" class="btn btn-solid-green" data-dismiss="modal">Done</button>
-                <button type="button" class="btn btn-transparent">Reset</button>
-              </div>
-              <% end %>
             </div>
           </div>
         </div>
       </div>
-  </div>
+      <div class="content">
+        <span class="display-desc">
+          <p>
+            <%= show_count_table(params[:page], @total_row_per_page, @total_broadcast) %>
+          </p>
+        </span>
+        <%= render("components/flash_message") %>
+        <div class="table">
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Judul</th>
+                <th>Deskripsi</th>
+                <th>Create At</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @broadcasts.each_with_index do |broadcast, index| %>
+              <tr>
+                <td class="number bold"><%= ((params[:page].present? ? params[:page].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %></td>
+                <td class="name bold">
+                  <a href="<%= broadcast_path(broadcast['id']) %>">
+                    <%= broadcast['title'] %>
+                  </a>
+                </td>
+                <td><%= broadcast['description']  %></td>
+                <td><%= Date.parse(broadcast['created_at']) if broadcast['created_at'].present?  %></td>
+                <td>
+                  <button class="dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="action">
+                    <a class="dropdown-item" href="#">Lihat</a>
+                    <a class="dropdown-item" href="#">Edit</a>
+                    <a class="dropdown-item" href="#">Hapus</a>
+                  </div>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="filter">
+          <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
+            <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
+          </a>
+
+          <div class="collapse filter-form" id="filter">
+            <%= form_tag(broadcasts_path, method: :get) do %>
+            <div class="card card-body">
+              <h4>Filter</h4>
+              <div class="filter-wrap">
+                <div class="form-wrap">
+                  <label>Judul</label>
+                  <div class="form-group">
+                    <input type="nama" name="title" value="<%= params[:title].present? ? params[:title] : nil%>"
+                    class="form-control" placeholder="Judul">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="button-wrapper">
+              <button type="button" class="btn btn-solid-green" data-dismiss="modal">Done</button>
+              <button type="button" class="btn btn-transparent">Reset</button>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
-</div>
 </div>
 <%= render("components/footer") %>

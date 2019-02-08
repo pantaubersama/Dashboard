@@ -1,62 +1,57 @@
-<div class="d-flex main-wrapper">
+<div class="pb-wrapper">
   <%= render("components/sidebar") %>
-  <div class="main-wrapper">
-    <main class="main col-md-10 offset-md-2" role="main">
-      <header class="header" role="banner">
-        <%= render("components/dropdown_profile") %>
-      </header>
-      <div class="main-content">
-        <div class="top">
-          <div class="btn-back">
-            <%= link_to political_party_index_path do %>
-              <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
-            <% end %>
-          </div>
+  <main class="main" role="main">
+    <header class="header" role="banner">
+      <%= render("components/dropdown_profile") %>
+    </header>
+    <div class="main-content">
+      <div class="top">
+        <div class="btn-back">
+          <%= link_to political_party_index_path do %>
+            <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+          <% end %>
         </div>
-        <div class="content">
-          <span class="display-desc">
-            <p>
-            </p>
-          </span>
-          <div class="bg-white detail-profile">
-            <div class="card">
-              <div class="right-desc">
-                <!--<p>Created at : 21/10/2023</p> -->
-                <%= link_to edit_political_party_path(@party['id']) do %>
-                  <button class="btn btn-solid-green">EDIT</button>
-                <% end %>
-                <%= link_to political_party_path(@party['id']), method: :delete do %>
-                  <button class="btn btn-solid-green" style="background-color:red">HAPUS</button>
-                <% end %>
-              </div>
+      </div>
+      <div class="content">
+        <span class="display-desc">
+          <p>
+          </p>
+        </span>
+        <div class="bg-white detail-profile">
+          <div class="card">
+            <div class="right-desc">
+              <!--<p>Created at : 21/10/2023</p> -->
+              <%= link_to edit_political_party_path(@party['id']) do %>
+                <button class="btn btn-solid-green">EDIT</button>
+              <% end %>
+              <%= link_to political_party_path(@party['id']), method: :delete do %>
+                <button class="btn btn-solid-green" style="background-color:red">HAPUS</button>
+              <% end %>
             </div>
-
-            <div class="card-form">
-              <div class="row">
+          </div>
+          <div class="card-form">
+            <div class="row">
+              <div class="col-md-6">
                 <div class="form-wrap">
                   <label>Nama</label>
                   <div class="form-group">
-                    <div class="form-group">
-                      <%= @party['name'] %>
-                    </div>
+                    <%= @party['name'] %>
                   </div>
                 </div>
-                <div class="col-md-6">
+              </div>
+              <div class="col-md-6">
                 <div class="form-wrap">
                   <label>Logo</label>
                   <div class="form-group">
-                    <div class="form-group">
-                      <%= image_tag @party['image']['url'] unless @party['image']['url'].nil? %>
-                    </div>
+                    <%= image_tag @party['image']['url'] unless @party['image']['url'].nil? %>
                   </div>
-                </div>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
-    </main>
-  </div>
+      </div>
+    </div>
+  </main>
 </div>
 <%= render("components/footer") %>

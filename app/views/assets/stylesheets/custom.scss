@@ -1,3 +1,8 @@
+@import 'modules/_vars.scss';
+
 .editor{
   height: 200px;
+}
+.text-red {
+	color: $red;
 }
