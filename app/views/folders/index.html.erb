@@ -1,3 +1,7 @@
+<% content_for :head do -%>
+  <%= javascript_pack_tag 'folders/new' %>
+<% end -%>
+
 <div class="d-flex main-wrapper">
   <%= render("components/sidebar") %>
   <div class="main-wrapper">
@@ -7,44 +11,12 @@
       <div class="tab-content clearfix">
         <div class="main-content tab-pane active" id="terpilih">
           <div class="top ">
-            <% link = pagy_link_proc(@pagy) %>
-            <div class="pagination-wrap">
-              <ul class="pagination">
-                <% if @pagy.prev %>
-                <li class="page-item">
-                  <%== link.call(@pagy.prev, pagy_t('pagy.nav.prev')) %>
-                </li>
-                <% else  %>
-                <li class="page-item disabled">
-                  <%== link.call(@pagy.prev, pagy_t('pagy.nav.prev')) %>
-                </li>
-                <% end %>
-
-                <% @pagy.series.each do |item| %>
-                <% if item.is_a?(Integer) %>
-                <li id="testtest" class="page-item">
-                  <%== link.call(item) %>
-                </li>
-                <% elsif item.is_a?(String) %>
-                <li class="page-item active" aria-current="page">
-                  <%== link.call(item) %>
-                </li>
-                <% elsif item == :gap %>
-                <li class="page-item disabled gap"><a href="#" class="page-link">
-                    <%== pagy_t('pagy.nav.gap') %></a></li>
-                <% end %>
-                <% end %>
-
-                <% if @pagy.next %>
-                <li class="page-item">
-                  <%== link.call(@pagy.next, pagy_t('pagy.nav.next')) %>
-                </li>
-                <% else %>
-                <li class="page-item disabled">
-                  <%== link.call(@pagy.next, pagy_t('pagy.nav.next')) %>
-                </li>
-                <% end %>
-              </ul>
+            <%= render("components/pagination", pagy: @pagy) %>
+            <div class="modal-wrap">
+              <button type="button" class="btn btn-green" data-toggle="modal" data-target="#folderModal">
+                Buat Folder <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
+              </button>
+              <%= render "new" %>
             </div>
           </div>
           <div class="content">
@@ -53,6 +25,7 @@
                 <%= show_count_table(params[:page], @total_row_per_page, @total_folders) %>
               </p>
             </span>
+            <%= render('components/flash_message')%>
             <div class="table">
               <table>
                 <thead>
@@ -70,7 +43,7 @@
                         <%= ((params[:page].present? ? params[:page].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %>
                       </td>
                       <td class="name bold icon">
-                        <a href="#">
+                        <a href="<%= folder_path(folder["id"]) %>">
                           <img src="<%= asset_pack_path("views/assets/images/ic_folder.svg")%>">
                           <%= folder["name"] %>
                         </a>
@@ -82,13 +55,7 @@
                           <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
                         </button>
                         <div class="dropdown-menu" aria-labelledby="action">
-                          <a class="dropdown-item" href="#">Lihat</a>
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <% if folder['questions_count'] == 0 %>
-                            <a class="dropdown-item" href="<%= folder_path(folder['id']) %>" data-method="delete" data-confirm="Are you sure?">Hapus</a>
-                          <% else %>
-                            <a class="dropdown-item" href="javascript:alert('Cannot delete folder. You have archived question in this folder.')">Hapus</a>
-                          <% end %>
+                          <a class="dropdown-item" href="<%= folder_path(folder['id']) %>">Lihat</a>
                         </div>
                       </td>
                     </tr>

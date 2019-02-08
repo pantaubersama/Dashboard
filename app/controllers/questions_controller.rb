@@ -126,18 +126,27 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    request = @question_api.update_question(params[:id], params[:body])
-    if request.code == 200
-      flash[:success] = "Update Sucessful"
+    if params[:status] == "archived" && params[:question_folder_id].empty?
+      flash[:warning] = "Oops Update Failed. Archived question must be in folder."
       redirect_to questions_path
     else
-      flash[:warning] = "Oops Update Failed"
-      redirect_to questions_path
+      request = @question_api.update_question(params[:id], params[:body], params[:status], params[:question_folder_id])
+      if request.code == 200
+        flash[:success] = "Update Sucessful"
+        redirect_to questions_path
+      else
+        flash[:warning] = "Oops Update Failed"
+        redirect_to questions_path
+      end
     end
   end
 
   def edit
     @question = @question_api.find(params[:id])['data']['question']
+
+    @folders_api = Api::Pemilu::QuestionFolder.new
+    response = @folders_api.index(1, 1000)
+    @folders = response['data']['question_folders'].map{|x| [x['name'], x['id']]}
   end
 
   def destroy
