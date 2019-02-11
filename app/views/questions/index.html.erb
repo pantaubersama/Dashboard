@@ -31,6 +31,7 @@
               </thead>
               <tbody>
                 <% @questions.each_with_index do |question, index| %>
+<<<<<<< HEAD
                 <tr>
                   <td class="number bold">
                     <%= ((params[:page].present? ? params[:page].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %>
@@ -50,6 +51,27 @@
                   <td><%= question['like_count'] %></td>
                   <td><%= question['report_count'] %></td>
                   <td><%= Date.parse(question['created_at']) if question['created_at'].present? %></td>
+=======
+                  <tr>
+                    <td class="number bold">
+                      <%= ((params[:page].present? ? params[:page].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %>
+                    </td>
+                    <td class="name bold"><a href="<%= question_path(question['id']) %>">
+                    <%= image_tag question['user']['avatar']['thumbnail_square']['url'] if question['user']['avatar']['thumbnail_square']['url'].present?  %>
+                    <%= question['user']['full_name'] %>
+                      </a></td>
+                    <td><%= truncate(question['body'], :length => 40) %></td>
+                    <td class="image">
+                      <% if question['user']['verified'] %>
+                      <img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>"/>
+                      <% else %>
+                      <img src="<%= asset_pack_path("views/assets/images/ic_status_nonactive.png") %>"/>
+                      <% end %>
+                    </td>
+                    <td><%= question['like_count'] %></td>
+                    <td><%= question['report_count'] %></td>
+                    <td><%= Date.parse(question['created_at']) if question['created_at'].present? %></td>
+>>>>>>> 9a32bfd7931c3b0edfc91d261b5f5c80b9fcda50
 
                   <td>
                     <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
