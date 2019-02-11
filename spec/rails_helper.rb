@@ -84,19 +84,8 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.extend ControllerMacros, :type => :request
 
+  # set true test mode omniauth
   OmniAuth.config.test_mode = true
-  OmniAuth.config.mock_auth[:identitas] = OmniAuth::AuthHash.new({
-    :provider => 'identitas',
-    :uid => '123545',
-    :credentials => {
-      :expires => false,
-      :token => "1234567890"
-    },
-    :info => {
-      :email => "muhammadyusuf931@gmail.com",
-      :first_name => "M",
-      :last_name => "Yusuf",
-      :name => "M Yusuf"
-    }
-  })
+  # allowed access localhost
+  WebMock.disable_net_connect!(allow_localhost: true)
 end
