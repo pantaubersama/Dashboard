@@ -1,39 +1,36 @@
-<div class="d-flex main-wrapper">
+<div class="pb-wrapper">
   <%= render("components/sidebar") %>
-  <div class="main-wrapper">
-    <main class="main col-md-10 offset-md-2" role="main">
-      <header class="header" role="banner">
-        <div class="tabs">
-          <ul class="nav nav-pills">
-            <li class="active"><a href="<%= user_verifications_path %>" data-toggle="tab">Tertunda</a>
-            </li>
-            <li><a href="<%= accepted_user_verifications_path %>" >Diterima</a>
-            </li>
-            <li><a href="<%= rejected_user_verifications_path %>">Ditolak</a>
-            </li>
-          </ul>
+  <main class="main" role="main">
+    <header class="header" role="banner">
+      <div class="tabs">
+        <ul class="nav nav-pills">
+          <li class="active"><a href="<%= user_verifications_path %>" data-toggle="tab">Tertunda</a>
+          </li>
+          <li><a href="<%= accepted_user_verifications_path %>" >Diterima</a>
+          </li>
+          <li><a href="<%= rejected_user_verifications_path %>">Ditolak</a>
+          </li>
+        </ul>
+      </div>
+      <%= render("components/dropdown_profile") %>
+    </header>
+    <div class="tab-content clearfix">
+      <div class="main-content verification tab-pane active" id="tertunda">
+        <div class="top ">
+          <%= render("components/pagination", pagy: @pagy_users_requested) %>
+          <%= render('pages/users/verifications/modal_add_user') %>
         </div>
-        <%= render("components/dropdown_profile") %>
-      </header>
-      <div class="tab-content clearfix">
-        <div class="main-content verification tab-pane active" id="tertunda">
-          <div class="top ">
-            <%= render("components/pagination", pagy: @pagy_users_requested) %>
-            <%= render('pages/users/verifications/modal_add_user') %>
-          </div>
-          <div class="content">
-            <span class="display-desc">
-              <p>
-              </p>
-            </span>
-            <%= render('components/flash_message') %>
-            <%= render('pages/users/verifications/tables', users: @users_requested) %>
-            <%= render('pages/users/verifications/filter', path: user_verifications_path) %>
-
-    <%# </div> %>
-  <%# </div> %>
-</div>
-</main>
-</div>
+        <div class="content">
+          <span class="display-desc">
+            <p>
+            </p>
+          </span>
+          <%= render('components/flash_message') %>
+          <%= render('pages/users/verifications/tables', users: @users_requested) %>
+          <%= render('pages/users/verifications/filter', path: user_verifications_path) %>
+        </div>
+      </div>
+    </div>
+  </main>
 </div>
 <%= render("components/footer") %>

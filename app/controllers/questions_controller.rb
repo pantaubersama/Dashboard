@@ -5,12 +5,12 @@ class QuestionsController < ApplicationController
     request = @question_api.all(
       page= params[:page].present? ? params[:page] : 1,
       per_page=Pagy::VARS[:items],
-      q="*",
+      q=params[:q],
       o="and",
       m="word_start",
-      order_by="created_at",
+      order_by=params["sorting"],
       direction="desc",
-      filter_by="")
+      filter_by=params["filter"])
 
     @totalPage = request['data']['meta']['pages']['total']
     @totalData = (@totalPage*Pagy::VARS[:items])
@@ -37,6 +37,21 @@ class QuestionsController < ApplicationController
 
     @total_questions = (@totalData - Pagy::VARS[:items]) + last_page
     @total_row_per_page = request['data']['questions'].size
+
+    init_verification = [
+      ['user_verified_true', 'Terverifikasi'],
+      ['user_verified_false', 'Belum Terverifikasi'],
+      ['user_verified_all', 'Semua'] 
+    ]
+    @verifications = []
+    init_verification.each { |record| @verifications << {'id' => record[0], 'name' => record[1]} }
+
+    init_sort = [
+      ['created_at', 'Tanggal Dibuat'],
+      ['cached_votes_up', 'Upvote Terbanyak']
+    ]
+    @sorts = []
+    init_sort.each { |record| @sorts << {'id' => record[0], 'name' => record[1]} }
   end
 
   def trash
@@ -111,18 +126,27 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    request = @question_api.update_question(params[:id], params[:body])
-    if request.code == 200
-      flash[:success] = "Update Sucessful"
+    if params[:status] == "archived" && params[:question_folder_id].empty?
+      flash[:warning] = "Oops Update Failed. Archived question must be in folder."
       redirect_to questions_path
     else
-      flash[:warning] = "Oops Update Failed"
-      redirect_to questions_path
+      request = @question_api.update_question(params[:id], params[:body], params[:status], params[:question_folder_id])
+      if request.code == 200
+        flash[:success] = "Update Sucessful"
+        redirect_to questions_path
+      else
+        flash[:warning] = "Oops Update Failed"
+        redirect_to questions_path
+      end
     end
   end
 
   def edit
     @question = @question_api.find(params[:id])['data']['question']
+
+    @folders_api = Api::Pemilu::QuestionFolder.new
+    response = @folders_api.index(1, 1000)
+    @folders = response['data']['question_folders'].map{|x| [x['name'], x['id']]}
   end
 
   def destroy

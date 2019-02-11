@@ -1,237 +1,231 @@
-<div class="d-flex main-wrapper">
+<div class="pb-wrapper">
   <%= render("components/sidebar") %>
-  <div class="main-wrapper">
-    <main class="main col-md-10 offset-md-2" role="main">
-      <header class="header" role="banner">
-        <%= render("components/dropdown_profile") %>
-      </header>
-      <div class="main-content">
-        <div class="top">
-          <% link = pagy_link_proc(@pagy) %>
-          <div class="pagination-wrap">
-            <ul class="pagination">
-              <% if @pagy.prev %>
-              <li class="page-item">
-                <%== link.call(@pagy.prev, pagy_t('pagy.nav.prev')) %>
-              </li>
-              <% else  %>
-              <li class="page-item disabled">
-                <%== link.call(@pagy.prev, pagy_t('pagy.nav.prev')) %>
-              </li>
-              <% end %>
-
-              <% @pagy.series.each do |item| %>
-              <% if item.is_a?(Integer) %>
-              <li id="testtest" class="page-item">
-                <%== link.call(item) %>
-              </li>
-              <% elsif item.is_a?(String) %>
-              <li class="page-item active" aria-current="page">
-                <%== link.call(item) %>
-              </li>
-              <% elsif item == :gap %>
-              <li class="page-item disabled gap"><a href="#" class="page-link">
-                  <%== pagy_t('pagy.nav.gap') %></a></li>
-              <% end %>
-              <% end %>
-
-              <% if @pagy.next %>
-              <li class="page-item">
-                <%== link.call(@pagy.next, pagy_t('pagy.nav.next')) %>
-              </li>
-              <% else %>
-              <li class="page-item disabled">
-                <%== link.call(@pagy.next, pagy_t('pagy.nav.next')) %>
-              </li>
-              <% end %>
-            </ul>
-          </div>
-          <div class="modal-wrap">
-            <a href="<%= grant_badge_badges_path %>">
-              <button type="button" class="btn btn-green">
-                Grant Badge <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
-              </button>
-            </a>
-            <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
-              Create Badge <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
-            </button>
-
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <!-- <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5> -->
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <h3>Tambah Badge</h3>
-                    <%= form_tag(badges_path, method: :post, multipart: true) do %>
-                    <div class="row">
-                      <div class="col-md-6 col-xs-12">
-                        <div class="form-wrap">
-                          <label>Image</label>
-                          <div class="form-group">
-                            <div class="form-group">
-                              <%= file_field_tag :image, id: 'file-input', accept: 'image/*'  %>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-wrap">
-                          <label>Nama Badge</label>
-                          <div class="form-group">
-                            <div class="form-group">
-                              <%= text_field_tag :name,'', class: 'form-control', placeholder: 'Nama Badge', require: 'require' %>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-wrap">
-                          <label>Deskripsi</label>
-                          <div class="form-group">
-                            <div class="form-group">
-                              <%= text_area_tag :description, '', class: 'form-control', placeholder: 'Description' %>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-xs-12">
-                        <div class="form-wrap">
-                          <label>Image Gray</label>
-                          <div class="form-group">
-                            <div class="form-group">
-                              <%= file_field_tag :image_gray, id: 'file-input', accept: 'image/*'  %>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-wrap">
-                          <label>Position</label>
-                          <div class="form-group">
-                            <div class="form-group">
-                              <%= text_field_tag :position,'', class: 'form-control', placeholder: 'Position', require: 'require' %>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-wrap">
-                            <label>Code</label>
-                            <div class="form-group">
-                              <div class="form-group">
-                                <%= text_field_tag :code, '', class: 'form-control', placeholder: 'Code', require:'require' %>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-wrap">
-                            <label>Namespace</label>
-                            <div class="form-group">
-                              <div class="form-group">
-                                <%= select_tag(:namespace, options_for_select([
-                                  ['badge_pantau_bersama', 'badge_pantau_bersama'],
-                                  ['badge_janji_politik', 'badge_janji_politik'],
-                                  ['badge_tanya', 'badge_tanya'],
-                                  ['badge_tanya_interaksi', 'badge_tanya_interaksi'],
-                                  ['badge_kuis', 'badge_kuis'],
-                                  ['badge_lapor', 'badge_lapor'],
-                                  ['badge_profile', 'badge_profile'],
-                                  ['badge_relawan', 'badge_relawan'],
-                                  ])) %>
-                              </div>
-                            </div>
-                          </div>
-                      </div>
-
-                    </div>
-
-                  </div>
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-solid-green">Tambah</button>
-                    <button type="button" class="btn btn-transparent" data-dismiss="modal">Cancel</button>
-                  </div>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="content">
-          <span class="display-desc">
-          </span>
-          <div class="col-md-12">
-            <% flash.each do |key, value| %>
-            <div class="alert alert-<%= key %>">
-              <%= value %>
-            </div>
+  <main class="main" role="main">
+    <header class="header" role="banner">
+      <%= render("components/dropdown_profile") %>
+    </header>
+    <div class="main-content">
+      <div class="top">
+        <% link = pagy_link_proc(@pagy) %>
+        <div class="pagination-wrap">
+          <ul class="pagination">
+            <% if @pagy.prev %>
+            <li class="page-item">
+              <%== link.call(@pagy.prev, pagy_t('pagy.nav.prev')) %>
+            </li>
+            <% else  %>
+            <li class="page-item disabled">
+              <%== link.call(@pagy.prev, pagy_t('pagy.nav.prev')) %>
+            </li>
             <% end %>
-          </div>
-          <div class="table">
-            <table>
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Nama</th>
-                  <th>Deskripsi</th>
-                  <th>Position</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @badges.each_with_index do |badge, index| %>
-                <tr>
-                  <td class="number bold">
-                    <%= ((params[:page].present? ? params[:page].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %>
-                  </td>
-                  <td class="name bold">
-                    <%= link_to badge_path(badge['id'])  do %>
-                      <%= image_tag badge['image']['thumbnail']['url'] unless badge['image']['thumbnail']['url'].nil? %>
-                      <%= badge['name'] %>
-                    <% end %>
-                  </td>
-                  <td> <%= badge['description'] %> </td>
-                  <td><%= badge['position'] %></td>
-                  <td>
-                    <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
-                      aria-expanded="false">
-                      <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="action">
-                      <%= link_to 'Lihat', badge_path(badge['id']), class: 'dropdown-item' %>
-                    </div>
-                  </td>
-                </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-          <div class="filter">
-            <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample">
-              <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
-              <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
-            </a>
-            <div class="collapse filter-form" id="filter">
-              <div class="card card-body">
-                <h4>Filter</h4>
-                <%= form_tag(badges_path, method: :get) do %>
-                <div class="form-wrap">
-                  <label>Nama Badge</label>
-                  <div class="form-group">
-                    <div class="form-group">
-                        <%= text_field_tag :nama, "", class: 'form-control', placeholder: 'Nama Badge' %>
-                    </div>
-                  </div>
-                </div>
-              <div class="button-wrapper">
-                <button type="submit" class="btn btn-solid-green" data-dismiss="modal">Done</button>
-                <button type="button" class="btn btn-transparent">Reset</button>
-              </div>
-              <% end %>
-              </div>
 
+            <% @pagy.series.each do |item| %>
+            <% if item.is_a?(Integer) %>
+            <li id="testtest" class="page-item">
+              <%== link.call(item) %>
+            </li>
+            <% elsif item.is_a?(String) %>
+            <li class="page-item active" aria-current="page">
+              <%== link.call(item) %>
+            </li>
+            <% elsif item == :gap %>
+            <li class="page-item disabled gap"><a href="#" class="page-link">
+                <%== pagy_t('pagy.nav.gap') %></a></li>
+            <% end %>
+            <% end %>
+
+            <% if @pagy.next %>
+            <li class="page-item">
+              <%== link.call(@pagy.next, pagy_t('pagy.nav.next')) %>
+            </li>
+            <% else %>
+            <li class="page-item disabled">
+              <%== link.call(@pagy.next, pagy_t('pagy.nav.next')) %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="modal-wrap">
+          <a href="<%= grant_badge_badges_path %>">
+            <button type="button" class="btn btn-green">
+              Grant Badge <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
+            </button>
+          </a>
+          <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
+            Create Badge <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
+          </button>
+
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <!-- <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5> -->
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <h3>Tambah Badge</h3>
+                  <%= form_tag(badges_path, method: :post, multipart: true) do %>
+                  <div class="row">
+                    <div class="col-md-6 col-xs-12">
+                      <div class="form-wrap">
+                        <label>Image</label>
+                        <div class="form-group">
+                          <div class="form-group">
+                            <%= file_field_tag :image, id: 'file-input', accept: 'image/*'  %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-wrap">
+                        <label>Nama Badge</label>
+                        <div class="form-group">
+                          <div class="form-group">
+                            <%= text_field_tag :name,'', class: 'form-control', placeholder: 'Nama Badge', require: 'require' %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-wrap">
+                        <label>Deskripsi</label>
+                        <div class="form-group">
+                          <div class="form-group">
+                            <%= text_area_tag :description, '', class: 'form-control', placeholder: 'Description' %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                      <div class="form-wrap">
+                        <label>Image Gray</label>
+                        <div class="form-group">
+                          <div class="form-group">
+                            <%= file_field_tag :image_gray, id: 'file-input', accept: 'image/*'  %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-wrap">
+                        <label>Position</label>
+                        <div class="form-group">
+                          <div class="form-group">
+                            <%= text_field_tag :position,'', class: 'form-control', placeholder: 'Position', require: 'require' %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-wrap">
+                          <label>Code</label>
+                          <div class="form-group">
+                            <div class="form-group">
+                              <%= text_field_tag :code, '', class: 'form-control', placeholder: 'Code', require:'require' %>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-wrap">
+                          <label>Namespace</label>
+                          <div class="form-group">
+                            <div class="form-group">
+                              <%= select_tag(:namespace, options_for_select([
+                                ['badge_pantau_bersama', 'badge_pantau_bersama'],
+                                ['badge_janji_politik', 'badge_janji_politik'],
+                                ['badge_tanya', 'badge_tanya'],
+                                ['badge_tanya_interaksi', 'badge_tanya_interaksi'],
+                                ['badge_kuis', 'badge_kuis'],
+                                ['badge_lapor', 'badge_lapor'],
+                                ['badge_profile', 'badge_profile'],
+                                ['badge_relawan', 'badge_relawan'],
+                                ])) %>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-solid-green">Tambah</button>
+                  <button type="button" class="btn btn-transparent" data-dismiss="modal">Cancel</button>
+                </div>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
       </div>
-  </div>
+      <div class="content">
+        <span class="display-desc">
+          <p></p>
+        </span>
+        <div class="col-md-12">
+          <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>">
+            <%= value %>
+          </div>
+          <% end %>
+        </div>
+        <div class="table">
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Deskripsi</th>
+                <th>Position</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @badges.each_with_index do |badge, index| %>
+              <tr>
+                <td class="number bold">
+                  <%= ((params[:page].present? ? params[:page].to_i : 1) - 1) * Pagy::VARS[:items] + index+1 %>
+                </td>
+                <td class="name bold">
+                  <%= link_to badge_path(badge['id'])  do %>
+                    <%= image_tag badge['image']['thumbnail']['url'] unless badge['image']['thumbnail']['url'].nil? %>
+                    <%= badge['name'] %>
+                  <% end %>
+                </td>
+                <td> <%= badge['description'] %> </td>
+                <td><%= badge['position'] %></td>
+                <td>
+                  <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="action">
+                    <%= link_to 'Lihat', badge_path(badge['id']), class: 'dropdown-item' %>
+                  </div>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="filter">
+          <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
+            <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
+          </a>
+          <div class="collapse filter-form" id="filter">
+            <div class="card card-body">
+              <h4>Filter</h4>
+              <%= form_tag(badges_path, method: :get) do %>
+              <div class="form-wrap">
+                <label>Nama Badge</label>
+                <div class="form-group">
+                  <%= text_field_tag :nama, "", class: 'form-control', placeholder: 'Nama Badge' %>
+                </div>
+              </div>
+              <div class="button-wrapper">
+                <button type="submit" class="btn btn-solid-green" data-dismiss="modal">Done</button>
+                <button type="button" class="btn btn-transparent">Reset</button>
+              </div>
+            <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
-</div>
 </div>
 <%= render("components/footer") %>

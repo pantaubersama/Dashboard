@@ -1,99 +1,97 @@
-<div class="d-flex main-wrapper">
+<div class="pb-wrapper">
   <%= render("components/sidebar") %>
-  <div class="main-wrapper">
-    <main class="main col-md-10 offset-md-2" role="main">
-      <header class="header" role="banner">
-        <%= render("components/dropdown_profile") %>
-      </header>
-      <%= form_tag(cluster_path(@detail['id']), method: :put, multipart: true) do  %>
-      <div class="tab-content clearfix">
-        <div class="main-content">
-          <div class="top">
-            <div class="btn-back">
-              <a href="<%= clusters_path %>">
-                <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
-              </a>
-            </div>
+  <main class="main" role="main">
+    <header class="header" role="banner">
+      <%= render("components/dropdown_profile") %>
+    </header>
+    <%= form_tag(cluster_path(@detail['id']), method: :put, multipart: true) do  %>
+    <div class="tab-content clearfix">
+      <div class="main-content">
+        <div class="top">
+          <div class="btn-back">
+            <a href="<%= clusters_path %>">
+              <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+            </a>
           </div>
-          <div class="content">
-            <span class="display-desc">
-              <p>
-              </p>
-            </span>
-            <div class="bg-white detail-profile">
-              <div class="card">
-                <span class="profile-image">
-                  <label>Gambar Cluster</label>
-                  <%= file_field_tag :image %>
-                </span>
-              </div>
+        </div>
+        <div class="content">
+          <span class="display-desc">
+            <p>
+            </p>
+          </span>
+          <div class="bg-white detail-profile">
+            <div class="card">
+              <span class="profile-image">
+                <label>Gambar Cluster</label>
+                <%= file_field_tag :image %>
+              </span>
+            </div>
 
-              <div class="card-form">
-                <div class="row">
-                  <div class="col-md-6">
+            <div class="card-form">
+              <div class="row">
+                <div class="col-md-6">
 
-                    <div class="form-wrap">
-                      <label>Nama Cluster</label>
+                  <div class="form-wrap">
+                    <label>Nama Cluster</label>
+                    <div class="form-group">
                       <div class="form-group">
-                        <div class="form-group">
-                          <input type="text" name="name" class="form-control" value="<%= @detail["name"] %>"
-                          placeholder="">
-                        </div>
+                        <input type="text" name="name" class="form-control" value="<%= @detail["name"] %>"
+                        placeholder="">
                       </div>
                     </div>
-
-                    <div class="form-wrap">
-                      <label>Deskripsi</label>
-                      <div class="form-group">
-                        <div class="form-group">
-                          <Textarea type="text" name="description" class="form-control"><%= @detail["description"] %></Textarea>
-                        </div>
-                      </div>
-                    </div>
-
                   </div>
-                  <div class="col-md-6">
-                    <div class="form-wrap">
-                      <label>Kategori</label>
+
+                  <div class="form-wrap">
+                    <label>Deskripsi</label>
+                    <div class="form-group">
                       <div class="form-group">
-                        <div class="form-group">
-                          <select class="form-control remote-select" name="category_id" data-placeholder="Category"
-                            data-url="<%= request.base_url + search_categories_clusters_path %>">
-                            <% @categories.each do |c| %>
-                              <option value="<%= c["id"] %>" <%= selected c["id"], params[:category_id] %> >
-                                <%= c["name"] %>
-                              </option>
-                            <% end %>
-                          </select>
-                        </div>
+                        <Textarea type="text" name="description" class="form-control"><%= @detail["description"] %></Textarea>
                       </div>
                     </div>
-                    <div class="form-wrap">
-                      <label>Admin</label>
-                      <div class="form-group">
-                        <div class="form-group">
-                          <select class="form-control remote-select" name="requester_id"
-                            data-url="<%= request.base_url + search_users_for_admin_path %>">
-                            <% @user.each do |c| %>
-                              <option value="<%= c["id"] %>" <%= selected c["id"], @detail["requester"]["id"] %> >
-                                <%= c["full_name"] %>
-                              </option>
-                            <% end %>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    <%= hidden_field_tag :status, @detail["status"] %><br>
                   </div>
+
                 </div>
-                <button class="btn btn-solid-green" type="submit">Update</button>
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <label>Kategori</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <select class="form-control remote-select" name="category_id" data-placeholder="Category"
+                          data-url="<%= request.base_url + search_categories_clusters_path %>">
+                          <% @categories.each do |c| %>
+                            <option value="<%= c["id"] %>" <%= selected c["id"], params[:category_id] %> >
+                              <%= c["name"] %>
+                            </option>
+                          <% end %>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
+                    <label>Admin</label>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <select class="form-control remote-select" name="requester_id"
+                          data-url="<%= request.base_url + search_users_for_admin_path %>">
+                          <% @user.each do |c| %>
+                            <option value="<%= c["id"] %>" <%= selected c["id"], @detail["requester"]["id"] %> >
+                              <%= c["full_name"] %>
+                            </option>
+                          <% end %>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <%= hidden_field_tag :status, @detail["status"] %><br>
+                </div>
               </div>
+              <button class="btn btn-solid-green" type="submit">Update</button>
             </div>
           </div>
         </div>
       </div>
-      <% end %>
-    </main>
-  </div>
+    </div>
+    <% end %>
+  </main>
 </div>
 <%= render("components/footer") %>

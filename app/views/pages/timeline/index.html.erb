@@ -1,49 +1,48 @@
-<div class="d-flex main-wrapper">
+<div class="pb-wrapper">
   <%= render("components/sidebar") %>
-  <div class="main-wrapper">
-    <main class="main col-md-10 offset-md-2" role="main">
-      <%= render("components/header") %>
-      <div class="tab-content clearfix">
-        <div class="main-content tab-pane active" id="all">
-          <div class="top ">
-            <div class="pagination-wrap">
-              <ul class="pagination">
-                <li class="page-item">
-                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><img
-                    src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" alt="Previous"></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active" aria-current="page">
-                  <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#"><img src="<%= asset_pack_path("views/assets/images/ic_arrow_right.svg") %>"
-                                                     alt="Next"></a>
-                </li>
-              </ul>
-            </div>
+  <main class="main" role="main">
+    <%= render("components/header") %>
+    <div class="tab-content clearfix">
+      <div class="main-content tab-pane active" id="all">
+        <div class="top ">
+          <div class="pagination-wrap">
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><img
+                  src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" alt="Previous"></a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item active" aria-current="page">
+                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#"><img src="<%= asset_pack_path("views/assets/images/ic_arrow_right.svg") %>"
+                                                   alt="Next"></a>
+              </li>
+            </ul>
           </div>
-          <div class="content">
-                        <span class="display-desc">
-                          <p>
-                              Displaying Content 1 - 30 of <%= @total_records %> in total
-                          </p>
-                        </span>
-            <div class="table">
-              <table>
-                <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Nama</th>
-                  <th>Judul</th>
-                  <th>Cluster</th>
-                  <th>Create At</th>
-                  <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <% @janji_politiks.each_with_index do |item, index| %>
+        </div>
+        <div class="content">
+          <span class="display-desc">
+            <p>
+                Displaying Content 1 - 30 of <%= @total_records %> in total
+            </p>
+          </span>
+          <div class="table">
+            <table>
+              <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Judul</th>
+                <th>Cluster</th>
+                <th>Create At</th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @janji_politiks.each_with_index do |item, index| %>
                 <tr>
                   <td class="number bold"><%= index += 1 %></td>
                   <td class="name bold"><a href="detail-janji-politik.html"> <img src="<%= item["creator"]["avatar"]["thumbnail"]["url"] %>"><%= item["creator"]["full_name"] %></a>
@@ -105,181 +104,36 @@
                     </div>
                   </td>
                   <% end %>
-                </tbody>
-              </table>
-            </div>
-            <div class="filter">
-              <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
-                 aria-controls="collapseExample">
-                <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
-                <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
-              </a>
-              <div class="collapse filter-form">
-                <div class="card card-body">
-                  <h4>Filter</h4>
-                  <div class="form-wrap">
-                    <label>Status</label>
-                    <div class="form-group">
-                      <select class="form-control">
-                        <option>Terverifikasi</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="form-wrap">
-                    <label>User</label>
-                    <div class="form-group">
-                      <div class="form-group">
-                        <input type="nama" class="form-control" placeholder="Nama">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-wrap">
-                  <label>Email</label>
-                  <div class="form-group">
-                    <div class="form-group">
-                      <input type="email" class="form-control" placeholder="luna@gmail.com">
-                    </div>
-                  </div>
-                </div>
-                <div class="form-wrap">
-                  <label>Cluster</label>
-                  <div class="form-group">
-                    <div class="form-group">
-                      <input type="cluster" class="form-control" placeholder="Nama Cluster">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="main-content tab-pane" id="trash">
-          <div class="top ">
-            <div class="pagination-wrap">
-              <ul class="pagination">
-                <li class="page-item">
-                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><img
-                    src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" alt="Previous"></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active" aria-current="page">
-                  <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#"><img src="<%= asset_pack_path("views/assets/images/ic_arrow_right.svg") %>"
-                                                     alt="Next"></a>
-                </li>
-              </ul>
-            </div>
-            <div class="modal-wrap">
-              <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
-                Create Username <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
-              </button>
-
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                   aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <!-- <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5> -->
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <h3>Tambah Admin</h3>
-                      <div class="form-wrap">
-                        <label>User</label>
-                        <div class="form-group">
-                          <div class="form-group">
-                            <input type="Email" class="form-control"
-                                   placeholder="adellapratitas7@gmail.com">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-solid-green" data-dismiss="modal">
-                        Tambah
-                      </button>
-                      <button type="button" class="btn btn-transparent">Cancel</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="content">
-                                <span class="display-desc">
-                                  <p>
-                                      Displaying Content 1 - 30 of 500 in total
-                                  </p>
-                                </span>
-            <div class="table">
-              <table>
-                <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Team</th>
-                  <th>Username Twitter</th>
-                  <th>Isi</th>
-                  <th></th>
                 </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td class="number bold">1</td>
-                  <td class="name bold"><a href="detail-user.html">Jokowi - Makruf</a></td>
-                  <td>@jokowi2019</td>
-                  <td>Anak-anak muda dari dunia industri kreatif di Banda Aceh.</td>
-                  <td>
-                    <button class="dropdown-toggle" type="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                      <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="action">
-                      <a class="dropdown-item" href="#">Lihat</a>
-                      <a class="dropdown-item" href="#">Terima</a>
-                    </div>
-                  </td>
-
-                </tbody>
-              </table>
-            </div>
-            <div class="filter">
-              <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
-                 aria-controls="collapseExample">
-                <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
-                <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
-              </a>
-              <div class="collapse filter-form">
-                <div class="card card-body">
-                  <h4>Filter</h4>
-                  <div class="form-wrap">
-                    <label>Status</label>
-                    <div class="form-group">
-                      <select class="form-control">
-                        <option>Terverifikasi</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
-                    </div>
+              </tbody>
+            </table>
+          </div>
+          <div class="filter">
+            <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
+               aria-controls="collapseExample">
+              <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
+              <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
+            </a>
+            <div class="collapse filter-form">
+              <div class="card card-body">
+                <h4>Filter</h4>
+                <div class="form-wrap">
+                  <label>Status</label>
+                  <div class="form-group">
+                    <select class="form-control">
+                      <option>Terverifikasi</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
                   </div>
-                  <div class="form-wrap">
-                    <label>User</label>
+                </div>
+                <div class="form-wrap">
+                  <label>User</label>
+                  <div class="form-group">
                     <div class="form-group">
-                      <div class="form-group">
-                        <input type="nama" class="form-control" placeholder="Nama">
-                      </div>
+                      <input type="nama" class="form-control" placeholder="Nama">
                     </div>
                   </div>
                 </div>
@@ -304,8 +158,153 @@
           </div>
         </div>
       </div>
-    </main>
-  </div>
+
+      <div class="main-content tab-pane" id="trash">
+        <div class="top ">
+          <div class="pagination-wrap">
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><img
+                  src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>" alt="Previous"></a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item active" aria-current="page">
+                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#"><img src="<%= asset_pack_path("views/assets/images/ic_arrow_right.svg") %>"
+                                                   alt="Next"></a>
+              </li>
+            </ul>
+          </div>
+          <div class="modal-wrap">
+            <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
+              Create Username <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
+            </button>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <!-- <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5> -->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <h3>Tambah Admin</h3>
+                    <div class="form-wrap">
+                      <label>User</label>
+                      <div class="form-group">
+                        <div class="form-group">
+                          <input type="Email" class="form-control"
+                                 placeholder="adellapratitas7@gmail.com">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-solid-green" data-dismiss="modal">
+                      Tambah
+                    </button>
+                    <button type="button" class="btn btn-transparent">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content">
+          <span class="display-desc">
+            <p>
+                Displaying Content 1 - 30 of 500 in total
+            </p>
+          </span>
+          <div class="table">
+            <table>
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Team</th>
+                  <th>Username Twitter</th>
+                  <th>Isi</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="number bold">1</td>
+                  <td class="name bold"><a href="detail-user.html">Jokowi - Makruf</a></td>
+                  <td>@jokowi2019</td>
+                  <td>Anak-anak muda dari dunia industri kreatif di Banda Aceh.</td>
+                  <td>
+                    <button class="dropdown-toggle" type="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                      <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="action">
+                      <a class="dropdown-item" href="#">Lihat</a>
+                      <a class="dropdown-item" href="#">Terima</a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="filter">
+            <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false"
+               aria-controls="collapseExample">
+              <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
+              <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
+            </a>
+            <div class="collapse filter-form">
+              <div class="card card-body">
+                <h4>Filter</h4>
+                <div class="form-wrap">
+                  <label>Status</label>
+                  <div class="form-group">
+                    <select class="form-control">
+                      <option>Terverifikasi</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-wrap">
+                  <label>User</label>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <input type="nama" class="form-control" placeholder="Nama">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-wrap">
+                  <label>Email</label>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <input type="email" class="form-control" placeholder="luna@gmail.com">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-wrap">
+                  <label>Cluster</label>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <input type="cluster" class="form-control" placeholder="Nama Cluster">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </div>
 <%= render("components/footer") %>
 

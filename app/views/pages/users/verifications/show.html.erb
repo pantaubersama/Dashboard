@@ -1,103 +1,101 @@
-<div class="d-flex main-wrapper">
+<div class="pb-wrapper">
   <%= render("components/sidebar") %>
-  <div class="main-wrapper">
-    <main class="main col-md-10 offset-md-2" role="main">
-      <header class="header" role="banner">
-        <%= render("components/dropdown_profile") %>
-      </header>
-      <div class="main-content">
-        <div class="top">
-          <div class="btn-back">
-            <%= link_to user_verifications_path do %>
-            <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
-            <% end %>
-          </div>
+  <main class="main" role="main">
+    <header class="header" role="banner">
+      <%= render("components/dropdown_profile") %>
+    </header>
+    <div class="main-content">
+      <div class="top">
+        <div class="btn-back">
+          <%= link_to user_verifications_path do %>
+          <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+          <% end %>
         </div>
-        <div class="content">
-          <span class="display-desc">
-            <p>
-            </p>
-          </span>
-          <div class="bg-white detail-profile">
-            <div class="card">
-              <span class="profile-image">
-              </span>
-              <div class="right-desc">
-                <% if @verification['status'] == 'requested' %>
-                  <%= link_to reject_verification_user_verifications_path(@verification['user']['id'])  do %>
-                  <button class="btn btn-solid-green" style="background-color:red">DITOLAK</button>
-                  <% end %>
-                  <%= link_to approve_verification_user_verifications_path(@verification['user']['id']) do  %>
-                  <button class="btn btn-solid-green">DITERIMA</button>
-                  <% end %>
+      </div>
+      <div class="content">
+        <span class="display-desc">
+          <p>
+          </p>
+        </span>
+        <div class="bg-white detail-profile">
+          <div class="card">
+            <span class="profile-image">
+            </span>
+            <div class="right-desc">
+              <% if @verification['status'] == 'requested' %>
+                <%= link_to reject_verification_user_verifications_path(@verification['user']['id'])  do %>
+                <button class="btn btn-solid-green" style="background-color:red">DITOLAK</button>
                 <% end %>
-              </div>
+                <%= link_to approve_verification_user_verifications_path(@verification['user']['id']) do  %>
+                <button class="btn btn-solid-green">DITERIMA</button>
+                <% end %>
+              <% end %>
             </div>
+          </div>
 
-            <div class="card-form">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-wrap">
-                    <label>Email</label>
+          <div class="card-form">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-wrap">
+                  <label>Email</label>
+                  <div class="form-group">
                     <div class="form-group">
-                      <div class="form-group">
-                        <input type="Email" class="form-control" placeholder="Email" value="<%= @verification['user']['email']%>">
-                      </div>
+                      <input type="Email" class="form-control" placeholder="Email" value="<%= @verification['user']['email']%>">
                     </div>
                   </div>
+                </div>
 
-                  <div class="form-wrap">
-                    <label>Foto Wajah Beserta KTP</label>
-                    <div class="form-group">
-                      <%= image_tag @verification['ktp_selfie']['thumbnail']['url'] unless @verification['ktp_selfie']['thumbnail']['url'].nil? %>
-                    </div>
+                <div class="form-wrap">
+                  <label>Foto Wajah Beserta KTP</label>
+                  <div class="form-group">
+                    <%= image_tag @verification['ktp_selfie']['thumbnail']['url'] unless @verification['ktp_selfie']['thumbnail']['url'].nil? %>
                   </div>
+                </div>
 
-                  <div class="row">
-                    <div class="col-sm-6 col-xs-12">
-                      <div class="form-wrap">
-                        <label>KTP</label>
-                        <div class="modal-wrap">
-                          <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
-                            <%= image_tag @verification['ktp_photo']['thumbnail']['url'] unless @verification['ktp_photo']['thumbnail']['url'].nil? %>
-                          </button>
+                <div class="row">
+                  <div class="col-sm-6 col-xs-12">
+                    <div class="form-wrap">
+                      <label>KTP</label>
+                      <div class="modal-wrap">
+                        <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
+                          <%= image_tag @verification['ktp_photo']['thumbnail']['url'] unless @verification['ktp_photo']['thumbnail']['url'].nil? %>
+                        </button>
 
-                          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                  <%= image_tag @verification['ktp_photo']['thumbnail']['url'] unless @verification['ktp_photo']['thumbnail']['url'].nil? %>
-                                </div>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                          aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <%= image_tag @verification['ktp_photo']['thumbnail']['url'] unless @verification['ktp_photo']['thumbnail']['url'].nil? %>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
+                  </div>
 
-                    <div class="col-sm-6 col-xs-12">
-                      <div class="form-wrap">
-                        <label>Tanda Tangan</label>
-                        <div class="form-group">
-                          <%= image_tag @verification['signature']['thumbnail']['url'] unless @verification['signature']['thumbnail']['url'].nil?  %>
-                        </div>
+                  <div class="col-sm-6 col-xs-12">
+                    <div class="form-wrap">
+                      <label>Tanda Tangan</label>
+                      <div class="form-group">
+                        <%= image_tag @verification['signature']['thumbnail']['url'] unless @verification['signature']['thumbnail']['url'].nil?  %>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-wrap">
-                    <label>No KTP</label>
+              </div>
+              <div class="col-md-6">
+                <div class="form-wrap">
+                  <label>No KTP</label>
+                  <div class="form-group">
                     <div class="form-group">
-                      <div class="form-group">
-                        <input type="Kategori" class="form-control" placeholder="No KTP" value="<%= @verification['ktp_number'] %>">
-                      </div>
+                      <input type="Kategori" class="form-control" placeholder="No KTP" value="<%= @verification['ktp_number'] %>">
                     </div>
                   </div>
                 </div>
@@ -105,7 +103,8 @@
             </div>
           </div>
         </div>
-    </main>
-  </div>
+      </div>
+    </div>
+  </main>
 </div>
 <%= render("components/footer") %>

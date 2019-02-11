@@ -1,6 +1,13 @@
 .sidebar {
-  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  min-height: 100vh;
+  min-width: 240px;
+  width: 240px;
   padding: 0;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   z-index: 9;
+  overflow-y: auto;
 }
