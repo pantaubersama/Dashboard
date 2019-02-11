@@ -53,8 +53,8 @@
         <a href="#" data-toggle="collapse" data-target="#collapseMenggali">
           <img src="<%= asset_pack_path("views/assets/images/ic_book-black.svg") %>"> Menggali
         </a>
-        <div class="collapse <%= active_menu_parent ["questions", "quiz"] %> sub-nav" id="collapseMenggali">
-          <%= link_to 'Tanya Kandidat', questions_path, class: "sub-nav-item nav-link #{active_menu 'questions'}" %>
+        <div class="collapse <%= active_menu_parent ["questions", "quiz", "folders"] %> sub-nav" id="collapseMenggali">
+          <%= link_to 'Tanya Kandidat', questions_path, class: "sub-nav-item nav-link #{active_menu ['questions', 'folders']}" %>
           <%= link_to 'Quiz', quiz_index_path, class: "sub-nav-item nav-link #{active_menu 'quiz'} " %>
         </div>
       </li>

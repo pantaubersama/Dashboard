@@ -53,7 +53,15 @@
                   <label>Status</label>
                   <div class="form-group">
                     <div class="form-group">
-                      <input type="Email" class="form-control" value="<%= @question['user']['verified'] ? 'VERIFIKASI' : 'BELUM VERIFIED'  %>">
+                      <input type="text" class="form-control" value="<%= @question['status']  %>">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-wrap">
+                  <label>Folder</label>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <input type="text" class="form-control" value="<%= @question['question_folder']['name'] if @question['question_folder_id'].present?  %>">
                     </div>
                   </div>
                 </div>

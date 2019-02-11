@@ -32,7 +32,7 @@ class Api::Pemilu::Questions < InitApiPemilu
     options = {
       headers: {Authorization: "#{RequestStore.store[:my_api_token]}"}
     }
-    self.class.get("/pendidikan_politik/v1/questions/#{id}", options)
+    self.class.get("/dashboard/v1/question_actions/#{id}", options)
   end
 
   def find_trash id
@@ -42,14 +42,16 @@ class Api::Pemilu::Questions < InitApiPemilu
     self.class.get("/dashboard/v1/question_actions/trash/#{id}", options)
   end
 
-  def update_question(id, body)
+  def update_question(id, body, status, question_folder_id)
     options = {
       headers: {
         Authorization: "#{RequestStore.store[:my_api_token]}"
       },
       query: {
         id: id, 
-        body: body
+        body: body,
+        status: status,
+        question_folder_id: question_folder_id
       }
     }
     self.class.put("/dashboard/v1/question_actions/#{id}", options)

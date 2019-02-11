@@ -33,16 +33,24 @@
 									<label for="">Nama</label>
 									<%= text_field_tag :name, @question['user']['full_name'], class: 'form-control', disabled: true %>
 								</div>
-								<br>
-								<div class="form-wrap">
-									<label for="">Status</label>
-									<%= text_field_tag :name, @question['user']['verified'] ? 'VERIFIKASI' : 'BELUM VERIFIED', class: 'form-control', disabled: true %>
-								</div>
-								<br>
+                <br>
 								<div class="form-wrap">
 									<label for="">Pertanyaan</label>
 									<%= text_area_tag :body, @question['body'], class: 'form-control' %>
 								</div>
+                <br>
+                <div class="form-wrap">
+                  <label>Status</label>
+                  <%= select_tag(:status, options_for_select([
+                                  ['active', 'active'],
+                                  ['archived', 'archived'],
+                                  ], @question['status'])) %>
+                </div>
+                <div class="form-wrap">
+                <br>
+                  <label>Folder</label>
+                  <%= select_tag(:question_folder_id, options_for_select([["", nil]].concat(@folders), @question['question_folder_id'])) %>
+                </div>
 								<div class="form-wrap">
 									<br>
 									<button class="btn btn-solid-green" type="submit">Update</button>

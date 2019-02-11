@@ -1,7 +1,7 @@
 # README
 #### Dashboard module
 ##### Setup
-- `git clone git@git.extrainteger.com:pantau-group/API/dashboard.git`
+- `git clone git@github.com:pantaubersama/Dashboard.git`
 - setup ur database (postgresql)
 - create env variable files (.env.development , .env.test)
     - `.env.development`
