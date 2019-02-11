@@ -594,7 +594,7 @@ body {
                 .card {
                     padding: 20px 10px;
                     img {
-                        width: 24px;
+                        height: 24px;
                     }
                     h2 {
                       padding-top: 5px;
@@ -668,9 +668,12 @@ body {
         }
 
         .graphic{
+          margin: 20px 0;
             .card {
                 background: #fff;
                 padding: 20px;
+                margin-bottom: 30px;
+                border: 1px solid #ececec;
 
                 .card-body {
                     position: relative;
@@ -695,11 +698,12 @@ body {
                         margin: 0;
                     }
                     p {
-                        display: inline-block;
                         position: absolute;
+                        left: 0;
                         text-align: center;
                         width: 100%;
-                        left: 0;
+                        padding-right: 30px;
+                        font-size: 16px;
                     }
                 }
                 .filter {
@@ -707,9 +711,9 @@ body {
                     position: relative;
                     margin-bottom: 40px;
                     & > .btn {
-                        position: absolute;
-                        top: 100%;
-                        padding: 10px;
+                        padding: 10px 20px 10px 0;
+                        border-top: 1px solid #d1d1d1;
+                        border-bottom: 1px solid #d1d1d1;
                     }
                     .filter-form {
                         padding: 0;
@@ -718,8 +722,9 @@ body {
                         .card-body {
                             padding: 10px 0;
                             background: #f9f9f9;
+                            border: 0;
                             border-top: 1px solid #ececec;
-                            border-bottom: 1px solid #ececec;
+                            margin-bottom: 0;
                             h4 {
                                 padding: 0 10px;
                             }
@@ -740,6 +745,10 @@ body {
                                     }
                                 }
                             }
+                            .button-wrapper {
+                              width: 100%;
+                              margin-top: 0;
+                            }
                         }
                     }
                 }
@@ -752,23 +761,23 @@ body {
                     justify-content: center;
                     position: relative;
                     padding-left: 20px;
+                    border-left: 0;
                     img{
                         position: absolute;
                         &:last-child{
-                            margin-right: auto;
-                            position: relative;
+                          margin-right: auto;
+                          position: relative;
 
                         }
-
                         &:first-child{
-                            transform: rotate(-90deg);
+                          transform: rotate(90deg);
                         }
                     }
                 }
-                .collapsed{
+                .collapsed {
                     img{
                         &:first-child{
-                            transform: rotate(90deg);
+                          transform: rotate(-90deg);
                         }
                     }
                 }
@@ -1471,3 +1480,9 @@ input[type="radio"]:not(:checked) + label:before {
     }
   }
 // End Checkbox
+
+.pb-graph-container {
+  width: 80%;
+  height: 380px;
+  margin: 0 auto;
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="41px" height="46px" viewBox="0 0 41 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>ic-perhitungan-home</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-720.000000, -338.000000)">
+            <g id="ic-perhitungan-home" transform="translate(720.000000, 338.000000)">
+                <rect id="Rectangle-4" fill="#08BDA8" x="0" y="5" width="41" height="41" rx="3"></rect>
+                <rect id="Rectangle-5" fill="#08BDA8" x="7" y="0" width="5" height="7" rx="1"></rect>
+                <rect id="Rectangle-5-Copy" fill="#08BDA8" x="29" y="0" width="5" height="7" rx="1"></rect>
+                <rect id="Rectangle-6" fill="#FFFFFF" x="4" y="17" width="33" height="25"></rect>
+                <text id="" font-family="FontAwesome" font-size="25" font-weight="normal" fill="#08BDA8">
+                    <tspan x="8" y="38"></tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
