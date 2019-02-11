@@ -7,6 +7,8 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 require 'webmock/rspec'
+require 'devise'
+require_relative 'support/controller_macros'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -63,6 +65,9 @@ RSpec.configure do |config|
 
   # add `FactoryBot` methods
   config.include FactoryBot::Syntax::Methods
+  config.include AuthorizationRequestStubber, type: :request
+  config.include RequestStuber, type: :request
+  config.include LoginStubber, type: :request
 
   # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
   config.before(:suite) do
@@ -75,4 +80,23 @@ RSpec.configure do |config|
       FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads"])
     end
   end
+
+  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.extend ControllerMacros, :type => :request
+
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.mock_auth[:identitas] = OmniAuth::AuthHash.new({
+    :provider => 'identitas',
+    :uid => '123545',
+    :credentials => {
+      :expires => false,
+      :token => "1234567890"
+    },
+    :info => {
+      :email => "muhammadyusuf931@gmail.com",
+      :first_name => "M",
+      :last_name => "Yusuf",
+      :name => "M Yusuf"
+    }
+  })
 end
