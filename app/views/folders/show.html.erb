@@ -8,16 +8,21 @@
     <%= render "components/question/header", active: "terpilih" %>
     <div class="main-content janji-politik">
       <div class="top">
-        <div class="modal-wrap">
-          <%= render "edit" %>
-        </div>
         <div class="btn-back">
           <%= link_to folders_path do %>
           	<img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
           <% end %>
         </div>
+        <div class="modal-wrap">
+          <%= render "edit" %>
+        </div>
       </div>
       <div class="content">
+        <span class="display-desc">
+          <p>
+              <!-- Displaying Content 1 - 30 of 500 in total -->
+          </p>
+        </span>
         <div class="bg-white detail-profile">
           <div class="card-form">
             
@@ -47,53 +52,57 @@
             </div>
 
             <div class="row">
-              <div class="table">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>Nama</th>
-                      <th>Pertanyaan</th>
-                      <th>Status</th>
-                      <th>Create At</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  <% @questions.each_with_index do |question, index| %>
-                    <tr>
-                      <td class="number bold">
-                        <%= index + 1 %>
-                      </td>
-                      <td class="name bold"><a href="<%= question_path(question['id']) %>">
-                      <%= image_tag question['user']['avatar']['thumbnail_square']['url'] if question['user']['avatar']['thumbnail_square']['url'].present?  %>
-                      <%= question['user']['full_name'] %>
-                        </a></td>
-                      <td><%= truncate(question['body'], :length => 80) %></td>
-                      <td class="image">
-                        <% if question['user']['verified'] %>
-                        <img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>"/>
-                        <% else %>
-                        <img src="<%= asset_pack_path("views/assets/images/ic_status_nonactive.png") %>"/>
-                        <% end %>
-                      </td>
-                      <td><%= Date.parse(question['created_at']) if question['created_at'].present? %></td>
+              <div class="col-md-12">
+                <div class="table-responsive">
+                  <div class="table">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Nama</th>
+                          <th>Pertanyaan</th>
+                          <th>Status</th>
+                          <th>Create At</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <% @questions.each_with_index do |question, index| %>
+                        <tr>
+                          <td class="number bold">
+                            <%= index + 1 %>
+                          </td>
+                          <td class="name bold"><a href="<%= question_path(question['id']) %>">
+                          <%= image_tag question['user']['avatar']['thumbnail_square']['url'] if question['user']['avatar']['thumbnail_square']['url'].present?  %>
+                          <%= question['user']['full_name'] %>
+                            </a></td>
+                          <td><%= truncate(question['body'], :length => 80) %></td>
+                          <td class="image">
+                            <% if question['user']['verified'] %>
+                            <img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>"/>
+                            <% else %>
+                            <img src="<%= asset_pack_path("views/assets/images/ic_status_nonactive.png") %>"/>
+                            <% end %>
+                          </td>
+                          <td><%= Date.parse(question['created_at']) if question['created_at'].present? %></td>
 
-                      <td>
-                        <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
-                          aria-expanded="false">
-                          <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="action">
-                          <a class="dropdown-item" href="<%= question_path(question['id']) %>">Lihat</a>
-                          <a class="dropdown-item" href="<%= edit_question_path(question['id']) %>">Edit</a>
-                          <a class="dropdown-item" href="#">Buang</a>
-                        </div>
-                      </td>
-                    </tr>
-                    <% end %>
-                  </tbody>
-                </table>
+                          <td>
+                            <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                              aria-expanded="false">
+                              <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="action">
+                              <a class="dropdown-item" href="<%= question_path(question['id']) %>">Lihat</a>
+                              <a class="dropdown-item" href="<%= edit_question_path(question['id']) %>">Edit</a>
+                              <a class="dropdown-item" href="#">Buang</a>
+                            </div>
+                          </td>
+                        </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
 
