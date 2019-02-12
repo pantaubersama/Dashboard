@@ -29,14 +29,22 @@
           <div class="card-form">
             <div class="row">
               <div class="form-wrap">
-                <label for="">Nama</label>
-                <%= text_field_tag :name, @party['name'], class: 'form-control', placeholder: 'Nama Partai' %>
+                <div class="form-group">
+                  <label for="">Nama</label>
+                  <%= text_field_tag :name, @party['name'], class: 'form-control', placeholder: 'Nama Partai' %>
+                </div>
               </div>
               <div class="form-wrap">
-                <label>Image</label>
-                <%= file_field_tag :image  %>
+                <div class="form-group">
+                  <label>Image</label>
+                  <%= file_field_tag :image, class: "form-control" %>
+                </div>
               </div>
-              <button class="btn btn-solid-green" type="submit"> Update</button>
+              <div class="form-wrap">
+                <div class="form-group">
+                  <button class="btn btn-solid-green" type="submit"> Update</button>
+                </div>
+              </div>
             </div>
           </div>
           <% end %>

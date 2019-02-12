@@ -23,22 +23,27 @@
           <div class="card">
             <div class="card-form">
               <%= form_tag(grant_badge_badges_path, method: :post) do %>
-                <div class="form-wrap">
-                  <label for="">Email</label>
-                  <select class="form-control remote-select" name="id" data-url="<%= request.base_url + search_users_for_admin_path %>">
-                    <option></option>
-                  </select>
+                <div class="form-group">
+                  <div class="form-wrap">
+                    <label for="">Email</label>
+                    <select class="form-control remote-select" name="id" data-url="<%= request.base_url + search_users_for_admin_path %>">
+                      <option></option>
+                    </select>
+                  </div>
                 </div>
-                <div class="form-wrap">
-                  <label for="">Badge</label>
-                  <select name="badge_id"  class="form-control">
-                    <% @badges.each do |badge| %>
-                      <option value="<%= badge['id']%>"><%= badge['name'] %></option>
-                    <% end %>
-                  </select>
+                <div class="form-group">
+                  <div class="form-wrap">
+                    <label for="">Badge</label>
+                    <select name="badge_id"  class="form-control">
+                      <% @badges.each do |badge| %>
+                        <option value="<%= badge['id']%>"><%= badge['name'] %></option>
+                      <% end %>
+                    </select>
+                  </div>
                 </div>
-                <br><br>
-                <button class="btn btn-solid-green" type="submit"> Grant</button>
+                <div class="form-group">
+                  <button class="btn btn-solid-green" type="submit"> Grant</button>
+                </div>
               <% end %>
             </div>
           </div>
