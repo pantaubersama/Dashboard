@@ -39,7 +39,7 @@
                   <%= image_tag question['user']['avatar']['thumbnail_square']['url'] if question['user']['avatar']['thumbnail_square']['url'].present?  %>
                   <%= question['user']['full_name'] %>
                     </a></td>
-                  <td><%= truncate(question['body'], :length => 60) %></td>
+                  <td><%= truncate(question['body'], :length => 35) %></td>
                   <td class="image">
                     <% if question['user']['verified'] %>
                     <img src="<%= asset_pack_path("views/assets/images/ic_status.svg") %>"/>
