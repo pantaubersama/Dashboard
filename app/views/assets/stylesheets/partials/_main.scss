@@ -162,6 +162,9 @@ body {
             height: 24px;
             margin-right: 20px;
             border-radius: 100%;
+            @media (max-width: 1100px) {
+              margin-right: 10px;
+            }
           }
         }
         .icon {
@@ -395,6 +398,12 @@ body {
               input {
                 height: 51px;
                 border-color: #6ccfc0;
+              }
+              input[type="file"] {
+                width: 100%;
+                padding: 6px 12px;
+                padding-top: 12px;
+                border: 1px solid #6ccfc0;
               }
               textarea {
                 height: 110px;
@@ -900,16 +909,24 @@ body {
             margin-bottom: 10px;
             display: block;
             text-align: left;
-            padding-bottom: 10px;
             font-size: 14px;
             font-weight: 700;
           }
-          input,textarea {
+          input, textarea, .form-control {
             min-height: 48px;
             background: #f9f9f9;
             border-color: #ececec;
             box-shadow: none;
             resize: vertical;
+          }
+          textarea.form-control {
+            min-height: 120px;
+          }
+          select.form-control {
+            height: 48px;
+          }
+          input[type="file"].form-control {
+            padding-top: 12px;
           }
           textarea {
             min-height: 100px;
@@ -917,6 +934,27 @@ body {
         }
       }
     }
+  }
+  .form-wrap .select2-selection {
+    height: 48px;
+    line-height: 48px;
+    padding: 0 12px;
+    background: #f9f9f9;
+    border-color: #ececec;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .modal-wrap .select2-selection {
+    height: 51px;
+    background: #fff;
+    border-color: #6ccfc0;
+  }
+  .filter .select2-selection {
+    background: #fff;
+    height: 34px;
+    line-height: normal;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
   }
 }
 .bg-white{
