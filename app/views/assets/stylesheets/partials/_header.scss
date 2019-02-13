@@ -44,46 +44,42 @@
       min-width: 100px;
       right: 0;
       left: auto;
-        a.dropdown-item {
-          display: block;
-          padding: 10px;
-          color: black;
-          font-weight: 500;
-        }
+      a.dropdown-item {
+        display: block;
+        padding: 10px;
+        color: black;
+        font-weight: 500;
+      }
     }
   }
-
-
   .tabs {
     margin: -12px -30px;
-    .nav{
-            li {
-                a {
-                    color: #cbcbcb;
-                    font-size: 14px;
-                    font-weight: 400;
-                    border-radius: 0;
-                    padding: 14px 30px;
-                    border-bottom: 5px solid transparent;
-                    &:hover{
-                        background: transparent;
-                        color: #fff;
-                        border-bottom: 5px solid #67010d;
-                        color: #fff;
-                    }
-                }
-            }
-
-            .active{
-              a {
-                  background: transparent;
-                  border-bottom: 5px solid #67010d;
-                  color: #fff;
-              }
+    .nav {
+      li {
+        a {
+          color: #cbcbcb;
+          font-size: 14px;
+          font-weight: 400;
+          border-radius: 0;
+          padding: 14px 30px;
+          border-bottom: 5px solid transparent;
+          &:hover{
+            background: transparent;
+            color: #fff;
+            border-bottom: 5px solid #67010d;
+            color: #fff;
           }
+        }
+      }
+      .active{
+        a {
+          background: transparent;
+          border-bottom: 5px solid #67010d;
+          color: #fff;
+        }
+      }
     }
-}
-
+  }
 }
 .logo {
   padding: 30px 20px;
