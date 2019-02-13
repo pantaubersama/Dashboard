@@ -1,183 +1,172 @@
-<div class="d-flex main-wrapper">
+<div class="pb-wrapper">
   <%= render("components/sidebar") %>
-  <div class="main-wrapper">
-    <main class="main col-md-10 offset-md-2" role="main">
-      <header class="header" role="banner">
-        <%= render("components/dropdown_profile") %>
-      </header>
-      <div class="main-content">
-        <div class="top">
-          <% link = pagy_link_proc(@pagy_admins) %>
-          <div class="pagination-wrap">
-            <ul class="pagination">
-              <% if @pagy_admins.prev %>
-              <li class="page-item">
-                <%== link.call(@pagy_admins.prev, pagy_t('pagy.nav.prev')) %>
-              </li>
-              <% else  %>
-              <li class="page-item disabled">
-                <%== link.call(@pagy_admins.prev, pagy_t('pagy.nav.prev')) %>
-              </li>
-              <% end %>
+  <main class="main" role="main">
+    <header class="header" role="banner">
+      <%= render("components/dropdown_profile") %>
+    </header>
+    <div class="main-content">
+      <div class="top">
+        <% link = pagy_link_proc(@pagy_admins) %>
+        <div class="pagination-wrap">
+          <ul class="pagination">
+            <% if @pagy_admins.prev %>
+            <li class="page-item">
+              <%== link.call(@pagy_admins.prev, pagy_t('pagy.nav.prev')) %>
+            </li>
+            <% else  %>
+            <li class="page-item disabled">
+              <%== link.call(@pagy_admins.prev, pagy_t('pagy.nav.prev')) %>
+            </li>
+            <% end %>
 
-              <% @pagy_admins.series.each do |item| %>
-              <% if item.is_a?(Integer) %>
-              <li id="testtest" class="page-item">
-                <%== link.call(item) %>
-              </li>
-              <% elsif item.is_a?(String) %>
-              <li class="page-item active" aria-current="page">
-                <%== link.call(item) %>
-              </li>
-              <% elsif item == :gap %>
-              <li class="page-item disabled gap"><a href="#" class="page-link">
-                  <%== pagy_t('pagy.nav.gap') %></a></li>
-              <% end %>
-              <% end %>
+            <% @pagy_admins.series.each do |item| %>
+            <% if item.is_a?(Integer) %>
+            <li id="testtest" class="page-item">
+              <%== link.call(item) %>
+            </li>
+            <% elsif item.is_a?(String) %>
+            <li class="page-item active" aria-current="page">
+              <%== link.call(item) %>
+            </li>
+            <% elsif item == :gap %>
+            <li class="page-item disabled gap"><a href="#" class="page-link">
+                <%== pagy_t('pagy.nav.gap') %></a></li>
+            <% end %>
+            <% end %>
 
-              <% if @pagy_admins.next %>
-              <li class="page-item">
-                <%== link.call(@pagy_admins.next, pagy_t('pagy.nav.next')) %>
-              </li>
-              <% else %>
-              <li class="page-item disabled">
-                <%== link.call(@pagy_admins.next, pagy_t('pagy.nav.next')) %>
-              </li>
-              <% end %>
-            </ul>
-          </div>
-          <div class="modal-wrap">
-            <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
-              Create Admin <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
-            </button>
+            <% if @pagy_admins.next %>
+            <li class="page-item">
+              <%== link.call(@pagy_admins.next, pagy_t('pagy.nav.next')) %>
+            </li>
+            <% else %>
+            <li class="page-item disabled">
+              <%== link.call(@pagy_admins.next, pagy_t('pagy.nav.next')) %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="modal-wrap">
+          <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
+            Create Admin <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
+          </button>
 
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <h3>Tambah Admin</h3>
-                    <div class="form-wrap">
-                      <%= form_tag(make_admin_path, method: "post") do %>
-                      <label>User</label>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <h3>Tambah Admin</h3>
+                  <div class="form-wrap">
+                    <%= form_tag(make_admin_path, method: "post") do %>
+                    <label>User</label>
+                    <div class="form-group">
                       <div class="form-group">
-                        <div class="form-group">
-                          <select class="form-control remote-select" name="id" data-url="<%= request.base_url + search_users_for_admin_path %>">
-                            <option></option>
-                          </select>
-                        </div>
+                        <select class="form-control remote-select" name="id" data-url="<%= request.base_url + search_users_for_admin_path %>">
+                          <option></option>
+                        </select>
                       </div>
                     </div>
                   </div>
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-solid-green">Tambah
-                    </button>
-                    <button type="button" class="btn btn-transparent" data-dismiss="modal">Cancel</button>
-                  </div>
-                  <% end %>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="content">
-          <span class="display-desc">
-            <p>
-              Displaying Content 1 -
-              <%= @item_admins.count %> of
-              <%= @admins.count %> in total
-            </p>
-          </span>
-          <%= render ('components/flash_message') %>
-          <div class="table">
-            <table>
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Nama</th>
-                  <th>Email</th>
-                  <th>Create At</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-
-                <% @admins.each_with_index do |admin, index| %>
-                <tr>
-                  <td class="number bold">
-                    <%= index + 1 %>
-                  </td>
-                  <td class="name bold">
-                    <%= image_tag admin.avatar.thumbnail_square.url unless admin.avatar.thumbnail_square.url.nil? %>
-                    <%= admin.full_name %>
-                  </td>
-                  <td>
-                    <%= admin.email %>
-                  </td>
-                  <td>
-                    <%= admin.created_at.strftime("%d-%m-%Y %H:%M:%S") %>
-                  </td>
-                  <td>
-                    <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
-                      aria-expanded="false">
-                      <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="action">
-                      <%= link_to 'Delete', delete_admin_path(admin), class: 'dropdown-item' %>
-                    </div>
-                  </td>
-                </tr>
-                <% end %>
-
-
-              </tbody>
-            </table>
-          </div>
-          <div class="filter">
-            <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample">
-              <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
-              <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
-            </a>
-            <div id="filter" class="collapse filter-form">
-              <div class="card card-body">
-                <h4>Filter</h4>
-                <div class="form-wrap">
-                  <%= form_tag(users_list_admin_path, method: :get) do %>
-                  <label>Nama Admin</label>
-                  <div class="form-group">
-                    <div class="form-group">
-                      <%= text_field_tag :nama, params[:nama].present? ? params[:nama] : '', class: 'form-control', placeholder: 'Nama' %>
-                    </div>
-                  </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-solid-green">Tambah
+                  </button>
+                  <button type="button" class="btn btn-transparent" data-dismiss="modal">Cancel</button>
                 </div>
-              </div>
-              <div class="form-wrap">
-                <label>Email</label>
-                <div class="form-group">
-                  <div class="form-group">
-                    <%= text_field_tag :email, params[:email].present? ? params[:email] : '', class: 'form-control', placeholder: 'yusuf@extrainteger.com' %>
-                  </div>
-                </div>
-              </div>
-              <div class="button-wrapper">
-                <button type="submit" class="btn btn-solid-green" data-dismiss="modal">Done</button>
-                <%= link_to users_list_admin_path do %>
-                <button type="button" class="btn btn-transparent reset">Reset</button>
                 <% end %>
               </div>
-              <% end %>
-
             </div>
           </div>
         </div>
       </div>
-    </main>
-  </div>
+      <div class="content">
+        <span class="display-desc">
+          <p>
+            Displaying Content 1 -
+            <%= @item_admins.count %> of
+            <%= @admins.count %> in total
+          </p>
+        </span>
+        <%= render ('components/flash_message') %>
+        <div class="table">
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Create At</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @admins.each_with_index do |admin, index| %>
+              <tr>
+                <td class="number bold">
+                  <%= index + 1 %>
+                </td>
+                <td class="name bold">
+                  <%= image_tag admin.avatar.thumbnail_square.url unless admin.avatar.thumbnail_square.url.nil? %>
+                  <%= admin.full_name %>
+                </td>
+                <td>
+                  <%= admin.email %>
+                </td>
+                <td>
+                  <%= admin.created_at.strftime("%d-%m-%Y %H:%M:%S") %>
+                </td>
+                <td>
+                  <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <img src="<%= asset_pack_path("views/assets/images/ic_action.svg") %>">
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="action">
+                    <%= link_to 'Delete', delete_admin_path(admin), class: 'dropdown-item' %>
+                  </div>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="filter">
+          <a class="btn collapsed" data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
+            <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
+          </a>
+          <div id="filter" class="collapse filter-form">
+            <div class="card card-body">
+              <h4>Filter</h4>
+              <div class="form-wrap">
+                <%= form_tag(users_list_admin_path, method: :get) do %>
+                <label>Nama Admin</label>
+                <div class="form-group">
+                  <%= text_field_tag :nama, params[:nama].present? ? params[:nama] : '', class: 'form-control', placeholder: 'Nama' %>
+                </div>
+              </div>
+            </div>
+            <div class="form-wrap">
+              <label>Email</label>
+              <div class="form-group">
+                <%= text_field_tag :email, params[:email].present? ? params[:email] : '', class: 'form-control', placeholder: 'yusuf@extrainteger.com' %>
+              </div>
+            </div>
+            <div class="button-wrapper">
+              <button type="submit" class="btn btn-solid-green" data-dismiss="modal">Done</button>
+              <%= link_to users_list_admin_path do %>
+              <button type="button" class="btn btn-transparent reset">Reset</button>
+              <% end %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </div>
 <%= render("components/footer") %>

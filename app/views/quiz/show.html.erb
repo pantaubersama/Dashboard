@@ -2,91 +2,94 @@
   <%= javascript_pack_tag 'quiz/show' %>
 <% end -%>
 
-<div class="d-flex main-wrapper" id="editQuiz" data-quiz-id="<%= params[:id] %>">
+<div class="pb-wrapper" id="editQuiz" data-quiz-id="<%= params[:id] %>">
   <%= render("components/sidebar") %>
-  <div class="main-wrapper">
-    <main class="main col-md-10 offset-md-2" role="main">
-      <%= render "components/quiz/header", active: "all" %>
-      <div class="main-content quiz">
-        <div class="top">
-          <div class="btn-back">
-            <a href="<%= quiz_index_path %>">
-              <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
-            </a>
-          </div>
-        </div>
-        <div class="content">
-          <div class="bg-white detail-profile">
-            <div class="card">
-              <span class="content-image">
-                <img :src='quiz.image.thumbnail.url' v-if='quiz.image'>
-              </span>
-              <div class="right-desc">
-                <p>ID : {{ quiz.id }} </p>
-                <p>Created at : {{ quiz.created_at }}</p>
-                <p>Total Question : {{ quiz.quiz_questions_count }}</p>
-                <p>Question counter : {{ counter + counter_for_new }}</p>
-                <button class="btn btn-solid-green" @click="updateQuiz" id='btn-update'>UPDATE</button>
-              </div>
-            </div>
-            <div class="card-form">
-              <div class="form-wrap">
-                <label>Judul</label>
-                <div class="form-group">
-                  <div class="form-group">
-                    <input class="form-control" v-model="quiz.title">
-                  </div>
-                </div>
-              </div>
-              <div class="form-wrap">
-                <label>Deskripsi</label>
-                <div class="form-group">
-                  <div class="form-group">
-                    <textarea class="form-control" v-model="quiz.description"></textarea>
-                  </div>
-                </div>
-              </div>
-              <div class="form-wrap">
-                <label>Status</label>
-                <div class="form-group">
-                  <div class="form-group">
-                    <p>{{ quiz.status }}</p>
-                  </div>
-                </div>
-              </div>
-              <div class="form-wrap">
-                <label>Upload Image</label>
-                <div class="form-group">
-                  <div class="">
-                    <input type="file" name="pic" accept="image/*" v-on:change="onFileChange" required>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-            
-            <div v-for="(question, index) in questions" v-bind:key="index">
-              <%= render "components/quiz/edit_question" %>
-            </div>
-
-            <div v-for="(question, index) in new_questions" v-bind:key="index">
-              <%= render "components/quiz/new_question" %>
-            </div>
-
-            <div class="card-form">
-              <br>
-              <br>
-              <div class="form-wrap">
-                <button type="button" class="btn btn-green" @click="addQuestion">
-                  Tambah Pertanyaan
-                </button>
-              </div>
-            </div>
-
-          </div>
+  <main class="main" role="main">
+    <%= render "components/quiz/header", active: "all" %>
+    <div class="main-content quiz">
+      <div class="top">
+        <div class="btn-back">
+          <a href="<%= quiz_index_path %>">
+            <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+          </a>
         </div>
       </div>
-    </main>
-  </div>
+      <div class="content">
+        <span class="display-desc">
+          <p>
+              <!-- Displaying Content 1 - 30 of 500 in total -->
+          </p>
+        </span>
+        <div class="bg-white detail-profile">
+          <div class="card">
+            <span class="content-image">
+              <img :src='quiz.image.thumbnail.url' v-if='quiz.image'>
+            </span>
+            <div class="right-desc">
+              <p>ID : {{ quiz.id }} </p>
+              <p>Created at : {{ quiz.created_at }}</p>
+              <p>Total Question : {{ quiz.quiz_questions_count }}</p>
+              <p>Question counter : {{ counter + counter_for_new }}</p>
+              <button class="btn btn-solid-green" @click="updateQuiz" id='btn-update'>UPDATE</button>
+            </div>
+          </div>
+          <div class="card-form">
+            <div class="form-wrap">
+              <label>Judul</label>
+              <div class="form-group">
+                <div class="form-group">
+                  <input class="form-control" v-model="quiz.title">
+                </div>
+              </div>
+            </div>
+            <div class="form-wrap">
+              <label>Deskripsi</label>
+              <div class="form-group">
+                <div class="form-group">
+                  <textarea class="form-control" v-model="quiz.description"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="form-wrap">
+              <label>Status</label>
+              <div class="form-group">
+                <div class="form-group">
+                  <p>{{ quiz.status }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="form-wrap">
+              <label>Upload Image</label>
+              <div class="form-group">
+                <div class="">
+                  <input type="file" name="pic" accept="image/*" v-on:change="onFileChange" required>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          
+          <div v-for="(question, index) in questions" v-bind:key="index">
+            <%= render "components/quiz/edit_question" %>
+          </div>
+
+          <div v-for="(question, index) in new_questions" v-bind:key="index">
+            <%= render "components/quiz/new_question" %>
+          </div>
+
+          <div class="card-form">
+            <br>
+            <br>
+            <div class="form-wrap">
+              <button type="button" class="btn btn-green" @click="addQuestion">
+                Tambah Pertanyaan
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
 </div>
 <%= render("components/footer") %>

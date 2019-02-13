@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="38px" height="46px" viewBox="0 0 38 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>ic-lapor-home</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-590.000000, -315.000000)">
+            <g id="ic-lapor-home" transform="translate(590.000000, 315.000000)">
+                <rect id="Rectangle" fill="#08BDA8" x="0" y="4" width="38" height="42" rx="4"></rect>
+                <polygon id="Path-3" fill="#FFFFFF" fill-rule="nonzero" points="8 18 31.0217289 18 31.0217289 14 8 14"></polygon>
+                <polygon id="Path-3-Copy" fill="#FFFFFF" fill-rule="nonzero" points="8 27 31.0217289 27 31.0217289 23 8 23"></polygon>
+                <polygon id="Path-3-Copy-2" fill="#FFFFFF" fill-rule="nonzero" points="8 36 21.0217289 36 21.0217289 32 8 32"></polygon>
+                <circle id="Oval-2" fill="#08BDA8" cx="17.5" cy="6.5" r="6.5"></circle>
+                <circle id="Oval-2-Copy" fill="#FFFFFF" cx="17.5" cy="6.5" r="2.5"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

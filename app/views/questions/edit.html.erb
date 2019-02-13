@@ -1,59 +1,64 @@
-<div class="d-flex main-wrapper">
+<div class="pb-wrapper">
   <%= render("components/sidebar") %>
-  <div class="main-wrapper">
-    <main class="main col-md-10 offset-md-2" role="main">
-      <header class="header" role="banner">
-        <%= render("components/dropdown_profile") %>
-      </header>
-      <div class="main-content">
-        <div class="top">
-          <div class="btn-back">
-            <%= link_to question_path(@question['id']) do %>
-            	<img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
-            <% end %>
-          </div>
+  <main class="main" role="main">
+    <header class="header" role="banner">
+      <%= render("components/dropdown_profile") %>
+    </header>
+    <div class="main-content">
+      <div class="top">
+        <div class="btn-back">
+          <%= link_to question_path(@question['id']) do %>
+          	<img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+          <% end %>
         </div>
-        <div class="content">
-          <span class="display-desc">
-            <p>
-            </p>
-          </span>
-          <%= render("components/flash_message") %>
-          <div class="bg-white detail-profile">
-            <div class="card">
-              <h1> Edit Pertanyaan </h1>
-							<span class="profile-image">
-              </span>
-              <div class="right-desc">
-              </div>
+      </div>
+      <div class="content">
+        <span class="display-desc">
+          <p>
+          </p>
+        </span>
+        <%= render("components/flash_message") %>
+        <div class="bg-white detail-profile">
+          <div class="card">
+            <h1> Edit Pertanyaan </h1>
+						<span class="profile-image">
+            </span>
+            <div class="right-desc">
             </div>
-            <%= form_tag(question_path(@question['id']), method: :put, multipart: true) do %>
-							<div class="card-form">
-								<div class="row">
-									<div class="form-wrap">
-										<label for="">Nama</label>
-										<%= text_field_tag :name, @question['user']['full_name'], class: 'form-control', disabled: true %>
-									</div>
-									<br>
-									<div class="form-wrap">
-										<label for="">Status</label>
-										<%= text_field_tag :name, @question['user']['verified'] ? 'VERIFIKASI' : 'BELUM VERIFIED', class: 'form-control', disabled: true %>
-									</div>
-									<br>
-									<div class="form-wrap">
-										<label for="">Pertanyaan</label>
-										<%= text_area_tag :body, @question['body'], class: 'form-control' %>
-									</div>
-									<div class="form-wrap">
-										<br>
-										<button class="btn btn-solid-green" type="submit">Update</button>
-									</div>
-								</div>
-							</div>
-            <% end %>
           </div>
+          <%= form_tag(question_path(@question['id']), method: :put, multipart: true) do %>
+						<div class="card-form">
+							<div class="form-wrap">
+								<label for="">Nama</label>
+								<%= text_field_tag :name, @question['user']['full_name'], class: 'form-control', disabled: true %>
+							</div>
+              <br>
+							<div class="form-wrap">
+								<label for="">Pertanyaan</label>
+								<%= text_area_tag :body, @question['body'], class: 'form-control' %>
+							</div>
+              <br>
+              <div class="form-wrap">
+                <label>Status</label>
+                <%= select_tag(:status, options_for_select([
+                                ['active', 'active'],
+                                ['archived', 'archived'],
+                                ], @question['status']), class: "form-control") %>
+              </div>
+              <div class="form-wrap">
+              <br>
+                <label>Folder</label>
+                <%= select_tag(:question_folder_id, options_for_select([["", nil]].concat(@folders), @question['question_folder_id']), class: "form-control",) %>
+              </div>
+							<div class="form-wrap">
+								<br>
+								<button class="btn btn-solid-green" type="submit">Update</button>
+							</div>
+						</div>
+          <% end %>
         </div>
-    </main>
-  </div>
+      </div>
+    </div>
+  </main>
 </div>
 <%= render("components/footer") %>

@@ -1,11 +1,10 @@
-<div class="d-flex main-wrapper">
+<div class="pb-wrapper">
   <%= render("components/sidebar") %>
-  <div class="main-wrapper">
-    <main class="main col-md-10 offset-md-2" role="main">
-      <header class="header" role="banner">
-        <%= render("components/dropdown_profile") %>
-      </header>
-      <div class="main-content">
+  <main class="main" role="main">
+    <header class="header" role="banner">
+      <%= render("components/dropdown_profile") %>
+    </header>
+    <div class="main-content">
       <div class="top">
         <div class="btn-back">
           <%= link_to banner_path(@banner) do %>
@@ -13,64 +12,66 @@
           <% end %>
         </div>
       </div>
-        <div class="content">
-          <%= render("components/flash_message") %>
-          <div class="bg-white detail-profile">
-            <%= form_tag(banner_path(@banner), method: :put, multipart: true) do %>
-            <div class="card-form">
-              <div class="row">
-                <div class="col-md-10">
-                  <div class="form-wrap">
-                    <label>Title</label>
+      <div class="content">
+        <span class="display-desc">
+          <p>
+              <!-- Displaying Content 1 - 30 of 500 in total -->
+          </p>
+        </span>
+        <%= render("components/flash_message") %>
+        <div class="bg-white detail-profile">
+          <%= form_tag(banner_path(@banner), method: :put, multipart: true) do %>
+          <div class="card-form">
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-wrap">
+                  <label>Title</label>
+                  <div class="form-group">
                     <div class="form-group">
-                      <div class="form-group">
-                        <%= text_field_tag :title, @banner.title, class: 'form-control', placeholder: 'Title' %>
-                      </div>
+                      <%= text_field_tag :title, @banner.title, class: 'form-control', placeholder: 'Title' %>
                     </div>
                   </div>
-                  <div class="form-wrap">
-                    <label>Body</label>
+                </div>
+                <div class="form-wrap">
+                  <label>Body</label>
+                  <div class="form-group">
                     <div class="form-group">
-                      <div class="form-group">
-                        <%= text_area_tag :body, @banner.body, class: 'form-control', placeholder: 'Body' %>
-                      </div>
+                      <%= text_area_tag :body, @banner.body, class: 'form-control', placeholder: 'Body' %>
                     </div>
                   </div>
-                  <div class="form-wrap">
-                    <label>Page Name</label>
+                </div>
+                <div class="form-wrap">
+                  <label>Page Name</label>
+                  <div class="form-group">
                     <div class="form-group">
-                      <div class="form-group">
-                        <%= select_tag(:page_name, options_for_select([['Pilpres', 'pilpres'], ['Janji Politik', 'janji politik'],['Tanya', 'tanya'], ['Kuis', 'kuis']], @banner.page_name)) %>
-                      </div>
+                      <%= select_tag(:page_name, options_for_select([['Pilpres', 'pilpres'], ['Janji Politik', 'janji politik'],['Tanya', 'tanya'], ['Kuis', 'kuis']], @banner.page_name)) %>
                     </div>
                   </div>
-
-                  <div class="form-wrap">
-                    <label>Image</label>
+                </div>
+                <div class="form-wrap">
+                  <label>Image</label>
+                  <div class="form-group">
                     <div class="form-group">
-                      <div class="form-group">
-                        <%= file_field_tag :image  %>
-                      </div>
+                      <%= file_field_tag :image  %>
                     </div>
                   </div>
-
-                  <div class="form-wrap">
-                    <label>Header Image</label>
+                </div>
+                <div class="form-wrap">
+                  <label>Header Image</label>
+                  <div class="form-group">
                     <div class="form-group">
-                      <div class="form-group">
-                        <%= file_field_tag :header_image  %>
-                      </div>
+                      <%= file_field_tag :header_image  %>
                     </div>
                   </div>
                 </div>
               </div>
-              <button class="btn btn-solid-green" type="submit"> Update</button>
             </div>
-            <% end %>
+            <button class="btn btn-solid-green" type="submit"> Update</button>
           </div>
+          <% end %>
         </div>
       </div>
-    </main>
-  </div>
+    </div>
+  </main>
 </div>
 <%= render("components/footer") %>

@@ -1,105 +1,103 @@
-<div class="d-flex main-wrapper">
+<div class="pb-wrapper">
   <%= render("components/sidebar") %>
-  <div class="main-wrapper">
-    <main class="main col-md-10 offset-md-2" role="main">
-      <header class="header" role="banner">
-        <%= render("components/dropdown_profile") %>
-      </header>
-      <div class="main-content">
-        <div class="top">
-          <% link = pagy_link_proc(@pagy_banners) %>
-          <div class="pagination-wrap">
-            <ul class="pagination">
-              <% if @pagy_banners.prev %>
-              <li class="page-item">
-                <%== link.call(@pagy_banners.prev, pagy_t('pagy.nav.prev')) %>
-              </li>
-              <% else  %>
-              <li class="page-item disabled">
-                <%== link.call(@pagy_banners.prev, pagy_t('pagy.nav.prev')) %>
-              </li>
-              <% end %>
+  <main class="main" role="main">
+    <header class="header" role="banner">
+      <%= render("components/dropdown_profile") %>
+    </header>
+    <div class="main-content">
+      <div class="top">
+        <% link = pagy_link_proc(@pagy_banners) %>
+        <div class="pagination-wrap">
+          <ul class="pagination">
+            <% if @pagy_banners.prev %>
+            <li class="page-item">
+              <%== link.call(@pagy_banners.prev, pagy_t('pagy.nav.prev')) %>
+            </li>
+            <% else  %>
+            <li class="page-item disabled">
+              <%== link.call(@pagy_banners.prev, pagy_t('pagy.nav.prev')) %>
+            </li>
+            <% end %>
 
-              <% @pagy_banners.series.each do |item| %>
-              <% if item.is_a?(Integer) %>
-              <li id="testtest" class="page-item">
-                <%== link.call(item) %>
-              </li>
-              <% elsif item.is_a?(String) %>
-              <li class="page-item active" aria-current="page">
-                <%== link.call(item) %>
-              </li>
-              <% elsif item == :gap %>
-              <li class="page-item disabled gap"><a href="#" class="page-link">
-                  <%== pagy_t('pagy.nav.gap') %></a></li>
-              <% end %>
-              <% end %>
+            <% @pagy_banners.series.each do |item| %>
+            <% if item.is_a?(Integer) %>
+            <li id="testtest" class="page-item">
+              <%== link.call(item) %>
+            </li>
+            <% elsif item.is_a?(String) %>
+            <li class="page-item active" aria-current="page">
+              <%== link.call(item) %>
+            </li>
+            <% elsif item == :gap %>
+            <li class="page-item disabled gap"><a href="#" class="page-link">
+                <%== pagy_t('pagy.nav.gap') %></a></li>
+            <% end %>
+            <% end %>
 
-              <% if @pagy_banners.next %>
-              <li class="page-item">
-                <%== link.call(@pagy_banners.next, pagy_t('pagy.nav.next')) %>
-              </li>
-              <% else %>
-              <li class="page-item disabled">
-                <%== link.call(@pagy_banners.next, pagy_t('pagy.nav.next')) %>
-              </li>
-              <% end %>
-            </ul>
-          </div>
+            <% if @pagy_banners.next %>
+            <li class="page-item">
+              <%== link.call(@pagy_banners.next, pagy_t('pagy.nav.next')) %>
+            </li>
+            <% else %>
+            <li class="page-item disabled">
+              <%== link.call(@pagy_banners.next, pagy_t('pagy.nav.next')) %>
+            </li>
+            <% end %>
+          </ul>
         </div>
-        <div class="content">
-          <span class="display-desc">
-            <p>
-              Displaying Content 1 - <%= @item_banners.count %> of <%= @banners.count %> in total
-            </p>
-          </span>
-
-          <div class="card-wrap">
-            <div class="container">
-              <div class="row">
-                <% @banners.each do |banner| %>
-                  <%= link_to banner_path(banner)  do %>
-                  <div class="col-sm-4">
-                    <div class="card">
-                      <span class="image">
-                        <%= image_tag banner.header_image_url unless banner.header_image_url.nil? %>
-                      </span>
-                      <h4>
-                        <%= banner.title %>
-                      </h4>
-                    </div>
+      </div>
+      <div class="content">
+        <span class="display-desc">
+          <p>
+            Displaying Content 1 - <%= @item_banners.count %> of <%= @banners.count %> in total
+          </p>
+        </span>
+        <div class="card-wrap">
+          <div class="container">
+            <div class="row">
+              <% @banners.each do |banner| %>
+                <%= link_to banner_path(banner)  do %>
+                <div class="col-sm-4">
+                  <div class="card">
+                    <span class="image">
+                      <%= image_tag banner.header_image_url unless banner.header_image_url.nil? %>
+                    </span>
+                    <h4>
+                      <%= banner.title %>
+                    </h4>
                   </div>
-                  <% end %>
+                </div>
                 <% end %>
-              </div>
+              <% end %>
             </div>
           </div>
+        </div>
 
-          <div class="filter">
-            <a class="btn " data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample">
-              <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
-              <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
-            </a>
-            <div id="filter" class="collapse filter-form">
-              <div class="card card-body">
-                <h4>Filter</h4>
-                  <%= form_tag(banner_index_path, method: :get) do %>
-                  <div class="form-wrap">
-                    <label>Nama Banner</label>
-                    <div class="form-group">
-                      <div class="form-group">
-                        <%= text_field_tag :nama, "", class: 'form-control', placeholder: 'Nama Banner' %>
-                      </div>
-                    </div>
+        <div class="filter">
+          <a class="btn collapsed" data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
+            <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
+          </a>
+          <div id="filter" class="collapse filter-form">
+            <div class="card card-body">
+              <h4>Filter</h4>
+              <%= form_tag(banner_index_path, method: :get) do %>
+              <div class="form-wrap">
+                <label>Nama Banner</label>
+                <div class="form-group">
+                  <div class="form-group">
+                    <%= text_field_tag :nama, "", class: 'form-control', placeholder: 'Nama Banner' %>
                   </div>
-                <button> Done</button>
-                <button data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample"> Cancel</button>
-                <% end %>
+                </div>
+              </div>
+              <button> Done</button>
+              <button data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample"> Cancel</button>
+              <% end %>
             </div>
           </div>
         </div>
       </div>
-    </main>
-  </div>
+    </div>
+  </main>
 </div>
 <%= render("components/footer") %>

@@ -1,35 +1,37 @@
-<div class="d-flex main-wrapper">
+<div class="pb-wrapper">
   <%= render("components/sidebar") %>
-  <div class="main-wrapper">
-    <main class="main col-md-10 offset-md-2" role="main">
-      <header class="header" role="banner">
-        <%= render("components/dropdown_profile") %>
-      </header>
-      <div class="main-content">
-        <div class="top">
-          <div class="btn-back">
-            <%= link_to request.referer do %>
-            <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
-            <% end %>
-          </div>
+  <main class="main" role="main">
+    <header class="header" role="banner">
+      <%= render("components/dropdown_profile") %>
+    </header>
+    <div class="main-content">
+      <div class="top">
+        <div class="btn-back">
+          <%= link_to request.referer do %>
+          <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+          <% end %>
         </div>
-        <div class="content">
-          <span class="display-desc">
-            <p>
-              <!-- Displaying Content 1 - 30 of 500 in total -->
-            </p>
-          </span>
-          <div class="bg-white detail-profile">
-            <%= render("components/flash_message") %>
-            <div class="card">
-              <div class="card-form">
-                <%= form_tag(grant_badge_badges_path, method: :post) do %>
+      </div>
+      <div class="content">
+        <span class="display-desc">
+          <p>
+            <!-- Displaying Content 1 - 30 of 500 in total -->
+          </p>
+        </span>
+        <div class="bg-white detail-profile">
+          <%= render("components/flash_message") %>
+          <div class="card">
+            <div class="card-form">
+              <%= form_tag(grant_badge_badges_path, method: :post) do %>
+                <div class="form-group">
                   <div class="form-wrap">
                     <label for="">Email</label>
-                      <select class="form-control remote-select" name="id" data-url="<%= request.base_url + search_users_for_admin_path %>">
-                        <option></option>
-                      </select>
+                    <select class="form-control remote-select" name="id" data-url="<%= request.base_url + search_users_for_admin_path %>">
+                      <option></option>
+                    </select>
                   </div>
+                </div>
+                <div class="form-group">
                   <div class="form-wrap">
                     <label for="">Badge</label>
                     <select name="badge_id"  class="form-control">
@@ -38,19 +40,17 @@
                       <% end %>
                     </select>
                   </div>
-                  <br><br>
+                </div>
+                <div class="form-group">
                   <button class="btn btn-solid-green" type="submit"> Grant</button>
-                <% end %>
-              </div>
-
+                </div>
+              <% end %>
             </div>
           </div>
         </div>
       </div>
-  </div>
-</div>
-</main>
-</div>
+    </div>
+  </main>
 </div>
 <%= render("components/footer") %>
 <script>

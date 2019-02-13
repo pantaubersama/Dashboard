@@ -1,460 +1,524 @@
-<div class="d-flex main-wrapper">
+<div class="pb-wrapper">
   <%= render("components/sidebar") %>
-  <div class="main-wrapper">
-    <main class="main col-md-10 offset-md-2" role="main">
-      <header class="header" role="banner">
-        <%= render("components/dropdown_profile") %>
-      </header>
-      <div class="main-content">
-        <div class="content">
-          <div class="top-wrap">
-            <h3 class="main-title">Preferensi Calon</h3>
-            <div class="row">
+  <main class="main" role="main">
+    <header class="header" role="banner">
+      <%= render("components/dropdown_profile") %>
+    </header>
+    <div class="main-content">
+      <div class="content">
+        <div class="top-wrap">
+          <h3 class="main-title">Preferensi Calon</h3>
+          <div class="row">
 
-              <% @poll['teams'].each_with_index do |calon, index| %>
-                <% if index < 2 %>
-                  <div class="col-sm-6 col-xs-12">
-                    <div class="card">
-                      <div class="paslon">
-                        <span class="image"><img src="<%= calon['avatar'] %>"><p><%= calon['title'] %></p></span>
-                        <h2><%= calon['percentage'] %> %</h2>
-                        <h4>Note Total</h4>
-                        <h4>(<%= calon['title'] %>)</h4>
-                        <span class="user"><img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>"> <h4><%= calon['total'] %>
-                            User</h4></span>
-                      </div>
+            <% @poll['teams'].each_with_index do |calon, index| %>
+              <% if index < 2 %>
+                <div class="col-sm-6 col-xs-12">
+                  <div class="card">
+                    <div class="paslon">
+                      <span class="image"><img src="<%= calon['avatar'] %>"><p><%= calon['title'] %></p></span>
+                      <h2><%= calon['percentage'] %> %</h2>
+                      <h4>Note Total</h4>
+                      <h4>(<%= calon['title'] %>)</h4>
+                      <span class="user"><img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>"> <h4><%= calon['total'] %>
+                          User</h4></span>
                     </div>
                   </div>
-                <% else %>
-                  <div class="col-sm-12">
-                    <div class="card">
-                      <div class="paslon">
-                        <h2><%= calon['percentage'] %> %</h2>
-                        <h4>Note Total</h4>
-                        <h4><%= calon['title'] %></h4>
-                        <span class="user"><img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>"> <h4><%= calon['total'] %>
-                            User</h4></span>
-                      </div>
+                </div>
+              <% else %>
+                <div class="col-sm-12">
+                  <div class="card">
+                    <div class="paslon">
+                      <h2 class="text-red"><%= calon['percentage'] %> %</h2>
+                      <h4>Note Total</h4>
+                      <h4><%= calon['title'] %></h4>
+                      <span class="user"><img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>"> <h4><%= calon['total'] %>
+                          User</h4></span>
                     </div>
                   </div>
-                <% end %>
+                </div>
               <% end %>
-
-            </div>
-
-            <h3 class="main-title">Total Data</h3>
-            <div class="row total-data">
-              <div class="col-sm-4 col-xs-12">
-                <div class="card">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total Pengguna</p>
-                  <h2><%= @statistic['users'].present? ? @statistic['users'] : ''  %></h2>
-                </div>
-              </div>
-              <div class="col-sm-4 col-xs-12">
-                <div class="card">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total Post Linimasa</p>
-                  <h2><%= @statistic_pemilu['feeds'].present? ? @statistic_pemilu['feeds'] : '' %></h2>
-                </div>
-              </div>
-              <div class="col-sm-4 col-xs-12">
-                <div class="card">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total Post Janji Politik</p>
-                  <h2><%= @statistic_pemilu['janji_politiks'].present? ? @statistic_pemilu['janji_politiks'] : ''  %></h2>
-                </div>
-              </div>
-            </div>
-            <div class="row total-data">
-              <div class="col-sm-4 col-xs-12">
-                <div class="card">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total Post Pertanyaan</p>
-                  <h2><%= @statistic_pemilu['questions'].present? ? @statistic_pemilu['questions'] : ''  %></h2>
-                </div>
-              </div>
-              <div class="col-sm-4 col-xs-12">
-                <div class="card">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total News</p>
-                  <h2>-</h2>
-                </div>
-              </div>
-              <div class="col-sm-4 col-xs-12">
-                <div class="card">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total Debate</p>
-                  <h2>-</h2>
-                </div>
-              </div>
-            </div>
-            <div class="row total-data">
-              <div class="col-sm-4 col-xs-12">
-                <div class="card">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total Lapor</p>
-                  <h2><%= @statistic_pemilu['report'].present? ? @statistic_pemilu['report'] : '' %></h2>
-                </div>
-              </div>
-              <div class="col-sm-4 col-xs-12">
-                <div class="card">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total Perhitungan</p>
-                  <h2>-</h2>
-                </div>
-              </div>
-              <div class="col-sm-4 col-xs-12">
-                <div class="card">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total Cluster</p>
-                  <h2><%= @statistic['clusters'].present? ? @statistic['clusters'] : ''  %></h2>
-                </div>
-              </div>
-            </div>
-            <div class="row total-data">
-              <div class="col-sm-4 col-xs-12">
-                <div class="card">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total Side Note</p>
-                  <h2>-</h2>
-                </div>
-              </div>
-              <div class="col-sm-4 col-xs-12">
-                <div class="card">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total Upvote Pertanyaan</p>
-                  <h2><%= @statistic_pemilu['question_upvotes'].present? ? @statistic_pemilu['question_upvotes'] : '' %></h2>
-                </div>
-              </div>
-              <div class="col-sm-4 col-xs-12">
-                <div class="card">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
-                  <p>Total Apresiasi Debate</p>
-                  <h2>-</h2>
-                </div>
-              </div>
-            </div>
+            <% end %>
 
           </div>
 
-          <h3 class="main-title">Grafik</h3>
-          <div class="row graphic">
-            <div class="card">
-              <div class="head-title">
-                <h3>Registration</h3>
-                <p>01/01/2019-01/06/2019</p>
+          <h3 class="main-title">Total Data</h3>
+          <div class="row total-data">
+            <div class="col-sm-4 col-xs-12">
+              <div class="card">
+                <img src="<%= asset_pack_path("views/assets/images/ic_user-home.svg") %>">
+                <p>Total Pengguna</p>
+                <h2><%= @statistic['users'].present? ? @statistic['users'] : ''  %></h2>
               </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              <div class="card">
+                <img src="<%= asset_pack_path("views/assets/images/ic-linimasa-home.svg") %>">
+                <p>Total Post Linimasa</p>
+                <h2><%= @statistic_pemilu['feeds'].present? ? @statistic_pemilu['feeds'] : '' %></h2>
+              </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              <div class="card">
+                <img src="<%= asset_pack_path("views/assets/images/ic-post-janji-home.svg") %>">
+                <p>Total Post Janji Politik</p>
+                <h2><%= @statistic_pemilu['janji_politiks'].present? ? @statistic_pemilu['janji_politiks'] : ''  %></h2>
+              </div>
+            </div>
+          </div>
+          <div class="row total-data">
+            <div class="col-sm-4 col-xs-12">
+              <div class="card">
+                <img src="<%= asset_pack_path("views/assets/images/ic-pertanyaan-home.svg") %>">
+                <p>Total Post Pertanyaan</p>
+                <h2><%= @statistic_pemilu['questions'].present? ? @statistic_pemilu['questions'] : ''  %></h2>
+              </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              <div class="card">
+                <img src="<%= asset_pack_path("views/assets/images/ic-news-home.svg") %>">
+                <p>Total News</p>
+                <h2>-</h2>
+              </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              <div class="card">
+                <img src="<%= asset_pack_path("views/assets/images/ic-user-debate-home.svg") %>">
+                <p>Total Debate</p>
+                <h2>-</h2>
+              </div>
+            </div>
+          </div>
+          <div class="row total-data">
+            <div class="col-sm-4 col-xs-12">
+              <div class="card">
+                <img src="<%= asset_pack_path("views/assets/images/ic-lapor-home.svg") %>">
+                <p>Total Lapor</p>
+                <h2><%= @statistic_pemilu['report'].present? ? @statistic_pemilu['report'] : '' %></h2>
+              </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              <div class="card">
+                <img src="<%= asset_pack_path("views/assets/images/ic-perhitungan-home.svg") %>">
+                <p>Total Perhitungan</p>
+                <h2>-</h2>
+              </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              <div class="card">
+                <img src="<%= asset_pack_path("views/assets/images/ic-cluster-home.svg") %>">
+                <p>Total Cluster</p>
+                <h2><%= @statistic['clusters'].present? ? @statistic['clusters'] : ''  %></h2>
+              </div>
+            </div>
+          </div>
+          <div class="row total-data">
+            <div class="col-sm-4 col-xs-12">
+              <div class="card">
+                <img src="<%= asset_pack_path("views/assets/images/ic-side-note-home.svg") %>">
+                <p>Total Side Note</p>
+                <h2>-</h2>
+              </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              <div class="card">
+                <img src="<%= asset_pack_path("views/assets/images/ic-upvote-home.svg") %>">
+                <p>Total Upvote Pertanyaan</p>
+                <h2><%= @statistic_pemilu['question_upvotes'].present? ? @statistic_pemilu['question_upvotes'] : '' %></h2>
+              </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              <div class="card">
+                <img src="<%= asset_pack_path("views/assets/images/ic-debate-home.svg") %>">
+                <p>Total Apresiasi Debate</p>
+                <h2>-</h2>
+              </div>
+            </div>
+          </div>
 
-              <div class="filter">
-                <a class="btn " data-toggle="collapse" href="#filter1" role="button" aria-expanded="false"
-                  aria-controls="collapseExample">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
-                </a>
-                <div class="collapse filter-form" id="filter1">
-                  <div class="card card-body">
-                    <h4>Filter</h4>
-                    <div class="filter-wrap">
-                      <div class="form-wrap">
-                        <label>Nama Cluster</label>
+        </div>
+
+        <h3 class="main-title">Grafik</h3>
+        <div class="graphic">
+          <div class="card">
+            <div class="head-title">
+              <h3>Registration</h3>
+              <p>01/01/2019-01/06/2019</p>
+            </div>
+
+            <div class="filter">
+              <div class="collapse filter-form" id="filter1">
+                <div class="card card-body">
+                  <h4>Filter</h4>
+                  <div class="filter-wrap">
+                    <div class="form-wrap">
+                      <label>Nama Cluster</label>
+                      <div class="form-group">
                         <div class="form-group">
-                          <div class="form-group">
-                            <select class="form-control">
-                              <option>UGM</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
-                          </div>
+                          <select class="form-control">
+                            <option>UGM</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
                         </div>
-                      </div>
-                      <div class="form-wrap">
-                        <label>Tanggal Akhir</label>
-                        <div class="form-group">
-                          <div class="form-group">
-                            <select class="form-control">
-                              <option>UGM</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="button-wrapper">
-                        <button type="button" class="btn btn-solid-green" data-dismiss="modal">Done</button>
-                        <button type="button" class="btn btn-transparent">Reset</button>
                       </div>
                     </div>
+                    <div class="form-wrap">
+                      <label>Tanggal Akhir</label>
+                      <div class="form-group">
+                        <div class="form-group">
+                          <select class="form-control">
+                            <option>UGM</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-wrap">
+                      <div class="form-group">
+                        <div class="button-wrapper">
+                          <button type="button" class="btn btn-solid-green" data-dismiss="modal">Done</button>
+                          <button type="button" class="btn btn-transparent">Reset</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
+                </div>
+              </div>
+              <a class="btn collapsed" data-toggle="collapse" href="#filter1" role="button" aria-expanded="false"
+                aria-controls="collapseExample">
+                <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
+                <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
+              </a>
+            </div>
+            <div id="chartRegistration" class="pb-graph-container"></div>
+          </div>
+          <div class="card">
+            <div class="head-title">
+              <h3>Post Pertanyaan</h3>
+              <p>01/01/2019-01/06/2019</p>
+            </div>
+
+            <div class="filter">
+              <div class="collapse filter-form" id="filter2">
+                <div class="card card-body">
+                  <h4>Filter</h4>
+                  <div class="filter-wrap">
+                    <div class="form-wrap">
+                      <label>Nama Cluster</label>
+                      <div class="form-group">
+                        <div class="form-group">
+                          <select class="form-control">
+                            <option>UGM</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-wrap">
+                      <label>Tanggal Akhir</label>
+                      <div class="form-group">
+                        <div class="form-group">
+                          <select class="form-control">
+                            <option>UGM</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-wrap">
+                      <div class="form-group">
+                        <div class="button-wrapper">
+                          <button type="button" class="btn btn-solid-green" data-dismiss="modal">Done</button>
+                          <button type="button" class="btn btn-transparent">Reset</button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div id="chartRegistration" style="height: 370px; width: 100%;"></div>
+              <a class="btn collapsed" data-toggle="collapse" href="#filter2" role="button" aria-expanded="false"
+                aria-controls="collapseExample">
+                <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
+                <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
+              </a>
             </div>
-            <div class="card">
-              <div class="head-title">
-                <h3>Post Pertanyaan</h3>
-                <p>01/01/2019-01/06/2019</p>
-              </div>
+            <div id="chartQuestion" class="pb-graph-container"></div>
+          </div>
+          <div class="card">
+            <div class="head-title">
+              <h3>Post Debate</h3>
+              <p>01/01/2019-01/06/2019</p>
+            </div>
 
-              <div class="filter">
-                <a class="btn " data-toggle="collapse" href="#filter2" role="button" aria-expanded="false"
-                  aria-controls="collapseExample">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
-                </a>
-                <div class="collapse filter-form" id="filter2">
-                  <div class="card card-body">
-                    <h4>Filter</h4>
-                    <div class="filter-wrap">
-                      <div class="form-wrap">
-                        <label>Nama Cluster</label>
+            <div class="filter">
+              <div class="collapse filter-form" id="filter3">
+                <div class="card card-body">
+                  <h4>Filter</h4>
+                  <div class="filter-wrap">
+                    <div class="form-wrap">
+                      <label>Nama Cluster</label>
+                      <div class="form-group">
                         <div class="form-group">
-                          <div class="form-group">
-                            <select class="form-control">
-                              <option>UGM</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
-                          </div>
+                          <select class="form-control">
+                            <option>UGM</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
                         </div>
-                      </div>
-                      <div class="form-wrap">
-                        <label>Tanggal Akhir</label>
-                        <div class="form-group">
-                          <div class="form-group">
-                            <select class="form-control">
-                              <option>UGM</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="button-wrapper">
-                        <button type="button" class="btn btn-solid-green" data-dismiss="modal">Done</button>
-                        <button type="button" class="btn btn-transparent">Reset</button>
                       </div>
                     </div>
-
-                  </div>
-                </div>
-              </div>
-              <div id="chartQuestion" style="height: 370px; width: 100%;"></div>
-            </div>
-            <div class="card">
-              <div class="head-title">
-                <h3>Post Debate</h3>
-                <p>01/01/2019-01/06/2019</p>
-              </div>
-
-              <div class="filter">
-                <a class="btn " data-toggle="collapse" href="#filter3" role="button" aria-expanded="false"
-                  aria-controls="collapseExample">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
-                  <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
-                </a>
-                <div class="collapse filter-form" id="filter3">
-                  <div class="card card-body">
-                    <h4>Filter</h4>
-                    <div class="filter-wrap">
-                      <div class="form-wrap">
-                        <label>Nama Cluster</label>
+                    <div class="form-wrap">
+                      <label>Tanggal Akhir</label>
+                      <div class="form-group">
                         <div class="form-group">
-                          <div class="form-group">
-                            <select class="form-control">
-                              <option>UGM</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
-                          </div>
+                          <select class="form-control">
+                            <option>UGM</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
                         </div>
-                      </div>
-                      <div class="form-wrap">
-                        <label>Tanggal Akhir</label>
-                        <div class="form-group">
-                          <div class="form-group">
-                            <select class="form-control">
-                              <option>UGM</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="button-wrapper">
-                        <button type="button" class="btn btn-solid-green" data-dismiss="modal">Done</button>
-                        <button type="button" class="btn btn-transparent">Reset</button>
                       </div>
                     </div>
-
+                    <div class="form-wrap">
+                      <div class="form-group">
+                        <div class="button-wrapper">
+                          <button type="button" class="btn btn-solid-green" data-dismiss="modal">Done</button>
+                          <button type="button" class="btn btn-transparent">Reset</button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+
                 </div>
               </div>
-              <div id="chartDebate" style="height: 370px; width: 100%;"></div>
+              <a class="btn collapsed" data-toggle="collapse" href="#filter3" role="button" aria-expanded="false"
+                aria-controls="collapseExample">
+                <img src="<%= asset_pack_path("views/assets/images/ic_arrow-left.svg") %>">
+                <img src="<%= asset_pack_path("views/assets/images/ic_filter.svg") %>">
+              </a>
             </div>
+            <div id="chartDebate" class="pb-graph-container"></div>
           </div>
         </div>
       </div>
-  </div>
+    </div>
   </main>
 </div>
-</div>
-<script>
-  window.onload = function () {
-
-    var chart = new CanvasJS.Chart("chartRegistration", {
-      animationEnabled: true,
-      title: {},
-      axisY: {
-        valueFormatString: "#0,,.",
-        prefix: "0"
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script type="text/javascript">
+  // Registration
+  Highcharts.chart('chartRegistration', {
+    chart: {
+      type: 'area'
+    },
+    title: {
+      text: null
+    },
+    xAxis: {
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+      lineColor: '#111111',
+      lineWidth: 1,
+      labels: {
+        style: {
+          fontSize: 16
+        }
       },
-      data: [{
-        type: "splineArea",
-        color: "rgba(8,173,168,1)",
-        markerSize: 3,
-        xValueFormatString: "MM",
-        yValueFormatString: "0",
-        dataPoints: [{
-            x: new Date(2000, 0),
-            y: 3289000
-          },
-          {
-            x: new Date(2001, 0),
-            y: 3830000
-          },
-          {
-            x: new Date(2002, 0),
-            y: 2009000
-          },
-          {
-            x: new Date(2003, 0),
-            y: 2840000
-          },
-          {
-            x: new Date(2004, 0),
-            y: 2396000
-          },
-          {
-            x: new Date(2005, 0),
-            y: 1613000
-          },
-        ]
-      }]
-    });
-    chart.render();
-
-  }
-</script>
-
-<script>
-  window.onload = function () {
-
-    var chart = new CanvasJS.Chart("chartQuestion", {
-      animationEnabled: true,
-      title: {},
-      axisY: {
-        valueFormatString: "#0,,.",
-        prefix: "0"
+    },
+    yAxis: {
+      max: 100,
+      tickInterval: 50,
+      title: {
+        text: null
       },
-      data: [{
-        type: "splineArea",
-        color: "rgba(8,173,168,1)",
-        markerSize: 3,
-        xValueFormatString: "MM",
-        yValueFormatString: "0",
-        dataPoints: [{
-            x: new Date(2000, 0),
-            y: 3289000
-          },
-          {
-            x: new Date(2001, 0),
-            y: 3830000
-          },
-          {
-            x: new Date(2002, 0),
-            y: 2009000
-          },
-          {
-            x: new Date(2003, 0),
-            y: 2840000
-          },
-          {
-            x: new Date(2004, 0),
-            y: 2396000
-          },
-          {
-            x: new Date(2005, 0),
-            y: 1613000
-          },
-        ]
-      }]
-    });
-    chart.render();
+      labels: {
+        style: {
+          fontSize: 16
+        }
+      }
+    },
+    tooltip: {
+      pointFormat: '<b>{point.y:,.0f}</b>% Registration'
+    },
+    plotOptions: {
+      area: {
+        fillColor: {
+          linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
+          stops: [
+            [0, '#08bda8'],
+            [1, '#ddf4f1']
+          ]
+        },
+        marker: {
+          enabled: false,
+          states: {
+            hover: {
+              enabled: true
+            }
+          }
+        }
+      }
+    },
+    legend: {
+      enabled: false,
+    },
+    series: [{
+      name: 'Registration',
+      data: [20, 50, 82, 65, 56, 100],
+      lineWidth: 3,
+      lineColor: '#08bda8'
+    }],
+    credits: {
+      enabled: false
+    }
+  });
 
-  }
-</script>
-
-<script>
-  window.onload = function () {
-
-    var chart = new CanvasJS.Chart("chartDebate", {
-      animationEnabled: true,
-      title: {},
-      axisY: {
-        valueFormatString: "#0,,.",
-        prefix: "0"
+  // Question
+  Highcharts.chart('chartQuestion', {
+    chart: {
+      type: 'area'
+    },
+    title: {
+      text: null
+    },
+    xAxis: {
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+      lineColor: '#111111',
+      lineWidth: 1,
+      labels: {
+        style: {
+          fontSize: 16
+        }
       },
-      data: [{
-        type: "splineArea",
-        color: "rgba(8,173,168,1)",
-        markerSize: 3,
-        xValueFormatString: "MM",
-        yValueFormatString: "0",
-        dataPoints: [{
-            x: new Date(2000, 0),
-            y: 3289000
-          },
-          {
-            x: new Date(2001, 0),
-            y: 3830000
-          },
-          {
-            x: new Date(2002, 0),
-            y: 2009000
-          },
-          {
-            x: new Date(2003, 0),
-            y: 2840000
-          },
-          {
-            x: new Date(2004, 0),
-            y: 2396000
-          },
-          {
-            x: new Date(2005, 0),
-            y: 1613000
-          },
-        ]
-      }]
-    });
-    chart.render();
+    },
+    yAxis: {
+      max: 100,
+      tickInterval: 50,
+      title: {
+        text: null
+      },
+      labels: {
+        style: {
+          fontSize: 16
+        }
+      },
+    },
+    tooltip: {
+      pointFormat: '<b>{point.y:,.0f}</b>% Post Pertanyaan'
+    },
+    plotOptions: {
+      area: {
+        fillColor: {
+          linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
+          stops: [
+            [0, '#F76B1C'],
+            [1, '#FAD961']
+          ]
+        },
+        marker: {
+          enabled: false,
+          states: {
+            hover: {
+              enabled: true
+            }
+          }
+        }
+      }
+    },
+    legend: {
+      enabled: false,
+    },
+    series: [{
+      name: 'Question',
+      data: [20, 50, 82, 65, 56, 100],
+      lineWidth: 3,
+      lineColor: '#F76B1C'
+    }],
+    credits: {
+      enabled: false
+    }
+  });
 
-  }
+  // Debate
+  Highcharts.chart('chartDebate', {
+    chart: {
+      type: 'area'
+    },
+    title: {
+      text: null
+    },
+    xAxis: {
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+      lineColor: '#111111',
+      lineWidth: 1,
+      labels: {
+        style: {
+          fontSize: 16
+        }
+      },
+    },
+    yAxis: {
+      max: 100,
+      tickInterval: 50,
+      title: {
+        text: null
+      },
+      labels: {
+        style: {
+          fontSize: 16
+        }
+      },
+    },
+    tooltip: {
+      pointFormat: '<b>{point.y:,.0f}</b>% Post Debate'
+    },
+    plotOptions: {
+      area: {
+        fillColor: {
+          linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
+          stops: [
+            [0, '#3023AE'],
+            [1, '#C86DD7']
+          ]
+        },
+        marker: {
+          enabled: false,
+          states: {
+            hover: {
+              enabled: true
+            }
+          }
+        }
+      }
+    },
+    legend: {
+      enabled: false,
+    },
+    series: [{
+      name: 'Debate',
+      data: [20, 50, 82, 65, 56, 100],
+      lineWidth: 3,
+      lineColor: '#3023AE'
+    }],
+    credits: {
+      enabled: false
+    }
+  });
 </script>
-
 
 <%= render("components/footer") %>

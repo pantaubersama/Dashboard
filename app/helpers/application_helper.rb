@@ -25,12 +25,25 @@ module ApplicationHelper
   end
 
   def active_menu active_link
-    controller_name == active_link ? 'active' : ''
+    if active_link.is_a? Array
+      controller_name.in?(active_link) ? 'active' : ''
+    else
+      controller_name == active_link ? 'active' : ''
+    end
   end
   
   def active_menu_parent controllers
     controller_name.in?(controllers) ? 'in' : 'out'
   end
+
+  def collapse_in_if q
+    result = 'out'
+    q.each do |p|
+      result = params[p.to_s].present? ? 'in' : 'out'
+    end
+    result
+  end
+  
   
 
 end

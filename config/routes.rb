@@ -57,6 +57,7 @@ Rails.application.routes.draw do
       post 'grant', to: 'badges#grant_badge_user'
     end
   end
+  resources :folders
   resources :questions do
     collection do
       get 'trash'

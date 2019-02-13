@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="52px" height="45px" viewBox="0 0 52 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>ic-user-debate-home</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-881.000000, -191.000000)">
+            <g id="ic-user-debate-home" transform="translate(881.000000, 191.000000)">
+                <circle id="Oval" fill="#0BBEA9" cx="18.5" cy="16.5" r="9.5"></circle>
+                <path d="M0,39 C2.53897108,33 8.70563774,30 18.5,30 C28.2943623,30 34.4610289,33 37,39 L37,45 L0,45 L0,39 Z" id="Rectangle-3" fill="#08BDA8"></path>
+                <path d="M32.2557574,10.2120778 C33.4349772,12.8819273 34,14.859507 34,16 C34,17.140493 33.4349772,19.1180727 32.2557574,21.7879222 L37.7442426,24.2120778 C39.2316894,20.8443773 40,18.1552903 40,16 C40,13.8447097 39.2316894,11.1556227 37.7442426,7.78792222 L32.2557574,10.2120778 Z" id="Path-4" fill="#08BDA8" fill-rule="nonzero"></path>
+                <path d="M40.9105706,3.51487801 C44.3306499,9.36092895 46,13.7619427 46,16.5 C46,19.2380573 44.3306499,23.6390711 40.9105706,29.485122 L46.0894294,32.514878 C50.0026834,25.8258279 52,20.560175 52,16.5 C52,12.439825 50.0026834,7.17417213 46.0894294,0.485121993 L40.9105706,3.51487801 Z" id="Path-5" fill="#08BDA8" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

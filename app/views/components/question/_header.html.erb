@@ -5,13 +5,12 @@
         <a href="<%= questions_path %>">List Pertanyaan</a>
       </li>
       <li class="<%= 'active' if active == 'terpilih'%>">
-        <a href="#">Terpilih</a>
+        <a href="<%= folders_path %>">Terpilih</a>
       </li>
       <li class="<%= 'active' if active == 'trash'%>">
         <a href="<%= trash_questions_path %>">Trash</a>
       </li>
     </ul>
   </div>
-
   <%= render("components/dropdown_profile") %>
 </header>

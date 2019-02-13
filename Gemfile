@@ -99,3 +99,6 @@ gem 'simple_form'
 gem 'httparty'
 gem 'carrierwave', '~> 1.0'
 gem 'fog-aws'
+
+#rspec
+gem 'rails-controller-testing'

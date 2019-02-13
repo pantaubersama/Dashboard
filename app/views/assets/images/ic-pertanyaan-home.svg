@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="42px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>ic-pertanyaan-home</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-586.000000, -148.000000)">
+            <g id="ic-pertanyaan-home" transform="translate(586.000000, 148.000000)">
+                <rect id="Rectangle-2" fill="#08BDA8" x="0" y="0" width="42" height="42" rx="4"></rect>
+                <text id="?" font-family="Roboto-Bold, Roboto" font-size="35" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="12.7927246" y="34">?</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
