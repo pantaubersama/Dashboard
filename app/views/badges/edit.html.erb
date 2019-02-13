@@ -27,62 +27,60 @@
           </div>
           <%= form_tag(badge_path(@badge['id']), method: :put, multipart: true) do %>
           <div class="card-form">
-            <div class="row">
-              <div class="form-group">
+            <div class="form-group">
+              <div class="form-wrap">
+                <label for="">Nama</label>
+                <%= text_field_tag :name, @badge['name'], class: 'form-control', placeholder: 'Nama Badge' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-wrap">
+                <label for="">Deskripsi</label>
+                <%= text_area_tag :description, @badge['description'], class: 'form-control', placeholder: 'Deskripsi' %>
+              </div>
+            </div>
+            <div class="form-group">
                 <div class="form-wrap">
-                  <label for="">Nama</label>
-                  <%= text_field_tag :name, @badge['name'], class: 'form-control', placeholder: 'Nama Badge' %>
-                </div>
+                <label>Image</label>
+                <%= file_field_tag :image, class: "form-control" %>
               </div>
-              <div class="form-group">
+            </div>
+            <div class="form-group">
                 <div class="form-wrap">
-                  <label for="">Deskripsi</label>
-                  <%= text_area_tag :description, @badge['description'], class: 'form-control', placeholder: 'Deskripsi' %>
-                </div>
+                <label>Image Gray</label>
+                <%= file_field_tag :image_gray, class: "form-control" %>
               </div>
-              <div class="form-group">
-                  <div class="form-wrap">
-                  <label>Image</label>
-                  <%= file_field_tag :image, class: "form-control" %>
-                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-wrap">
+                <label>Position</label>
+                <%= text_field_tag :position, @badge['position'], class: 'form-control', placeholder: 'Position' %>
               </div>
-              <div class="form-group">
-                  <div class="form-wrap">
-                  <label>Image Gray</label>
-                  <%= file_field_tag :image_gray, class: "form-control" %>
-                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-wrap">
+                <label>Code</label>
+                <%= text_field_tag :code, @badge['code'], class: 'form-control', placeholder: 'Code', require: "require" %>
               </div>
-              <div class="form-group">
-                  <div class="form-wrap">
-                  <label>Position</label>
-                  <%= text_field_tag :position, @badge['position'], class: 'form-control', placeholder: 'Position' %>
-                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-wrap">
+                <label>Namespace</label>
+                <%= select_tag(:namespace, options_for_select([
+                                ['badge_pantau_bersama', 'badge_pantau_bersama'],
+                                ['badge_janji_politik', 'badge_janji_politik'],
+                                ['badge_tanya', 'badge_tanya'],
+                                ['badge_tanya_interaksi', 'badge_tanya_interaksi'],
+                                ['badge_kuis', 'badge_kuis'],
+                                ['badge_lapor', 'badge_lapor'],
+                                ['badge_profile', 'badge_profile'],
+                                ['badge_relawan', 'badge_relawan']
+                                ], @badge['namespace']), class: "form-control") %>
               </div>
-              <div class="form-group">
-                  <div class="form-wrap">
-                  <label>Code</label>
-                  <%= text_field_tag :code, @badge['code'], class: 'form-control', placeholder: 'Code', require: "require" %>
-                </div>
-              </div>
-              <div class="form-group">
-                  <div class="form-wrap">
-                  <label>Namespace</label>
-                  <%= select_tag(:namespace, options_for_select([
-                                  ['badge_pantau_bersama', 'badge_pantau_bersama'],
-                                  ['badge_janji_politik', 'badge_janji_politik'],
-                                  ['badge_tanya', 'badge_tanya'],
-                                  ['badge_tanya_interaksi', 'badge_tanya_interaksi'],
-                                  ['badge_kuis', 'badge_kuis'],
-                                  ['badge_lapor', 'badge_lapor'],
-                                  ['badge_profile', 'badge_profile'],
-                                  ['badge_relawan', 'badge_relawan']
-                                  ], @badge['namespace']), class: "form-control") %>
-                </div>
-              </div>
-              <div class="form-group">
-                  <div class="form-wrap">
-                  <button class="btn btn-solid-green" type="submit">Update</button>
-                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-wrap">
+                <button class="btn btn-solid-green" type="submit">Update</button>
               </div>
             </div>
           </div>

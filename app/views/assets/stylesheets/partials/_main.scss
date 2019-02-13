@@ -37,6 +37,10 @@ body {
         padding: 15px;
         img {
           height: 128px;
+          @media (max-width: 990px) {
+            width: 100%;
+            height: auto;
+          }
         }
       }
       h4 {
@@ -104,6 +108,10 @@ body {
     background: #fff;
     border: 1px solid #eaeaea;
     border-radius: 4px;
+    @media (max-width: 990px) {
+      min-height: 0.01%;
+      overflow-x: auto;
+    }
     table {
       width: 100%;
       tr {
@@ -347,6 +355,9 @@ body {
   }
   .modal-wrap {
     margin-left: auto;
+    @media (max-width: 990px) {
+      margin-top: 10px;
+    }
     .btn-green {
       img{
         width: 9px;
@@ -363,6 +374,9 @@ body {
         height: 100%;
         position: absolute;
         padding-bottom: 15%;
+        @media (max-width: 990px) {
+          padding-bottom: 140px;
+        }
         .modal-header {
           border: 0;
           .close {
@@ -513,6 +527,9 @@ body {
     padding-right: 40px;
     border-bottom: 1px solid #ebebeb;
     background: #ffffff;
+    @media (max-width: 990px) {
+      display: block;
+    }
     .btn-back {
       a {
         display: flex;
@@ -532,6 +549,9 @@ body {
         margin: 0;
         li{
           padding: 0 12px;
+          @media (max-width: 990px) {
+            padding: 0 6px;
+          }
           a {
             border: 0;
             float: none;
@@ -540,6 +560,9 @@ body {
             border-radius: 3px;
             padding: 5px 7px;
             font-size: 14px;
+            @media (max-width: 990px) {
+              display: inline-block;
+            }
             img{
               width: 24px;
             }
@@ -571,11 +594,18 @@ body {
     padding: 0 40px 0 20px;
     position: relative;
     min-height: 85vh;
+    @media (max-width: 990px) {
+      padding-right: 30px;
+    }
     .top-wrap{
       width: 660px;
       margin: 0 auto;
       text-align: center;
       padding: 30px 0;
+      @media (max-width: 990px) {
+        width: 100%;
+        padding-top: 10px;
+      }
       .total-data{
         .card {
           padding: 20px 10px;
@@ -606,6 +636,9 @@ body {
         background: #fff;
         width: 100%;
         margin: 10px 0;
+        @media (max-width: 990px) {
+          padding: 30px;
+        }
         .image {
           display: block;
           border: 1px solid #08bda8;
@@ -685,6 +718,12 @@ body {
             width: 100%;
             padding-right: 30px;
             font-size: 16px;
+            @media (max-width: 990px) {
+              left: inherit;
+              right: 0;
+              padding-right: 50px;
+              text-align: right;
+            }
           }
         }
         .filter {
@@ -802,6 +841,9 @@ body {
         justify-content: center;
         border-left: 1px solid #eaeaea;
         padding: 78px 0 0;
+        @media (max-width: 990px) {
+          min-width: auto;
+        }
         img{
           width: 24px;
           transform: rotate(180deg);
@@ -835,14 +877,24 @@ body {
       background: #fff;
       padding: 40px 20px;
       border: 1px solid #ececec;
+      @media (max-width: 990px) {
+        padding: 20px;
+      }
       .card {
         display: flex;
         align-items: center;
         width: 80%;
         margin: 0 auto;
+        @media (max-width: 990px) {
+          display: block;
+          width: 100%;
+        }
         .sub-profile {
           display: flex;
           align-items: center;
+          @media (max-width: 990px) {
+            display: block;
+          }
           .name {
             padding-left: 20px;
             padding-right: 20px;
@@ -857,15 +909,28 @@ body {
             }
           }                 
           .profile-image {
-            img{
+            @media (max-width: 990px) {
+              display: block;
+              width: 200px;
+              height: 200px;
+            }
+            img {
               width: 48px;
               height: 48px;
+              @media (max-width: 990px) {
+                width: 100%;
+                height: 200px;
+              }
             }
           }
         }
         .right-desc {
           margin-left: auto;
           text-align: right;
+          @media (max-width: 990px) {
+            margin-top: 20px;
+            text-align: left;
+          }
           p {
             font-size: 14px;
             color: #707070;
@@ -876,6 +941,9 @@ body {
             width: 120px;
             height: 120px;
             border-radius: 50%;
+            @media (max-width: 990px) {
+              margin-bottom: 10px;    
+            }
           }
           label {
             display: block;
@@ -889,6 +957,10 @@ body {
         width: 80%;
         margin: 0 auto;
         padding: 50px 0;
+        @media (max-width: 990px) {
+          width: 100%;
+          padding: 0;
+        }
         .form-wrap{
           .form-group{
             img {
@@ -932,6 +1004,11 @@ body {
             min-height: 100px;
           }
         }
+      }
+    }
+    .detail-profile .card {
+      @media (max-width: 990px) {
+        margin-bottom: 20px;
       }
     }
   }
@@ -1038,10 +1115,11 @@ body {
         .modal-content {
           width: 100%;
           height: auto;
-          position: absolute;
-          padding-bottom: 15%;
           .modal-body {
             padding: 0 15%;
+            @media (max-width: 990px) {
+              padding: 0;
+            }
             .upload-image {
               width: 50%;
               border: 1px dashed #eaeaea;
@@ -1443,4 +1521,29 @@ input[type="radio"]:not(:checked) + label:before {
   width: 80%;
   height: 380px;
   margin: 0 auto;
+  @media (max-width: 990px) {
+    width: 100%;
+    height: 260px;
+  }
+}
+
+@media (max-width: 990px) {
+  .main .content .graphic .card .filter .filter-form .card-body .filter-wrap .form-wrap {
+    display: block;
+    margin-bottom: 15px;
+  }
+  .main .content .graphic .card .filter .filter-form .card-body .filter-wrap {
+    display: block;
+    padding: 0 10px;
+  }
+  .main .content .graphic .card .filter .filter-form .card-body .filter-wrap .form-wrap label {
+    padding: 0;
+  }
+  .main .content .graphic .card .filter .filter-form .card-body .filter-wrap .form-wrap .form-group .form-control {
+    width: 100%;
+  }
+  .main .content .graphic .card .card-body .button-wrapper .btn {
+    margin: 0;
+    margin-right: 10px;
+  }
 }
