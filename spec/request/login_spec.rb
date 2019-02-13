@@ -2,6 +2,10 @@ require "rails_helper"
 
 RSpec.describe "Login", type: :request do
   describe "Login" do
+    before do
+      Rails.application.env_config["omniauth.auth"] = mock_auth_user
+      callback_stubber Rails.application.env_config["omniauth.auth"]["credentials"]["token"]
+    end
 
     it "can access login page" do
       get "/users/sign_in"
@@ -14,27 +18,28 @@ RSpec.describe "Login", type: :request do
     end
 
     context "when user is admin" do
-      it "should redirect to rootpath(dashboard)" do
-        mock_auth_admin
+      it "is redirect to rootpath(dashboard)" do
+        admin_verify_stubber
         get "/users/auth/identitas/callback?code=#{SecureRandom.hex}&state=#{SecureRandom.hex}"
         expect(response).to redirect_to(root_path)
       end
     end
 
     context "when user is not admin" do
-      it "should can't access dashboard and redirect to login path" do
-        mock_auth_user
+      it "is can't access dashboard and redirect to login path" do
+        user_verify_stubber
         get "/users/auth/identitas/callback?code=#{SecureRandom.hex}&state=#{SecureRandom.hex}"
         expect(response).to redirect_to(new_user_session_path)
+        expect(response).to have_http_status(302)
       end
     end
 
-    context "when user is not login as admin and access to dashboard" do
-      it "should cant access and redirect to login path" do
+    context "when user is not login and access to dashboard" do
+      it "is can't access and redirect to login path" do
         get "/"
         expect(response).to redirect_to(new_user_session_path)
+        expect(response).to have_http_status(302)
       end
     end
-
   end
 end

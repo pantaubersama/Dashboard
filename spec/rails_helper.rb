@@ -65,9 +65,11 @@ RSpec.configure do |config|
 
   # add `FactoryBot` methods
   config.include FactoryBot::Syntax::Methods
-  config.include AuthorizationRequestStubber, type: :request
   config.include RequestStuber, type: :request
-  config.include LoginStubber, type: :request
+  config.include MockAuthOmniauth, type: :request
+  config.include SymbolicStubber, type: :request
+  config.include HomeStubber, type: :request
+  config.include UserStubber, type: :request
 
   # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
   config.before(:suite) do
