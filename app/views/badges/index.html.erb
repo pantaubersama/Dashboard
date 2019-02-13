@@ -86,6 +86,14 @@
                         </div>
                       </div>
                       <div class="form-wrap">
+                        <label>Code</label>
+                        <div class="form-group">
+                          <div class="form-group">
+                            <%= text_field_tag :code, '', class: 'form-control', placeholder: 'Code', require:'require' %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-wrap">
                         <label>Deskripsi</label>
                         <div class="form-group">
                           <div class="form-group">
@@ -112,30 +120,22 @@
                         </div>
                       </div>
                       <div class="form-wrap">
-                          <label>Code</label>
+                        <label>Namespace</label>
+                        <div class="form-group">
                           <div class="form-group">
-                            <div class="form-group">
-                              <%= text_field_tag :code, '', class: 'form-control', placeholder: 'Code', require:'require' %>
-                            </div>
+                            <%= select_tag(:namespace, options_for_select([
+                              ['badge_pantau_bersama', 'badge_pantau_bersama'],
+                              ['badge_janji_politik', 'badge_janji_politik'],
+                              ['badge_tanya', 'badge_tanya'],
+                              ['badge_tanya_interaksi', 'badge_tanya_interaksi'],
+                              ['badge_kuis', 'badge_kuis'],
+                              ['badge_lapor', 'badge_lapor'],
+                              ['badge_profile', 'badge_profile'],
+                              ['badge_relawan', 'badge_relawan'],
+                              ]), class: "form-control") %>
                           </div>
                         </div>
-                        <div class="form-wrap">
-                          <label>Namespace</label>
-                          <div class="form-group">
-                            <div class="form-group">
-                              <%= select_tag(:namespace, options_for_select([
-                                ['badge_pantau_bersama', 'badge_pantau_bersama'],
-                                ['badge_janji_politik', 'badge_janji_politik'],
-                                ['badge_tanya', 'badge_tanya'],
-                                ['badge_tanya_interaksi', 'badge_tanya_interaksi'],
-                                ['badge_kuis', 'badge_kuis'],
-                                ['badge_lapor', 'badge_lapor'],
-                                ['badge_profile', 'badge_profile'],
-                                ['badge_relawan', 'badge_relawan'],
-                                ]), class: "form-control") %>
-                            </div>
-                          </div>
-                        </div>
+                      </div>
                     </div>
 
                   </div>
