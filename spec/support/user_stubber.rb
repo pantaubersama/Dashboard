@@ -29,12 +29,39 @@ module UserStubber
     file = File.open "#{ENV["AUTH_STUBBER_PATH"]}/dashboard/v1/users/update_detail/put.json"
     data = JSON.parse(file.read)
     stub_request(:put, "https://staging-auth.pantaubersama.com/dashboard/v1/users/update_detail").
-    with(
-      body: "id=#{id}&full_name=#{full_name}&username=#{username}&about=#{about}&location=#{location}&education=#{location}&occupation=#{occupation}",
+      with(
+      body: URI.encode("id=#{id}&full_name=#{full_name}&username=#{username}&about=#{about}&location=#{location}&education=#{education}&occupation=#{occupation}"),
       headers: {
-      'Authorization'=>'Bearer'
-      }).
-    to_return(status: 200, body: data.to_json, headers: {})
+        "Authorization" => "Bearer",
+      },
+    ).
+      to_return(status: 200, body: data.to_json, headers: {})
   end
 
+  def update_informant_stubber(id, identity_number, pob, dob, gender, occupation, nationality, address, phone_number)
+    file = File.open "#{ENV["AUTH_STUBBER_PATH"]}/dashboard/v1/users/update_informants/put.json"
+    data = JSON.parse(file.read)
+    stub_request(:put, "https://staging-auth.pantaubersama.com/dashboard/v1/users/update_informant").
+      with(
+      body: URI.encode("id=#{id}&identity_number=#{identity_number}&pob=#{pob}&dob=#{dob}&gender=#{gender}&occupation=#{occupation}&nationality=#{nationality}&address=#{address}&phone_number=#{phone_number}"),
+      headers: {
+        "Authorization" => "Bearer",
+      },
+    ).
+      to_return(status: 200, body: data.to_json, headers: {})
+  end
+
+  def update_avatar_stubber(id, avatar)
+    file = File.open "#{ENV["AUTH_STUBBER_PATH"]}/dashboard/v1/users/avatar/put.json"
+    data = JSON.parse(file.read)
+    stub_request(:put, "https://staging-auth.pantaubersama.com/dashboard/v1/users/avatar").
+      with(
+      body: "/id=#{id}&avatar=#{avatar}$/",
+      headers: {
+        "Authorization" => "Bearer",
+        "Content-Type" => /image\/.+/
+      },
+    ).
+      to_return(status: 200, body: data.to_json, headers: {})
+  end
 end
