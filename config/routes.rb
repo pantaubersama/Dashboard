@@ -91,6 +91,8 @@ Rails.application.routes.draw do
 
   resources :user_verifications, only: [:index, :show, :create] do
     collection do
+      get 'reset/:id', to: 'user_verifications#reset', as: 'reset'
+      post 'reset/:id', to: 'user_verifications#reset_action', as: 'reset_action'
       get 'accepted', to: 'user_verifications#accepted', as: 'accepted'
       get 'rejected', to: 'user_verifications#rejected', as: 'rejected'
       get 'approve/:id', to: 'user_verifications#approve', as: 'approve_verification'

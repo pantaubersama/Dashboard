@@ -84,7 +84,7 @@ class UserVerificationsController < ApplicationController
 
 
   def show
-    @verification = @user_api.show(params[:id])['data'][0]
+    @verification = @user_api.show(params[:id])['data']
     render "pages/users/verifications/show"
   end
 
@@ -130,6 +130,20 @@ class UserVerificationsController < ApplicationController
         flash[:warning] = "#{request['error']['errors']}"
         redirect_to user_verifications_path
     end
+  end
+
+  def reset
+    @verification = @user_api.show(params[:id])['data']
+    render "pages/users/verifications/reset"
+  end
+
+  def reset_action
+    @user_api.update_note(params[:id], params[:description])
+    @user_api.reset_step(params[:id], params[:step]) if params[:step].present?
+
+    notice = "Note successfully updated"
+    notice += ". Successfully reset to step #{params[:step]}"
+    redirect_to user_verifications_path, notice: notice
   end
 
 
