@@ -27,23 +27,21 @@
           </div>
           <%= form_tag(political_party_path(@party['id']), method: :put) do %>
           <div class="card-form">
-            <div class="row">
-              <div class="form-wrap">
-                <div class="form-group">
-                  <label for="">Nama</label>
-                  <%= text_field_tag :name, @party['name'], class: 'form-control', placeholder: 'Nama Partai' %>
-                </div>
+            <div class="form-wrap">
+              <div class="form-group">
+                <label for="">Nama</label>
+                <%= text_field_tag :name, @party['name'], class: 'form-control', placeholder: 'Nama Partai' %>
               </div>
-              <div class="form-wrap">
-                <div class="form-group">
-                  <label>Image</label>
-                  <%= file_field_tag :image, class: "form-control" %>
-                </div>
+            </div>
+            <div class="form-wrap">
+              <div class="form-group">
+                <label>Image</label>
+                <%= file_field_tag :image, class: "form-control" %>
               </div>
-              <div class="form-wrap">
-                <div class="form-group">
-                  <button class="btn btn-solid-green" type="submit"> Update</button>
-                </div>
+            </div>
+            <div class="form-wrap">
+              <div class="form-group">
+                <button class="btn btn-solid-green" type="submit"> Update</button>
               </div>
             </div>
           </div>
