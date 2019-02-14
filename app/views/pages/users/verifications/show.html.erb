@@ -30,6 +30,9 @@
                 <button class="btn btn-solid-green">DITERIMA</button>
                 <% end %>
               <% end %>
+              <%= link_to reset_user_verifications_path(@verification['user']['id'])  do %>
+                <button class="btn btn-solid-green" style="background-color:red">RESET / TAMBAH CATATAN</button>
+              <% end %>
             </div>
           </div>
 

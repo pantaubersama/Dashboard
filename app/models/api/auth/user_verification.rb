@@ -59,4 +59,26 @@ class Api::Auth::UserVerification < InitApiAuth
     self.class.post("/dashboard/v1/verifications/user", options)
   end
 
+  def update_note user_id, note
+    options = {
+      headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
+      body: {
+       id: user_id,
+       note: note
+      }
+    }
+    self.class.put("/dashboard/v1/verifications/note", options)
+  end
+
+  def reset_step user_id, step
+    options = {
+      headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"},
+      body: {
+       id: user_id,
+       step: step
+      }
+    }
+    self.class.put("/dashboard/v1/verifications/reset", options)
+  end
+
 end
