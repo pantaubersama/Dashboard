@@ -29,13 +29,37 @@ $(document).ready(function(){
 						root = "users"
 						break;
 					case "clusters":
-						root = "clusters"
+                        root = "clusters"
 				}
 				var result = $.map(data[root], function (item) { return { id: item.id, text: item.name || item.email }});
 				return { results: result };
 			}
 		}
-	});
+    });
+
+
+    $('select.select-fullname-users').select2({
+        placeholder: "Search...",
+        minimumInputLength: 3,
+        ajax: {
+            url: function (params) {
+                return $(this).data('url')
+            },
+            dataType: 'json',
+            delay: 250,
+            cache: true,
+            data: function (params) {
+                return {
+                    q: params.term,
+                };
+            },
+            processResults: function(data) {
+                console.log(data)
+                var result = $.map(data['users'], function (item) { return { id: item.full_name, text: item.full_name }});
+                return { results: result };
+            }
+        }
+    });
 
 	// Reset Value
 	$('button.reset').on('click', function(){

@@ -102,9 +102,9 @@
                   <div class="form-wrap">
                     <label>Nama User</label>
                     <div class="form-group">
-                      <div class="form-group">
-                        <input value="<%= params[:name] %>" name="name" class="form-control">
-                      </div>
+                    <select class="form-control select-fullname-users" name="name" data-url="<%= request.base_url + search_users_for_admin_path %>">
+                      <option value="<%= params[:name]%>"><%= params[:name]%></option>
+                    </select>
                     </div>
                   </div>
                 </div>
