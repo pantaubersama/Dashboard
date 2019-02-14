@@ -81,7 +81,7 @@
                     <div class="form-group">
                       <label>Sorting</label>
                       <select name="sorting" class="form-control stat">
-                        <option></option>                          
+                        <option></option>
                         <% @sorts.each do |s| %>
                           <option value="<%= s["id"] %>" <%= selected s["id"], params[:sorting] %> > <%= s["name"] %> </option>
                         <% end %>
@@ -100,10 +100,10 @@
                     </div>
                   </div>
                   <div class="form-wrap">
-                    <label>User</label>
+                    <label>Nama User</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input value="" name="name" class="form-control">
+                        <input value="<%= params[:name] %>" name="name" class="form-control">
                       </div>
                     </div>
                   </div>
