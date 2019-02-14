@@ -84,7 +84,7 @@ class UsersController < ApplicationController
     )
     if request.code == 200
       flash[:success] = "Update Sucessful"
-      redirect_to user_edit_path(@user["id"])
+      redirect_to user_edit_path(params[:id])
     else
       flash[:success] = "Oops Update Failed"
       render :edit
@@ -98,7 +98,7 @@ class UsersController < ApplicationController
     )
     if request.code == 200 || request.code == 201
       flash[:success] = "Update Sucessful"
-      redirect_to user_edit_path(@user["id"])
+      redirect_to user_edit_path(params[:id])
     elsif request.code == 422
       flash[:warning] = "Error #{request.code} #{request["error"]["errors"]}"
       render :edit
