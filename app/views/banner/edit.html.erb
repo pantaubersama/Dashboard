@@ -44,7 +44,7 @@
                   <label>Page Name</label>
                   <div class="form-group">
                     <div class="form-group">
-                      <%= select_tag(:page_name, options_for_select([['Pilpres', 'pilpres'], ['Janji Politik', 'janji politik'],['Tanya', 'tanya'], ['Kuis', 'kuis']], @banner.page_name)) %>
+                      <%= select_tag(:page_name, options_for_select([['Pilpres', 'pilpres'], ['Janji Politik', 'janji politik'],['Tanya', 'tanya'], ['Kuis', 'kuis']], @banner.page_name), class: "form-control") %>
                     </div>
                   </div>
                 </div>
@@ -52,7 +52,7 @@
                   <label>Image</label>
                   <div class="form-group">
                     <div class="form-group">
-                      <%= file_field_tag :image  %>
+                      <%= file_field_tag :image, class: "form-control" %>
                     </div>
                   </div>
                 </div>
@@ -60,7 +60,7 @@
                   <label>Header Image</label>
                   <div class="form-group">
                     <div class="form-group">
-                      <%= file_field_tag :header_image  %>
+                      <%= file_field_tag :header_image, class: "form-control" %>
                     </div>
                   </div>
                 </div>

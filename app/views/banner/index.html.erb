@@ -53,23 +53,21 @@
           </p>
         </span>
         <div class="card-wrap">
-          <div class="container">
-            <div class="row">
-              <% @banners.each do |banner| %>
-                <%= link_to banner_path(banner)  do %>
-                <div class="col-sm-4">
-                  <div class="card">
-                    <span class="image">
-                      <%= image_tag banner.header_image_url unless banner.header_image_url.nil? %>
-                    </span>
-                    <h4>
-                      <%= banner.title %>
-                    </h4>
-                  </div>
+          <div class="row">
+            <% @banners.each do |banner| %>
+              <%= link_to banner_path(banner)  do %>
+              <div class="col-sm-4">
+                <div class="card">
+                  <span class="image">
+                    <%= image_tag banner.header_image_url unless banner.header_image_url.nil? %>
+                  </span>
+                  <h4>
+                    <%= banner.title %>
+                  </h4>
                 </div>
-                <% end %>
+              </div>
               <% end %>
-            </div>
+            <% end %>
           </div>
         </div>
 

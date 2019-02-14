@@ -5,7 +5,7 @@ module MockAuthOmniauth
       :uid => "123545",
       :credentials => {
         :expires => false,
-        :token => SecureRandom.hex, # make sure this token from omniauth identitas
+        :token => SecureRandom.hex,
       },
       :info => {
         :email => "muhammadyusuf931@gmail.com",
