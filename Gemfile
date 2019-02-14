@@ -84,6 +84,9 @@ group :test do
 
   ###doc [5] set up database_cleaner
   gem 'database_cleaner'
+
+  #rspec
+  gem 'rails-controller-testing'
 end
 
 gem 'seed_migration'
@@ -99,6 +102,3 @@ gem 'simple_form'
 gem 'httparty'
 gem 'carrierwave', '~> 1.0'
 gem 'fog-aws'
-
-#rspec
-gem 'rails-controller-testing'
