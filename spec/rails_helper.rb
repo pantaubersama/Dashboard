@@ -70,6 +70,7 @@ RSpec.configure do |config|
   config.include SymbolicStubber, type: :request
   config.include HomeStubber, type: :request
   config.include UserStubber, type: :request
+  config.include UserClusterStubber, type: :request
 
   # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
   config.before(:suite) do
