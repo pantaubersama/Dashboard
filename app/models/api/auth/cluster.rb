@@ -2,12 +2,18 @@ class Api::Auth::Cluster < InitApiAuth
   include ActiveModel::Model
   attr_accessor :id, :name, :category_id, :description, :requester_id, :image, :status
 
-  def clusters(page, per_page, q, filter_by, filter_value, status)
+  def clusters(page, per_page, q, filter_by, filter_value, status, order_by, direction, admin)
     @options = {
-      query: {page: page, per_page: per_page,
-              q: q, filter_by: filter_by,
+      query: {page: page, 
+              per_page: per_page,
+              q: q, 
+              filter_by: filter_by,
               filter_value: filter_value,
-              status: status},
+              status: status,
+              order_by: order_by,
+              direction: direction,
+              admin: admin
+            },
       headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}
     }
     self.class.get("/dashboard/v1/clusters", @options)
