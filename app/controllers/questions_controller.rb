@@ -9,7 +9,7 @@ class QuestionsController < ApplicationController
       o = "and",
       m = "word_start",
       order_by = params["sorting"],
-      direction = "desc",
+      direction = params["order"],
       filter_by = params["filter"],
       full_name = params['name']
     )
@@ -33,7 +33,7 @@ class QuestionsController < ApplicationController
       o = "and",
       m = "word_start",
       order_by = params["sorting"],
-      direction = "desc",
+      direction = params["order"],
       filter_by = params["filter"],
       full_name = params['name']
     )["data"]["questions"].size
@@ -51,7 +51,7 @@ class QuestionsController < ApplicationController
 
     init_sort = [
       ["created_at", "Tanggal Dibuat"],
-      ["cached_votes_up", "Upvote Terbanyak"],
+      ["cached_votes_up", "Upvote"],
       ["report_count", "Jumlah Report"],
     ]
     @sorts = []

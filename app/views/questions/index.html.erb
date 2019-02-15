@@ -89,6 +89,16 @@
                     </div>
                   </div>
                   <div class="form-wrap">
+                    <div class="form-group">
+                      <label>Order</label>
+                      <select name="order" class="form-control stat">
+                        <option value=""></option>
+                        <option value="asc" <%= params['order'] == 'asc' ? 'selected' : '' %>>Menaik</option>
+                        <option value="desc" <%= params['order'] == 'desc' ? 'selected' : '' %> > Menurun</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
                     <label>Status</label>
                     <div class="form-group">
                       <select name="filter" class="form-control stat">
