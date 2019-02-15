@@ -78,7 +78,7 @@
                     <button type="button" class="btn btn-solid-green" @click="createQuiz" id='btn-create'>
                       Create
                     </button>
-                    <button type="button" class="btn btn-transparent">Cancel</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-transparent">Cancel</button>
                   </div>
                 </div>
               </div>
@@ -117,7 +117,7 @@
                     <%= quiz['quiz_questions_count'] %>
                   </td>
                   <td>
-                    <%= link_to(quiz['status'], (quiz['status'] == "published" ? draft_quiz_path(quiz['id']) : publish_quiz_path(quiz['id'])), 
+                    <%= link_to(quiz['status'], (quiz['status'] == "published" ? draft_quiz_path(quiz['id']) : publish_quiz_path(quiz['id'])),
                       data: { confirm: "Do you want to make quiz to #{publish_or_draft(quiz['status'])}?" }, method: :post,
                       class: "label label-"+label_publish_or_draft(quiz['status'])) %>
                   </td>
