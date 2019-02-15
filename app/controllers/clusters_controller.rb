@@ -97,7 +97,7 @@ class ClustersController < ApplicationController
                                         params[:image], 
                                         params[:status])
     if response.code == 201
-      redirect_to clusters_path
+      redirect_to cluster_path(response["data"]["cluster"]["id"])
     end
   end
 
@@ -110,7 +110,7 @@ class ClustersController < ApplicationController
                                         params[:image].present? ? params[:image] : nil, 
                                         params[:status])
     if response.code == 200
-      redirect_to cluster_path(params[:id])
+      redirect_to cluster_path(response["data"]["cluster"]["id"])
     end
   end
 
