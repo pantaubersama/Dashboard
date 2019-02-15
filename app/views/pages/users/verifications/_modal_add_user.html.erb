@@ -16,7 +16,7 @@
         <div class="modal-body">
           <h3>Tambah User Verification</h3>
           <div class="row">
-          <%= form_tag(user_verifications_path, method: :post) do %>
+            <%= form_tag(user_verifications_path, method: :post, multipart: true) do %>
             <div class="col-md-6 col-sm-12">
               <div class="form-wrap">
                 <label>Email</label>
@@ -29,16 +29,12 @@
 
               <div class="form-wrap">
                 <label>Foto Wajah Beserta KTP</label>
-                <div class="form-group">
-                  <input type="file" name="ktp_selfie" accept="image/*">
-                </div>
+                <input type="file" name="ktp_selfie" accept="image/*">
               </div>
 
               <div class="form-wrap">
                 <label>KTP</label>
-                <div class="form-group">
-                  <input type="file" name="ktp_photo" accept="image/*">
-                </div>
+                <input type="file" name="ktp_photo" accept="image/*">
               </div>
 
             </div>
@@ -46,17 +42,13 @@
               <div class="form-wrap">
                 <label>No. KTP</label>
                 <div class="form-group">
-                  <div class="form-group">
-                    <input type="text" name="ktp_number" class="form-control" placeholder="No KTP">
-                  </div>
+                  <input type="text" name="ktp_number" class="form-control" placeholder="No KTP">
                 </div>
               </div>
 
               <div class="form-wrap">
                 <label>TTD</label>
-                <div class="form-group">
-                  <input type="file" name="signature" accept="image/*">
-                </div>
+                <input type="file" name="signature" accept="image/*">
               </div>
 
             </div>
