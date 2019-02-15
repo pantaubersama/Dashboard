@@ -1,8 +1,14 @@
 class Api::Pemilu::Linimasa < InitApiPemilu
   attr_accessor :keywords, :team, :id, :filter, :q
 
-  def list_tweet(page=1, per_page=30, filter, q)
-    @options = { query: {page: page, per_page: per_page, filter_by: filter, q: q},
+  def list_tweet(page=1, per_page=30, filter, q, username)
+    @options = { query: {
+                          page: page, 
+                          per_page: per_page, 
+                          filter_by: filter, 
+                          q: q,
+                          username: username
+                        },
                  headers: {Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}}
     self.class.get("/linimasa/v1/feeds/pilpres", @options)
   end
