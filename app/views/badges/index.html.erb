@@ -6,45 +6,7 @@
     </header>
     <div class="main-content">
       <div class="top">
-        <% link = pagy_link_proc(@pagy) %>
-        <div class="pagination-wrap">
-          <ul class="pagination">
-            <% if @pagy.prev %>
-            <li class="page-item">
-              <%== link.call(@pagy.prev, pagy_t('pagy.nav.prev')) %>
-            </li>
-            <% else  %>
-            <li class="page-item disabled">
-              <%== link.call(@pagy.prev, pagy_t('pagy.nav.prev')) %>
-            </li>
-            <% end %>
-
-            <% @pagy.series.each do |item| %>
-            <% if item.is_a?(Integer) %>
-            <li id="testtest" class="page-item">
-              <%== link.call(item) %>
-            </li>
-            <% elsif item.is_a?(String) %>
-            <li class="page-item active" aria-current="page">
-              <%== link.call(item) %>
-            </li>
-            <% elsif item == :gap %>
-            <li class="page-item disabled gap"><a href="#" class="page-link">
-                <%== pagy_t('pagy.nav.gap') %></a></li>
-            <% end %>
-            <% end %>
-
-            <% if @pagy.next %>
-            <li class="page-item">
-              <%== link.call(@pagy.next, pagy_t('pagy.nav.next')) %>
-            </li>
-            <% else %>
-            <li class="page-item disabled">
-              <%== link.call(@pagy.next, pagy_t('pagy.nav.next')) %>
-            </li>
-            <% end %>
-          </ul>
-        </div>
+        <%= render("components/pagination", pagy: @pagy) %>
         <div class="modal-wrap">
           <a href="<%= grant_badge_badges_path %>">
             <button type="button" class="btn btn-green">
@@ -153,7 +115,9 @@
       </div>
       <div class="content">
         <span class="display-desc">
-          <p></p>
+          <p>
+            <%= show_count_table(params[:page], @total_row_per_page, @total_badges) %>
+          </p>
         </span>
         <div class="col-md-12">
           <% flash.each do |key, value| %>
@@ -213,12 +177,29 @@
               <div class="form-wrap">
                 <label>Nama Badge</label>
                 <div class="form-group">
-                  <%= text_field_tag :nama, "", class: 'form-control', placeholder: 'Nama Badge' %>
+                  <%= text_field_tag :nama, params[:nama], class: 'form-control', placeholder: 'Nama Badge' %>
+                </div>
+
+                <label>Order By</label>
+                <div class="form-group">
+                  <select name="orderby" id="" class="form-control">
+                    <option value=""></option>
+                    <option value="position" <%= params[:orderby] == 'position' ? 'selected' : '' %> >Position</option>
+                  </select>
+                </div>
+
+                <label>Direction</label>
+                <div class="form-group">
+                  <select name="direction" id="" class="form-control">
+                    <option value=""></option>
+                    <option value="asc" <%= params[:direction] == 'asc' ? 'selected' : '' %> >Menaik</option>
+                    <option value="desc" <%= params[:direction] == 'desc' ? 'selected' : '' %> >Menurun</option>
+                  </select>
                 </div>
               </div>
               <div class="button-wrapper">
                 <button type="submit" class="btn btn-solid-green" data-dismiss="modal">Done</button>
-                <button type="button" class="btn btn-transparent">Reset</button>
+                <button type="reset" class="btn btn-transparent">Reset</button>
               </div>
             <% end %>
             </div>
