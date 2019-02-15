@@ -6,10 +6,15 @@ class AdminsController < ApplicationController
     user = UserPantauAuth.find(params[:id])
     if user.present?
       response = @user_api.make_admin(user.id)
-      if response.code == 201
+      case response.code
+      when 200...204
+        flash[:success] = "Make Admin Successful"
         redirect_to users_list_admin_path
-      else
-        flash[:warning] = "Oop something wrong"
+      when 404
+        flash[:error] = "Not Found #{response["error"]["errors"]}"
+        redirect_to users_list_admin_path
+      when 500...600
+        flash[:error] = "#{response["error"]["errors"]}"
         redirect_to users_list_admin_path
       end
     else
@@ -25,23 +30,33 @@ class AdminsController < ApplicationController
 
   def delete_admin
     response = @user_api.delete_admin(params[:id])
-    if response.code == 204
+    case response.code
+    when 200...201
+      flash[:success] = "Delete Admin Successful"
+      redirect_to users_list_admin_path
+    when 404
+      flash[:error] = "Not Found #{response["error"]["errors"]}"
+      redirect_to users_list_admin_path
+    when 500...600
+      flash[:error] = "#{response["error"]["errors"]}"
       redirect_to users_list_admin_path
     end
   end
 
   def index
     @admins = UserPantauAuth.joins('INNER JOIN "users_roles" ON "users_roles"."user_id" = "users"."id" INNER JOIN "roles" ON "roles"."id" = "users_roles"."role_id"')
-    .where("roles.name = 'admin'")
-    .where("LOWER(users.full_name) LIKE ?", "%#{ params[:nama].present? ? params[:nama] : '' }%")
-    .where("users.email LIKE ?", "%#{ params[:email].present? ? params[:email] : '' }%")
-    .where('users.deleted_at IS NULL')
+      .where("roles.name = 'admin'")
+      .where("LOWER(users.first_name) LIKE ? or LOWER(users.last_name) LIKE ? or LOWER(users.full_name) LIKE ? ", "%#{params[:nama].present? ? params[:nama].downcase : ""}%",  "%#{params[:nama].present? ? params[:nama].downcase : ""}%",  "%#{params[:nama].present? ? params[:nama].downcase : ""}%")
+      .where("users.email LIKE ?", "%#{params[:email].present? ? params[:email] : ""}%")
+      .where("users.deleted_at IS NULL")
+      .order("users.updated_at DESC")
 
     @pagy_admins, @item_admins = pagy_array(@admins, page_param: :page_user)
   end
 
   private
-    def set_api_user
-      @user_api = Api::Auth::User.new
-    end
+
+  def set_api_user
+    @user_api = Api::Auth::User.new
+  end
 end
