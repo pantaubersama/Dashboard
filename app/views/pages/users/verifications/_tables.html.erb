@@ -5,6 +5,7 @@
         <th>No</th>
         <th>Nama</th>
         <th>Email</th>
+        <th>Catatan</th>
         <th>Dikirim Tanggal</th>
         <th></th>
       </tr>
@@ -23,6 +24,9 @@
         </td>
         <td>
           <%= user['email'] %>
+        </td>
+        <td>
+          <%= truncate(user['note'], :length => 80) %>
         </td>
         <td>
           <%= user['sent_at_verification'].nil? ? '' : Date.parse(user['sent_at_verification']) %>

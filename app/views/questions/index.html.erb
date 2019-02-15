@@ -81,7 +81,7 @@
                     <div class="form-group">
                       <label>Sorting</label>
                       <select name="sorting" class="form-control stat">
-                        <option></option>                          
+                        <option></option>
                         <% @sorts.each do |s| %>
                           <option value="<%= s["id"] %>" <%= selected s["id"], params[:sorting] %> > <%= s["name"] %> </option>
                         <% end %>
@@ -100,11 +100,11 @@
                     </div>
                   </div>
                   <div class="form-wrap">
-                    <label>User</label>
+                    <label>Nama User</label>
                     <div class="form-group">
-                      <div class="form-group">
-                        <input value="" name="name" class="form-control">
-                      </div>
+                    <select class="form-control select-fullname-users" name="name" data-url="<%= request.base_url + search_users_for_admin_path %>">
+                      <option value="<%= params[:name]%>"><%= params[:name]%></option>
+                    </select>
                     </div>
                   </div>
                 </div>
