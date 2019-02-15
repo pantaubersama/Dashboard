@@ -81,7 +81,7 @@
                     <label>Admin</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input type="Email" class="form-control" placeholder="" value="<%= @trash_detail["requester"]["full_name"] %>">
+                        <input type="Email" class="form-control" placeholder="" value="<%= @trash_detail["requester"].present? ? @trash_detail["requester"]["full_name"] : "" %>">
                       </div>
                     </div>
                   </div>

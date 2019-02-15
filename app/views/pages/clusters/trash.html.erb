@@ -36,7 +36,7 @@
                       <img src="<%= item["image"].present? ? item["image"]["thumbnail_square"]["url"] : "" %>">
                       <%= item["name"] %></a></td>
                   <td class="name bold">
-                    <%= item["requester"]["full_name"] %>
+                    <%= item["requester"].present? ? item["requester"]["full_name"] : "" %>
                   </td>
                   <td>
                     <%= item["category"]["name"] %>
