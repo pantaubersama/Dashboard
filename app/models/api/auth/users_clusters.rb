@@ -1,8 +1,16 @@
 class Api::Auth::UsersClusters < InitApiAuth
-	def all(page=1, per_page=30, q="*", o="and", m="word_start", filter_by="", cluster_id)
+	def all(page=1, per_page=30, q="*", o="and", m="word_start", filter_by="", cluster_id, full_name, email)
     options = { 
       query: { 
-        page: page, per_page: per_page, q: q, o: o, m: m, filter_by: filter_by, cluster_id: cluster_id 
+        page: page, 
+        per_page: per_page, 
+        q: q, 
+        o: o, 
+        m: m, 
+        filter_by: filter_by, 
+        cluster_id: cluster_id,
+        full_name: full_name,
+        email: email 
       },
       headers: {
         Authorization: "Bearer #{RequestStore.store[:my_api_token]}"

@@ -8,7 +8,9 @@ class UserClustersController < ApplicationController
                                             params[:nama].present? ? params[:nama] : "*",
                                             "and", "word_start", 
                                             params[:verified].present? ? params[:verified] : '',
-                                            params[:cluster_id].present? ? params[:cluster_id] : "" 
+                                            params[:cluster_id].present? ? params[:cluster_id] : "",
+                                            params[:full_name].present? ? params[:full_name] : "",
+                                            params[:email].present? ? params[:email] : ""
                                           )
 
     n = @init_user_cluster['data']['meta']['pages']['total']
@@ -23,7 +25,7 @@ class UserClustersController < ApplicationController
 
     @users_clusters = @init_user_cluster["data"]["users"]
 
-    last_page = @user_cluster.all(n, Pagy::VARS[:items], nil, nil, nil, nil, nil)['data']['users'].size
+    last_page = @user_cluster.all(n, Pagy::VARS[:items], nil, nil, nil, nil, nil, nil, nil)['data']['users'].size
     @total_users_clusters = (@total_records - Pagy::VARS[:items]) + last_page
     @total_row_per_page = @init_user_cluster["data"]["users"].size
 

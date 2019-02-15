@@ -32,7 +32,7 @@
 								<td class="number bold"><%= ((params[:page_user].present? ? params[:page_user].to_i : 1) - 1) * Pagy::VARS[:items].to_i + index + 1 %></td>
 								<td class="name bold"><a href="<%= detail_user_path(item["id"]) %>"><%= item["team"]["title"] %></a></td>
 								<td><%= item["keywords"] %></td>
-								<td>100</td>
+								<td><%= item["feeds_count"] %></td>
 								<td><%= item["created_at_in_word"]["id"] %></td>
 								<td>
 									<button class="dropdown-toggle" type="button" data-toggle="dropdown"

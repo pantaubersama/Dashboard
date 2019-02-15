@@ -23,8 +23,8 @@
                 <%= image_tag @politic["creator"]["avatar"]["url"] if @politic["creator"]["avatar"].present? %>
               </span>
               <span class="name">
-                <h5>Nama   :  <%= @politic["creator"]["full_name"] %></h5>
-                <p>Cluster :  <%= @politic["creator"]["cluster"].present? ? @politic["creator"]["cluster"]["name"] : "Belum Ada" %></p>
+                <h5>Nama   :  <%= @politic["creator"]["full_name"].present? ? @politic["creator"]["full_name"] : "" %></h5>
+                <p>Cluster :  <%= @politic["creator"]["cluster"].present? ? @politic["creator"]["cluster"]["name"] : "" %></p>
               </span>
             </div>
             <div class="right-desc">

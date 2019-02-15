@@ -5,9 +5,10 @@ class Timeline::PoliticsController < ApplicationController
 
   def index
     @init_index = @janji.get_politics(params[:page].present? ? params[:page] : 1,
-                                          Pagy::VARS[:items], params[:filter].present? ? params[:filter] : "",
-                                          params[:q].present? ? params[:q] : "", 
-                                          params[:cluster_id].present? ? params[:cluster_id] : "")
+                                        Pagy::VARS[:items], 
+                                        params[:filter].present? ? params[:filter] : "",
+                                        params[:q].present? ? params[:q] : "", 
+                                        params[:cluster_id].present? ? params[:cluster_id] : "")
     n1 = @init_index["data"]["meta"]["pages"]["total"]
     @records = (n1*Pagy::VARS[:items])
     total_pages = (1..@records).to_a
@@ -85,7 +86,7 @@ class Timeline::PoliticsController < ApplicationController
     def set_api
       @janji = Api::Pemilu::JanjiPolitik.new
       @set_cluster = Api::Auth::Cluster.new
-      @clusters = @set_cluster.clusters(nil, nil, params[:q], nil, nil, nil)["data"]["clusters"]
+      @clusters = @set_cluster.clusters(nil, nil, params[:q], nil, nil, nil, "created_at", "desc", nil)["data"]["clusters"]
     end
 
     def get_janji

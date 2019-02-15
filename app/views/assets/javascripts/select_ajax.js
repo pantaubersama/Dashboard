@@ -66,6 +66,7 @@ $(document).ready(function(){
 		a = $('select.stat').val('')
 		b = $('input.q').val('')
 		c = $('select.remote-select').val('').trigger('change')
+		d = $('textarea.q').val('')
 	})
 
 })
