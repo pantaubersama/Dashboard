@@ -1,14 +1,15 @@
 class DashboardsController < ApplicationController
   before_action :set_api
+
   def index
     request_poll = @home_auth.get_poll
-    @poll = request_poll['data']['preference']
+    @poll = request_poll["data"]["preference"]
 
     request_statistic = @home_auth.statistic
-    @statistic = request_statistic['data']
+    @statistic = request_statistic["data"]
 
     request_statistic_pemilu = @home_pemilu.statistic
-    @statistic_pemilu = request_statistic_pemilu['data']
+    @statistic_pemilu = request_statistic_pemilu["data"]
 
     render "pages/dashboards/index"
   end
@@ -24,10 +25,21 @@ class DashboardsController < ApplicationController
     render json: question
   end
 
-  private
-    def set_api
-      @home_auth = Api::Auth::Home.new
-      @home_pemilu = Api::Pemilu::Home.new
-    end
+  def data_registration
+    registrations_users = @home_auth.registration(
+      params[:month_from_registration].present? ? params[:month_from_registration] : "",
+      params[:year_from_registration].present? ? params[:year_from_registration] : "",
+      params[:month_to_registration].present? ? params[:month_to_registration] : "",
+      params[:year_to_registration].present? ? params[:year_to_registration] : "",
+    )["data"]
+    render json: registrations_users
+  end
 
+
+  private
+
+  def set_api
+    @home_auth = Api::Auth::Home.new
+    @home_pemilu = Api::Pemilu::Home.new
+  end
 end
