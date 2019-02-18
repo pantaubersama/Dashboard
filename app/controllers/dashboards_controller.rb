@@ -14,7 +14,7 @@ class DashboardsController < ApplicationController
   end
 
   def data_question
-    request_question = @home_auth.question(
+    request_question = @home_pemilu.question(
                                     params[:month_from].present? ? params[:month_from] : "",
                                     params[:year_from].present? ? params[:month_from] : "",
                                     params[:month_to].present? ? params[:month_to] : "",
