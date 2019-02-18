@@ -128,7 +128,7 @@
                       <%= item["status"] %>
                     </a>
                   </td>
-                  <td>21/10/2023</td>
+                  <td><%= Date.parse(item["created_at"]) unless item["created_at"].nil? %></td>
                   <td>
                     <button class="dropdown-toggle" type="button" id="dropdown-active" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false">
