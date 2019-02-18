@@ -4,7 +4,7 @@ module UserClusterStubber
 	def stub_index page, q, m, o
     file = File.open "#{ENV["AUTH_STUBBER_PATH"]}/dashboard/v1/users_clusters/get.json"
 		data = JSON.parse(file.read)
-		stub_request(:get, "https://staging-auth.pantaubersama.com/dashboard/v1/users_clusters?cluster_id=&filter_by=&m=#{m}&o=#{o}&page=#{page}&per_page=15&q=#{q}").
+		stub_request(:get, "https://staging-auth.pantaubersama.com/dashboard/v1/users_clusters?cluster_id=&email=&filter_by=&full_name=&m=#{m}&o=#{o}&page=#{page}&per_page=15&q=#{q}").
 			with(
 				headers: {
 					'Authorization'=>'Bearer'
