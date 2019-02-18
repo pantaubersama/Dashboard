@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   resources :dashboards, only: [:index] do
     collection do
-      get :data_question    
+      get :data_question
+      get :data_registration
     end
   end
   resources :broadcasts
