@@ -144,51 +144,69 @@
           <div class="card">
             <div class="head-title">
               <h3>Registration</h3>
-              <p>01/01/2019-01/06/2019</p>
+              <p>Februari 2019 - Maret 2019</p>
             </div>
+            <%
+              monts = [
+                ['Januari', '1'],
+                ['Februari', '2'],
+                ['Maret', '3'],
+                ['April', '4'],
+                ['Mei', '5'],
+                ['Juni', '6'],
+                ['Juli', '7'],
+                ['Agustus', '8'],
+                ['September', '9'],
+                ['Oktober', '10'],
+                ['November', '11'],
+                ['Desember', '12'],
+              ]
 
+              years = [
+                ['2018', '2018'],
+                ['2019', '2019'],
+                ['2020', '2020'],
+                ['2021', '2021'],
+                ['2022', '2022'],
+                ['2023', '2023'],
+              ]
+             %>
+            <%= form_tag(dashboards_path, method: :get, id: "chart_registrantion_form") do %>
             <div class="filter">
               <div class="collapse filter-form" id="filter1">
                 <div class="card card-body">
                   <h4>Filter</h4>
                   <div class="filter-wrap">
                     <div class="form-wrap">
-                      <label>Nama Cluster</label>
+                      <label>Bulan Awal</label>
                       <div class="form-group">
-                        <div class="form-group">
-                          <select class="form-control">
-                            <option>UGM</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                          </select>
-                        </div>
+                        <%= select_tag(:month_from_registration, options_for_select(monts, params[:month_from_registration]), class: 'form-control') %>
+                      </div>
+                      <label>Tahun Awal</label>
+                      <div class="form-group">
+                        <%= select_tag(:year_from_registration, options_for_select(years, params[:year_from_registration]), class: 'form-control') %>
                       </div>
                     </div>
                     <div class="form-wrap">
-                      <label>Tanggal Akhir</label>
+                      <label>Bulan Akhir</label>
                       <div class="form-group">
-                        <div class="form-group">
-                          <select class="form-control">
-                            <option>UGM</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                          </select>
-                        </div>
+                        <%= select_tag(:month_to_registration, options_for_select(monts, params[:month_to_registration]), class: 'form-control') %>
+                      </div>
+                      <label>Tahun Akhir</label>
+                      <div class="form-group">
+                        <%= select_tag(:year_to_registration, options_for_select(years, params[:year_to_registration]), class: 'form-control') %>
                       </div>
                     </div>
                     <div class="form-wrap">
                       <div class="form-group">
                         <div class="button-wrapper">
-                          <button type="button" class="btn btn-solid-green" data-dismiss="modal">Done</button>
-                          <button type="button" class="btn btn-transparent">Reset</button>
+                          <button type="submit" class="btn btn-solid-green" data-dismiss="modal">Done</button>
+                          <button type="reset" class="btn btn-transparent">Reset</button>
                         </div>
                       </div>
                     </div>
                   </div>
+                  <% end %>
 
                 </div>
               </div>
@@ -329,6 +347,7 @@
 </div>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script type="text/javascript">
+
   // Debate
   Highcharts.chart('chartDebate', {
     chart: {
