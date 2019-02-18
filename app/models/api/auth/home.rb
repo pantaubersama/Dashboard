@@ -1,16 +1,15 @@
 class Api::Auth::Home < InitApiAuth
-  Authorization = { Authorization: "Bearer #{RequestStore.store[:my_api_token]}" }
 
   def get_poll
     options = {
-      headers: Authorization,
+      headers: { Authorization: "Bearer #{RequestStore.store[:my_api_token]}" },
     }
     self.class.get("/dashboard/v1/home/poll", options)
   end
 
   def statistic
     options = {
-      headers: Authorization,
+      headers: { Authorization: "Bearer #{RequestStore.store[:my_api_token]}" },
     }
     self.class.get("/dashboard/v1/home/statistics", options)
   end
@@ -32,7 +31,7 @@ class Api::Auth::Home < InitApiAuth
 
   def registration(month_from, year_from, month_to, year_to)
     options = {
-      headers: Authorization,
+      headers: { Authorization: "Bearer #{RequestStore.store[:my_api_token]}" },
       query: {
         month_from: month_from,
         year_from: year_from,
