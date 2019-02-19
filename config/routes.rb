@@ -69,6 +69,8 @@ Rails.application.routes.draw do
     end
     member do
       get 'detail_trash'
+      get 'upvote'
+      post 'action_upvote'
     end
   end
   resources :quiz do

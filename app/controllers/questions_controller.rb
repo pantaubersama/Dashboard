@@ -165,6 +165,32 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def upvote
+    request = @question_api.find(params[:id])
+    if request.code == 404
+      flash[:warning] = "Not Found"
+      redirect_to questions_path
+    elsif request.code == 200
+      @question = request["data"]["question"]
+    end
+  end
+
+  def action_upvote
+    request = @question_api.upvote(params[:id], "Question", params[:vote_count])
+    case request.code
+    when 201
+      flash[:success] = "Upvote successful"
+      redirect_to question_path(params[:id])
+    when 404
+      flash[:warning] = "Not found"
+      redirect_to question_path(params[:id])
+    else
+      flash[:warning] = "Selain akun survey manual #{request['error']['errors'][0]}"
+      redirect_to question_path(params[:id])
+    end
+  end
+
+
   private
 
   def set_api

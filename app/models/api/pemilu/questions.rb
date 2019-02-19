@@ -70,4 +70,17 @@ class Api::Pemilu::Questions < InitApiPemilu
     self.class.delete("/dashboard/v1/question_actions", options)
   end
 
+  def upvote(id, class_name, vote_count)
+    options = {
+      headers: {
+        Authorization: "#{RequestStore.store[:my_api_token]}"
+      },
+      body: {
+        id: id,
+        class_name: class_name,
+        vote_count: vote_count
+      }
+    }
+    self.class.post("/dashboard/v1/votes", options)
+  end
 end
