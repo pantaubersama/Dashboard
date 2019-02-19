@@ -1,5 +1,5 @@
 class Api::Auth::UsersClusters < InitApiAuth
-	def all(page=1, per_page=30, q="*", o="and", m="word_start", filter_by="", cluster_id, full_name, email)
+	def all(page=1, per_page=30, q="*", o="and", m="word_start", filter_by="", cluster_id="", full_name="", email="")
     options = { 
       query: { 
         page: page, 

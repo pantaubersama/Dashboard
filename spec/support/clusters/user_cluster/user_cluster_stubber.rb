@@ -1,7 +1,7 @@
 module UserClusterStubber
 	DEFAULT_RESPONSE_HEADERS = { 'Content-Type' => 'application/json' }.freeze
 
-	def stub_index page, q, m, o
+	def stub_index_user_cluster page, q, m, o
     file = File.open "#{ENV["AUTH_STUBBER_PATH"]}/dashboard/v1/users_clusters/get.json"
 		data = JSON.parse(file.read)
 		stub_request(:get, "https://staging-auth.pantaubersama.com/dashboard/v1/users_clusters?cluster_id=&email=&filter_by=&full_name=&m=#{m}&o=#{o}&page=#{page}&per_page=15&q=#{q}").
@@ -12,7 +12,7 @@ module UserClusterStubber
 			to_return(status: 200, body: data.to_json, headers: DEFAULT_RESPONSE_HEADERS)
   end
   
-  def stub_show(id)
+  def stub_show_user_cluster(id)
     file = File.open "#{ENV["AUTH_STUBBER_PATH"]}/v1/users/id/full/get.json"
     data = JSON.parse(file.read)
     stub_request(:get, "https://staging-auth.pantaubersama.com/v1/users/#{id}/full").
@@ -23,7 +23,7 @@ module UserClusterStubber
     ).to_return(status: 200, body: data.to_json, headers: {})
   end
 
-  def stub_invite(id, email)
+  def stub_invite_user(id, email)
     file = File.open "#{ENV["AUTH_STUBBER_PATH"]}/v1/clusters/invite/post.json"
     data = JSON.parse(file.read)
     stub_request(:post, "https://staging-auth.pantaubersama.com/v1/clusters/invite?cluster_id=16f8bfd9-d6be-4624-8f71-0257f677ddb3&emails=yusuf@extrainteger.com").

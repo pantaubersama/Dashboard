@@ -6,10 +6,10 @@ RSpec.describe "User Cluster", type: :request do
   let(:email) { "yusuf@extrainteger.com" }
 
 	before do
-		stub_index 1, "*", "word_start", "and"
-		stub_index 33, "", "", ""
-		stub_show user_id
-		stub_invite "16f8bfd9-d6be-4624-8f71-0257f677ddb3", "yusuf@extrainteger.com"
+		stub_index_user_cluster 1, "*", "word_start", "and"
+		stub_index_user_cluster 33, "", "", ""
+		stub_show_user_cluster user_id
+		stub_invite_user "16f8bfd9-d6be-4624-8f71-0257f677ddb3", "yusuf@extrainteger.com"
 		stub_remove_member id, user_id
 	end
 	login_admin

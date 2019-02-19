@@ -10,10 +10,10 @@ RSpec.describe "Clusters", type: :request do
   let(:status) {"Testtt"}
 
   before do
-    stub_index(1, "*", "created_at", "desc")
-    stub_index(59, "", "created_at", "desc")
-    stub_categories
-    stub_show(id)
+    stub_index_cluster(1, "*", "created_at", "desc")
+    stub_index_cluster(59, "", "created_at", "desc")
+    stub_category_cluster
+    stub_show_cluster(id)
 	end
   login_admin
 
@@ -35,7 +35,7 @@ RSpec.describe "Clusters", type: :request do
 
     describe "Update" do
       it "can update cluster's record" do
-        stub_update(id, name, category_id, description, requester_id, image, status)
+        stub_update_cluster(id, name, category_id, description, requester_id, image, status)
         put "/users/clusters/#{id}", params: {
           id: id,
           name: name,
@@ -52,7 +52,7 @@ RSpec.describe "Clusters", type: :request do
 
     describe "Delete" do
       it "can delete cluster's record" do
-        stub_delete(id)
+        stub_delete_cluster(id)
         delete "/users/clusters/#{id}"
         expect(response).to redirect_to(clusters_path)
 				expect(response).to have_http_status(302)
@@ -60,7 +60,27 @@ RSpec.describe "Clusters", type: :request do
     end
 
     describe "Create" do
-      pending "cant upload image"
+      pending "create cluster"
+    end
+
+    describe "Approve" do
+      it "can approve cluster by id" do
+        stub_approve_cluster id
+        post "/users/clusters/#{id}/approve_cluster", params: {
+          id: id
+        }
+				expect(response).to have_http_status(204)
+      end
+    end
+
+    describe "Reject" do
+      it "can reject cluster by id" do
+        stub_approve_cluster id
+        post "/users/clusters/#{id}/approve_cluster", params: {
+          id: id
+        }
+				expect(response).to have_http_status(204)
+      end
     end
 
 end
