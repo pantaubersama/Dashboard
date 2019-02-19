@@ -64,7 +64,7 @@ class Timeline::LinimasaController < ApplicationController
     @pagy = Pagy.new(count: total_page_user.count, page: params[:page].present? ? params[:page] : 1,
                            page_param: :page)
 
-    last_page_user = @linimasa.get_user_list(params[:page], Pagy::VARS[:items])["data"]["crowlings"].size
+    last_page_user = @linimasa.get_user_list(n3, Pagy::VARS[:items])["data"]["crowlings"].size
     @total_user = (@user_records - Pagy::VARS[:items]) + last_page_user
     @total_row_per_page = @username["data"]["crowlings"].size
 
@@ -95,18 +95,23 @@ class Timeline::LinimasaController < ApplicationController
   end
 
   def create
-    @linimasa.add_user(params[:keywords], params[:team])
+    response = @linimasa.add_user(params[:keywords], params[:team])
+    if response.code == 201
+      redirect_to list_username_linimasa_index_path
+    end
   end
 
   def destroy
-    if @linimasa.delete_tweet(params[:id])
-      redirect_to root_path
+    response = @linimasa.delete_tweet(params[:id])
+    if response.code == 201
+      redirect_to linimasa_index_path
     end
   end
 
   def delete_user
-    if @linimasa.delete_username(params[:id])
-      redirect_to linimasa_index_path
+    response = @linimasa.delete_username(params[:id])
+    if response.code == 204
+      redirect_to list_username_linimasa_index_path
     end
   end
 
