@@ -11,13 +11,32 @@ class DashboardsController < ApplicationController
     request_statistic_pemilu = @home_pemilu.statistic
     @statistic_pemilu = request_statistic_pemilu["data"]
 
+    init_months = [
+                ['Januari', '1'],
+                ['Februari', '2'],
+                ['Maret', '3'],
+                ['April', '4'],
+                ['Mei', '5'],
+                ['Juni', '6'],
+                ['Juli', '7'],
+                ['Agustus', '8'],
+                ['September', '9'],
+                ['Oktober', '10'],
+                ['November', '11'],
+                ['Desember', '12'],
+              ]
+    @months = []
+    init_months.each { |record| @months << {"id" => record[1], "value" => record[0]} }
+
+    @years = ['2018', '2019', '2020', '2021', '2022', '2023']
+
     render "pages/dashboards/index"
   end
 
   def data_question
     request_question = @home_pemilu.question(
                                     params[:month_from].present? ? params[:month_from] : "",
-                                    params[:year_from].present? ? params[:month_from] : "",
+                                    params[:year_from].present? ? params[:year_from] : "",
                                     params[:month_to].present? ? params[:month_to] : "",
                                     params[:year_to].present? ? params[:year_to] : ""
                                   )

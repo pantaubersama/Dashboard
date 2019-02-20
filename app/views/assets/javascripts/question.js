@@ -1,18 +1,35 @@
 $(document).ready(function(){
   getQuestion()
 
+  $('button#question').on('click', function(){
+    getQuestion()
+  })
+
+  $('button#reset').on('click', function(){
+    $("select#mf").val($("select#mf").data('default'))
+    $("select#yf").val($("select#yf").data('default'))
+    $("select#mt").val($("select#mt").data('default'))
+    $("select#yt").val($("select#yt").data('default'))
+  })
+
   function getQuestion(){
+    mf = $("select#mf").val()
+    yf = $("select#yf").val()
+    mt = $("select#mt").val()
+    yt = $("select#yt").val()
     $.ajax({
-      url: $('.graphic').data('url') + "/dashboards/data_question",
+      url: $('.graphic').data('url') + "/dashboards/data_question?month_from="+mf+"&year_from="+yf+"&month_to="+mt+"&year_to="+yt,
       success: function(array){
         keys = Object.keys(array)
-        value = Object.keys(array).map(function (key) { return array[key]; });
+        value = Object.values(array)
         chartQuestion(keys, value)
       }
     })
   }
 
   function chartQuestion(category, data){
+    var chart_length = Math.max.apply(null, data)
+
     Highcharts.chart('chartQuestion', {
       chart: {
         type: 'area'
@@ -31,7 +48,7 @@ $(document).ready(function(){
         },
       },
       yAxis: {
-        max: 200,
+        max: chart_length,
         tickInterval: 50,
         title: {
           text: null
