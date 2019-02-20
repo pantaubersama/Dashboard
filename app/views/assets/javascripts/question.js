@@ -5,6 +5,13 @@ $(document).ready(function(){
     getQuestion()
   })
 
+  $('button#reset').on('click', function(){
+    $("select#mf").val($("select#mf").data('default'))
+    $("select#yf").val($("select#yf").data('default'))
+    $("select#mt").val($("select#mt").data('default'))
+    $("select#yt").val($("select#yt").data('default'))
+  })
+
   function getQuestion(){
     mf = $("select#mf").val()
     yf = $("select#yf").val()

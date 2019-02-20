@@ -201,7 +201,7 @@
                       <div class="form-group">
                         <div class="button-wrapper">
                           <button type="submit" class="btn btn-solid-green" data-dismiss="modal">Done</button>
-                          <button type="reset" class="btn btn-transparent">Reset</button>
+                          <button type="button" class="btn btn-transparent">Reset</button>
                         </div>
                       </div>
                     </div>
@@ -235,7 +235,7 @@
                       <label>Bulan Awal</label>
                       <div class="form-group">
                         <div class="form-group">
-                          <select class="form-control" id="mf">
+                          <select class="form-control" id="mf" data-default="1">
                             <% @months.each do |m| %>
                               <option value=<%= m["id"] %> <%= selected 1, m["id"] %> ><%= m["value"] %></option>
                             <% end %>
@@ -247,7 +247,7 @@
                       <label>Tahun Awal</label>
                       <div class="form-group">
                         <div class="form-group">
-                          <select class="form-control" id="yf">
+                          <select class="form-control" id="yf" data-default="2018">
                             <% @years.each do |y| %>
                               <option value=<%= y %> <%= selected 2018, y %> ><%= y %></option>
                             <% end %>
@@ -259,7 +259,7 @@
                       <label>Bulan Akhir</label>
                       <div class="form-group">
                         <div class="form-group">
-                          <select class="form-control" id="mt">
+                          <select class="form-control" id="mt" data-default="12">
                             <% @months.each do |m| %>
                               <option value=<%= m["id"] %> <%= selected 12, m["id"] %> ><%= m["value"] %></option>
                             <% end %>
@@ -271,7 +271,7 @@
                       <label>Tahun Akhir</label>
                       <div class="form-group">
                         <div class="form-group">
-                          <select class="form-control" id="yt">
+                          <select class="form-control" id="yt" data-default=<%= Time.now.year %>>
                             <% @years.each do |y| %>
                               <option value=<%= y %> <%= selected Time.now.year, y %> ><%= y %></option>
                             <% end %>
