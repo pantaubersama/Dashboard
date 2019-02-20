@@ -13,7 +13,10 @@ RSpec.describe "Clusters", type: :request do
     stub_index_cluster(1, "*", "created_at", "desc")
     stub_index_cluster(59, "", "created_at", "desc")
     stub_category_cluster
-    stub_show_cluster(id)
+    stub_show_cluster id
+    stub_trash_cluster 1
+    stub_trash_cluster 2
+    stub_show_trash_cluster id
 	end
   login_admin
 
@@ -60,7 +63,7 @@ RSpec.describe "Clusters", type: :request do
     end
 
     describe "Create" do
-      pending "create cluster"
+      pending " ==> Image issue"
     end
 
     describe "Approve" do
@@ -80,6 +83,20 @@ RSpec.describe "Clusters", type: :request do
           id: id
         }
 				expect(response).to have_http_status(204)
+      end
+    end
+
+    describe "List Trashes" do
+      it "can list all cluster's trash" do
+        get "/users/clusters/trash"
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    describe "Show trash" do
+      it "can show cluster trash detail" do
+        get "/users/clusters/#{id}/detail_trash"
+        expect(response).to have_http_status(200)
       end
     end
 

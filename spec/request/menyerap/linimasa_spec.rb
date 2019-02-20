@@ -12,6 +12,9 @@ RSpec.describe "Linimasa", type: :request do
     stub_list_user 1
     stub_list_user ""
     stub_show_user id
+    stub_trash 1
+    stub_trash ""
+    stub_show_trash id    
   end
   login_admin
 
@@ -32,20 +35,30 @@ RSpec.describe "Linimasa", type: :request do
     end
 
     describe "Delete" do
-      pending "delete linimasa"
+      it "can delete linimasa" do
+        stub_delete_linimasa id
+        delete "/timeline/linimasa/#{id}"
+        expect(response).to have_http_status(204)
+      end
     end
 
     describe "List of trashes" do
-      pending "trash"
+      it "can list linimasa's trashes" do
+        get "/timeline/linimasa/trash"
+        expect(response).to have_http_status(200)        
+      end
     end
 
     describe "Show Trash" do
-      pending "detail trash"
+      it "can show trash detail" do
+        get "/timeline/show_trash_linimasa/#{id}"
+        expect(response).to have_http_status(200)
+      end
     end
 
     describe "Create" do
       it "can create new username" do
-        stub_add_username keywords, team
+        stub_add_username(keywords, team)
         post "/timeline/linimasa", params: {
           keywords: keywords,
           team: team

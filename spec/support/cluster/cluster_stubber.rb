@@ -81,4 +81,26 @@ module ClusterStubber
       to_return(status: 200, body: data.to_json, headers: {})
   end
 
+  def stub_trash_cluster page
+    file = File.open "#{ENV["AUTH_STUBBER_PATH"]}/dashboard/v1/clusters/trash/get.json"
+    data = JSON.parse(file.read)
+    stub_request(:get, "https://staging-auth.pantaubersama.com/dashboard/v1/clusters/trash?page=#{page}&per_page=15").
+      with(
+        headers: {
+      'Authorization'=>'Bearer'
+        }).
+      to_return(status: 200, body: data.to_json, headers: {})
+  end
+
+  def stub_show_trash_cluster id
+    file = File.open "#{ENV["AUTH_STUBBER_PATH"]}/dashboard/v1/clusters/trash/id/get.json"
+    data = JSON.parse(file.read)
+    stub_request(:get, "https://staging-auth.pantaubersama.com/dashboard/v1/clusters/trash/#{id}?id=#{id}").
+      with(
+        headers: {
+      'Authorization'=>'Bearer'
+        }).
+      to_return(status: 200, body: data.to_json, headers: {})
+  end
+
 end
