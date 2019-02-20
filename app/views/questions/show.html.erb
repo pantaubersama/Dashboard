@@ -16,6 +16,7 @@
               <!-- Displaying Content 1 - 30 of 500 in total -->
           </p>
         </span>
+        <%= render('components/flash_message')%>
         <div class="bg-white detail-profile">
           <div class="card">
             <span class="profile-image">
@@ -23,6 +24,7 @@
             </span>
             <div class="right-desc">
               <p>Created at : <%= @question['created_at'] %></p>
+              <%= link_to 'UPVOTE', upvote_question_path(@question["id"]), class: "btn btn-solid-green" %>
               <%= link_to 'EDIT', edit_question_path(@question["id"]), class: "btn btn-solid-green" %>
               <%= link_to 'DELETE', question_path(@question["id"]), {class: "btn btn-solid-green", method: :delete, data: {confirm: "Are you sure?"}, style: "background-color:red"} %>
             </div>
