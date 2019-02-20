@@ -73,12 +73,21 @@ class Timeline::PoliticsController < ApplicationController
   end
 
   def update
-    @janji.update_politic(params[:id], params[:title], params[:body], params[:image].tempfile)
+    response = @janji.update_politic(
+                                      params[:id],
+                                      params[:title],
+                                      params[:body],
+                                      params[:image].present? ? params[:image] : nil,
+                                    )
+    if response.code == 200
+      redirect_to politic_path(response["data"]["janji_politik"]["id"])
+    end
   end
 
   def destroy
-    if @janji.delete_politic(params[:id])
-      redirect_to root_path
+    response = @janji.delete_politic(params[:id])
+    if response.code == 204
+      redirect_to politic_path
     end
   end
 
