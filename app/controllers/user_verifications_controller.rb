@@ -26,6 +26,17 @@ class UserVerificationsController < ApplicationController
 
     @users_requested = request_users_requested["data"]["users"]
 
+    last_page = @user_api.all(
+      totalPageUserRequested,
+      Pagy::VARS[:items],
+      params[:nama].present? ? params[:nama] : "*",
+      o = "and",
+      m = "word_start",
+      status = "requested",
+      email = params[:email].present? ? params[:email] : ""
+    )['data']['users'].size
+    @total_users = (totalDataUserRequested - Pagy::VARS[:items]) + last_page
+
     render "pages/users/list_user_verification"
   end
 
@@ -52,6 +63,17 @@ class UserVerificationsController < ApplicationController
     )
 
     @users_accepted = request_users_accepted["data"]["users"]
+
+    last_page = @user_api.all(
+      totalPage,
+      Pagy::VARS[:items],
+      params[:nama].present? ? params[:nama] : "*",
+      o = "and",
+      m = "word_start",
+      status = "verified",
+      email = params[:email].present? ? params[:email] : ""
+    )['data']['users'].size
+    @total_users = (totalData - Pagy::VARS[:items]) + last_page
     render "pages/users/verifications/accepted"
   end
 
@@ -77,12 +99,22 @@ class UserVerificationsController < ApplicationController
       page_param: :page_user_rejected,
     )
     @users_rejected = request_users_rejected["data"]["users"]
+
+    last_page = @user_api.all(
+      totalPage,
+      Pagy::VARS[:items],
+      params[:nama].present? ? params[:nama] : "*",
+      o = "and",
+      m = "word_start",
+      filter_by = "rejected",
+      email = params[:email].present? ? params[:email] : ""
+    )['data']['users'].size
+    @total_users = (totalData - Pagy::VARS[:items]) + last_page
     render "pages/users/verifications/rejected"
   end
 
   def show
     @verification = @user_api.show(params[:id])["data"]
-    # byebug
     render "pages/users/verifications/show"
   end
 
