@@ -232,29 +232,49 @@
                   <h4>Filter</h4>
                   <div class="filter-wrap">
                     <div class="form-wrap">
-                      <label>Nama Cluster</label>
+                      <label>Bulan Awal</label>
                       <div class="form-group">
                         <div class="form-group">
-                          <select class="form-control">
-                            <option>UGM</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                          <select class="form-control" id="mf">
+                            <% @months.each do |m| %>
+                              <option value=<%= m["id"] %> <%= selected 1, m["id"] %> ><%= m["value"] %></option>
+                            <% end %>
                           </select>
                         </div>
                       </div>
                     </div>
                     <div class="form-wrap">
-                      <label>Tanggal Akhir</label>
+                      <label>Tahun Awal</label>
                       <div class="form-group">
                         <div class="form-group">
-                          <select class="form-control">
-                            <option>UGM</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                          <select class="form-control" id="yf">
+                            <% @years.each do |y| %>
+                              <option value=<%= y %> <%= selected 2018, y %> ><%= y %></option>
+                            <% end %>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-wrap">
+                      <label>Bulan Akhir</label>
+                      <div class="form-group">
+                        <div class="form-group">
+                          <select class="form-control" id="mt">
+                            <% @months.each do |m| %>
+                              <option value=<%= m["id"] %> <%= selected 12, m["id"] %> ><%= m["value"] %></option>
+                            <% end %>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-wrap">
+                      <label>Tahun Akhir</label>
+                      <div class="form-group">
+                        <div class="form-group">
+                          <select class="form-control" id="yt">
+                            <% @years.each do |y| %>
+                              <option value=<%= y %> <%= selected Time.now.year, y %> ><%= y %></option>
+                            <% end %>
                           </select>
                         </div>
                       </div>
@@ -262,8 +282,8 @@
                     <div class="form-wrap">
                       <div class="form-group">
                         <div class="button-wrapper">
-                          <button type="button" class="btn btn-solid-green" data-dismiss="modal">Done</button>
-                          <button type="button" class="btn btn-transparent">Reset</button>
+                          <button id="question" type="button" class="btn btn-solid-green" data-dismiss="modal">Done</button>
+                          <button id="reset" type="button" class="btn btn-transparent">Reset</button>
                         </div>
                       </div>
                     </div>
