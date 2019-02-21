@@ -3,12 +3,15 @@ class UserClustersController < ApplicationController
   before_action :set_api
   
   def index
-    @init_user_cluster = @user_cluster.all(
-                          params[:page].present? ? params[:page] : 1,
-                          Pagy::VARS[:items], params[:nama].present? ? params[:nama] : "*",
-                          "and", "word_start", params[:verified].present? ? params[:verified] : '',
-                          params[:cluster_id].present? ? params[:cluster_id] : "" 
-                        )
+    @init_user_cluster = @user_cluster.all( params[:page].present? ? params[:page] : 1,
+                                            Pagy::VARS[:items], 
+                                            params[:nama].present? ? params[:nama] : "*",
+                                            "and", "word_start", 
+                                            params[:verified].present? ? params[:verified] : '',
+                                            params[:cluster_id].present? ? params[:cluster_id] : "",
+                                            params[:full_name].present? ? params[:full_name] : "",
+                                            params[:email].present? ? params[:email] : ""
+                                          )
 
     n = @init_user_cluster['data']['meta']['pages']['total']
     @total_records = (n*Pagy::VARS[:items])
@@ -22,7 +25,7 @@ class UserClustersController < ApplicationController
 
     @users_clusters = @init_user_cluster["data"]["users"]
 
-    last_page = @user_cluster.all(n, Pagy::VARS[:items], nil, nil, nil, nil, nil)['data']['users'].size
+    last_page = @user_cluster.all(n, Pagy::VARS[:items], nil, nil, nil, nil, nil, nil, nil)['data']['users'].size
     @total_users_clusters = (@total_records - Pagy::VARS[:items]) + last_page
     @total_row_per_page = @init_user_cluster["data"]["users"].size
 
@@ -46,13 +49,17 @@ class UserClustersController < ApplicationController
   end
 
   def create
-    if @user_cluster.invite_user(params[:emails], params[:cluster_id])
+    response = @user_cluster.invite_user(params[:emails], params[:cluster_id])
+    if response.code == 201
       redirect_to user_clusters_path
+    else
+      render :index
     end
   end
 
   def destroy
-    if @user_cluster.remove_member(params[:id], params[:user_id])
+    response = @user_cluster.remove_member(params[:id], params[:user_id])
+    if response.code == 204
       redirect_to user_clusters_path
     end
   end

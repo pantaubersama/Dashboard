@@ -4,8 +4,9 @@ class BadgesController < ApplicationController
 
   def index
     request = @badge_api.all(
-                              orderby="position",
-                              direction="asc",
+                              orderby=params[:orderby].present? ? params[:orderby] : "position",
+                              direction=params[:direction].present? ? params[:direction] : "asc",
+                              name=params[:nama].present? ? params[:nama] : "",
                               page= params[:page].present? ? params[:page] : 1,
                               Pagy::VARS[:items]
                             )
@@ -21,6 +22,17 @@ class BadgesController < ApplicationController
                     )
 
     @badges = request["data"]["badges"]
+
+    last_page = @badge_api.all(
+      orderby=params[:orderby].present? ? params[:orderby] : "position",
+      direction=params[:direction].present? ? params[:direction] : "asc",
+      name=params[:nama].present? ? params[:nama] : "",
+      page= @totalPage,
+      per_page = Pagy::VARS[:items]
+    )['data']['badges'].size
+
+    @total_badges = (@totalData - Pagy::VARS[:items]) + last_page
+    @total_row_per_page = request['data']['badges'].size
   end
 
   def show
@@ -124,7 +136,7 @@ class BadgesController < ApplicationController
     def set_badge_api
       @badge_api = Api::Auth::Badge.new
     end
-    
+
     def set_badge
       @request = @badge_api.find(params[:id])
     end

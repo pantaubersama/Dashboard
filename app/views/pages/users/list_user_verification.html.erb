@@ -23,6 +23,7 @@
         <div class="content">
           <span class="display-desc">
             <p>
+                <%= show_count_table(params[:page_user_requested], @users_requested.size, @total_users) %>
             </p>
           </span>
           <%= render('components/flash_message') %>

@@ -91,7 +91,7 @@
                     <div class="dropdown-menu" aria-labelledby="action">
                       <a class="dropdown-item" href="<%= category_path(category['id']) %>">Lihat</a>
                       <a class="dropdown-item" href="<%= edit_category_path(category['id'])%>">Edit</a>
-                      <%= link_to 'Hapus', category_path(category['id']),class: 'dropdown-item', method: :delete %>
+                      <%= link_to 'Hapus', category_path(category['id']),class: 'dropdown-item', method: :delete, data: { confirm: 'Are you sure?'} %>
                     </div>
                   </td>
                 </tr>
@@ -110,7 +110,7 @@
                 <%= form_tag(categories_path, method: :get) do %>
                 <div class="filter-wrap">
                   <div class="form-wrap">
-                    <label>Nama Cluster</label>
+                    <label>Nama Categories</label>
                     <div class="form-group">
                       <div class="form-group">
                         <%= text_field_tag :nama, params[:nama].present? ? params[:nama] : '', class: 'form-control', placeholder: 'Nama' %>

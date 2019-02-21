@@ -5,9 +5,10 @@ class Timeline::PoliticsController < ApplicationController
 
   def index
     @init_index = @janji.get_politics(params[:page].present? ? params[:page] : 1,
-                                          Pagy::VARS[:items], params[:filter].present? ? params[:filter] : "",
-                                          params[:q].present? ? params[:q] : "", 
-                                          params[:cluster_id].present? ? params[:cluster_id] : "")
+                                        Pagy::VARS[:items], 
+                                        params[:filter].present? ? params[:filter] : "",
+                                        params[:q].present? ? params[:q] : "", 
+                                        params[:cluster_id].present? ? params[:cluster_id] : "")
     n1 = @init_index["data"]["meta"]["pages"]["total"]
     @records = (n1*Pagy::VARS[:items])
     total_pages = (1..@records).to_a
@@ -72,12 +73,21 @@ class Timeline::PoliticsController < ApplicationController
   end
 
   def update
-    @janji.update_politic(params[:id], params[:title], params[:body], params[:image].tempfile)
+    response = @janji.update_politic(
+                                      params[:id],
+                                      params[:title],
+                                      params[:body],
+                                      params[:image].present? ? params[:image] : nil,
+                                    )
+    if response.code == 200
+      redirect_to politic_path(response["data"]["janji_politik"]["id"])
+    end
   end
 
   def destroy
-    if @janji.delete_politic(params[:id])
-      redirect_to root_path
+    response = @janji.delete_politic(params[:id])
+    if response.code == 204
+      redirect_to politic_path
     end
   end
 
@@ -85,7 +95,7 @@ class Timeline::PoliticsController < ApplicationController
     def set_api
       @janji = Api::Pemilu::JanjiPolitik.new
       @set_cluster = Api::Auth::Cluster.new
-      @clusters = @set_cluster.clusters(nil, nil, params[:q], nil, nil, nil)["data"]["clusters"]
+      @clusters = @set_cluster.clusters(nil, nil, params[:q], nil, nil, nil, "created_at", "desc", nil)["data"]["clusters"]
     end
 
     def get_janji

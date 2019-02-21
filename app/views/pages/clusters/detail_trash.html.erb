@@ -26,10 +26,10 @@
             <div class="card">
               <span class="profile-image">
                 <label>Gambar Cluster</label>
-                <img src="<%= @trash_detail["image"]["url"] %>">
+                <img src="<%= @trash_detail["image"].present? ? @trash_detail["image"]["url"] : "" %>">
               </span>
               <div class="right-desc">
-                <p>Created at : 21/10/2023</p>
+                <p><%= Date.parse(@trash_detail["created_at"].present? ? @trash_detail["created_at"] : "" ) %></p>
               </div>
             </div>
             <div class="card-form">
@@ -73,7 +73,7 @@
                     <label>Kategori</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input type="Kategori" class="form-control" placeholder="" value="<%= @trash_detail["category"]["name"] %>">
+                        <input type="Kategori" class="form-control" placeholder="" value="<%= @trash_detail["category"]["name"] unless @trash_detail["category"].nil? %>">
                       </div>
                     </div>
                   </div>
@@ -81,7 +81,7 @@
                     <label>Admin</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input type="Email" class="form-control" placeholder="" value="<%= @trash_detail["requester"]["full_name"] %>">
+                        <input type="Email" class="form-control" placeholder="" value="<%= @trash_detail["requester"].present? ? @trash_detail["requester"]["full_name"] : "" %>">
                       </div>
                     </div>
                   </div>

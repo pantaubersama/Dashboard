@@ -1,5 +1,5 @@
 class Api::Pemilu::Questions < InitApiPemilu
-  def all(page=1, per_page=30, q="*", o="and", m="word_start", order_by="created_at", direction="desc", filter_by="")
+  def all(page=1, per_page=30, q="*", o="and", m="word_start", order_by="created_at", direction="desc", filter_by="", full_name="")
     options = {
       headers: {Authorization: "#{RequestStore.store[:my_api_token]}"},
       query: {
@@ -10,7 +10,8 @@ class Api::Pemilu::Questions < InitApiPemilu
         m: m,
         order_by: order_by,
         direction: direction,
-        filter_by: filter_by
+        filter_by: filter_by,
+        full_name: full_name
       }
     }
     self.class.get("/pendidikan_politik/v1/questions", options)
@@ -48,7 +49,7 @@ class Api::Pemilu::Questions < InitApiPemilu
         Authorization: "#{RequestStore.store[:my_api_token]}"
       },
       query: {
-        id: id, 
+        id: id,
         body: body,
         status: status,
         question_folder_id: question_folder_id
@@ -63,10 +64,23 @@ class Api::Pemilu::Questions < InitApiPemilu
         Authorization: "#{RequestStore.store[:my_api_token]}"
       },
       query: {
-        id: id 
+        id: id
       }
     }
     self.class.delete("/dashboard/v1/question_actions", options)
   end
 
+  def upvote(id, class_name, vote_count)
+    options = {
+      headers: {
+        Authorization: "#{RequestStore.store[:my_api_token]}"
+      },
+      body: {
+        id: id,
+        class_name: class_name,
+        vote_count: vote_count
+      }
+    }
+    self.class.post("/dashboard/v1/votes", options)
+  end
 end

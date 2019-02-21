@@ -1,8 +1,9 @@
 class Api::Auth::Badge < InitApiAuth
-  def all(orderby="position", direction="asc", page="1", perpage="")
+  def all(orderby="position", direction="asc", name="", page="1", perpage="")
     options = { query: {
         order_by: orderby,
         direction: direction,
+        name: name,
         page: page,
         per_page: perpage,
       }

@@ -5,22 +5,36 @@ class ClustersController < ApplicationController
 
   def index
     # ============================= Clusters =============================
-    @init_cluster = @cluster.clusters(params[:page] || 1, Pagy::VARS[:items],
-                                      params[:q] || "", params[:filter_by] || "", params[:filter_value] || "",
-                                      params[:status] || "")
+    @init_cluster = @cluster.clusters(
+                                        params[:page] || 1,
+                                        Pagy::VARS[:items],
+                                        params[:q] || "*",
+                                        params[:filter_by] || "",
+                                        params[:filter_value] || "",
+                                        params[:status] || "",
+                                        params[:order_by].present? ? params[:order_by] : "created_at",
+                                        params[:order_by] == "name" ? "asc" : "desc",
+                                        params[:admin].present? ? params[:admin] : ""
+                                      )
     n1 = @init_cluster["data"]["meta"]["pages"]["total"]
     @cluster_records = (n1*Pagy::VARS[:items])
     total_page_clusters = (1..@cluster_records).to_a
     @pagy = Pagy.new(count: total_page_clusters.count,
-                                   page: params[:page].present? ? params[:page] : 1,
-                                   page_param: :page)
+                      page: params[:page].present? ? params[:page] : 1,
+                      page_param: :page)
 
-    last_page_cluster = @cluster.clusters(n1, Pagy::VARS[:items], nil, nil, nil, nil)["data"]["clusters"].size
+    last_page_cluster = @cluster.clusters(n1, Pagy::VARS[:items], nil, nil, nil, nil, "created_at", "desc", nil)["data"]["clusters"].size
     @total_cluster = (@cluster_records - Pagy::VARS[:items]) + last_page_cluster
     @total_row_per_page = @init_cluster['data']['clusters'].size
 
     @clusters = @init_cluster["data"]["clusters"]
     @statuses = ["approved", "requested", "rejected"]
+    init_sort = [
+      ["created_at", "Tanggal Dibuat"],
+      ["name", "Nama Cluster"]
+    ]
+    @sorts = []
+    init_sort.each { |record| @sorts << {"id" => record[0], "name" => record[1]} }
 
     @pages = { page: "index" }
     render "pages/clusters/index"
@@ -32,8 +46,8 @@ class ClustersController < ApplicationController
     @cluster_records = (n1*Pagy::VARS[:items])
     total_page_clusters = (1..@cluster_records).to_a
     @pagy = Pagy.new(count: total_page_clusters.count,
-                                   page: params[:page].present? ? params[:page] : 1,
-                                   page_param: :page)
+                      page: params[:page].present? ? params[:page] : 1,
+                      page_param: :page)
 
     last_page_cluster = @cluster.list_trash(n1, Pagy::VARS[:items])["data"]["clusters"].size
     @total_cluster = (@cluster_records - Pagy::VARS[:items]) + last_page_cluster
@@ -47,13 +61,15 @@ class ClustersController < ApplicationController
   end
 
   def approve_cluster
-    if @cluster.approve_cluster(params[:id])
+    response = @cluster.approve_cluster(params[:id])
+    if response.code == 201
       redirect_to clusters_path
     end
   end
 
   def reject_cluster
-    if @cluster.reject_cluster(params[:id])
+    response = @cluster.reject_cluster(params[:id])
+    if response.code == 201
       redirect_to clusters_path
     end
   end
@@ -74,21 +90,33 @@ class ClustersController < ApplicationController
   end
 
   def create
-    if @cluster.create_cluster(params[:name], params[:category_id], params[:description],
-                            params[:requester_id], params[:image], params[:status])
-      redirect_to clusters_path
+    response = @cluster.create_cluster(params[:name], 
+                                        params[:category_id], 
+                                        params[:description],
+                                        params[:requester_id], 
+                                        params[:image], 
+                                        params[:status])
+    if response.code == 201
+      redirect_to cluster_path(response["data"]["cluster"]["id"])
     end
   end
 
   def update
-    if @cluster.update_cluster(params[:id], params[:name], params[:category_id], params[:description],
-      params[:requester_id], params[:image].present? ? params[:image] : nil, params[:status])
-      redirect_to clusters_path
+    response = @cluster.update_cluster(params[:id], 
+                                        params[:name], 
+                                        params[:category_id], 
+                                        params[:description],
+                                        params[:requester_id], 
+                                        params[:image].present? ? params[:image] : nil, 
+                                        params[:status])
+    if response.code == 200
+      redirect_to cluster_path(response["data"]["cluster"]["id"])
     end
   end
 
   def destroy
-    if @cluster.delete_cluster(params[:id])
+    response = @cluster.delete_cluster(params[:id])
+    if response.code == 200
       redirect_to clusters_path
     end
   end

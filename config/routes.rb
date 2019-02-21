@@ -2,7 +2,12 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  resources :dashboards, only: [:index]
+  resources :dashboards, only: [:index] do
+    collection do
+      get :data_question
+      get :data_registration
+    end
+  end
   resources :broadcasts
 
   root 'dashboards#index'
@@ -64,6 +69,8 @@ Rails.application.routes.draw do
     end
     member do
       get 'detail_trash'
+      get 'upvote'
+      post 'action_upvote'
     end
   end
   resources :quiz do
@@ -91,6 +98,8 @@ Rails.application.routes.draw do
 
   resources :user_verifications, only: [:index, :show, :create] do
     collection do
+      get 'reset/:id', to: 'user_verifications#reset', as: 'reset'
+      post 'reset/:id', to: 'user_verifications#reset_action', as: 'reset_action'
       get 'accepted', to: 'user_verifications#accepted', as: 'accepted'
       get 'rejected', to: 'user_verifications#rejected', as: 'rejected'
       get 'approve/:id', to: 'user_verifications#approve', as: 'approve_verification'

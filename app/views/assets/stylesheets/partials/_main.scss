@@ -4,6 +4,9 @@
 .pb-wrapper {
   position: relative;
   padding-left: 240px;
+  @media (max-width: 767px) {
+    padding-left: 0;
+  }
 }
 body {
   background: #f9f9f9;
@@ -12,6 +15,9 @@ body {
   flex-grow: 1;
   padding: 56px 0 0;
   background: #f9f9f9;
+  @media (max-width: 767px) {
+    padding-top: 50px;
+  }
   .card-wrap {
     padding: 30px;
     .card {
@@ -121,7 +127,7 @@ body {
           font-weight: bold;
           color: #7c7c7c;
         }
-        td{
+        td {
           font-size: 12px;
           color: #7c7c7c;
           font-weight: 500;
@@ -149,6 +155,9 @@ body {
                 margin-bottom: 0;
               }
             }
+          }
+          &.name {
+            min-width: 200px;
           }
         }
         .image {
@@ -358,6 +367,11 @@ body {
     @media (max-width: 990px) {
       margin-top: 10px;
     }
+    @media (max-width: 767px) {
+      .modal {
+        z-index: 9999;
+      }
+    }
     .btn-green {
       img{
         width: 9px;
@@ -376,6 +390,11 @@ body {
         padding-bottom: 15%;
         @media (max-width: 990px) {
           padding-bottom: 140px;
+          height: auto;
+        }
+        @media (max-width: 767px) {
+          height: auto;
+          padding-bottom: 0;
         }
         .modal-header {
           border: 0;
@@ -397,10 +416,18 @@ body {
         .modal-body{
           width: 60%;
           margin: 0 auto;
+          @media (max-width: 767px) {
+            width: 100%;
+            padding: 15px 20px;
+          }
           h3 {
             text-align: center;
             font-weight: bold;
             padding: 30px 0;
+            @media (max-width: 767px) {
+              padding: 0 0 30px;
+              margin-top: 0;
+            }
           }
           .form-wrap {
             label {
@@ -501,6 +528,10 @@ body {
           text-align: center;
           border-top: 0;
           padding: 50px;
+          @media (max-width: 767px) {
+            position: relative;
+            padding: 10px 0 40px;
+          }
           .btn {
             text-transform: lowercase;
             font-size: 18px;
@@ -530,6 +561,10 @@ body {
     @media (max-width: 990px) {
       display: block;
     }
+    @media (max-width: 767px) {
+      padding-right: 20px;
+      padding-top: 10px;
+    }
     .btn-back {
       a {
         display: flex;
@@ -552,6 +587,9 @@ body {
           @media (max-width: 990px) {
             padding: 0 6px;
           }
+          @media (max-width: 767px) {
+            padding: 0;
+          }
           a {
             border: 0;
             float: none;
@@ -562,6 +600,9 @@ body {
             font-size: 14px;
             @media (max-width: 990px) {
               display: inline-block;
+            }
+            @media (max-width: 767px) {
+              padding: 5px 8px;
             }
             img{
               width: 24px;
@@ -596,6 +637,9 @@ body {
     min-height: 85vh;
     @media (max-width: 990px) {
       padding-right: 30px;
+    }
+    @media (max-width: 767px) {
+      padding-right: 20px;
     }
     .top-wrap{
       width: 660px;
@@ -707,6 +751,9 @@ body {
           display: flex;
           align-items: center;
           padding: 20px 0;
+          @media (max-width: 767px) {
+            display: block;
+          }
           h3 {
             display: inline-block;
             margin: 0;
@@ -723,6 +770,13 @@ body {
               right: 0;
               padding-right: 50px;
               text-align: right;
+            }
+            @media (max-width: 767px) {
+              position: relative;
+              margin-top: 10px;
+              margin-bottom: 0;
+              padding-right: 0;
+              text-align: left;
             }
           }
         }
@@ -844,6 +898,9 @@ body {
         @media (max-width: 990px) {
           min-width: auto;
         }
+        @media (max-width: 767px) {
+          padding-top: 65px;
+        }
         img{
           width: 24px;
           transform: rotate(180deg);
@@ -862,6 +919,9 @@ body {
         padding: 70px 20px 20px;
         background: #f9f9f9;
         height: 100% !important;
+        @media (max-width: 767px) {
+          padding-top: 120px;
+        }
         h4 {
           font-size: 14px;
           color:  #d6d6d6;
@@ -909,6 +969,9 @@ body {
             }
           }                 
           .profile-image {
+            @media (min-width: 1024px) {
+              margin-right: 20px;
+            }
             @media (max-width: 990px) {
               display: block;
               width: 200px;
@@ -1120,6 +1183,9 @@ body {
             @media (max-width: 990px) {
               padding: 0;
             }
+            @media (max-width: 767px) {
+              padding: 15px 20px;
+            }
             .upload-image {
               width: 50%;
               border: 1px dashed #eaeaea;
@@ -1198,6 +1264,9 @@ body {
     position: relative;
     display: block;
     z-index: 999;
+    @media (max-width: 767px) {
+      width: 100%;
+    }
     &:after {
       content: '';
       position: absolute;
@@ -1233,6 +1302,9 @@ body {
       margin: 0 auto;
       width: 50%;
       padding-bottom: 30px;
+      @media (max-width: 767px) {
+        width: 80%;
+      }
     }
     p {
       font-size: 17px;
@@ -1253,6 +1325,9 @@ body {
     z-index: 99999;
     font-weight: 300;
     letter-spacing: 1px;
+    @media (max-width: 990px) {
+      width: auto;
+    }
   }
 }
 .user-cluster {
@@ -1261,6 +1336,12 @@ body {
       .modal-content {
         .modal-body {
           width: 31%;
+          @media (max-width: 990px) {
+            width: 60%;
+          }
+          @media (max-width: 767px) {
+            width: 100%;
+          }
           .form-wrap {
             border: 1px solid #cbcbcb;
             padding: 20px;
@@ -1524,6 +1605,24 @@ input[type="radio"]:not(:checked) + label:before {
   @media (max-width: 990px) {
     width: 100%;
     height: 260px;
+  }
+}
+.nav-toggle-m {
+  display: none;
+  @media (max-width: 767px) {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background: #67010d;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px;
+    color: #fff;
+    font-size: 28px;
+    cursor: pointer;
   }
 }
 

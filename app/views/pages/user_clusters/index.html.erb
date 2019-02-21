@@ -129,6 +129,7 @@
                         <img src="<%= asset_pack_path("views/assets/images/ic_status_nonactive.png") %>"/>
                       <% end %>
                     </td>
+                    <td><%= Date.parse(item["created_at"]) unless item["created_at"].nil? %></td>
                     <td>
                       <button class="dropdown-toggle" type="button" id="action" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
@@ -172,7 +173,7 @@
                       <label>User</label>
                       <div class="form-group">
                         <div class="form-group">
-                          <input type="nama" name="nama" value="<%= params[:nama] %>" class="form-control q" placeholder="Nama">
+                          <input type="nama" name="full_name" value="<%= params[:full_name] %>" class="form-control q" placeholder="Nama">
                         </div>
                       </div>
                     </div>

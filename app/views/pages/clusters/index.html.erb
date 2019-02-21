@@ -128,7 +128,7 @@
                       <%= item["status"] %>
                     </a>
                   </td>
-                  <td>21/10/2023</td>
+                  <td><%= Date.parse(item["created_at"]) unless item["created_at"].nil? %></td>
                   <td>
                     <button class="dropdown-toggle" type="button" id="dropdown-active" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false">
@@ -157,6 +157,17 @@
                 <h4>Filter</h4>
                 <div class="filter-wrap">
                   <div class="form-wrap">
+                    <label>Urutan Berdasar</label>
+                    <div class="form-group">
+                      <select class="form-control stat" name="order_by">
+                        <option></option>
+                        <% @sorts.each do |stat| %>
+                          <option value="<%= stat["id"] %>" <%= selected stat["id"], params[:order_by] %> > <%= stat["name"] %> </option>
+                        <% end %>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-wrap">
                     <label>Status</label>
                     <div class="form-group">
                       <select class="form-control stat" name="status">
@@ -171,7 +182,7 @@
                     <label>Admin</label>
                     <div class="form-group">
                       <div class="form-group">
-                        <input name="q" value="<%= params[:q] %>" type="nama" class="form-control q" placeholder="Nama">
+                        <input name="admin" value="<%= params[:admin] %>" type="nama" class="form-control q" placeholder="Nama">
                       </div>
                     </div>
                   </div>
