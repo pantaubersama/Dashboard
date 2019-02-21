@@ -11,4 +11,15 @@ module TanyaKandidatStubber
       to_return(status: 200, body: data.to_json, headers: {})
   end
 
+  def stub_show_tanya_kandidat id
+    file = File.open "#{ENV["PEMILU_STUBBER_PATH"]}/Pendidikan_Politik/v1/questions/id/get.json"
+    data = JSON.parse(file.read)
+    stub_request(:get, "https://staging-pemilu.pantaubersama.com/dashboard/v1/question_actions/#{id}").
+      with(
+        headers: {
+      'Authorization'=>''
+        }).
+      to_return(status: 200, body: data.to_json, headers: {})
+  end
+
 end
