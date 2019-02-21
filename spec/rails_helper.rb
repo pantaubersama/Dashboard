@@ -77,6 +77,7 @@ RSpec.configure do |config|
   config.include LinimasaStubber, type: :request
   config.include JanjiPolitikStubber, type: :request
   config.include TanyaKandidatStubber, type: :request
+  config.include BadgesStubber, type: :request
 
   # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
   config.before(:suite) do
@@ -97,4 +98,11 @@ RSpec.configure do |config|
   OmniAuth.config.test_mode = true
   # allowed access localhost
   WebMock.disable_net_connect!(allow_localhost: true)
+
+  Shoulda::Matchers.configure do |config_shoulda|
+    config_shoulda.integrate do |with|
+      with.test_framework :rspec
+      with.library :rails
+    end
+  end
 end
