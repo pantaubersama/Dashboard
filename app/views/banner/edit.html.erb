@@ -44,7 +44,18 @@
                   <label>Page Name</label>
                   <div class="form-group">
                     <div class="form-group">
-                      <%= select_tag(:page_name, options_for_select([['Pilpres', 'pilpres'], ['Janji Politik', 'janji politik'],['Tanya', 'tanya'], ['Kuis', 'kuis']], @banner.page_name), class: "form-control") %>
+                      <%= select_tag(:page_name, options_for_select([
+                        ['Pilpres', 'pilpres'],
+                        ['Janji Politik', 'janji politik'],
+                        ['Tanya', 'tanya'],
+                        ['Kuis', 'kuis'],
+                        ['Lapor', 'lapor'],
+                        ['Debat', 'debat'],
+                        ['Tantangan', 'tantangan'],
+                        ['Perhitungan', 'perhitungan'],
+                        ['My Input', 'my_input'],
+                        ['Rekapitulasi', 'rekapitulasi'],
+                        ], @banner.page_name), class: "form-control") %>
                     </div>
                   </div>
                 </div>
