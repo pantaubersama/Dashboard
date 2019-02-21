@@ -76,6 +76,7 @@ RSpec.configure do |config|
   config.include UserVerificationsStubber, type: :request
   config.include LinimasaStubber, type: :request
   config.include JanjiPolitikStubber, type: :request
+  config.include TanyaKandidatStubber, type: :request
   config.include BadgesStubber, type: :request
 
   # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
