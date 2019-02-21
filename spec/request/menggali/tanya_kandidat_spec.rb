@@ -14,7 +14,7 @@ RSpec.describe "Tanya Kandidat", type: :request do
   login_admin
 
     describe "Index" do
-      it "can list all records" do
+      it "can list all tanya kandidat records" do
         get "/questions"
         expect(response).to have_http_status(200)
         expect(response).to render_template("questions/index")
@@ -38,6 +38,15 @@ RSpec.describe "Tanya Kandidat", type: :request do
           question_folder_id: question_folder_id,
           status: status
         }
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to(questions_path)
+      end
+    end
+
+    describe "Delete" do
+      it "can delete tanya kandidat record" do
+        stub_delete_tanya_kandidat id
+        delete "/questions/#{id}"
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(questions_path)
       end
