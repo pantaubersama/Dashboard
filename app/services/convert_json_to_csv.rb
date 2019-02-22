@@ -1,13 +1,13 @@
 require 'csv'
 require 'json'
+require "set"
 
 module ConvertJsonToCsv
   def json_to_csv(json_file, csv_file)
-    json_array = json_file
-    headers = collect_keys(json_array.first) 
+    headers = collect_keys(json_file.first.keys)
     CSV.generate(:headers => true) do |csv|
       csv << headers
-      json_array.each { |item| csv << collect_values(item) }
+      json_file.each { |item| csv << collect_values(item) }
     end
   end
   
@@ -15,7 +15,7 @@ module ConvertJsonToCsv
     arr = hash.map do |key, value|
       if value.class != Hash
         if prefix
-          "#{prefix}.#{key}"
+          "#{prefix}.#{value}"
         else
           key
         end
@@ -34,7 +34,7 @@ module ConvertJsonToCsv
     arr = hash.map do |key, value|
       if value.class != Hash
         if (value.class == Array)
-          value.join(',')
+          value.join('  , ')
         else
           value
         end
