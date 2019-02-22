@@ -1,0 +1,85 @@
+<div class="pb-wrapper">
+  <%= render("components/sidebar") %>
+  <main class="main" role="main">
+    <header class="header" role="banner">
+      <%= render("components/dropdown_profile") %>
+    </header>
+    <div class="main-content">
+      <div class="top">
+
+        <div class="modal-wrap">
+          <button type="button" class="btn btn-green" data-toggle="modal" data-target="#exampleModal">
+            Create Tags <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+
+                <div class="modal-body">
+                  <h3>Tambah Tag</h3>
+                  <div class="form-wrap">
+                    <%= form_tag(tags_path, method: "post") do %>
+                    <label>Nama Tag</label>
+                    <div class="form-group">
+                      <input type="text" name="name" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-solid-green">Tambah
+                  </button>
+                  <button type="button" class="btn btn-transparent" data-dismiss="modal">Cancel</button>
+                </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <span class="display-desc">
+        </span>
+        <%= render ('components/flash_message') %>
+        <div class="table">
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Jumlah Post</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <% @tags.each_with_index do |tag, index| %>
+              <tr>
+                <td class="number_bold">
+                  <%= index + 1 %>
+                </td>
+                <td>
+                  <a href="<%= tag_path(tag['id']) %>">
+                    <%= tag['name'] %>
+                  </a>
+                </td>
+                <td>
+                  <%= tag['posts_count'] %>
+                </td>
+              </tr>
+              <% end %>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<%= render("components/footer") %>

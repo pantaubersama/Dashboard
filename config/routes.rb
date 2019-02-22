@@ -87,6 +87,7 @@ Rails.application.routes.draw do
     end
   end
   resources :categories
+  resources :tags
 
   # admins
   get '/admins', to: 'admins#index', as: 'users_list_admin'

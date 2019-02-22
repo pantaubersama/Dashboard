@@ -30,7 +30,7 @@ class PoliticalPartyController < ApplicationController
     request = @party_api.update(params[:id], params[:name].present? ? params[:name] : '', params[:image].present? ? params[:image] : '')
     if request.code == 200
       flash[:success] = "Update Sucessful"
-      redirect_to edit_political_party_path(@party['id'])
+      redirect_to edit_political_party_path(params[:id])
     else
       flash[:success] = "Oops Update Failed"
       render :edit
