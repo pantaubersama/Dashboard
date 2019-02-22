@@ -79,6 +79,7 @@ RSpec.configure do |config|
   config.include TanyaKandidatStubber, type: :request
   config.include BadgesStubber, type: :request
   config.include BannerStubber, type: :request
+  config.include PoliticalPartyStubber, type: :request
 
   # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
   config.before(:suite) do
