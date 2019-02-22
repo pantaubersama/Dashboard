@@ -1,3 +1,5 @@
+require 'csv'
+
 class QuizController < ApplicationController
   before_action :set_api
 
@@ -130,6 +132,35 @@ class QuizController < ApplicationController
     else
       flash[:warning] = build_error_messages response
       redirect_to quiz_index_path
+    end
+  end
+
+  def download_as_json
+    response = @quiz_api.download_file(params[:id].present? ? params[:id] : nil )
+    if response.code == 200
+      send_data response.to_json, :filename => 'quiz_report.json', :type => 'application/json', :disposition => 'attachment'
+    end
+  end
+
+  def download_as_csv
+    response = @quiz_api.download_file(params[:id].present? ? params[:id] : nil )
+    if response.code == 200
+      json = JSON.parse(response.body)
+      headers = ["Quiz", "Pertanyaan", "Total User", "Jumlah User Team 1", "Persentase Team 1", "Jumlah User Team 2", "Persentase Team 2"]
+      csv_data = CSV.generate do |csv|
+        csv << headers
+        json["data"].each {|res| csv << [
+                                          res["quiz"], 
+                                          res["question"], 
+                                          res["total"], 
+                                          res["teams"][0]["total"], 
+                                          res["teams"][0]["percentage"],
+                                          res["teams"][1]["total"], 
+                                          res["teams"][1]["percentage"] 
+                                        ]
+                          }
+      end
+      send_data csv_data, filename: 'quiz_report.csv', :type => 'text/csv; charset=utf-8; header=present', :disposition => 'attachment'
     end
   end
   
