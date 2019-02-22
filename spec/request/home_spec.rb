@@ -8,7 +8,7 @@ RSpec.describe "Home", type: :request do
   end
   login_admin
 
-  describe "Home" do
+  describe "GET /" do
     it "success" do
       get "/"
       expect(response).to have_http_status(200)
