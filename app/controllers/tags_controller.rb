@@ -14,6 +14,7 @@ class TagsController < ApplicationController
       case request.code
       when 201
         flash[:success] = "Create Successful"
+        sleep 2
         redirect_to tags_path
       else
         flash[:error] = "Fail Created #{request}"
