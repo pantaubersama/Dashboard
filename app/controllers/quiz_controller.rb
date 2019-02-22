@@ -1,4 +1,5 @@
 class QuizController < ApplicationController
+  include ConvertJsonToCsv
   before_action :set_api
 
   def index
@@ -130,6 +131,21 @@ class QuizController < ApplicationController
     else
       flash[:warning] = build_error_messages response
       redirect_to quiz_index_path
+    end
+  end
+
+  def download_as_json
+    response = @quiz_api.download_file(params[:id].present? ? params[:id] : nil )
+    if response.code == 200
+      send_data response.to_json, :filename => 'quiz_report.json', :type => 'application/json', :disposition => 'attachment'
+    end
+  end
+
+  def download_as_csv
+    response = @quiz_api.download_file(params[:id].present? ? params[:id] : nil )
+    if response.code == 200
+      csv_data = QuizController.new.json_to_csv(response["data"], response["data"].to_csv)
+      send_data csv_data, filename: 'quiz_report.csv', :type => 'text/csv; charset=utf-8; header=present', :disposition => 'attachment'
     end
   end
   

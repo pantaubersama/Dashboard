@@ -31,6 +31,8 @@
               <p>Total Question : {{ quiz.quiz_questions_count }}</p>
               <p>Question counter : {{ counter + counter_for_new }}</p>
               <button class="btn btn-solid-green" @click="updateQuiz" id='btn-update'>UPDATE</button>
+              <%= link_to "Download JSON", download_as_json_quiz_path(params[:id]), { method: :get, class: "btn btn-green" } %>
+              <%= link_to "Download CSV", download_as_csv_quiz_path(params[:id]), { method: :get, class: "btn btn-green" } %>
             </div>
           </div>
           <div class="card-form">
