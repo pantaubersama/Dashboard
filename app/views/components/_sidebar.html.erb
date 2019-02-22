@@ -59,7 +59,12 @@
         </div>
       </li>
       <li class="nav-item">
-        <a href="#"><img src="<%= asset_pack_path("views/assets/images/ic_ws-black.svg") %>"> Menguji</a>
+        <a href="#" data-toggle="collapse" data-target="#collapseMenguji">
+          <img src="<%= asset_pack_path("views/assets/images/ic_ws-black.svg") %>"> Menguji
+        </a>
+        <div class="collapse <%= active_menu_parent ["tags"] %> sub-nav" id="collapseMenguji">
+          <%= link_to 'Tags', tags_path, class: "sub-nav-item nav-link #{active_menu 'tags'} " %>
+        </div>
       </li>
       <li class="nav-item">
         <a href="#"><img src="<%= asset_pack_path("views/assets/images/ic_report-black.svg") %>"> Menjaga</a>

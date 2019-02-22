@@ -1,0 +1,44 @@
+<div class="pb-wrapper">
+  <%= render("components/sidebar") %>
+  <main class="main" role="main">
+    <header class="header" role="banner">
+      <%= render("components/dropdown_profile") %>
+    </header>
+    <div class="main-content">
+      <div class="top">
+        <div class="btn-back">
+          <%= link_to tags_path do %>
+            <img src="<%= asset_pack_path("views/assets/images/ic_back.svg") %>"> Back
+          <% end %>
+        </div>
+      </div>
+      <div class="content">
+        <span class="display-desc">
+        </span>
+        <div class="bg-white detail-profile">
+          <div class="card-form">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="form-wrap">
+                  <label>Nama Tag</label>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <input type="text" class="form-control" disabled value="<%= @tag['name']%>">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-wrap">
+                  <label>Jumlah Post</label>
+                  <div class="form-group">
+                    <input type="text" class="form-control" disabled value="<%= @tag['posts_count']%>">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<%= render("components/footer") %>
