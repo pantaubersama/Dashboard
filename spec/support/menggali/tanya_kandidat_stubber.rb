@@ -77,4 +77,49 @@ module TanyaKandidatStubber
       to_return(status: 200, body: data.to_json, headers: {})
   end
 
+  # def stub_create_folder
+  #   file = File.open "#{ENV["PEMILU_STUBBER_PATH"]}/Dashboard/v1/question_folders/post.json"
+  #   data = JSON.parse(file.read)
+  #   stub_request(:post, "https://staging-pemilu.pantaubersama.com/dashboard/v1/question_folders").
+  #     with(
+  #       body: "name=test",
+  #       headers: {
+  #         'Authorization'=>'Bearer'
+  #       }).
+  #     to_return(status: 200, body: data.to_json, headers: {})
+  # end
+
+  def stub_delete_folder id
+    file = File.open "#{ENV["PEMILU_STUBBER_PATH"]}/Dashboard/v1/question_folders/id/delete.json"
+    data = JSON.parse(file.read)
+    stub_request(:delete, "https://staging-pemilu.pantaubersama.com/dashboard/v1/question_folders/#{id}").
+      with(
+        headers: {
+          'Authorization'=>''
+        }).
+      to_return(status: 200, body: data.to_json, headers: {})
+  end
+
+  def stub_index_trash_question page
+    file = File.open "#{ENV["PEMILU_STUBBER_PATH"]}/Dashboard/v1/question_actions/trash/get.json"
+    data = JSON.parse(file.read)
+    stub_request(:get, "https://staging-pemilu.pantaubersama.com/dashboard/v1/question_actions/trash?page=#{page}&per_page=15").
+      with(
+        headers: {
+      'Authorization'=>''
+        }).
+      to_return(status: 200, body: data.to_json, headers: {})
+  end
+
+  def stub_show_trash_question id
+    file = File.open "#{ENV["PEMILU_STUBBER_PATH"]}/Dashboard/v1/question_actions/trash/id/get.json"
+    data = JSON.parse(file.read)
+    stub_request(:get, "https://staging-pemilu.pantaubersama.com/dashboard/v1/question_actions/trash/#{id}").
+      with(
+        headers: {
+      'Authorization'=>''
+        }).
+      to_return(status: 200, body: data.to_json, headers: {})
+  end
+
 end
