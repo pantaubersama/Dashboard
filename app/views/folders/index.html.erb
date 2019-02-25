@@ -6,7 +6,7 @@
   <%= render("components/sidebar") %>
   <main class="main" role="main">
     <%= render "components/question/header", active: "terpilih" %>
-    
+
     <div class="tab-content clearfix">
       <div class="main-content tab-pane active" id="terpilih">
         <div class="top ">
@@ -80,7 +80,9 @@
                     </div>
                   </div>
                 </div>
-                <button type="submit">Done</button>
+                <div class="button-wrapper">
+                  <button class="btn btn-solid-green" type="submit">Done</button>
+                </div>
                 <% end %>
               </div>
             </div>

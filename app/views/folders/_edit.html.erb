@@ -11,7 +11,7 @@
         <h3>Ubah Folder</h3>
 
         <input type="hidden" id="editFolder" value="<%= params[:id] %>">
-        
+
         <div class="form-wrap">
           <label>Nama Folder</label>
           <div class="form-group">
@@ -26,7 +26,7 @@
         <button type="button" class="btn btn-solid-green" @click="updateFolder" id='btn-update'>
           Update
         </button>
-        <button type="button" class="btn btn-transparent">Cancel</button>
+        <button type="button" data-dismiss="modal" class="btn btn-transparent">Cancel</button>
       </div>
     </div>
   </div>
