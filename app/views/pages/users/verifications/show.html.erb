@@ -15,14 +15,15 @@
           <div class="modal fade" id="modalKTPphoto" tabindex="-1" role="dialog" aria-labelledby="modalKTPphotoLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
+              <div class="modal-content modal-content-user-verifications">
+                <div class="modal-header" >
+                <%# height nya dimatikan %>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body">
-                  <%= image_tag @verification['ktp_photo']['url'], style: "height:100%" unless @verification['ktp_photo']['url'].nil?  %>
+                <div class="modal-body modal-body-user-verifications">
+                  <%= image_tag @verification['ktp_photo']['url'] unless @verification['ktp_photo']['url'].nil?  %>
                 </div>
               </div>
             </div>
@@ -33,13 +34,13 @@
           <div class="modal fade" id="modalTandaTangan" tabindex="-1" role="dialog" aria-labelledby="modalTandaTangan"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
-              <div class="modal-content">
+              <div class="modal-content modal-content-user-verifications">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body modal-body-user-verifications">
                   <%= image_tag @verification['signature']['url'] unless @verification['signature']['url'].nil?  %>
 
                 </div>
@@ -52,13 +53,13 @@
           <div class="modal fade" id="modalFotoWajah" tabindex="-1" role="dialog" aria-labelledby="modalFotoWajah"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
-              <div class="modal-content">
+              <div class="modal-content modal-content-user-verifications">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body modal-body-user-verifications">
                 <%= image_tag @verification['ktp_selfie']['url'] unless @verification['ktp_selfie']['url'].nil? %>
                 </div>
               </div>
