@@ -25,7 +25,7 @@
                     <h3>Tambah Kategori Cluster</h3>
                     <%= form_tag(categories_path, method: :post) do  %>
                     <div class="row">
-                      <div class="col-md-6 col-xs-12">
+                      <div class="col-md-12 col-xs-12">
                         <div class="form-wrap">
                           <label>Kategori Cluster</label>
                           <div class="form-group">
@@ -122,7 +122,7 @@
               <div class="button-wrapper">
                 <button type="submit" class="btn btn-solid-green">Done</button>
                 <%= link_to categories_path do %>
-                <button type="button" class="btn btn-transparent">Reset</button>
+                <button type="reset" class="btn btn-transparent">Reset</button>
                 <% end %>
               </div>
               <% end %>

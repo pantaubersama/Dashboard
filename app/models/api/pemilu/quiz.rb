@@ -1,4 +1,6 @@
 class Api::Pemilu::Quiz < InitApiPemilu
+  attr_accessor :quiz, :question, :total, :teams 
+
   def all(page=1, per_page=25, q=nil, o="and", m="word_start")
     options = {
       headers: {}.merge({Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}),
@@ -124,8 +126,33 @@ class Api::Pemilu::Quiz < InitApiPemilu
       end
     end
   end
+
+  def download_file id=""
+    options = {
+      headers: {}.merge({Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}),
+      body: {
+        id: id
+      }
+    }
+    if id.present?
+      self.class.get("/dashboard/v1/report/per_questions?quiz_id=#{id}", options)
+    else
+      self.class.get("/dashboard/v1/report/per_questions", options)
+    end
+  end
   
-  
-  
+  # def self.to_csv
+    # options = {
+    #   headers: {}.merge({Authorization: "Bearer #{RequestStore.store[:my_api_token]}"}),
+    # }
+    # response = self.class.get("/dashboard/v1/report/per_questions", options)["data"]
+
+    # CSV.generate do |csv|
+    #   csv << column_names
+    #   JSON.parse(response).each do |hash|
+    #     csv << hash.values_at(*column_names)
+    #   end
+    # end
+  # end
   
 end

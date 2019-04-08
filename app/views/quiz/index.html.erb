@@ -15,6 +15,8 @@
             <button type="button" class="btn btn-green" data-toggle="modal" data-target="#quizModal">
               Buat Quiz <img src="<%= asset_pack_path("views/assets/images/ic_create-admin.svg") %>" alt="add">
             </button>
+            <%= link_to "Download JSON", download_as_json_quiz_index_path, { method: :get, class: "btn btn-green" } %>
+            <%= link_to "Download CSV", download_as_csv_quiz_index_path, { method: :get, class: "btn btn-green" } %>
 
             <div class="modal fade" id="quizModal" tabindex="-1" role="dialog" aria-labelledby="quizModalLabel"
               aria-hidden="true">

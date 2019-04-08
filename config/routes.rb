@@ -76,13 +76,18 @@ Rails.application.routes.draw do
   resources :quiz do
     collection do
       get 'trash'
+      get 'download_as_json'
+      get 'download_as_csv'
     end
     member do
       post 'publish'
       post 'draft'
+      get 'download_as_json'
+      get 'download_as_csv'
     end
   end
   resources :categories
+  resources :tags
 
   # admins
   get '/admins', to: 'admins#index', as: 'users_list_admin'
